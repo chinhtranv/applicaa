@@ -133,7 +133,7 @@
           <PostTown>Example City</PostTown>
           <UniquePropertyReferenceNumber>12345678</UniquePropertyReferenceNumber>
         </BS7666Address>
-        OR
+        
         <AddressLines>
           <AddressLine1>Example Cottage</AddressLine1>
           <AddressLine2>Example Lane</AddressLine2>
@@ -201,7 +201,7 @@
               <PostTown>Example City</PostTown>
               <UniquePropertyReferenceNumber>12345678</UniquePropertyReferenceNumber>
             </BS7666Address>
-            OR
+            
             <AddressLines>
               <AddressLine1>Example Cottage</AddressLine1>
               <AddressLine2>Example Lane</AddressLine2>

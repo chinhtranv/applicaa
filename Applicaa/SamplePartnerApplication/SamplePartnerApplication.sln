@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartnerWorld", "PartnerWorld\PartnerWorld.csproj", "{BA972334-1DBD-4A1E-A26B-41FD66FBECA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMSInterface", "SIMSInterface\SIMSInterface.csproj", "{6F790F4A-160E-4422-8A68-ADD2ED1A1059}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadAttendance", "ReadAttendance\ReadAttendance.csproj", "{0D097E3C-9213-4D79-A090-FA99394EA314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteAttendance", "WriteAttendance\WriteAttendance.csproj", "{C0B373B5-9627-487A-B4D8-B57FF4B6FEFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMSInternalAPIs", "SIMSInternalAPIs\SIMSInternalAPIs.csproj", "{6015177F-38A4-4124-A5CB-E220ADB08527}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIMSReportingEngine", "SIMSReportingEngine\SIMSReportingEngine.csproj", "{0FC9155E-FEF6-49D0-B499-58E8F788AAAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingExample2", "ReportingExample2\ReportingExample2.csproj", "{C5A7445F-8CE5-49A1-A7B4-71FA1BA174F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA972334-1DBD-4A1E-A26B-41FD66FBECA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA972334-1DBD-4A1E-A26B-41FD66FBECA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA972334-1DBD-4A1E-A26B-41FD66FBECA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA972334-1DBD-4A1E-A26B-41FD66FBECA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F790F4A-160E-4422-8A68-ADD2ED1A1059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F790F4A-160E-4422-8A68-ADD2ED1A1059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F790F4A-160E-4422-8A68-ADD2ED1A1059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F790F4A-160E-4422-8A68-ADD2ED1A1059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D097E3C-9213-4D79-A090-FA99394EA314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D097E3C-9213-4D79-A090-FA99394EA314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D097E3C-9213-4D79-A090-FA99394EA314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D097E3C-9213-4D79-A090-FA99394EA314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B373B5-9627-487A-B4D8-B57FF4B6FEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B373B5-9627-487A-B4D8-B57FF4B6FEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B373B5-9627-487A-B4D8-B57FF4B6FEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B373B5-9627-487A-B4D8-B57FF4B6FEFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6015177F-38A4-4124-A5CB-E220ADB08527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6015177F-38A4-4124-A5CB-E220ADB08527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6015177F-38A4-4124-A5CB-E220ADB08527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6015177F-38A4-4124-A5CB-E220ADB08527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FC9155E-FEF6-49D0-B499-58E8F788AAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FC9155E-FEF6-49D0-B499-58E8F788AAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FC9155E-FEF6-49D0-B499-58E8F788AAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FC9155E-FEF6-49D0-B499-58E8F788AAAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A7445F-8CE5-49A1-A7B4-71FA1BA174F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A7445F-8CE5-49A1-A7B4-71FA1BA174F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A7445F-8CE5-49A1-A7B4-71FA1BA174F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A7445F-8CE5-49A1-A7B4-71FA1BA174F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19192881-6F15-4BB4-8150-15F992FBEA6F}
+	EndGlobalSection
+EndGlobal
