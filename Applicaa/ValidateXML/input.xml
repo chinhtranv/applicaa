@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EmployeeDetails>
+  <FirstName>Dang</FirstName>
+  <MiddleName>Dinh</MiddleName>
+  <LastName>Dang</LastName>
+  <EmailId>dangdd2@yahoo.com.vn</EmailId>
+  <Mobile>0976094792</Mobile>
+  <Address>Yen Nghia, Duong Noi, Ha dong</Address>
+  <Car>BMW</Car>
+</EmployeeDetails>

@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ATfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Header">
+          <xs:complexType>
+            
+            <xs:sequence>
+              <xs:element name="DocumentName" type="xs:string" />
+              <xs:element name="ATFversion" minOccurs="1" type="xs:decimal" />
+              <xs:element name="DateTime" type="xs:dateTime" />
+              <xs:element name="DocumentQualifier" type="xs:string" />
+              <xs:element name="SupplierID" type="xs:string" />
+              <xs:element name="SourceSchool">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LEA" type="xs:unsignedShort" />
+                    <xs:element name="Estab" type="xs:unsignedShort" />
+                    <xs:element name="URN" type="xs:unsignedInt" />
+                    <xs:element name="SchoolName" type="xs:string" />
+                    <xs:element name="AcademicYear" type="xs:unsignedShort" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="DestSchool">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="LEA" type="xs:unsignedByte" />
+                    <xs:element name="Estab" type="xs:unsignedShort" />
+                    <xs:element name="URN" type="xs:unsignedInt" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SuppInfo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="SuppID" type="xs:string" />
+                    <xs:element name="annotation">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="documentation" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="foo" type="xs:string" />
+                    <xs:element name="morefoo" type="xs:string" />
+                    <xs:element name="nestedfoo">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="lastName" type="xs:string" />
+                          <xs:element name="firstName" type="xs:string" />
+                          <xs:element name="street" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+
+            
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ATFpupilData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pupil">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ApplicationReference" type="xs:string" />
+                    <xs:element name="UPN" type="xs:string" />
+                    <xs:element name="UniqueLearnerNumber" type="xs:unsignedLong" />
+                    <xs:element name="UCI" type="xs:string" />
+                    <xs:element name="Surname" type="xs:string" />
+                    <xs:element name="Forename" type="xs:string" />
+                    <xs:element name="DOB" type="xs:string" />
+                    <xs:element name="Gender" type="xs:string" />
+                    <xs:element name="BasicDetails">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="UPN" type="xs:string" />
+                          <xs:element name="PreferredSurname" type="xs:string" />
+                          <xs:element name="FormerSurname" type="xs:string" />
+                          <xs:element name="PreferredForename" type="xs:string" />
+                          <xs:element name="MiddleNames" type="xs:string" />
+                          <xs:element name="NCyearActual" type="xs:unsignedByte" />
+                          <xs:element name="EnglishProficiencies">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="EnglishProficiency">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ProficiencyInEnglish" type="xs:string" />
+                                      <xs:element name="ProficiencyInEnglishDate" type="xs:date" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="CountryofBirth" type="xs:string" />
+                          <xs:element name="Nationalities">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Nationality" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Ethnicity" type="xs:string" />
+                          <xs:element name="EthnicitySource" type="xs:string" />
+                          <xs:element name="Languages">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Type">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="LanguageType" type="xs:string" />
+                                      <xs:element name="Language" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ServiceChild" type="xs:string" />
+                          <xs:element name="MedicalFlag" type="xs:boolean" />
+                          <xs:element name="Disabilities">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="Disability" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SuppInfo">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SuppID" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="FSMhistory">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="FSMreviewDate" type="xs:date" />
+                          <xs:element maxOccurs="unbounded" name="FSMinstance">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="FSMstartDate" type="xs:date" />
+                                <xs:element minOccurs="0" name="FSMendDate" type="xs:date" />
+                                <xs:element name="UKcountry" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="LookedAfter">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="InCare" type="xs:boolean" />
+                          <xs:element name="CareAuthority" type="xs:unsignedShort" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SENhistory">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SEN">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="StartDate" type="xs:date" />
+                                <xs:element name="SENprovision" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SENneeds">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="SENneed">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="NeedStartDate" type="xs:date" />
+                                      <xs:element name="NeedEndDate" type="xs:date" />
+                                      <xs:element name="SENtypeRank" type="xs:unsignedByte" />
+                                      <xs:element name="SENtype" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SuppInfo">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SuppID" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Admissions">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Accept" type="xs:boolean" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Address">
+                      <xs:complexType mixed="true">
+                        <xs:sequence>
+                          <xs:element name="BS7666Address">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SAON" type="xs:string" />
+                                <xs:element name="PAON" type="xs:unsignedByte" />
+                                <xs:element name="Street" type="xs:string" />
+                                <xs:element name="Locality" type="xs:string" />
+                                <xs:element name="Town" type="xs:string" />
+                                <xs:element name="AdministrativeArea" type="xs:string" />
+                                <xs:element name="PostTown" type="xs:string" />
+                                <xs:element name="UniquePropertyReferenceNumber" type="xs:unsignedInt" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="AddressLines">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="AddressLine1" type="xs:string" />
+                                <xs:element name="AddressLine2" type="xs:string" />
+                                <xs:element name="AddressLine3" type="xs:string" />
+                                <xs:element name="AddressLine4" type="xs:string" />
+                                <xs:element name="AddressLine5" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="County" type="xs:string" />
+                          <xs:element name="PostCode" type="xs:string" />
+                          <xs:element name="Zip" type="xs:unsignedShort" />
+                          <xs:element name="Country" type="xs:string" />
+                          <xs:element name="Easting" type="xs:decimal" />
+                          <xs:element name="Northing" type="xs:decimal" />
+                          <xs:element name="SuppInfo">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="SuppID" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Phones">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Phone">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="TelephoneType" type="xs:string" />
+                                <xs:element name="PhoneNo" type="xs:string" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Email" type="xs:string" />
+                    <xs:element name="Contacts">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Contact">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Order" type="xs:unsignedByte" />
+                                <xs:element name="Title" type="xs:string" />
+                                <xs:element name="Surname" type="xs:string" />
+                                <xs:element name="Forename" type="xs:string" />
+                                <xs:element minOccurs="0" name="MiddleNames" type="xs:string" />
+                                <xs:element name="Gender" type="xs:string" />
+                                <xs:element name="Relationship" type="xs:string" />
+                                <xs:element name="Responsibility" type="xs:boolean" />
+                                <xs:element name="Address">
+                                  <xs:complexType mixed="true">
+                                    <xs:sequence>
+                                      <xs:element minOccurs="0" name="BS7666Address">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="SAON" type="xs:string" />
+                                            <xs:element name="PAON" type="xs:unsignedByte" />
+                                            <xs:element name="Street" type="xs:string" />
+                                            <xs:element name="Locality" type="xs:string" />
+                                            <xs:element name="Town" type="xs:string" />
+                                            <xs:element name="AdministrativeArea" type="xs:string" />
+                                            <xs:element name="PostTown" type="xs:string" />
+                                            <xs:element name="UniquePropertyReferenceNumber" type="xs:unsignedInt" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="AddressLines">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="AddressLine1" type="xs:string" />
+                                            <xs:element name="AddressLine2" type="xs:string" />
+                                            <xs:element name="AddressLine3" type="xs:string" />
+                                            <xs:element name="AddressLine4" type="xs:string" />
+                                            <xs:element name="AddressLine5" type="xs:string" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element minOccurs="0" name="County" type="xs:string" />
+                                      <xs:element minOccurs="0" name="PostCode" type="xs:string" />
+                                      <xs:element minOccurs="0" name="Zip" type="xs:unsignedShort" />
+                                      <xs:element minOccurs="0" name="Country" type="xs:string" />
+                                      <xs:element minOccurs="0" name="Easting" type="xs:decimal" />
+                                      <xs:element minOccurs="0" name="Northing" type="xs:decimal" />
+                                      <xs:element minOccurs="0" name="AddressAsPupil" type="xs:boolean" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Phones">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="Phone">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="TelephoneType" type="xs:string" />
+                                            <xs:element name="PhoneNo" type="xs:string" />
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="Email" type="xs:string" />
+                                <xs:element minOccurs="0" name="SuppInfo">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="SuppID" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SchoolHistory">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="School">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="LEA" type="xs:unsignedShort" />
+                                <xs:element name="Estab" type="xs:unsignedShort" />
+                                <xs:element name="URN" type="xs:unsignedInt" />
+                                <xs:element name="SchoolName" type="xs:string" />
+                                <xs:element name="EntryDate" type="xs:date" />
+                                <xs:element name="LeavingDate" type="xs:date" />
+                                <xs:element name="LeavingReason" type="xs:string" />
+                                <xs:element name="SuppInfo">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="SuppID" type="xs:string" />
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SuppInfo">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="SuppID" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
