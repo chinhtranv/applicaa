@@ -12,6 +12,7 @@ namespace SIMSInterface
     {
         public static void editStudent(int personID)
         {
+            //generate standing data
             SIMS.Processes.GroupCache.Populate();
             var yearGroups = SIMS.Entities.GroupCache.YearGroups;
             var nationalCurriculumYear = SIMS.Entities.GroupCache.NationalCurriculumYears;

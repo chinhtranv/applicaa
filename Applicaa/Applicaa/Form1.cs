@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Applicaa
 {
@@ -37,6 +39,36 @@ namespace Applicaa
                 var filePath = openFileDialog1.FileName;
                 txtInfo.Text = File.ReadAllText(filePath);
 
+                //TODO need to validate object
+
+                //serialize object
+                var atf = EmpObject(txtInfo.Text);
+            }
+        }
+
+
+
+        public ATfile EmpObject(string xml)
+        {
+            StringReader stream = null;
+            XmlTextReader reader = null;
+            try
+            {
+                // serialise to object
+                XmlSerializer serializer = new XmlSerializer(typeof(ATfile));
+                stream = new StringReader(xml); // read xml data
+                reader = new XmlTextReader(stream);  // create reader
+                // covert reader to object
+                return (ATfile)serializer.Deserialize(reader);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                if (stream != null) stream.Close();
+                if (reader != null) reader.Close();
             }
         }
     }
