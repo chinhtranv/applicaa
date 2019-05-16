@@ -5,10 +5,9 @@
       <xs:sequence>
         <xs:element name="Header">
           <xs:complexType>
-            
             <xs:sequence>
               <xs:element name="DocumentName" type="xs:string" />
-              <xs:element name="ATFversion" minOccurs="1" type="xs:decimal" />
+              <xs:element name="ATFversion" type="xs:decimal" />
               <xs:element name="DateTime" type="xs:dateTime" />
               <xs:element name="DocumentQualifier" type="xs:string" />
               <xs:element name="SupplierID" type="xs:string" />
@@ -58,14 +57,12 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-
-            
           </xs:complexType>
         </xs:element>
         <xs:element name="ATFpupilData">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Pupil">
+              <xs:element maxOccurs="unbounded" name="Pupil">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="ApplicationReference" type="xs:string" />
@@ -211,7 +208,7 @@
                       </xs:complexType>
                     </xs:element>
                     <xs:element name="Address">
-                      <xs:complexType mixed="true">
+                      <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BS7666Address">
                             <xs:complexType>
@@ -284,7 +281,7 @@
                                 <xs:element name="Relationship" type="xs:string" />
                                 <xs:element name="Responsibility" type="xs:boolean" />
                                 <xs:element name="Address">
-                                  <xs:complexType mixed="true">
+                                  <xs:complexType>
                                     <xs:sequence>
                                       <xs:element minOccurs="0" name="BS7666Address">
                                         <xs:complexType>

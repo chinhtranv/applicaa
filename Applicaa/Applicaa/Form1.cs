@@ -21,10 +21,12 @@ namespace Applicaa
         {
             InitializeComponent();
 
-            openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.FileName = "Select a xml file";
-            openFileDialog1.Filter = "Text files (*.xml)|*.xml";
-            openFileDialog1.Title = "Open xml file";
+            openFileDialog1 = new OpenFileDialog
+            {
+                FileName = "Select a xml file",
+                Filter = "Text files (*.xml)|*.xml",
+                Title = "Open xml file"
+            };
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
@@ -42,34 +44,39 @@ namespace Applicaa
                 //TODO need to validate object
 
                 //serialize object
-                var atf = EmpObject(txtInfo.Text);
+                var atf = ConvertToObject<ATfile>(txtInfo.Text);
             }
         }
 
 
 
-        public ATfile EmpObject(string xml)
+        public T ConvertToObject<T>(string xml)
         {
             StringReader stream = null;
             XmlTextReader reader = null;
             try
             {
                 // serialise to object
-                XmlSerializer serializer = new XmlSerializer(typeof(ATfile));
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
                 stream = new StringReader(xml); // read xml data
                 reader = new XmlTextReader(stream);  // create reader
                 // covert reader to object
-                return (ATfile)serializer.Deserialize(reader);
+                return (T)serializer.Deserialize(reader);
             }
             catch
             {
-                return null;
+                return default(T);
             }
             finally
             {
-                if (stream != null) stream.Close();
-                if (reader != null) reader.Close();
+                stream?.Close();
+                reader?.Close();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

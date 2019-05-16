@@ -26,7 +26,7 @@ public partial class ATfile {
     
     private ATfileHeader headerField;
     
-    private ATfileATFpupilData aTFpupilDataField;
+    private ATfilePupil[] aTFpupilDataField;
     
     /// <remarks/>
     public ATfileHeader Header {
@@ -39,7 +39,8 @@ public partial class ATfile {
     }
     
     /// <remarks/>
-    public ATfileATFpupilData ATFpupilData {
+    [System.Xml.Serialization.XmlArrayItemAttribute("Pupil", IsNullable=false)]
+    public ATfilePupil[] ATFpupilData {
         get {
             return this.aTFpupilDataField;
         }
@@ -390,28 +391,7 @@ public partial class ATfileHeaderSuppInfoNestedfoo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilData {
-    
-    private ATfileATFpupilDataPupil pupilField;
-    
-    /// <remarks/>
-    public ATfileATFpupilDataPupil Pupil {
-        get {
-            return this.pupilField;
-        }
-        set {
-            this.pupilField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupil {
+public partial class ATfilePupil {
     
     private string applicationReferenceField;
     
@@ -429,27 +409,27 @@ public partial class ATfileATFpupilDataPupil {
     
     private string genderField;
     
-    private ATfileATFpupilDataPupilBasicDetails basicDetailsField;
+    private ATfilePupilBasicDetails basicDetailsField;
     
-    private ATfileATFpupilDataPupilFSMhistory fSMhistoryField;
+    private ATfilePupilFSMhistory fSMhistoryField;
     
-    private ATfileATFpupilDataPupilLookedAfter lookedAfterField;
+    private ATfilePupilLookedAfter lookedAfterField;
     
-    private ATfileATFpupilDataPupilSENhistory sENhistoryField;
+    private ATfilePupilSENhistory sENhistoryField;
     
-    private ATfileATFpupilDataPupilAdmissions admissionsField;
+    private ATfilePupilAdmissions admissionsField;
     
-    private ATfileATFpupilDataPupilAddress addressField;
+    private ATfilePupilAddress addressField;
     
-    private ATfileATFpupilDataPupilPhones phonesField;
+    private ATfilePupilPhones phonesField;
     
     private string emailField;
     
-    private ATfileATFpupilDataPupilContact[] contactsField;
+    private ATfilePupilContact[] contactsField;
     
-    private ATfileATFpupilDataPupilSchoolHistory schoolHistoryField;
+    private ATfilePupilSchoolHistory schoolHistoryField;
     
-    private ATfileATFpupilDataPupilSuppInfo suppInfoField;
+    private ATfilePupilSuppInfo suppInfoField;
     
     /// <remarks/>
     public string ApplicationReference {
@@ -532,7 +512,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetails BasicDetails {
+    public ATfilePupilBasicDetails BasicDetails {
         get {
             return this.basicDetailsField;
         }
@@ -542,7 +522,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilFSMhistory FSMhistory {
+    public ATfilePupilFSMhistory FSMhistory {
         get {
             return this.fSMhistoryField;
         }
@@ -552,7 +532,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilLookedAfter LookedAfter {
+    public ATfilePupilLookedAfter LookedAfter {
         get {
             return this.lookedAfterField;
         }
@@ -562,7 +542,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSENhistory SENhistory {
+    public ATfilePupilSENhistory SENhistory {
         get {
             return this.sENhistoryField;
         }
@@ -572,7 +552,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilAdmissions Admissions {
+    public ATfilePupilAdmissions Admissions {
         get {
             return this.admissionsField;
         }
@@ -582,7 +562,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilAddress Address {
+    public ATfilePupilAddress Address {
         get {
             return this.addressField;
         }
@@ -592,7 +572,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilPhones Phones {
+    public ATfilePupilPhones Phones {
         get {
             return this.phonesField;
         }
@@ -613,7 +593,7 @@ public partial class ATfileATFpupilDataPupil {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlArrayItemAttribute("Contact", IsNullable=false)]
-    public ATfileATFpupilDataPupilContact[] Contacts {
+    public ATfilePupilContact[] Contacts {
         get {
             return this.contactsField;
         }
@@ -623,7 +603,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSchoolHistory SchoolHistory {
+    public ATfilePupilSchoolHistory SchoolHistory {
         get {
             return this.schoolHistoryField;
         }
@@ -633,7 +613,7 @@ public partial class ATfileATFpupilDataPupil {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSuppInfo SuppInfo {
+    public ATfilePupilSuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
@@ -649,7 +629,7 @@ public partial class ATfileATFpupilDataPupil {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetails {
+public partial class ATfilePupilBasicDetails {
     
     private string uPNField;
     
@@ -663,17 +643,17 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     
     private byte nCyearActualField;
     
-    private ATfileATFpupilDataPupilBasicDetailsEnglishProficiencies englishProficienciesField;
+    private ATfilePupilBasicDetailsEnglishProficiencies englishProficienciesField;
     
     private string countryofBirthField;
     
-    private ATfileATFpupilDataPupilBasicDetailsNationalities nationalitiesField;
+    private ATfilePupilBasicDetailsNationalities nationalitiesField;
     
     private string ethnicityField;
     
     private string ethnicitySourceField;
     
-    private ATfileATFpupilDataPupilBasicDetailsLanguages languagesField;
+    private ATfilePupilBasicDetailsLanguages languagesField;
     
     private string serviceChildField;
     
@@ -681,7 +661,7 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     
     private string[] disabilitiesField;
     
-    private ATfileATFpupilDataPupilBasicDetailsSuppInfo suppInfoField;
+    private ATfilePupilBasicDetailsSuppInfo suppInfoField;
     
     /// <remarks/>
     public string UPN {
@@ -744,7 +724,7 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsEnglishProficiencies EnglishProficiencies {
+    public ATfilePupilBasicDetailsEnglishProficiencies EnglishProficiencies {
         get {
             return this.englishProficienciesField;
         }
@@ -764,7 +744,7 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsNationalities Nationalities {
+    public ATfilePupilBasicDetailsNationalities Nationalities {
         get {
             return this.nationalitiesField;
         }
@@ -794,7 +774,7 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsLanguages Languages {
+    public ATfilePupilBasicDetailsLanguages Languages {
         get {
             return this.languagesField;
         }
@@ -835,7 +815,7 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsSuppInfo SuppInfo {
+    public ATfilePupilBasicDetailsSuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
@@ -851,12 +831,12 @@ public partial class ATfileATFpupilDataPupilBasicDetails {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsEnglishProficiencies {
+public partial class ATfilePupilBasicDetailsEnglishProficiencies {
     
-    private ATfileATFpupilDataPupilBasicDetailsEnglishProficienciesEnglishProficiency englishProficiencyField;
+    private ATfilePupilBasicDetailsEnglishProficienciesEnglishProficiency englishProficiencyField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsEnglishProficienciesEnglishProficiency EnglishProficiency {
+    public ATfilePupilBasicDetailsEnglishProficienciesEnglishProficiency EnglishProficiency {
         get {
             return this.englishProficiencyField;
         }
@@ -872,7 +852,7 @@ public partial class ATfileATFpupilDataPupilBasicDetailsEnglishProficiencies {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsEnglishProficienciesEnglishProficiency {
+public partial class ATfilePupilBasicDetailsEnglishProficienciesEnglishProficiency {
     
     private string proficiencyInEnglishField;
     
@@ -906,7 +886,7 @@ public partial class ATfileATFpupilDataPupilBasicDetailsEnglishProficienciesEngl
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsNationalities {
+public partial class ATfilePupilBasicDetailsNationalities {
     
     private string nationalityField;
     
@@ -927,12 +907,12 @@ public partial class ATfileATFpupilDataPupilBasicDetailsNationalities {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsLanguages {
+public partial class ATfilePupilBasicDetailsLanguages {
     
-    private ATfileATFpupilDataPupilBasicDetailsLanguagesType typeField;
+    private ATfilePupilBasicDetailsLanguagesType typeField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilBasicDetailsLanguagesType Type {
+    public ATfilePupilBasicDetailsLanguagesType Type {
         get {
             return this.typeField;
         }
@@ -948,7 +928,7 @@ public partial class ATfileATFpupilDataPupilBasicDetailsLanguages {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsLanguagesType {
+public partial class ATfilePupilBasicDetailsLanguagesType {
     
     private string languageTypeField;
     
@@ -981,7 +961,7 @@ public partial class ATfileATFpupilDataPupilBasicDetailsLanguagesType {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilBasicDetailsSuppInfo {
+public partial class ATfilePupilBasicDetailsSuppInfo {
     
     private string suppIDField;
     
@@ -1002,11 +982,11 @@ public partial class ATfileATFpupilDataPupilBasicDetailsSuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilFSMhistory {
+public partial class ATfilePupilFSMhistory {
     
     private System.DateTime fSMreviewDateField;
     
-    private ATfileATFpupilDataPupilFSMhistoryFSMinstance[] fSMinstanceField;
+    private ATfilePupilFSMhistoryFSMinstance[] fSMinstanceField;
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
@@ -1021,7 +1001,7 @@ public partial class ATfileATFpupilDataPupilFSMhistory {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("FSMinstance")]
-    public ATfileATFpupilDataPupilFSMhistoryFSMinstance[] FSMinstance {
+    public ATfilePupilFSMhistoryFSMinstance[] FSMinstance {
         get {
             return this.fSMinstanceField;
         }
@@ -1037,7 +1017,7 @@ public partial class ATfileATFpupilDataPupilFSMhistory {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilFSMhistoryFSMinstance {
+public partial class ATfilePupilFSMhistoryFSMinstance {
     
     private System.DateTime fSMstartDateField;
     
@@ -1097,7 +1077,7 @@ public partial class ATfileATFpupilDataPupilFSMhistoryFSMinstance {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilLookedAfter {
+public partial class ATfilePupilLookedAfter {
     
     private bool inCareField;
     
@@ -1130,16 +1110,16 @@ public partial class ATfileATFpupilDataPupilLookedAfter {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSENhistory {
+public partial class ATfilePupilSENhistory {
     
-    private ATfileATFpupilDataPupilSENhistorySEN sENField;
+    private ATfilePupilSENhistorySEN sENField;
     
-    private ATfileATFpupilDataPupilSENhistorySENneed[] sENneedsField;
+    private ATfilePupilSENhistorySENneed[] sENneedsField;
     
-    private ATfileATFpupilDataPupilSENhistorySuppInfo suppInfoField;
+    private ATfilePupilSENhistorySuppInfo suppInfoField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSENhistorySEN SEN {
+    public ATfilePupilSENhistorySEN SEN {
         get {
             return this.sENField;
         }
@@ -1150,7 +1130,7 @@ public partial class ATfileATFpupilDataPupilSENhistory {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlArrayItemAttribute("SENneed", IsNullable=false)]
-    public ATfileATFpupilDataPupilSENhistorySENneed[] SENneeds {
+    public ATfilePupilSENhistorySENneed[] SENneeds {
         get {
             return this.sENneedsField;
         }
@@ -1160,7 +1140,7 @@ public partial class ATfileATFpupilDataPupilSENhistory {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSENhistorySuppInfo SuppInfo {
+    public ATfilePupilSENhistorySuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
@@ -1176,7 +1156,7 @@ public partial class ATfileATFpupilDataPupilSENhistory {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSENhistorySEN {
+public partial class ATfilePupilSENhistorySEN {
     
     private System.DateTime startDateField;
     
@@ -1210,7 +1190,7 @@ public partial class ATfileATFpupilDataPupilSENhistorySEN {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSENhistorySENneed {
+public partial class ATfilePupilSENhistorySENneed {
     
     private System.DateTime needStartDateField;
     
@@ -1269,7 +1249,7 @@ public partial class ATfileATFpupilDataPupilSENhistorySENneed {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSENhistorySuppInfo {
+public partial class ATfilePupilSENhistorySuppInfo {
     
     private string suppIDField;
     
@@ -1290,7 +1270,7 @@ public partial class ATfileATFpupilDataPupilSENhistorySuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilAdmissions {
+public partial class ATfilePupilAdmissions {
     
     private bool acceptField;
     
@@ -1311,11 +1291,11 @@ public partial class ATfileATFpupilDataPupilAdmissions {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilAddress {
+public partial class ATfilePupilAddress {
     
-    private ATfileATFpupilDataPupilAddressBS7666Address bS7666AddressField;
+    private ATfilePupilAddressBS7666Address bS7666AddressField;
     
-    private ATfileATFpupilDataPupilAddressAddressLines addressLinesField;
+    private ATfilePupilAddressAddressLines addressLinesField;
     
     private string countyField;
     
@@ -1329,12 +1309,10 @@ public partial class ATfileATFpupilDataPupilAddress {
     
     private decimal northingField;
     
-    private ATfileATFpupilDataPupilAddressSuppInfo suppInfoField;
-    
-    private string[] textField;
+    private ATfilePupilAddressSuppInfo suppInfoField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilAddressBS7666Address BS7666Address {
+    public ATfilePupilAddressBS7666Address BS7666Address {
         get {
             return this.bS7666AddressField;
         }
@@ -1344,7 +1322,7 @@ public partial class ATfileATFpupilDataPupilAddress {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilAddressAddressLines AddressLines {
+    public ATfilePupilAddressAddressLines AddressLines {
         get {
             return this.addressLinesField;
         }
@@ -1414,23 +1392,12 @@ public partial class ATfileATFpupilDataPupilAddress {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilAddressSuppInfo SuppInfo {
+    public ATfilePupilAddressSuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
         set {
             this.suppInfoField = value;
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string[] Text {
-        get {
-            return this.textField;
-        }
-        set {
-            this.textField = value;
         }
     }
 }
@@ -1441,7 +1408,7 @@ public partial class ATfileATFpupilDataPupilAddress {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilAddressBS7666Address {
+public partial class ATfilePupilAddressBS7666Address {
     
     private string sAONField;
     
@@ -1546,7 +1513,7 @@ public partial class ATfileATFpupilDataPupilAddressBS7666Address {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilAddressAddressLines {
+public partial class ATfilePupilAddressAddressLines {
     
     private string addressLine1Field;
     
@@ -1615,7 +1582,7 @@ public partial class ATfileATFpupilDataPupilAddressAddressLines {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilAddressSuppInfo {
+public partial class ATfilePupilAddressSuppInfo {
     
     private string suppIDField;
     
@@ -1636,12 +1603,12 @@ public partial class ATfileATFpupilDataPupilAddressSuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilPhones {
+public partial class ATfilePupilPhones {
     
-    private ATfileATFpupilDataPupilPhonesPhone phoneField;
+    private ATfilePupilPhonesPhone phoneField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilPhonesPhone Phone {
+    public ATfilePupilPhonesPhone Phone {
         get {
             return this.phoneField;
         }
@@ -1657,7 +1624,7 @@ public partial class ATfileATFpupilDataPupilPhones {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilPhonesPhone {
+public partial class ATfilePupilPhonesPhone {
     
     private string telephoneTypeField;
     
@@ -1690,7 +1657,7 @@ public partial class ATfileATFpupilDataPupilPhonesPhone {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContact {
+public partial class ATfilePupilContact {
     
     private byte orderField;
     
@@ -1708,13 +1675,13 @@ public partial class ATfileATFpupilDataPupilContact {
     
     private bool responsibilityField;
     
-    private ATfileATFpupilDataPupilContactAddress addressField;
+    private ATfilePupilContactAddress addressField;
     
-    private ATfileATFpupilDataPupilContactPhones phonesField;
+    private ATfilePupilContactPhones phonesField;
     
     private string emailField;
     
-    private ATfileATFpupilDataPupilContactSuppInfo suppInfoField;
+    private ATfilePupilContactSuppInfo suppInfoField;
     
     /// <remarks/>
     public byte Order {
@@ -1797,7 +1764,7 @@ public partial class ATfileATFpupilDataPupilContact {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactAddress Address {
+    public ATfilePupilContactAddress Address {
         get {
             return this.addressField;
         }
@@ -1807,7 +1774,7 @@ public partial class ATfileATFpupilDataPupilContact {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactPhones Phones {
+    public ATfilePupilContactPhones Phones {
         get {
             return this.phonesField;
         }
@@ -1827,7 +1794,7 @@ public partial class ATfileATFpupilDataPupilContact {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactSuppInfo SuppInfo {
+    public ATfilePupilContactSuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
@@ -1843,11 +1810,11 @@ public partial class ATfileATFpupilDataPupilContact {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactAddress {
+public partial class ATfilePupilContactAddress {
     
-    private ATfileATFpupilDataPupilContactAddressBS7666Address bS7666AddressField;
+    private ATfilePupilContactAddressBS7666Address bS7666AddressField;
     
-    private ATfileATFpupilDataPupilContactAddressAddressLines addressLinesField;
+    private ATfilePupilContactAddressAddressLines addressLinesField;
     
     private string countyField;
     
@@ -1871,10 +1838,8 @@ public partial class ATfileATFpupilDataPupilContactAddress {
     
     private bool addressAsPupilFieldSpecified;
     
-    private string[] textField;
-    
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactAddressBS7666Address BS7666Address {
+    public ATfilePupilContactAddressBS7666Address BS7666Address {
         get {
             return this.bS7666AddressField;
         }
@@ -1884,7 +1849,7 @@ public partial class ATfileATFpupilDataPupilContactAddress {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactAddressAddressLines AddressLines {
+    public ATfilePupilContactAddressAddressLines AddressLines {
         get {
             return this.addressLinesField;
         }
@@ -2006,17 +1971,6 @@ public partial class ATfileATFpupilDataPupilContactAddress {
             this.addressAsPupilFieldSpecified = value;
         }
     }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string[] Text {
-        get {
-            return this.textField;
-        }
-        set {
-            this.textField = value;
-        }
-    }
 }
 
 /// <remarks/>
@@ -2025,7 +1979,7 @@ public partial class ATfileATFpupilDataPupilContactAddress {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactAddressBS7666Address {
+public partial class ATfilePupilContactAddressBS7666Address {
     
     private string sAONField;
     
@@ -2130,7 +2084,7 @@ public partial class ATfileATFpupilDataPupilContactAddressBS7666Address {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactAddressAddressLines {
+public partial class ATfilePupilContactAddressAddressLines {
     
     private string addressLine1Field;
     
@@ -2199,12 +2153,12 @@ public partial class ATfileATFpupilDataPupilContactAddressAddressLines {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactPhones {
+public partial class ATfilePupilContactPhones {
     
-    private ATfileATFpupilDataPupilContactPhonesPhone phoneField;
+    private ATfilePupilContactPhonesPhone phoneField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilContactPhonesPhone Phone {
+    public ATfilePupilContactPhonesPhone Phone {
         get {
             return this.phoneField;
         }
@@ -2220,7 +2174,7 @@ public partial class ATfileATFpupilDataPupilContactPhones {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactPhonesPhone {
+public partial class ATfilePupilContactPhonesPhone {
     
     private string telephoneTypeField;
     
@@ -2253,7 +2207,7 @@ public partial class ATfileATFpupilDataPupilContactPhonesPhone {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilContactSuppInfo {
+public partial class ATfilePupilContactSuppInfo {
     
     private string suppIDField;
     
@@ -2274,12 +2228,12 @@ public partial class ATfileATFpupilDataPupilContactSuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSchoolHistory {
+public partial class ATfilePupilSchoolHistory {
     
-    private ATfileATFpupilDataPupilSchoolHistorySchool schoolField;
+    private ATfilePupilSchoolHistorySchool schoolField;
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSchoolHistorySchool School {
+    public ATfilePupilSchoolHistorySchool School {
         get {
             return this.schoolField;
         }
@@ -2295,7 +2249,7 @@ public partial class ATfileATFpupilDataPupilSchoolHistory {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSchoolHistorySchool {
+public partial class ATfilePupilSchoolHistorySchool {
     
     private ushort lEAField;
     
@@ -2311,7 +2265,7 @@ public partial class ATfileATFpupilDataPupilSchoolHistorySchool {
     
     private string leavingReasonField;
     
-    private ATfileATFpupilDataPupilSchoolHistorySchoolSuppInfo suppInfoField;
+    private ATfilePupilSchoolHistorySchoolSuppInfo suppInfoField;
     
     /// <remarks/>
     public ushort LEA {
@@ -2386,7 +2340,7 @@ public partial class ATfileATFpupilDataPupilSchoolHistorySchool {
     }
     
     /// <remarks/>
-    public ATfileATFpupilDataPupilSchoolHistorySchoolSuppInfo SuppInfo {
+    public ATfilePupilSchoolHistorySchoolSuppInfo SuppInfo {
         get {
             return this.suppInfoField;
         }
@@ -2402,7 +2356,7 @@ public partial class ATfileATFpupilDataPupilSchoolHistorySchool {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSchoolHistorySchoolSuppInfo {
+public partial class ATfilePupilSchoolHistorySchoolSuppInfo {
     
     private string suppIDField;
     
@@ -2423,7 +2377,7 @@ public partial class ATfileATFpupilDataPupilSchoolHistorySchoolSuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfileATFpupilDataPupilSuppInfo {
+public partial class ATfilePupilSuppInfo {
     
     private string suppIDField;
     
