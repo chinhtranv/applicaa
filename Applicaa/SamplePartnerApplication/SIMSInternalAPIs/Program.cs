@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using SIMSInterface;
 
 namespace SIMSInternalAPIs
 {
@@ -42,6 +43,9 @@ namespace SIMSInternalAPIs
                 // Handle error 
                 Console.WriteLine(ex.ToString());
             }
+
+            Console.WriteLine(" - DONE -");
+            Console.ReadLine();
         }
         /// <summary>
         /// SIMS Calls can be made in any funciton except main
@@ -49,17 +53,17 @@ namespace SIMSInternalAPIs
         static void AnyOtherFunction()
         {
             // Login
-            if (SIMSInterface.LoginHelper.SIMSlogin(Server, Database, User, Password))
+            if (SIMSInterface.LoginHelper.SIMSlogin(DatabaseConfig.Server, DatabaseConfig.Database, DatabaseConfig.User, DatabaseConfig.Password))
             {
                 SIMSInterface.StudentEDIT.editStudent(8404); // Grenetta Abbey
-                SIMSInterface.applicant.CreateApplicant();
+                //SIMSInterface.applicant.CreateApplicant();
               
             }
             else
             {
                 Console.WriteLine(SIMSInterface.LoginHelper.ErrorMessage);
             }
-            Console.ReadLine();
+            
         }
     }
 }
