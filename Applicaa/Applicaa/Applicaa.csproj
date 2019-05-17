@@ -79,6 +79,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SIMSInterface\SIMSInterface.csproj">
+      <Project>{6f790f4a-160e-4422-8a68-add2ed1a1059}</Project>
+      <Name>SIMSInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ValidateXML\ValidateXML.csproj">
       <Project>{0b91f809-5789-471c-8be3-5bc9e41aa4fe}</Project>
       <Name>ValidateXML</Name>
