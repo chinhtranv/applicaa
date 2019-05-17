@@ -14,10 +14,10 @@ using System.Xml.Serialization;
 
 namespace Applicaa
 {
-    public partial class Form1 : Form
+    public partial class Admissions : Form
     {
         private OpenFileDialog openFileDialog1;
-        public Form1()
+        public Admissions()
         {
             InitializeComponent();
 
@@ -31,6 +31,10 @@ namespace Applicaa
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            //serialize object
+            var atf = ConvertToObject<ATfile>(txtInfo.Text);
+
+            SIMSInterface.Applicant.CreateApplicants(atf.ATFpupilData);
 
         }
 
@@ -43,8 +47,7 @@ namespace Applicaa
 
                 //TODO need to validate object
 
-                //serialize object
-                var atf = ConvertToObject<ATfile>(txtInfo.Text);
+
             }
         }
 

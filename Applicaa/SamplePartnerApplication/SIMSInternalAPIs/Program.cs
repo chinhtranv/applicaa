@@ -56,7 +56,7 @@ namespace SIMSInternalAPIs
             if (SIMSInterface.LoginHelper.SIMSlogin(DatabaseConfig.Server, DatabaseConfig.Database, DatabaseConfig.User, DatabaseConfig.Password))
             {
                 SIMSInterface.StudentEDIT.editStudent(8404); // Grenetta Abbey
-                //SIMSInterface.applicant.CreateApplicant();
+                SIMSInterface.applicant.CreateApplicant();
               
             }
             else

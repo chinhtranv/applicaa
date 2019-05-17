@@ -1,6 +1,6 @@
 ﻿namespace Applicaa
 {
-    partial class Form1
+    partial class Admissions
     {
         /// <summary>
         /// Required designer variable.

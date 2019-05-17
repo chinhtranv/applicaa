@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Admissions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Admissions.Designer.cs">
+      <DependentUpon>Admissions.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Admissions.resx">
+      <DependentUpon>Admissions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,13 +79,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{6357e437-87b3-4212-a086-34c686e3d7d4}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SIMSInterface\SIMSInterface.csproj">
       <Project>{6f790f4a-160e-4422-8a68-add2ed1a1059}</Project>
       <Name>SIMSInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ValidateXML\ValidateXML.csproj">
-      <Project>{0b91f809-5789-471c-8be3-5bc9e41aa4fe}</Project>
-      <Name>ValidateXML</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
