@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using SIMSInterface;
 
 namespace Applicaa
 {
@@ -31,11 +32,23 @@ namespace Applicaa
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
-            //serialize object
-            var atf = ConvertToObject<ATfile>(txtInfo.Text);
+            
+            SIMSDllResolution.AddSIMSDllResolution();
 
-            SIMSInterface.Applicant.CreateApplicants(atf.ATFpupilData);
+            if (LoginHelper.SIMSlogin(AppSetting.Server, 
+                                    AppSetting.Database, 
+                                    AppSetting.User, 
+                                    AppSetting.Password))
+            {
+                //serialize object
+                var atf = ConvertToObject<ATfile>(txtInfo.Text);
 
+                Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
+            }
+            else
+            {
+                MessageBox.Show(LoginHelper.ErrorMessage);
+            }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
