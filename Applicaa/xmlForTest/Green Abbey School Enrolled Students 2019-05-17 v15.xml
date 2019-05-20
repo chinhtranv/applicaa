@@ -1,106 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ATfile>
-   <Header>
-      <DocumentName>Admissions Data Transfer File</DocumentName>
-      <ATFversion>15.0</ATFversion>
-      <DateTime>2019-05-17T13:48:37</DateTime>
-      <DocumentQualifier>full</DocumentQualifier>
-      <SupplierID>ULAS</SupplierID>
-      <SourceSchool>
-         <LEA>823</LEA>
-         <Estab>LLLL</Estab>
-         <SchoolName>Green Abbey School</SchoolName>
-         <AcademicYear>2019</AcademicYear>
-     </SourceSchool>
-      <DestSchool>
-         <LEA>823</LEA>
-         <Estab>4321</Estab>
-     </DestSchool>
-   </Header>
-   <ATFpupilData>
-         <Pupil>
+    <Header>
+        <DocumentName>Admissions Data Transfer File</DocumentName>
+        <ATFversion>15.0</ATFversion>
+        <DateTime>2019-05-17T13:48:37</DateTime>
+        <DocumentQualifier>full</DocumentQualifier>
+        <SupplierID>ULAS</SupplierID>
+        <SourceSchool>
+            <LEA>823</LEA>
+            <Estab>LLLL</Estab>
+            <SchoolName>Green Abbey School</SchoolName>
+            <AcademicYear>2019</AcademicYear>
+        </SourceSchool>
+        <DestSchool>
+            <LEA>823</LEA>
+            <Estab>4321</Estab>
+        </DestSchool>
+    </Header>
+    <ATFpupilData>
+        <Pupil>
             <ApplicationReference>999-2018-09-K-001466</ApplicationReference>
-               <UniqueLearnerNumber></UniqueLearnerNumber>
-               <UCI></UCI>
+            <UniqueLearnerNumber></UniqueLearnerNumber>
+            <UCI></UCI>
             <Surname>Bright</Surname>
             <Forename>Abbey</Forename>
-               <DOB>2003-02-04</DOB>
-               <Gender>F</Gender>
+            <DOB>2003-02-04</DOB>
+            <Gender>F</Gender>
             <BasicDetails>
-                  <Ethnicity>MWBA</Ethnicity>
-               <EthnicitySource>C</EthnicitySource>
-               <Languages>
-                  <Type>
-                     <LanguageType>F</LanguageType>
-                     <Language>ENG</Language>
-                  </Type>
-                  <Type>
-                     <LanguageType>H</LanguageType>
-                     <Language></Language>
-                  </Type>
-               </Languages>
-                  <Nationalities>
-                     <Nationality>GBR</Nationality>
-                  </Nationalities>
+                <Ethnicity>MWBA</Ethnicity>
+                <EthnicitySource>C</EthnicitySource>
+                <Languages>
+                    <Type>
+                        <LanguageType>F</LanguageType>
+                        <Language>ENG</Language>
+                    </Type>
+                    <Type>
+                        <LanguageType>H</LanguageType>
+                        <Language></Language>
+                    </Type>
+                </Languages>
+                <Nationalities>
+                    <Nationality>GBR</Nationality>
+                </Nationalities>
             </BasicDetails>
             <Address>
-               <AddressLines>
-                     <AddressLine1>2 Folkestone Court</AddressLine1>
-                     <AddressLine2>Newmarket Avenue</AddressLine2>
-                     <AddressLine3>NORTHOLT</AddressLine3>
-               </AddressLines>
-                  <PostCode>UB5 4EX</PostCode>
-               <Country>GBR</Country>
+                <AddressLines>
+                    <AddressLine1>2 Folkestone Court</AddressLine1>
+                    <AddressLine2>Newmarket Avenue</AddressLine2>
+                    <AddressLine3>NORTHOLT</AddressLine3>
+                </AddressLines>
+                <PostCode>UB5 4EX</PostCode>
+                <Country>GBR</Country>
             </Address>
-            <Phones>
-            </Phones>
+            <Phones></Phones>
             <Email>tonda18@gmail.com</Email>
-               <Contacts>
-                     <Contact>
-                        <Order>1</Order>
-                        <Title>Dr</Title>
-                        <Surname>Brown</Surname>
-                        <Forename>Daniel</Forename>
-                        <Relationship>PAF</Relationship>
-                        <Responsibility>false</Responsibility>
-                        <Address>
-                              <AddressAsPupil>true</AddressAsPupil>
-                        </Address>
-                        <Phones>
-                              <Phone>
-                                 <TelephoneType>H</TelephoneType>
-                                 <PhoneNo>07943391518</PhoneNo>
-                              </Phone>
-                              <Phone>
-                                  <TelephoneType>M</TelephoneType>
-                                  <PhoneNo>07943391518</PhoneNo>
-                              </Phone>
-                        </Phones>
-                        <Email>dad@test213.com</Email>
-                     </Contact>
-                     <Contact>
-                        <Order>2</Order>
-                        <Title>Mrs</Title>
-                        <Surname>Brown</Surname>
-                        <Forename>Deadrie</Forename>
-                        <Relationship>PAM</Relationship>
-                        <Responsibility>true</Responsibility>
-                        <Address>
-                              <AddressAsPupil>true</AddressAsPupil>
-                        </Address>
-                        <Phones>
-                              <Phone>
-                                 <TelephoneType>H</TelephoneType>
-                                 <PhoneNo>02087363588</PhoneNo>
-                              </Phone>
-                              <Phone>
-                                  <TelephoneType>M</TelephoneType>
-                                  <PhoneNo>07963257432</PhoneNo>
-                              </Phone>
-                        </Phones>
-                        <Email>mum@test123.com</Email>
-                     </Contact>
-               </Contacts>
-         </Pupil>
-   </ATFpupilData>
+            <Contacts>
+                <Contact>
+                    <Order>1</Order>
+                    <Title>Dr</Title>
+                    <Surname>Brown</Surname>
+                    <Forename>Daniel</Forename>
+                    <Relationship>PAF</Relationship>
+                    <Responsibility>false</Responsibility>
+                    <Address>
+                        <AddressAsPupil>true</AddressAsPupil>
+                    </Address>
+                    <Phones>
+                        <Phone>
+                            <TelephoneType>H</TelephoneType>
+                            <PhoneNo>07943391518</PhoneNo>
+                        </Phone>
+                        <Phone>
+                            <TelephoneType>M</TelephoneType>
+                            <PhoneNo>07943391518</PhoneNo>
+                        </Phone>
+                    </Phones>
+                    <Email>dad@test213.com</Email>
+                </Contact>
+                <Contact>
+                    <Order>2</Order>
+                    <Title>Mrs</Title>
+                    <Surname>Brown</Surname>
+                    <Forename>Deadrie</Forename>
+                    <Relationship>PAM</Relationship>
+                    <Responsibility>true</Responsibility>
+                    <Address>
+                        <AddressAsPupil>true</AddressAsPupil>
+                    </Address>
+                    <Phones>
+                        <Phone>
+                            <TelephoneType>H</TelephoneType>
+                            <PhoneNo>02087363588</PhoneNo>
+                        </Phone>
+                        <Phone>
+                            <TelephoneType>M</TelephoneType>
+                            <PhoneNo>07963257432</PhoneNo>
+                        </Phone>
+                    </Phones>
+                    <Email>mum@test123.com</Email>
+                </Contact>
+            </Contacts>
+        </Pupil>
+    </ATFpupilData>
 </ATfile>
