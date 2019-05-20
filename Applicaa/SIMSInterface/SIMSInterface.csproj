@@ -117,6 +117,17 @@
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\PastoralContext.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="PerformanceBaseEntities">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\PerformanceBaseEntities.dll</HintPath>
+    </Reference>
+    <Reference Include="PerformanceBaseProcesses, Version=7.180.40.0, Culture=neutral, PublicKeyToken=21f532fe36bf9cd6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\PerformanceBaseProcesses.dll</HintPath>
+    </Reference>
+    <Reference Include="PerformanceBaseUserInterfaces, Version=7.180.40.0, Culture=neutral, PublicKeyToken=21f532fe36bf9cd6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\PerformanceBaseUserInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="PersonEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\PersonEntities.dll</HintPath>
       <Private>False</Private>

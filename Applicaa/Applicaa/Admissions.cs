@@ -42,8 +42,12 @@ namespace Applicaa
             {
                 //serialize object
                 var atf = ConvertToObject<ATfile>(txtInfo.Text);
-
-                Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
+                
+                Applicant.AspectSummary();
+                //Applicant.Assessment_Export();
+                //Applicant.MaintainGradesetsSummary();
+                //Applicant.GradesAndValues();                
+                //Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
             }
             else
             {
