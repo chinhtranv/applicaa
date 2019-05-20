@@ -43,7 +43,7 @@ namespace Applicaa
                 //serialize object
                 var atf = ConvertToObject<ATfile>(txtInfo.Text);                
                 //Applicant.AspectSummary();
-                Applicant.Assessment_Export();
+                //Applicant.Assessment_Export();
                 //Applicant.MaintainGradesetsSummary();
                 //Applicant.GradesAndValues();                
 

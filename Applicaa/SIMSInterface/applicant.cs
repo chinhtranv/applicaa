@@ -43,6 +43,9 @@ namespace SIMSInterface
         public static bool CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {            
             SIMS.Processes.GroupCache.Populate();
+           
+            //SIMS.Processes.PersonCache.Populate();
+            //SIMS.Processes.ContactCache.Populate();
             foreach (var pupil in pupils)
             {
                 var rs = CreateApplicant(pupil, header);
@@ -66,37 +69,34 @@ namespace SIMSInterface
             var person = new Person();
 
             
-            var ethic =(Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
+            var ethic = (Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
             var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);
-            
+            var leavingReason = (LeavingReason)LookupCache.LeavingReasons.ItemByCode(pupil.SchoolHistory.School.LeavingReason);
+
             //TODO Get NationID By Country of Birth
+
             //var countryOfBirth = new Nationality { NationCode = pupil.BasicDetails.CountryofBirth, NationID = 1 };
-            var countryOfBirth = new Nationality { NationCode = "CAN", NationID = 30 };
+            var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
             var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages.Type.Language);
             var phones = new TelephoneCollection(InformationDomainEnum.ApplicationTelephoneEmail);
             phones.Add(new Telephone {
                 Number = pupil.Phones.Phone.PhoneNo ,
-                Description = pupil.Phones.Phone.TelephoneType,
-                
+                Description = pupil.Phones.Phone.TelephoneType,                
             });
-
+                       
             var schoolHistory = new SchoolHistoryCollection
             {
                 new SchoolHistory
-                {
-                    ID = 1,
+                {                    
                     StartDate = pupil.SchoolHistory.School.EntryDate,
                     School = new SIMS.Entities.School
                     {
                         LEANumber = pupil.SchoolHistory.School.LEA.ToString(),
-                        Name = pupil.SchoolHistory.School.SchoolName,
-                        
-                    },
+                        Name = pupil.SchoolHistory.School.SchoolName,                                                                          
+                                                
+                    },                    
                     DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
-                    ReasonForLeaving = new LeavingReason
-                    {
-                        Description = pupil.SchoolHistory.School.LeavingReason
-                    },
+                    ReasonForLeaving = leavingReason
                 }
             };
 
@@ -137,20 +137,21 @@ namespace SIMSInterface
             //need an example
             //The number you have entered does not match the formula used for allocating Unique Learner Numbers
             //mainApplication.DetailedApplication.ULN = pupil.UniqueLearnerNumber.ToString();
-            mainApplication.DetailedApplication.CountryOfBirth = countryOfBirth;
+            mainApplication.DetailedApplication.CountryOfBirth = new Nationality
+            {
+                NationCode = countryOfBirth.Code,
+                NationID = countryOfBirth.ID
+            };
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             //mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
 
             //mainApplication.DetailedApplication.Telephones = phones;
-            //mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
+            mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices;
 
-            mainApplication.DetailedApplication.EMails = emails;
-
-
-
+            //mainApplication.DetailedApplication.EMails = emails;
             //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
 
 
