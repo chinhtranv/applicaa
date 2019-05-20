@@ -234,12 +234,11 @@ namespace SIMSInterface
                                         <DestinationID>3A09F631910347F183494BE3438A3198</DestinationID>
                                     </Header>
                                     <QueryObject
-                                        Type=""LEARNERASSESSMENTRESULT"">
+                                        Type=""LEARNERASSESSMENTRESULTSET"">
                                         <RequestParameters />
                                     </QueryObject>
                                     </SIMSAssessmentMessage>";
-            var request = new XmlDocument();
-            request.InnerXml = xmlString;
+            var request = new XmlDocument {InnerXml = xmlString};
             XmlDocument data = sdo.Export(request);
 
         }

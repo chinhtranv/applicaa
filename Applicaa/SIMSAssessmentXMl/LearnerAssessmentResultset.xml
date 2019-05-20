@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SIMSAssessmentMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <MessageType>RESPONSE</MessageType>
+        <MessageID>895339910C94496AAD7C8C16C5E8F3CE</MessageID>
+        <SourceID>3A09F631910347F183494BE3438A3198</SourceID>
+        <DestinationID>PartnerTest</DestinationID>
+        <Status>OK</Status>
+    </Header>
+    <DataObjects>
+        <LearnerAssessmentResultset RefId="BFADE5D0FC51485BA571987213286008">
+            <Name>Key Stage 1 Validated Result</Name>
+            <SupplierName>SIMS</SupplierName>
+            <CreateDate>2002-05-30</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-06-06</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="8827AC2C8BB0490BA4C888B0C24E535A">
+            <Name>Key Stage 2 Validated Result</Name>
+            <SupplierName>SIMS</SupplierName>
+            <CreateDate>2003-06-06</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-06-18</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="DFEB4835BE0D49BC9415266C742FCE1E">
+            <Name>Key Stage 3 Validated Result</Name>
+            <SupplierName>SIMS</SupplierName>
+            <CreateDate>2002-05-30</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-06-06</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="DB09A942081A42559007516C0495A5C1">
+            <Name>November Exams 2003</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2003-11-01</StartDate>
+            <EndDate>2003-11-30</EndDate>
+            <EditDate>2005-11-28</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="8ADCC5CE742E425182CA977911D61080">
+            <Name>November Exams 2001</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2001-11-01</StartDate>
+            <EndDate>2001-11-30</EndDate>
+            <EditDate>2008-03-31</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="15D76B848CD14C60A9A51B1CA9CB69EA">
+            <Name>November Exams 2002</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2002-11-01</StartDate>
+            <EndDate>2002-11-30</EndDate>
+            <EditDate>2008-03-31</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="1BFD0410A39E49319838E30FB528390E">
+            <Name>June (Summer) Exams 2003</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2003-05-01</StartDate>
+            <EndDate>2003-06-30</EndDate>
+            <EditDate>2008-07-04</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="8B5092918F9841DA8D606CC8B1536F27">
+            <Name>June (Summer) Exams 2002</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2002-05-01</StartDate>
+            <EndDate>2002-06-30</EndDate>
+            <EditDate>2008-07-04</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="78FE344648744763966D12A476D3A12C">
+            <Name>Summer Exams 1997</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>1997-05-01</StartDate>
+            <EndDate>1997-06-30</EndDate>
+            <EditDate>2003-04-13</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="ECB238680DEC41FF999FEAFF4AEE1B4E">
+            <Name>Summer Exams 1998</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>1998-05-01</StartDate>
+            <EndDate>1998-06-30</EndDate>
+            <EditDate>2003-04-13</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="2724682023CF4021AEB3C82CADED61EB">
+            <Name>Summer Exams 1999</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>1999-05-01</StartDate>
+            <EndDate>1999-06-30</EndDate>
+            <EditDate>2003-04-13</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="4802569F3BFB4D649EE56DB8A1928DD3">
+            <Name>Summer Exams 2000</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2000-05-01</StartDate>
+            <EndDate>2000-06-30</EndDate>
+            <EditDate>2003-04-13</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="D0B26416670D44A792AD22D50268B590">
+            <Name>Summer Exams 2001</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-04-13</CreateDate>
+            <StartDate>2001-05-01</StartDate>
+            <EndDate>2001-06-30</EndDate>
+            <EditDate>2005-12-01</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="179A455916F34045A1E790FDFD3F4B64">
+            <Name>January Exams 2003</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-06-04</CreateDate>
+            <StartDate>2003-01-01</StartDate>
+            <EndDate>2003-01-31</EndDate>
+            <EditDate>2005-11-28</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="396D7C12C3BA4F659C74817DD5557D23">
+            <Name>Year 9</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-09-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="99B4EF4487AD48ED95D2B0746619875F">
+            <Name>June (Summer) Exams 2004</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2004-03-04</CreateDate>
+            <StartDate>2004-05-01</StartDate>
+            <EndDate>2004-06-30</EndDate>
+            <EditDate>2008-07-04</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="F9F4108A1E744D4F9DAB313E656E170E">
+            <Name>January Exams 2004</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2004-03-04</CreateDate>
+            <StartDate>2004-01-01</StartDate>
+            <EndDate>2004-01-31</EndDate>
+            <EditDate>2005-11-28</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="5E1FD2386B0B42AF85735C8B2CFA67A2">
+            <Name>November Exams 2005</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-03-09</CreateDate>
+            <StartDate>2005-11-01</StartDate>
+            <EndDate>2005-11-30</EndDate>
+            <EditDate>2008-03-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="E02C06E531E94FE3BCF3617C58F961B1">
+            <Name>January Exams 2005</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-03-09</CreateDate>
+            <StartDate>2005-01-01</StartDate>
+            <EndDate>2005-01-31</EndDate>
+            <EditDate>2008-03-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="A836416F18F64155A428E3373A94FEE7">
+            <Name>March Exams 2005</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-03-10</CreateDate>
+            <StartDate>2005-03-01</StartDate>
+            <EndDate>2005-03-31</EndDate>
+            <EditDate>2008-03-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="AA13D5AC9B4040E894B08E5E28358186">
+            <Name>June (Summer) Exams 2005</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-03-10</CreateDate>
+            <StartDate>2005-05-01</StartDate>
+            <EndDate>2005-06-30</EndDate>
+            <EditDate>2008-07-04</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="3CA756EB1C564110A7EA62E4027F8B8E">
+            <Name>January Exams 2006</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-11-24</CreateDate>
+            <StartDate>2006-01-01</StartDate>
+            <EndDate>2006-01-31</EndDate>
+            <EditDate>2008-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="75955B00C5894EF3887AF51E7ECBBADE">
+            <Name>June (Summer) Exams 2006</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-11-24</CreateDate>
+            <StartDate>2006-05-01</StartDate>
+            <EndDate>2006-06-30</EndDate>
+            <EditDate>2008-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="A1F711ED441942D581A95C4AA48781D3">
+            <Name>Year 8 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-07-04</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2006-04-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="1C002A7E3E7E4DC49CAA017413AC0195">
+            <Name>Year 8 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-07-04</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-30</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="D3987BA6E1DA4D5D82D54593EA2CE3CE">
+            <Name>Year 7 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-06-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="0E8CEA8602E145518931B8FCD4E01B1B">
+            <Name>Year 7 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-30</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="C0992B1321C641539BA147E10EB65F66">
+            <Name>Year 9 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-09-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="2F42E874CC72456588B726030E892E4D">
+            <Name>Year 8</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-09-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="04E04BCAAC9C43049A742392DFE02AC4">
+            <Name>Year 7</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2003-09-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="045ECB6D130847649802746901DCDB1D">
+            <Name>March Exams 2006</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-11-25</CreateDate>
+            <StartDate>2006-03-01</StartDate>
+            <EndDate>2006-03-31</EndDate>
+            <EditDate>2008-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="E7F2C397B0C7436C93A6CA78B3338115">
+            <Name>November Exams 2006</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-04-23</CreateDate>
+            <StartDate>2006-11-01</StartDate>
+            <EndDate>2006-11-30</EndDate>
+            <EditDate>2008-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="EAB7BD96A4A849AFB75040D8D673FA48">
+            <Name>January Exams 2007</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-04-23</CreateDate>
+            <StartDate>2007-01-01</StartDate>
+            <EndDate>2007-01-31</EndDate>
+            <EditDate>2009-03-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="9860190DC5244902A20FD1F62E96402F">
+            <Name>March Exams 2007</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-04-23</CreateDate>
+            <StartDate>2007-03-01</StartDate>
+            <EndDate>2007-03-31</EndDate>
+            <EditDate>2009-03-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="DFBB67B0F0E243958D26C3CD9C087F51">
+            <Name>June (Summer) Exams 2007</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-04-23</CreateDate>
+            <StartDate>2007-05-01</StartDate>
+            <EndDate>2007-06-30</EndDate>
+            <EditDate>2009-10-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="A8F0EECDBC924A9AB5F7982E4C536A0D">
+            <Name>Year 7 Baseline</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-03-15</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-08-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="5CE1C036D54D4D359F55F6A75B3CDBBE">
+            <Name>Year 11</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-07-19</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="871E70E047624E41ACE02D1BBAD8F6B4">
+            <Name>Year 10</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-07-19</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="4BBED90024EB41F7AEA8E8C4294CEA80">
+            <Name>Mock Exams</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2007-07-19</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="29A0FB86C5B44FE1A153AB9C09092715">
+            <Name>November Exams 2007</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-03-04</CreateDate>
+            <StartDate>2007-11-01</StartDate>
+            <EndDate>2007-11-30</EndDate>
+            <EditDate>2009-10-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="0DCB8ACC08CF4F7FA125CC4209E9499A">
+            <Name>January Exams 2008</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-03-04</CreateDate>
+            <StartDate>2008-01-01</StartDate>
+            <EndDate>2008-01-31</EndDate>
+            <EditDate>2010-01-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="40E2F486EC8C4C97ABF021CB076F68B0">
+            <Name>March Exams 2008</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-03-19</CreateDate>
+            <StartDate>2008-03-01</StartDate>
+            <EndDate>2008-03-31</EndDate>
+            <EditDate>2010-01-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="5920C446C1FC4B63A7C49431D54A1645">
+            <Name>September Registrations 2007</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-03-31</CreateDate>
+            <StartDate>2007-09-01</StartDate>
+            <EndDate>2007-09-30</EndDate>
+            <EditDate>2009-10-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="5AAF072F8C754859910F5DD8604ABB2F">
+            <Name>Year 7 Progress Tests</Name>
+            <SupplierName>CES Assessment Services</SupplierName>
+            <CreateDate>2004-03-04</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2004-03-04</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="CFB65FA756354B348C1C8EE576D2C30A">
+            <Name>November Exams 2008</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-11-07</CreateDate>
+            <StartDate>2008-11-01</StartDate>
+            <EndDate>2008-11-30</EndDate>
+            <EditDate>2013-01-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="9FD4E48AD9AB491EAA52FC5DB448681F">
+            <Name>January Exams 2009</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-12-22</CreateDate>
+            <StartDate>2009-01-01</StartDate>
+            <EndDate>2009-01-31</EndDate>
+            <EditDate>2013-01-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="94AFD356FB03413DAB9B7476C7C92D92">
+            <Name>March Exams 2009</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-12-22</CreateDate>
+            <StartDate>2009-03-01</StartDate>
+            <EndDate>2009-03-31</EndDate>
+            <EditDate>2013-01-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="7BBB842EBF0742FDAA52B777474322BF">
+            <Name>June (Summer) Exams 2009</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-02-16</CreateDate>
+            <StartDate>2009-05-01</StartDate>
+            <EndDate>2009-07-31</EndDate>
+            <EditDate>2014-07-16</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="27772E147AFE4A4389AD684558691026">
+            <Name>September Registrations 2008</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-01-26</CreateDate>
+            <StartDate>2008-09-01</StartDate>
+            <EndDate>2008-09-30</EndDate>
+            <EditDate>2013-01-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="E3329E0ECDAD48618B553EB710EDE0FA">
+            <Name>Year 10 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-05-07</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-05-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="F9E5937736644813BD4DF01724D80A09">
+            <Name>Year 10 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-05-07</CreateDate>
+            <StartDate>1900-01-01</StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-05-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="EE04FEDFEE3843FC8A3953B2643B66DC">
+            <Name>Year 10 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-05-07</CreateDate>
+            <StartDate>1900-01-01</StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-05-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="544DAA48A2624F799AE750D385C80909">
+            <Name>Year 11 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-05-07</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-05-07</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="819848E4A7404D03BF3458A68CAF6D17">
+            <Name>KS4 Target</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-05-06</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2016-07-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="7B8AABCBDBE74A21A9ED01273387AC97">
+            <Name>zYear10</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2009-09-16</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2009-09-16</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="13A75EBBA92C4DB2B6ECEDE4DCA089A2">
+            <Name>June (Summer) Exams 2010</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2010-01-14</CreateDate>
+            <StartDate>2010-05-01</StartDate>
+            <EndDate>2010-07-31</EndDate>
+            <EditDate>2014-07-16</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="2696E511BE0C431CA7F9CA19AF027618">
+            <Name>Year 8 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-07-04</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-30</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="E5B594AE9CA04297844EF6D16AD1B25B">
+            <Name>June (Summer) Exams 2008</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2008-03-19</CreateDate>
+            <StartDate>2008-05-01</StartDate>
+            <EndDate>2008-06-30</EndDate>
+            <EditDate>2013-01-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="12D87240B483441F8DC2A366B4C0C12A">
+            <Name>September Registrations 2009</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2010-01-15</CreateDate>
+            <StartDate>2009-09-01</StartDate>
+            <EndDate>2009-09-30</EndDate>
+            <EditDate>2014-07-16</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="B4DC053FA08F48E6B2F8C08B692C9371">
+            <Name>September Registrations 2010</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-01-12</CreateDate>
+            <StartDate>2010-09-01</StartDate>
+            <EndDate>2010-09-30</EndDate>
+            <EditDate>2014-07-16</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="09B25C547E12414EBE93F25417BD7922">
+            <Name>June (Summer) Exams 2011</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-01-12</CreateDate>
+            <StartDate>2011-05-01</StartDate>
+            <EndDate>2011-07-31</EndDate>
+            <EditDate>2015-06-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="65D4B36DE92B4E3188989EA3F7B6C626">
+            <Name>TRK Year 12</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="BCC01ED8F7684B9ABA3D06D8D4E673F0">
+            <Name>TRK Year 12 Autumn</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="428806A9AE2347149E8DA36114AFA5CE">
+            <Name>TRK Year 12 Spring</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="046A72D2A5DE4DB391D2B5045FC3968A">
+            <Name>TRK Year 12 Summer</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="44F7F3E9520B4227BB8F5AB6208880B2">
+            <Name>TRK Year 13</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="2719A9A02B684B88ACA7AAE14085557D">
+            <Name>TRK Year 13 Autumn</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="B1168990EE284DDFB1E31E0A0D0AE8E0">
+            <Name>TRK Year 13 Spring</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="47A3B9796CA3477F9FAD81A4916B1205">
+            <Name>TRK Year 13 Summer</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="1E4341F0C3D24C57BE71F6A0BF41357B">
+            <Name>TRK Year 11 Spring</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="E577FA71F81E4961A2150160A357B0A1">
+            <Name>TRK Year 11 Summer</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2011-07-26</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2011-07-26</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="59D45443F0024698B16122F9E2E0D836">
+            <Name>June (Summer) Exams 2012</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2012-01-20</CreateDate>
+            <StartDate>2012-05-01</StartDate>
+            <EndDate>2012-07-31</EndDate>
+            <EditDate>2015-06-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="A84B9F703C164D9D9875704064E26729">
+            <Name>September Registrations 2011</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2012-01-20</CreateDate>
+            <StartDate>2011-09-01</StartDate>
+            <EndDate>2011-09-30</EndDate>
+            <EditDate>2015-06-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="7FA431E0393049B6B8E20270E43C6AA8">
+            <Name>FP:  On Entry Validated Result</Name>
+            <SupplierName>CES Assessment Services</SupplierName>
+            <CreateDate>2012-01-01</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2012-01-01</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="D2AA0CFFD3634B4AA15A941768654594">
+            <Name>FP:  Outcome Validated Result</Name>
+            <SupplierName>CES Assessment Services</SupplierName>
+            <CreateDate>2012-01-01</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2012-01-01</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="ACEB6FC53BB34687BA07621BBCE471F7">
+            <Name>Year 11 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2012-05-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2012-05-02</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="462D0DBB44824BF08897603EF258C36B">
+            <Name>KS3 Target</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2012-06-15</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2012-06-15</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="BDEB08B4DCDA4C62BC40F0340CF889A0">
+            <Name>June (Summer) Exams 2013</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2013-01-17</CreateDate>
+            <StartDate>2013-05-01</StartDate>
+            <EndDate>2013-07-31</EndDate>
+            <EditDate>2016-07-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="658F4DD6C38A4767BA933F9D3C3AC3AA">
+            <Name>September Registrations 2012</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2013-03-06</CreateDate>
+            <StartDate>2012-09-01</StartDate>
+            <EndDate>2012-09-30</EndDate>
+            <EditDate>2015-06-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="2DC1DA455898415A86E46615EFA6A417">
+            <Name>FFT</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2012-10-29</CreateDate>
+            <StartDate>1900-01-01</StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2012-10-29</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="6E520EBCC3DC4D4481A69A4754029BAD">
+            <Name>November Exams 2013</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2013-10-03</CreateDate>
+            <StartDate>2013-11-01</StartDate>
+            <EndDate>2013-11-30</EndDate>
+            <EditDate>2016-07-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="6F806BE743A747E09B8FE3BF0C5E21DE">
+            <Name>June (Summer) Exams 2014</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2014-01-02</CreateDate>
+            <StartDate>2014-05-01</StartDate>
+            <EndDate>2014-07-31</EndDate>
+            <EditDate>2014-02-14</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="128678D986A3472A849E969837AFB782">
+            <Name>Year 7 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-30</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="BA3E194176244C2DB3164438B80838FE">
+            <Name>Year 9 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-07-30</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="538275EE12404D3992A9E8F7FA4BDE29">
+            <Name>Year 9 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2003-09-02</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2007-06-25</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="370525FF7324460CA84443A3108AF761">
+            <Name>November Exams 2004</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2005-03-09</CreateDate>
+            <StartDate>2004-11-01</StartDate>
+            <EndDate>2004-11-30</EndDate>
+            <EditDate>2008-03-19</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="4D5F144DB0E741A3B6104D8229F7D2E5">
+            <Name>September Registrations 2014</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2014-10-24</CreateDate>
+            <StartDate>2014-09-01</StartDate>
+            <EndDate>2014-09-30</EndDate>
+            <EditDate>2014-10-24</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="B61D0D9A03CB45AA8BE7C7A139DD6EB2">
+            <Name>November Exams 2014</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2014-10-24</CreateDate>
+            <StartDate>2014-11-01</StartDate>
+            <EndDate>2014-11-30</EndDate>
+            <EditDate>2014-10-24</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="532A6F3EDA2F46CCAF3D85952079977D">
+            <Name>June (Summer) Exams 2015</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-01-02</CreateDate>
+            <StartDate>2015-05-01</StartDate>
+            <EndDate>2015-07-31</EndDate>
+            <EditDate>2015-02-25</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="92B0B6DC19744BA08F0255C25646E449">
+            <Name>September Registrations 2015</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-06-23</CreateDate>
+            <StartDate>2015-09-03</StartDate>
+            <EndDate>2015-09-30</EndDate>
+            <EditDate>2015-06-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="4D25B76A3EFE40FB95923EDAAE7700B6">
+            <Name>Year 12 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="8CB626540F9F43ACB657A244932DD9C6">
+            <Name>Year 12 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="766EE72FFC664B3B8F885CA964024DD7">
+            <Name>Year 12 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="51BB0632E18349448EEA9381AC471366">
+            <Name>Year 13 Autumn Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="FBB528A3EB3F4580B9D752C413EF683D">
+            <Name>Year 13 Spring Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="35719305BFBF422C828C2DE3341203AF">
+            <Name>Year 13 Summer Term</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-07-21</CreateDate>
+            <StartDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></StartDate>
+            <EndDate p2:nil="true" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance"></EndDate>
+            <EditDate>2015-07-21</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="AD6F1F842EAE4C83BC4806D2ABBE3177">
+            <Name>November Exams 2015</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2015-09-15</CreateDate>
+            <StartDate>2015-11-01</StartDate>
+            <EndDate>2015-11-30</EndDate>
+            <EditDate>2015-09-15</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="4CBA5F44C4C44B5097A32DB409FA0994">
+            <Name>June (Summer) Exams 2016</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2016-01-05</CreateDate>
+            <StartDate>2016-05-01</StartDate>
+            <EndDate>2016-07-31</EndDate>
+            <EditDate>2016-02-15</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="EA61F135444A4822BB71E74E41249D41">
+            <Name>September Registrations 2016</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2016-10-20</CreateDate>
+            <StartDate>2016-09-01</StartDate>
+            <EndDate>2016-09-30</EndDate>
+            <EditDate>2016-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="8904DC58391540CF935B04F33B44D58D">
+            <Name>November Exams 2016</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2016-10-20</CreateDate>
+            <StartDate>2016-11-01</StartDate>
+            <EndDate>2016-11-30</EndDate>
+            <EditDate>2016-10-20</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="1F77DDCDD3F0496BAF109618C24C11ED">
+            <Name>June (Summer) Exams 2017</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2017-01-04</CreateDate>
+            <StartDate>2017-05-01</StartDate>
+            <EndDate>2017-07-31</EndDate>
+            <EditDate>2017-02-23</EditDate>
+        </LearnerAssessmentResultset>
+        <LearnerAssessmentResultset RefId="B03D8E59EF6D46E9BD41AD600D266391">
+            <Name>June (Summer) Exams 2018</Name>
+            <SupplierName>820 4321 Green Abbey School</SupplierName>
+            <CreateDate>2018-01-03</CreateDate>
+            <StartDate>2018-05-01</StartDate>
+            <EndDate>2018-07-31</EndDate>
+            <EditDate>2018-01-03</EditDate>
+        </LearnerAssessmentResultset>
+    </DataObjects>
+</SIMSAssessmentMessage>

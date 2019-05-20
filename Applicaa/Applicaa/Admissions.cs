@@ -41,13 +41,13 @@ namespace Applicaa
                                     AppSetting.Password))
             {
                 //serialize object
-                var atf = ConvertToObject<ATfile>(txtInfo.Text);
-                
-                Applicant.AspectSummary();
-                //Applicant.Assessment_Export();
+                var atf = ConvertToObject<ATfile>(txtInfo.Text);                
+                //Applicant.AspectSummary();
+                Applicant.Assessment_Export();
                 //Applicant.MaintainGradesetsSummary();
                 //Applicant.GradesAndValues();                
-                //Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
+
+                Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
             }
             else
             {
