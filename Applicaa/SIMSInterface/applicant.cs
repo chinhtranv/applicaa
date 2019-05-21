@@ -142,13 +142,31 @@ namespace SIMSInterface
                                     
                 });
             }
-            var table  = new DataTable();
+
+
+            #region EMails
+
+            //SqlBinding.BindAttribute(dataRow, "email_id", this.id);
+            //SqlBinding.BindAttribute(dataRow, "person_id", this.personID);
+            //SqlBinding.BindAttribute(dataRow, "location", this.location);
+            //SqlBinding.BindAttribute(dataRow, "main", this.main);
+            //SqlBinding.BindAttribute(dataRow, "primary", this.primary);
+            //SqlBinding.BindAttribute(dataRow, "email_address", this.address);
+            //SqlBinding.BindAttribute(dataRow, "notes", this.notes);
+            //SqlBinding.BindAttribute(dataRow, "use_for_fees_documents", this.useForFeesDocuments);
+            //this.ClearChangeFlags();
+            var table = new DataTable();
             table.Columns.Add("email_address", typeof(string));
+            table.Columns.Add("use_for_fees_documents", typeof(bool));
             var row = table.NewRow();
             row["email_address"] = pupil.Email;
             table.Rows.Add(row);
             //m_Email, main, location is required
             var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
+
+
+            #endregion
+
 
             //relation
 
@@ -181,7 +199,7 @@ namespace SIMSInterface
             rowTelephone["person_id"] = person.ID;
             rowTelephone["number"] = pupil.Phones.Phone.PhoneNo;
             rowTelephone["notes"] = pupil.Phones.Phone.TelephoneType;
-            rowTelephone["main"] = "T";
+            rowTelephone["main"] = "T"; //true
             rowTelephone["primary"] = "T";
             rowTelephone["device"] = 1; //Telephone
             rowTelephone["location"] = 1; //Home
