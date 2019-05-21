@@ -57,20 +57,22 @@ namespace SIMSInterface
             return true;
         }
 
-        private static ApplicantResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
+        public static void ConfigLogging()
         {
             //Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
             // Set the  SIMS log file path (not used?)
-            Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) +
-                            "\\SIMS_Log.txt";
+            Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
+        }
 
-
+        private static ApplicantResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
+        {
+            
             if (pupil == null) return new ApplicantResult
             {
                 Status = Status.Failed,
                 Message = "Pupil can not be null"
             };
-            
+            var enrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0);
             bool success = true;
             var errors = new SIMS.Entities.ValidationErrors();
             var person = new Person();
@@ -85,14 +87,12 @@ namespace SIMSInterface
             //var countryOfBirth = new Nationality { NationCode = pupil.BasicDetails.CountryofBirth, NationID = 1 };
             var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
             var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages.Type.Language);
-            var phones = new TelephoneCollection(InformationDomainEnum.ApplicationTelephoneEmail);
-            phones.Add(new Telephone {
-                Number = pupil.Phones.Phone.PhoneNo ,
-                Description = pupil.Phones.Phone.TelephoneType,                
-            });
+
+            
+
 
             #region populate schoolhistory
-            
+
             var school = new SIMS.Entities.School();
             school.Assign(Cache.CurrentSchool);
             school.LEANumber = pupil.SchoolHistory.School.LEA.ToString();
@@ -107,7 +107,7 @@ namespace SIMSInterface
                     IsCurrentSchool = false,                    
                     DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
                     ReasonForLeaving = leavingReason,
-                    EnrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0)
+                    EnrollmentMode = enrollmentMode
                 }
             };
             #endregion
@@ -128,7 +128,9 @@ namespace SIMSInterface
             }
             var table  = new DataTable();
             table.Columns.Add("email_address", typeof(string));
-            table.Rows.Add(pupil.Email);
+            var row = table.NewRow();
+            row["email_address"] = pupil.Email;
+            table.Rows.Add(row);
             //m_Email, main, location is required
             var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
 
@@ -143,6 +145,34 @@ namespace SIMSInterface
             person.DateOfBirth = DateTime.ParseExact(pupil.DOB, "yyyy-mm-dd", CultureInfo.InvariantCulture);
 
             mainApplication.CreateApplicationFromPerson(person);
+
+            #region Telephones
+            //(IIDCodeDescriptionEntity) new CodeDescriptionEntity(-1, "XXX", "XXXXXXXXXX"))
+
+            var telephoneTable = new DataTable();
+            telephoneTable.Columns.Add("telephone_id", typeof(int));
+            telephoneTable.Columns.Add("person_id", typeof(int));
+            telephoneTable.Columns.Add("device", typeof(int));
+            telephoneTable.Columns.Add("location", typeof(int));
+            telephoneTable.Columns.Add("number", typeof(string));
+            telephoneTable.Columns.Add("main", typeof(string));
+            telephoneTable.Columns.Add("primary", typeof(string));
+            telephoneTable.Columns.Add("notes", typeof(string));
+            var rowTelephone = telephoneTable.NewRow();
+            telephoneTable.Rows.Add(rowTelephone);
+            rowTelephone["telephone_id"] = 1;
+            rowTelephone["person_id"] = person.ID;
+            rowTelephone["number"] = pupil.Phones.Phone.PhoneNo;
+            rowTelephone["notes"] = pupil.Phones.Phone.TelephoneType;
+            rowTelephone["main"] = "T";
+            rowTelephone["primary"] = "T";
+            rowTelephone["device"] = 1;
+            rowTelephone["location"] = 1;
+
+            var phones = new TelephoneCollection(telephoneTable, InformationDomainEnum.ApplicationTelephoneEmail);
+
+            #endregion
+
             mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN;                                  
             mainApplication.DetailedApplication.Ethnicity = ethic;
             mainApplication.DetailedApplication.EthnicDataSource = ethicDataSource;
@@ -155,11 +185,12 @@ namespace SIMSInterface
                 NationID = countryOfBirth.ID
             };
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
-
+            mainApplication.DetailedApplication.Telephones = phones;
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             //mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
-            //mainApplication.DetailedApplication.Telephones = phones;
+
+
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices;
 
@@ -183,7 +214,7 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.Status = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Applied");
             mainApplication.DetailedApplication.AppliedAdmissionGroup = applicationBrowser.AdmissionGroups[0];
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
-            mainApplication.DetailedApplication.EnrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0);
+            mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
             if (mainApplication.DetailedApplication.Valid())

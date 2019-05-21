@@ -28,6 +28,8 @@ namespace Applicaa
                 Filter = "Text files (*.xml)|*.xml",
                 Title = "Open xml file"
             };
+
+            
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
