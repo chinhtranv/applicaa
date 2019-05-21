@@ -49,7 +49,15 @@ namespace Applicaa
                 //Applicant.MaintainGradesetsSummary();
                 //Applicant.GradesAndValues();                
 
-                Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
+                var re = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
+                if (re.Any(x => x.ApplicantResult.Status == Status.Failed))
+                {
+                    MessageBox.Show("Import Applicant failed ...");
+                }
+                else
+                {
+                    MessageBox.Show("Import applicant successfully !");
+                }
             }
             else
             {

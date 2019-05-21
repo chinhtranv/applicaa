@@ -14,6 +14,7 @@ using SIMS.Entities.ThirdParty.SIF;
 using SIMS.Processes;
 using SIMS.Processes.Admissions;
 using SIMS.Processes.ThirdParty;
+using SIMS.UserInterfaces;
 using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
@@ -36,25 +37,39 @@ namespace SIMSInterface
         public ValidationErrors Errors { get; set; }
     }
 
+    public class CreateApplicantsResult
+    {
+        public string StudentName { get; set; }
+        public ApplicantResult ApplicantResult { get; set; }
+    }
+
     public class Applicant
     {
         static ApplicationBrowser applicationBrowser = new ApplicationBrowser();
         static MaintainApplication mainApplication = new MaintainApplication();
 
 
-        public static bool CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
-        {            
+        public static List<CreateApplicantsResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
+        {
+            ConfigLogging();
             SIMS.Processes.GroupCache.Populate();
             //SchoolCache.
             //StudentCache.Populate();
             //SIMS.Processes.PersonCache.Populate();
             //SIMS.Processes.ContactCache.Populate();
+
+            var rs = new List<CreateApplicantsResult>();
             foreach (var pupil in pupils)
             {
-                var rs = CreateApplicant(pupil, header);
+                var applicant = CreateApplicant(pupil, header);
+                rs.Add(new CreateApplicantsResult
+                {
+                    StudentName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
+                    ApplicantResult = applicant
+                });
             }
 
-            return true;
+            return rs;
         }
 
         public static void ConfigLogging()
@@ -66,7 +81,8 @@ namespace SIMSInterface
 
         private static ApplicantResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
         {
-            
+            string message = string.Empty;
+
             if (pupil == null) return new ApplicantResult
             {
                 Status = Status.Failed,
@@ -148,6 +164,7 @@ namespace SIMSInterface
 
             #region Telephones
             //(IIDCodeDescriptionEntity) new CodeDescriptionEntity(-1, "XXX", "XXXXXXXXXX"))
+            //IDFactory.GetID();
 
             var telephoneTable = new DataTable();
             telephoneTable.Columns.Add("telephone_id", typeof(int));
@@ -166,8 +183,8 @@ namespace SIMSInterface
             rowTelephone["notes"] = pupil.Phones.Phone.TelephoneType;
             rowTelephone["main"] = "T";
             rowTelephone["primary"] = "T";
-            rowTelephone["device"] = 1;
-            rowTelephone["location"] = 1;
+            rowTelephone["device"] = 1; //Telephone
+            rowTelephone["location"] = 1; //Home
 
             var phones = new TelephoneCollection(telephoneTable, InformationDomainEnum.ApplicationTelephoneEmail);
 
@@ -186,19 +203,19 @@ namespace SIMSInterface
             };
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
-            //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
+            //mainApplication.DetailedApplication.EMails = emails;
+
+
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             //mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
 
-
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices;
-
-            //mainApplication.DetailedApplication.EMails = emails;
             //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
-
-
             //mainApplication.DetailedApplication.Contacts = ;
+            //mainApplication.DetailedApplication.Address = ;
+
+            //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.LookedAfter = ;
             //mainApplication.DetailedApplication.BS7666Address = ;
             //mainApplication.DetailedApplication.AddressLines = ;            
@@ -221,13 +238,15 @@ namespace SIMSInterface
             {
                 DataTable dtMessages = new DataTable();
                 if (!(mainApplication.Save(true, out dtMessages)))
-                {                 
+                {
+                    message = "Could not save the database .";
                     success = false;
                 }
             }
             else
             {
-                success = false;                
+                success = false;
+                message = "Applicant validation failed ...";
                 mainApplication.DetailedApplication.ValidationErrors(errors);            
             }
 
@@ -243,7 +262,8 @@ namespace SIMSInterface
                 return new ApplicantResult
                 {
                     Status = Status.Failed,
-                    Errors = errors
+                    Errors = errors,
+                    Message = message
                 };
             }
         }
