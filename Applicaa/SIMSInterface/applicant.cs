@@ -91,23 +91,27 @@ namespace SIMSInterface
                 Description = pupil.Phones.Phone.TelephoneType,                
             });
 
+            #region populate schoolhistory
+            
+            var school = new SIMS.Entities.School();
+            school.Assign(Cache.CurrentSchool);
+            school.LEANumber = pupil.SchoolHistory.School.LEA.ToString();
+            school.Name = pupil.SchoolHistory.School.SchoolName;
+
             var schoolHistory = new SchoolHistoryCollection
             {
                 new SchoolHistory
                 {                    
                     StartDate = pupil.SchoolHistory.School.EntryDate,
-                    School = new SIMS.Entities.School
-                    {
-                        LEANumber = pupil.SchoolHistory.School.LEA.ToString(),
-                        Name = pupil.SchoolHistory.School.SchoolName,                                                                          
-                                                
-                    },                                              
+                    School = school,                                              
                     IsCurrentSchool = false,                    
                     DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
-                    ReasonForLeaving = leavingReason
+                    ReasonForLeaving = leavingReason,
+                    EnrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0)
                 }
             };
-            
+            #endregion
+
 
             var disability = new StudentDisabilities(1);
             var medicalPractices = new AgencyLinkedStudents();
@@ -150,12 +154,12 @@ namespace SIMSInterface
                 NationCode = countryOfBirth.Code,
                 NationID = countryOfBirth.ID
             };
+            mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
+
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             //mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
-
             //mainApplication.DetailedApplication.Telephones = phones;
-            mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices;
 
