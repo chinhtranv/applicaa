@@ -156,10 +156,22 @@ namespace SIMSInterface
             //SqlBinding.BindAttribute(dataRow, "use_for_fees_documents", this.useForFeesDocuments);
             //this.ClearChangeFlags();
             var table = new DataTable();
+            table.Columns.Add("email_id", typeof(string));
+            table.Columns.Add("person_id", typeof(string));
+            table.Columns.Add("location", typeof(string));
+            table.Columns.Add("main", typeof(string));
+            table.Columns.Add("primary", typeof(string));
             table.Columns.Add("email_address", typeof(string));
+            table.Columns.Add("notes", typeof(string));
             table.Columns.Add("use_for_fees_documents", typeof(bool));
             var row = table.NewRow();
+            row["email_id"] = IDFactory.GetID();
+            row["person_id"] = person.ID;
+            row["location"] = "T";
+            row["main"] = "T";
             row["email_address"] = pupil.Email;
+            row["notes"] = string.Empty;
+            row["use_for_fees_documents"] = false;
             table.Rows.Add(row);
             //m_Email, main, location is required
             var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
@@ -221,7 +233,7 @@ namespace SIMSInterface
             };
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
-            //mainApplication.DetailedApplication.EMails = emails;
+            mainApplication.DetailedApplication.EMails = emails;
 
 
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
