@@ -4,6 +4,11 @@
 --populate cache
 [sims].[sta_pix_Groups_MaintainCache_730] 8404
 
+--personal cache popuplate
+
+sta_pix_lookups_maintain_PersonCache
+
+
 -- save applicant detail
 [sims].[adm_pix_ApplicationDetail_Save]
 
@@ -36,7 +41,8 @@ SELECT * FROM [sims].[sims_school]
 
 SELECT * FROM sims.asm_aspect
 
-
+SELECT * from sims.sims_school
+where school_name LIKE  '%Junior%'
 /*
 Main Application
 SIMS.Processes.DocManagementCache.Populate();
@@ -55,3 +61,6 @@ SIMS.Processes.DocManagementCache.Populate();
       this.populateCriteriaLookups();
 
 */
+
+
+select * from sims.adm_application_school_history 

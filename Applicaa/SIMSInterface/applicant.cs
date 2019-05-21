@@ -17,6 +17,8 @@ using SIMS.Processes.ThirdParty;
 using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
+
+using StudentCache = SIMS.Entities.StudentCache;
 using Telephone = SIMS.Entities.Telephone;
 
 namespace SIMSInterface
@@ -43,7 +45,8 @@ namespace SIMSInterface
         public static bool CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {            
             SIMS.Processes.GroupCache.Populate();
-           
+            //SchoolCache.
+            //StudentCache.Populate();
             //SIMS.Processes.PersonCache.Populate();
             //SIMS.Processes.ContactCache.Populate();
             foreach (var pupil in pupils)
@@ -56,7 +59,11 @@ namespace SIMSInterface
 
         private static ApplicantResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
         {
-            Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
+            //Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
+            // Set the  SIMS log file path (not used?)
+            Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) +
+                            "\\SIMS_Log.txt";
+
 
             if (pupil == null) return new ApplicantResult
             {
@@ -83,7 +90,7 @@ namespace SIMSInterface
                 Number = pupil.Phones.Phone.PhoneNo ,
                 Description = pupil.Phones.Phone.TelephoneType,                
             });
-                       
+
             var schoolHistory = new SchoolHistoryCollection
             {
                 new SchoolHistory
@@ -94,12 +101,13 @@ namespace SIMSInterface
                         LEANumber = pupil.SchoolHistory.School.LEA.ToString(),
                         Name = pupil.SchoolHistory.School.SchoolName,                                                                          
                                                 
-                    },                    
+                    },                                              
+                    IsCurrentSchool = false,                    
                     DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
                     ReasonForLeaving = leavingReason
                 }
             };
-
+            
 
             var disability = new StudentDisabilities(1);
             var medicalPractices = new AgencyLinkedStudents();
