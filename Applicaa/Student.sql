@@ -294,3 +294,18 @@ from sims.asm_resultset rs
          on  v2.agency_id=rs.supplier_id
   left outer join sims.sims_person sp on rs.locked_by = sp.person_id
   where rs.resultset_id = 44 --January Exams 2005
+
+
+
+  ---------------------
+
+  ----
+
+  SELECT * FROM sims.exam_board
+				ORDER BY sims.exam_board.board_abbreviation
+
+  SELECT * FROM sims.exam_qualification
+
+  SELECT * FROM sims.asm_result
+
+  SELECT * FROM sims.asm_aspect aa WHERE aa.aspect_id=7024
