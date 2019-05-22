@@ -89,6 +89,12 @@
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\DocManagementProcesses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="ExamEntities">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\ExamEntities.dll</HintPath>
+    </Reference>
+    <Reference Include="ExamProcesses">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\ExamProcesses.dll</HintPath>
+    </Reference>
     <Reference Include="GroupEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\GroupEntities.dll</HintPath>
       <Private>False</Private>
