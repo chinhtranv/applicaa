@@ -233,7 +233,7 @@ namespace SIMSInterface
             };
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
-            mainApplication.DetailedApplication.EMails = emails;
+            //mainApplication.DetailedApplication.EMails = emails; //till validate error
 
 
             //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
@@ -271,7 +271,12 @@ namespace SIMSInterface
                 {
                     message = "Could not save the database .";
                     success = false;
+                    
+
                 }
+                //we can use this id for Assessment
+                var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
+
             }
             else
             {
@@ -406,15 +411,16 @@ namespace SIMSInterface
         {
 
             int personId = 447;
-            SIMS.Processes.MaintainAspect ASMMaintainAspect = new MaintainAspect();
-            ASMMaintainAspect.Populate(new SIMS.Entities.Person(personId));
-            ASMMaintainAspect.AspectEntity.AspectDescriptionAttribute.Value = "Dang 1";
-            ////saving AspectEntity
-            //bool isvalid = ASMMaintainAspect.Valid();
-            //if (isvalid == true)
-            //{
-            //    ASMMaintainAspect.Save(new PerformanceCategorys());
-            //}
+            SIMS.Processes.MaintainAspect asmMaintainAspect = new MaintainAspect();
+            asmMaintainAspect.Populate(new SIMS.Entities.Person(personId));
+            asmMaintainAspect.AspectEntity.AspectDescriptionAttribute.Value = "Dang 1";
+            
+            //saving AspectEntity
+            bool isvalid = asmMaintainAspect.Valid();
+            if (isvalid == true)
+            {
+                asmMaintainAspect.Save(new PerformanceCategorys());
+            }
         }
 
         public static void MaintainGradesetsSummary()
@@ -423,35 +429,37 @@ namespace SIMSInterface
             string suppliername = "";
             string gradesetName = "";
 
-            SIMS.Processes.MaintainGradesetSummary ASMMaintainGradeSetSummary = new MaintainGradesetSummary();
-            ASMMaintainGradeSetSummary.Populate(moduleID, suppliername, gradesetName);
-            foreach (SIMS.Entities.ASMGradeSetSummary gradeSetSummary in ASMMaintainGradeSetSummary.asmGradeSetSummarys)
+            SIMS.Processes.MaintainGradesetSummary asmMaintainGradeSetSummary = new MaintainGradesetSummary();
+            asmMaintainGradeSetSummary.Populate(moduleID, suppliername, gradesetName);
+            foreach (SIMS.Entities.ASMGradeSetSummary gradeSetSummary in asmMaintainGradeSetSummary.asmGradeSetSummarys)
             {
                 //gradeSetSummary.NameAttribute;
+                //gradeSetSummary.
+                
             }
         }
 
         public void MaintainGradeSet()
         {
             int gradeSetId = 12;
-            SIMS.Processes.MaintainGradeSet ASMMaintainGradeSet = new MaintainGradeSet();
-            ASMMaintainGradeSet.Populate(gradeSetId);
-            ASMMaintainGradeSet.ASMGradeset.DescriptionAttribute.Value = "";
-
+            SIMS.Processes.MaintainGradeSet asmMaintainGradeSet = new MaintainGradeSet();
+            asmMaintainGradeSet.Populate(gradeSetId);
+            asmMaintainGradeSet.ASMGradeset.DescriptionAttribute.Value = "";
+            
             //saving ASMGradeset Entity
-            bool isvalid = ASMMaintainGradeSet.Valid();
+            bool isvalid = asmMaintainGradeSet.Valid();
             if(isvalid == true)
             {
-                ASMMaintainGradeSet.Save();
+                asmMaintainGradeSet.Save();
             }
         }
 
         public static void GradesAndValues()
         {
             int gradeSetId = 12;
-            SIMS.Processes.MaintainGradeSet ASMMaintainGradeSet = new MaintainGradeSet();
-            ASMMaintainGradeSet.Populate(gradeSetId);
-            foreach (SIMS.Entities.ASMGradeSetHistory asmGradeSetHistory in ASMMaintainGradeSet.ASMGradeset.AsmGradesetHistorys.Value)
+            SIMS.Processes.MaintainGradeSet asmMaintainGradeSet = new MaintainGradeSet();
+            asmMaintainGradeSet.Populate(gradeSetId);
+            foreach (SIMS.Entities.ASMGradeSetHistory asmGradeSetHistory in asmMaintainGradeSet.ASMGradeset.AsmGradesetHistorys.Value)
             {
                 //insert code here to extract data
                 //asmGradeSetHistory.ASMGradesValues
