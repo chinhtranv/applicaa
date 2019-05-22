@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Les (Capita Business Services Limited) -->
+<xs:schema targetNamespace="urn:results-schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ResultFileV7">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Header" type="xs:string" nillable="true"/>
+				<xs:element name="GradesetNode" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Gradeset" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExporterRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>ExporterRefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="RefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>RefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Module" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Supplier" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SupplierRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation> SupplierRefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ExternalId" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Name" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Notes" type="xs:string" nillable="true"/>
+										<xs:element name="CreateDate" type="xs:string" nillable="false"/>
+										<xs:element name="EditDate" type="xs:string" nillable="false"/>
+										<xs:element name="GradesetHistory" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="StartDate" type="xs:string" nillable="false"/>
+													<xs:element name="EndDate" type="xs:string" nillable="true"/>
+													<xs:element name="ValuesetAgency" type="xs:string" nillable="false"/>
+													<xs:element name="Grade" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Title" type="xs:string" nillable="false"/>
+																<xs:element name="Description" type="xs:string" nillable="true"/>
+																<xs:element name="RankOrder" type="xs:string" nillable="false"/>
+																<xs:element name="Value" nillable="false">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:pattern value="-?[0-9.]*"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="Color" type="xs:integer" nillable="true" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ResultsetNode" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Resultset" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExporterRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity: ExporterRefId introduced for GUID processing</xs:documentation>
+												<xs:documentation>AJS: this is not required for GUID processing but may be useful in future and keeps GUID use consistent.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ResultsetRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation> Entity: RefId introduced for GUID processing</xs:documentation>
+												<xs:documentation> AJS: this is not required for GUID processing but may be useful in future and keeps references to suppliers consistent.</xs:documentation>
+												<xs:documentation> AJS: normally I would suggest RefId for this element name, but this name seems consistent within the resultset elements.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ResultsetModule" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ResultsetSupplier" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ResultsetSupplierRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>ResultsetSupplierRefId introduced for GUID processing</xs:documentation>
+												<xs:documentation>AJS: this is not required for GUID processing but may be useful in future and keeps references to suppliers consistent.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ResultsetExternalId" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Name" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="CreateDate" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="EditDate" type="xs:string" nillable="false"/>
+										<xs:element name="StartDate" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="EndDate" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="KeyStage" type="xs:string" nillable="true" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AspectNode" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Aspect" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExporterRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>ExporterRefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="GradesetRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity reference: RefId introduced (referencing dependent gradeset) for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="GradesetModule" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="GradesetSupplier" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="GradesetExternalId" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="RefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity: RefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Module" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Supplier" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="SupplierRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>SupplierRefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ExternalId" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Name" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ColumnHeading" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Description" type="xs:string" nillable="true"/>
+										<xs:element name="CreateDate" type="xs:string" nillable="false"/>
+										<xs:element name="EditDate" type="xs:string" nillable="false"/>
+										<xs:element name="Type" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['G','I','D','C','R']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="KeyStage1" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['T','F']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="KeyStage2" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['T','F']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="KeyStage3" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['T','F']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Version5" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['T','F']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ProgressGrid" nillable="true" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="['T','F']"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Markset" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence maxOccurs="unbounded">
+													<xs:element name="StartDate" type="xs:string" nillable="false" minOccurs="0"/>
+													<xs:element name="EndDate" type="xs:string" nillable="true" minOccurs="0"/>
+													<xs:element name="MinValue" type="xs:string" nillable="true" minOccurs="0"/>
+													<xs:element name="MaxValue" type="xs:string" nillable="true" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ResultNode" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Result" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExporterRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>RefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="AspectRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity reference: RefId introduced for GUID processing</xs:documentation>
+												<xs:documentation>AJS: this is not required for GUID processing but may be useful in future and keeps references to aspects consistent.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="AspectModule" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="AspectSupplier" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="AspectExternalId" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="ResultsetRefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity reference: RefId introduced for GUID processing</xs:documentation>
+												<xs:documentation>AJS: this is not required for GUID processing but may be useful in future and keeps references to resultsets consistent.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ResultsetModule" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="ResultsetSupplier" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="ResultsetExternalId" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="RefId" type="xs:string" nillable="true" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Entity: RefId introduced for GUID processing</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Module" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Student" type="xs:string" nillable="false"/>
+										<xs:element name="Surname" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Forename" nillable="false">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value=".+"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="Gender" type="xs:string" nillable="false"/>
+										<xs:element name="DOB" type="xs:string" nillable="false"/>
+										<xs:element name="School" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="LEANumber" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="SchoolNumber" type="xs:string" nillable="true" minOccurs="0"/>
+										<xs:element name="Date" type="xs:string" nillable="true"/>
+										<xs:element name="ResultValue" type="xs:string" nillable="false"/>
+										<xs:element name="ResultNotes" type="xs:string" nillable="false" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
