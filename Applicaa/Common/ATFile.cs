@@ -405,7 +405,7 @@ public partial class ATfilePupil {
     
     private string forenameField;
     
-    private string dOBField;
+    private System.DateTime dOBField;
     
     private string genderField;
     
@@ -430,6 +430,8 @@ public partial class ATfilePupil {
     private ATfilePupilSchoolHistory schoolHistoryField;
     
     private ATfilePupilSuppInfo suppInfoField;
+    
+    private ATfilePupilExternalExaminationResult[] externalExaminationResultsField;
     
     /// <remarks/>
     public string ApplicationReference {
@@ -492,7 +494,8 @@ public partial class ATfilePupil {
     }
     
     /// <remarks/>
-    public string DOB {
+    [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+    public System.DateTime DOB {
         get {
             return this.dOBField;
         }
@@ -621,6 +624,17 @@ public partial class ATfilePupil {
             this.suppInfoField = value;
         }
     }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("ExternalExaminationResult", IsNullable=false)]
+    public ATfilePupilExternalExaminationResult[] ExternalExaminationResults {
+        get {
+            return this.externalExaminationResultsField;
+        }
+        set {
+            this.externalExaminationResultsField = value;
+        }
+    }
 }
 
 /// <remarks/>
@@ -653,7 +667,7 @@ public partial class ATfilePupilBasicDetails {
     
     private string ethnicitySourceField;
     
-    private ATfilePupilBasicDetailsLanguages languagesField;
+    private ATfilePupilBasicDetailsType[] languagesField;
     
     private string serviceChildField;
     
@@ -774,7 +788,8 @@ public partial class ATfilePupilBasicDetails {
     }
     
     /// <remarks/>
-    public ATfilePupilBasicDetailsLanguages Languages {
+    [System.Xml.Serialization.XmlArrayItemAttribute("Type", IsNullable=false)]
+    public ATfilePupilBasicDetailsType[] Languages {
         get {
             return this.languagesField;
         }
@@ -907,28 +922,7 @@ public partial class ATfilePupilBasicDetailsNationalities {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfilePupilBasicDetailsLanguages {
-    
-    private ATfilePupilBasicDetailsLanguagesType typeField;
-    
-    /// <remarks/>
-    public ATfilePupilBasicDetailsLanguagesType Type {
-        get {
-            return this.typeField;
-        }
-        set {
-            this.typeField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfilePupilBasicDetailsLanguagesType {
+public partial class ATfilePupilBasicDetailsType {
     
     private string languageTypeField;
     
@@ -2388,6 +2382,171 @@ public partial class ATfilePupilSuppInfo {
         }
         set {
             this.suppIDField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ATfilePupilExternalExaminationResult {
+    
+    private string boardCodeField;
+    
+    private string qualificationCodeField;
+    
+    private string levelField;
+    
+    private string subjectCodeField;
+    
+    private string externalResultTypeCodeField;
+    
+    private string externalResultTypeDescriptionField;
+    
+    private string aspectNameField;
+    
+    private byte schoolIdField;
+    
+    private byte monthField;
+    
+    private ushort yearField;
+    
+    private string resultField;
+    
+    private uint qANField;
+    
+    private byte resultDateField;
+    
+    /// <remarks/>
+    public string BoardCode {
+        get {
+            return this.boardCodeField;
+        }
+        set {
+            this.boardCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string QualificationCode {
+        get {
+            return this.qualificationCodeField;
+        }
+        set {
+            this.qualificationCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string level {
+        get {
+            return this.levelField;
+        }
+        set {
+            this.levelField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string SubjectCode {
+        get {
+            return this.subjectCodeField;
+        }
+        set {
+            this.subjectCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ExternalResultTypeCode {
+        get {
+            return this.externalResultTypeCodeField;
+        }
+        set {
+            this.externalResultTypeCodeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ExternalResultTypeDescription {
+        get {
+            return this.externalResultTypeDescriptionField;
+        }
+        set {
+            this.externalResultTypeDescriptionField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string AspectName {
+        get {
+            return this.aspectNameField;
+        }
+        set {
+            this.aspectNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public byte SchoolId {
+        get {
+            return this.schoolIdField;
+        }
+        set {
+            this.schoolIdField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public byte Month {
+        get {
+            return this.monthField;
+        }
+        set {
+            this.monthField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public ushort Year {
+        get {
+            return this.yearField;
+        }
+        set {
+            this.yearField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Result {
+        get {
+            return this.resultField;
+        }
+        set {
+            this.resultField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public uint QAN {
+        get {
+            return this.qANField;
+        }
+        set {
+            this.qANField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public byte ResultDate {
+        get {
+            return this.resultDateField;
+        }
+        set {
+            this.resultDateField = value;
         }
     }
 }

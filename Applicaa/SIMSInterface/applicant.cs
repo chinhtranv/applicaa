@@ -30,7 +30,7 @@ namespace SIMSInterface
         Success
     }
 
-    public class ApplicantResult
+    public class SimsResult
     {
         public Status Status { get; set; }
         public string Message { get; set; }
@@ -40,7 +40,7 @@ namespace SIMSInterface
     public class CreateApplicantsResult
     {
         public string StudentName { get; set; }
-        public ApplicantResult ApplicantResult { get; set; }
+        public SimsResult SimsResult { get; set; }
     }
 
     public class Applicant
@@ -65,7 +65,7 @@ namespace SIMSInterface
                 rs.Add(new CreateApplicantsResult
                 {
                     StudentName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
-                    ApplicantResult = applicant
+                    SimsResult = applicant
                 });
             }
 
@@ -79,11 +79,11 @@ namespace SIMSInterface
             Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
         }
 
-        private static ApplicantResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
+        private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
         {
             string message = string.Empty;
 
-            if (pupil == null) return new ApplicantResult
+            if (pupil == null) return new SimsResult
             {
                 Status = Status.Failed,
                 Message = "Pupil can not be null"
@@ -102,7 +102,7 @@ namespace SIMSInterface
 
             //var countryOfBirth = new Nationality { NationCode = pupil.BasicDetails.CountryofBirth, NationID = 1 };
             var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
-            var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages.Type.Language);
+            var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
             
 
@@ -188,7 +188,8 @@ namespace SIMSInterface
             person.Surname = pupil.Surname;
             person.MiddleName = pupil.BasicDetails.MiddleNames;
             person.Gender = (Gender) LookupCache.Genders.ItemByCode(pupil.Gender);
-            person.DateOfBirth = DateTime.ParseExact(pupil.DOB, "yyyy-mm-dd", CultureInfo.InvariantCulture);
+            //person.DateOfBirth = DateTime.ParseExact(pupil.DOB, "yyyy-mm-dd", CultureInfo.InvariantCulture);
+            person.DateOfBirth = pupil.DOB;
 
             mainApplication.CreateApplicationFromPerson(person);
 
@@ -264,19 +265,25 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
+            int abbeyStudentId = 8404;
+            ExternalExamination.AddResult(null, abbeyStudentId);
+
+            return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {
                 DataTable dtMessages = new DataTable();
                 if (!(mainApplication.Save(true, out dtMessages)))
                 {
                     message = "Could not save the database .";
-                    success = false;
-                    
-
+                    success = false;                    
                 }
+
+
                 //we can use this id for Assessment
                 var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
+                //pupil.ExternalExaminationResults
 
+                ExternalExamination.AddResults(pupil, insertedPersonalId);
             }
             else
             {
@@ -287,14 +294,14 @@ namespace SIMSInterface
 
             if (success)
             {
-                return new ApplicantResult
+                return new SimsResult
                 {
                     Status = Status.Success
                 };
             }
             else
             {
-                return new ApplicantResult
+                return new SimsResult
                 {
                     Status = Status.Failed,
                     Errors = errors,
@@ -350,6 +357,8 @@ namespace SIMSInterface
             return guid.Value.ToString("N").ToUpper();
         }
 
+        #region ASSESSMENT
+       
         public void Assessment_Import()
         {
             SIMSAssessmentMessage sdo = new SIMSAssessmentMessage();
@@ -468,6 +477,6 @@ namespace SIMSInterface
 
         }
 
-
+        #endregion
     }
 }

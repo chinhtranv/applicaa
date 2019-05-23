@@ -50,7 +50,7 @@ namespace Applicaa
                 //Applicant.GradesAndValues();                
 
                 var re = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
-                if (re.Any(x => x.ApplicantResult.Status == Status.Failed))
+                if (re.Any(x => x.SimsResult.Status == Status.Failed))
                 {
                     MessageBox.Show("Import Applicant failed ...");
                 }

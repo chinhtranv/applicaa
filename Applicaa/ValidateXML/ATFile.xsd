@@ -71,7 +71,7 @@
                     <xs:element name="UCI" type="xs:string" />
                     <xs:element name="Surname" type="xs:string" />
                     <xs:element name="Forename" type="xs:string" />
-                    <xs:element name="DOB" type="xs:string" />
+                    <xs:element name="DOB" type="xs:date" />
                     <xs:element name="Gender" type="xs:string" />
                     <xs:element name="BasicDetails">
                       <xs:complexType>
@@ -109,7 +109,7 @@
                           <xs:element name="Languages">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="Type">
+                                <xs:element maxOccurs="unbounded" name="Type">
                                   <xs:complexType>
                                     <xs:sequence>
                                       <xs:element name="LanguageType" type="xs:string" />
@@ -376,6 +376,31 @@
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="SuppID" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ExternalExaminationResults">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="ExternalExaminationResult">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="BoardCode" type="xs:string" />
+                                <xs:element name="QualificationCode" type="xs:string" />
+                                <xs:element name="level" type="xs:string" />
+                                <xs:element name="SubjectCode" type="xs:string" />
+                                <xs:element name="ExternalResultTypeCode" type="xs:string" />
+                                <xs:element name="ExternalResultTypeDescription" type="xs:string" />
+                                <xs:element name="AspectName" type="xs:string" />
+                                <xs:element name="SchoolId" type="xs:unsignedByte" />
+                                <xs:element name="Month" type="xs:unsignedByte" />
+                                <xs:element name="Year" type="xs:unsignedShort" />
+                                <xs:element name="Result" type="xs:string" />
+                                <xs:element name="QAN" type="xs:unsignedInt" />
+                                <xs:element name="ResultDate" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>

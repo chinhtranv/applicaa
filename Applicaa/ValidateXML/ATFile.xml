@@ -242,6 +242,59 @@
       <SuppInfo>
         <SuppID>String</SuppID>
       </SuppInfo>
+
+      <!--return new string[14]{
+      "person_id",
+      "board_code",
+      "qualification_code",
+      "level",
+      "subject_code",
+      "external_result_type_code",
+      "external_result_type_description",
+      "aspect_name",
+      "school_id",
+      "month",
+      "year",
+      "result",
+      "qan",
+      "result_date"
+
+      };-->
+
+
+      <ExternalExaminationResults>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode1</BoardCode>
+          <QualificationCode>QualificationCode1</QualificationCode>
+          <level>Level1</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2018</Year>
+          <Result>AA</Result>
+          <QAN>123456781</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode2</BoardCode>
+          <QualificationCode>QualificationCode2</QualificationCode>
+          <level>Level2</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2019</Year>
+          <Result>AA</Result>
+          <QAN>12345678</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+
+      </ExternalExaminationResults>
     </Pupil>
   
     <Pupil>
@@ -273,6 +326,10 @@
         <Ethnicity>WBRI</Ethnicity>
         <EthnicitySource>C</EthnicitySource>
         <Languages>
+          <Type>
+            <LanguageType>F</LanguageType>
+            <Language>ENG</Language>
+          </Type>
           <Type>
             <LanguageType>F</LanguageType>
             <Language>ENG</Language>
@@ -450,6 +507,40 @@
       <SuppInfo>
         <SuppID>String</SuppID>
       </SuppInfo>
+
+      <ExternalExaminationResults>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode1</BoardCode>
+          <QualificationCode>QualificationCode1</QualificationCode>
+          <level>Level1</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2018</Year>
+          <Result>AA</Result>
+          <QAN>10002431</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode2</BoardCode>
+          <QualificationCode>QualificationCode2</QualificationCode>
+          <level>Level2</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2019</Year>
+          <Result>AA</Result>
+          <QAN>10002431</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+      </ExternalExaminationResults>
+
     </Pupil>
   </ATFpupilData>
 </ATfile>

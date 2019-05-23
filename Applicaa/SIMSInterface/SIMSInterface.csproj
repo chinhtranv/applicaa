@@ -187,6 +187,7 @@
     <Compile Include="Applicant.cs" />
     <Compile Include="Attendance.cs" />
     <Compile Include="DatabaseConfig.cs" />
+    <Compile Include="ExternalExamination.cs" />
     <Compile Include="ExternalPopulation.cs" />
     <Compile Include="LoginHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
