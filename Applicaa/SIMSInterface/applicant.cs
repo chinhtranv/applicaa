@@ -265,8 +265,9 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
-            //int abbeyStudentId = 12105; // Aaron Chris
-            //ExternalExamination.AddResult(null, abbeyStudentId);
+            //Fake for comparison
+            int abbeyStudentId = 12105; // Aaron Chris
+            ExternalExamination.AddResult(null, abbeyStudentId);
 
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
