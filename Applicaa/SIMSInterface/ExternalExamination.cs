@@ -43,7 +43,12 @@ namespace SIMSInterface
             string resultType = "Result";
             string result = "P"; //pass
 
-
+            if(manageExternalExamResult.ExamResult.School == null)
+            {
+                //TODO need to generate school data
+                manageExternalExamResult.ExamResult.School =
+                    ExternalResultLookups.Schools.FirstOrDefault(s => s.Description == "schoolName");
+            }
             manageExternalExamResult.ExamResult.QAN = QAN;
             manageExternalExamResult.ExamResult.Subject = ExternalResultLookups.Subjects.FirstOrDefault(x => x.Code == subjectCode);
             manageExternalExamResult.ExamResult.Board = ExternalResultLookups.Boards.FirstOrDefault(x => x.Code == board);
