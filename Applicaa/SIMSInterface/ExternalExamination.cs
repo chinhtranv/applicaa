@@ -63,6 +63,7 @@ namespace SIMSInterface
             }
             else
             {
+                //current Error : School is required ....
                 message = "Validation error ....";
                 errors = manageExternalExamResult.ExamResult.ValidationErrors;
             }
