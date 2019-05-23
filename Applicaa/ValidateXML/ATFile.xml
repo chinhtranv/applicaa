@@ -243,25 +243,6 @@
         <SuppID>String</SuppID>
       </SuppInfo>
 
-      <!--return new string[14]{
-      "person_id",
-      "board_code",
-      "qualification_code",
-      "level",
-      "subject_code",
-      "external_result_type_code",
-      "external_result_type_description",
-      "aspect_name",
-      "school_id",
-      "month",
-      "year",
-      "result",
-      "qan",
-      "result_date"
-
-      };-->
-
-
       <ExternalExaminationResults>
         <ExternalExaminationResult>
           <BoardCode>BoardCode1</BoardCode>

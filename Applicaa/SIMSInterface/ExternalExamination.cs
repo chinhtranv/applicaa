@@ -12,11 +12,8 @@ namespace SIMSInterface
 {
     public class ExternalExamination
     {
-
         public static bool AddResults(ATfilePupil pupil, int studentId)
-        {
-
-           
+        {           
             foreach (var examination in pupil.ExternalExaminationResults)
             {
                 AddResult(examination, studentId);
@@ -27,9 +24,7 @@ namespace SIMSInterface
 
         public static SimsResult AddResult(ATfilePupilExternalExaminationResult examination, int studentId)
         {
-
             SIMS.Processes.ExamCache.Populate();
-
             bool success = false;
             var errors = new SIMS.Entities.ValidationErrors();
             string message = string.Empty;
@@ -53,8 +48,8 @@ namespace SIMSInterface
             manageExternalExamResult.ExamResult.Subject = ExternalResultLookups.Subjects.FirstOrDefault(x => x.Code == subjectCode);
             manageExternalExamResult.ExamResult.Board = ExternalResultLookups.Boards.FirstOrDefault(x => x.Code == board);
             manageExternalExamResult.ExamResult.Level = ExternalResultLookups.Levels.FirstOrDefault(x => x.Code == level); //invalid level                        
-            manageExternalExamResult.ExamResult.ResultType = ExternalResultLookups.ResultTypes.FirstOrDefault(r => r.Description == resultType);                       
-            manageExternalExamResult.ExamResult.AspectName = aspectName;
+            manageExternalExamResult.ExamResult.ResultType = ExternalResultLookups.ResultTypes.FirstOrDefault(r => r.Description == resultType);
+            //manageExternalExamResult.ExamResult.AspectName = aspectName; no need to update aspect name
             manageExternalExamResult.ExamResult.Result = result;
             manageExternalExamResult.ExamResult.ExamResultDate = ExternalResultLookups.ResultDates.FirstOrDefault(x => x.AcadYear == year);
             //manageExternalExamResult.ExamResult.SetResultDatesForAcadYear();
@@ -63,9 +58,8 @@ namespace SIMSInterface
             //saving external result
             bool isValid = manageExternalExamResult.Valid();
             if (isValid)
-            {
-                success = true;
-                //success = manageExternalExamResult.AddResult();
+            {                
+                success = manageExternalExamResult.AddResult();
             }
             else
             {

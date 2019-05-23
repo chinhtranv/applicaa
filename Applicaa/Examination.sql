@@ -83,3 +83,5 @@ exec  sims.exam_pix_get_school_history @person_id
 
   ---
   -- EXAM Cache populated
+
+  sims.exam_pix_ExamCache_Populate 2018

@@ -265,19 +265,18 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
-            int abbeyStudentId = 8404;
-            ExternalExamination.AddResult(null, abbeyStudentId);
+            //int abbeyStudentId = 12105; // Aaron Chris
+            //ExternalExamination.AddResult(null, abbeyStudentId);
 
-            return new SimsResult();
+            //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {
                 DataTable dtMessages = new DataTable();
                 if (!(mainApplication.Save(true, out dtMessages)))
                 {
                     message = "Could not save the database .";
-                    success = false;                    
+                    success = false;
                 }
-
 
                 //we can use this id for Assessment
                 var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
