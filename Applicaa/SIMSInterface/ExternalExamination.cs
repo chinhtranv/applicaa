@@ -37,14 +37,13 @@ namespace SIMSInterface
             var manageExternalExamResult = new ManageExternalExamResult(studentId);
             //manageExternalExamResult.PopulateLookups(qan, year, studentId); no need to poplulated
             //manageExternalExamResult.ExamResult.School = new ExamSchool{ ID = Cache.CurrentSchool.SchoolId };
-
             //manageExternalExamResult.ExamResult.PersonId = studentId;
             //7 errors
             int year = 2018;
             string subjectCode = "0020"; //learning skill
             string board  = "OCR";
             string level  = "ABQ/B"; //ABQ Unassigned
-            string QAN = "10002431";
+            string QAN = "10002431"; //8 numbers
             string aspectName = "EDEXL/GCE 6673 Entry";
             string resultType = "Result";
             string result = "P"; //pass
