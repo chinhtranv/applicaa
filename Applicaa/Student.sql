@@ -26,12 +26,13 @@ where person_id = 8404
 SELECT * FROM sims.sims_person
 where forename LIKE '%ApplicantForename%'
 
-SELECT * FROM sims.sims_students
+SELECT * FROM sims.stud_student s
+where s.person_id IN  (12105 ,12107)
 
 
 --person id
-SELECT * FROM sims.sims_person
-where person_id = 447
+SELECT * FROM sims.sims_person p
+where p.forename = 'Dang'
 
 
 -- school
@@ -309,3 +310,24 @@ from sims.asm_resultset rs
   SELECT * FROM sims.asm_result
 
   SELECT * FROM sims.asm_aspect aa WHERE aa.aspect_id=7024
+
+  ----
+  -- Examination Browse Student
+  --BY house : Hooke
+  exec sims.exam_pix_BrowseExamStudents_GetStudents @surname='%',@forename='%',@year='%',@reg='%',@house='Hooke',@tier='%',@effective_date='2019-05-24 12:38:33.423',@roll_mode='Any',@show_photo='F',@use_dm='F'
+  -- return all
+  exec sims.exam_pix_BrowseExamStudents_GetStudents @surname='%',@forename='%',@year='%',@reg='%',@house='%',@tier='%',@effective_date='2019-05-24 12:38:33.423',@roll_mode='Any',@show_photo='F',@use_dm='F'
+
+  --import Application
+  sims.adm_pia_atf_import_application
+
+
+  [sims].[sta_pix_SchoolCache_populate]
+
+
+  ---
+  ---FSM
+
+  SELECT * FROM [sims].[sims_base_group_type]
+
+  SELECT * FROM [sims].[sims_base_group]

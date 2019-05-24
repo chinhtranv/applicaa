@@ -145,6 +145,9 @@
     <Reference Include="SchoolEntities">
       <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\SchoolEntities.dll</HintPath>
     </Reference>
+    <Reference Include="SchoolProcesses">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\SchoolProcesses.dll</HintPath>
+    </Reference>
     <Reference Include="SENStudentEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\SENStudentEntities.dll</HintPath>
       <Private>False</Private>

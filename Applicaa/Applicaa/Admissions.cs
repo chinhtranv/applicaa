@@ -52,11 +52,11 @@ namespace Applicaa
                 var re = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
                 if (re.Any(x => x.SimsResult.Status == Status.Failed))
                 {
-                    MessageBox.Show("Import Applicant failed ...");
+                    MessageBox.Show("Import Applicant failed ...", "Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Import applicant successfully !");
+                    MessageBox.Show("Import applicant successfully !","Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else

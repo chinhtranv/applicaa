@@ -9,12 +9,14 @@ using System.Globalization;
 using System.Xml;
 using SIMS.Entities;
 using SIMS.Entities.Admissions;
+using SIMS.Entities.Exams;
 using SIMS.Entities.ThirdParty;
 using SIMS.Entities.ThirdParty.SIF;
 using SIMS.Processes;
 using SIMS.Processes.Admissions;
 using SIMS.Processes.ThirdParty;
 using SIMS.UserInterfaces;
+using Country = SIMS.Entities.Country;
 using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
@@ -53,6 +55,12 @@ namespace SIMSInterface
         {
             ConfigLogging();
             SIMS.Processes.GroupCache.Populate();
+            SIMS.Processes.ExamCache.Populate();
+
+            
+
+            //SIMS.Processes.SchoolCache.;
+
             //SchoolCache.
             //StudentCache.Populate();
             //SIMS.Processes.PersonCache.Populate();
@@ -88,12 +96,14 @@ namespace SIMSInterface
                 Status = Status.Failed,
                 Message = "Pupil can not be null"
             };
+           
             var enrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0);
             bool success = true;
             var errors = new SIMS.Entities.ValidationErrors();
             var person = new Person();
+            var schoolBrowse = new SchoolsBrowse();
+            schoolBrowse.GetSchools("");
 
-            
             var ethic = (Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
             var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);
             var leavingReason = (LeavingReason)LookupCache.LeavingReasons.ItemByCode(pupil.SchoolHistory.School.LeavingReason);
@@ -104,15 +114,12 @@ namespace SIMSInterface
             var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
             var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
-            
-
 
             #region populate schoolhistory
-
-            var school = new SIMS.Entities.School();
-            school.Assign(Cache.CurrentSchool);
-            school.LEANumber = pupil.SchoolHistory.School.LEA.ToString();
-            school.Name = pupil.SchoolHistory.School.SchoolName;
+            //find school by name
+            string schoolName = "Green Abbey School";
+            var listSchool = schoolBrowse.Schools.Cast<SIMS.Entities.School>().ToList();
+            var school = listSchool.FirstOrDefault(x => x.Name == schoolName);
 
             var schoolHistory = new SchoolHistoryCollection
             {
@@ -130,35 +137,44 @@ namespace SIMSInterface
 
 
             var disability = new StudentDisabilities(1);
-            var medicalPractices = new AgencyLinkedStudents();
+
+
+
+            #region
+
+            //SqlBinding.BindAttribute(dataRow, "base_group_id", this.baseGroupID);
+            //SqlBinding.BindAttribute(dataRow, "base_group_type_id", this.baseGroupTypeID);
+            //SqlBinding.BindAttribute(dataRow, "start_date", this.startDate);
+            //SqlBinding.BindAttribute(dataRow, "end_date", this.endDate);
+            //SqlBinding.BindAttribute(dataRow, "country_id", this.CountryAttribute);
+            var countries = LookupCache.Countries.Cast<Country>().ToList();
+            var country = countries.FirstOrDefault();
+
             var fsm = new ApplicationFreeSchoolMeals();
             foreach (var freeMealSchool in pupil.FSMhistory.FSMinstance)
             {
+                //IIDCodeDescriptionEntity baseGroup
+                //var fsmItem = new ApplicationFreeSchoolMeal(baseGroup, freeMealSchool.FSMstartDate, freeMealSchool.FSMendDate)
                 fsm.Add(new ApplicationFreeSchoolMeal
                 {
                     StartDate = freeMealSchool.FSMstartDate,
-                    EndDate = freeMealSchool.FSMendDate, 
-                    
-                                    
+                    EndDate = freeMealSchool.FSMendDate,
+                    BaseGroupID = 60, // Free Meals
+                    BaseGroupTypeID = 18 //Free School Meal
+                    //country
+                    //motes
                 });
             }
+            #endregion
+
 
 
             #region EMails
 
-            //SqlBinding.BindAttribute(dataRow, "email_id", this.id);
-            //SqlBinding.BindAttribute(dataRow, "person_id", this.personID);
-            //SqlBinding.BindAttribute(dataRow, "location", this.location);
-            //SqlBinding.BindAttribute(dataRow, "main", this.main);
-            //SqlBinding.BindAttribute(dataRow, "primary", this.primary);
-            //SqlBinding.BindAttribute(dataRow, "email_address", this.address);
-            //SqlBinding.BindAttribute(dataRow, "notes", this.notes);
-            //SqlBinding.BindAttribute(dataRow, "use_for_fees_documents", this.useForFeesDocuments);
-            //this.ClearChangeFlags();
             var table = new DataTable();
             table.Columns.Add("email_id", typeof(string));
             table.Columns.Add("person_id", typeof(string));
-            table.Columns.Add("location", typeof(string));
+            table.Columns.Add("location", typeof(int));
             table.Columns.Add("main", typeof(string));
             table.Columns.Add("primary", typeof(string));
             table.Columns.Add("email_address", typeof(string));
@@ -167,8 +183,9 @@ namespace SIMSInterface
             var row = table.NewRow();
             row["email_id"] = IDFactory.GetID();
             row["person_id"] = person.ID;
-            row["location"] = "T";
+            row["location"] = 1; 
             row["main"] = "T";
+            row["primary"] = "T";
             row["email_address"] = pupil.Email;
             row["notes"] = string.Empty;
             row["use_for_fees_documents"] = false;
@@ -181,9 +198,12 @@ namespace SIMSInterface
 
 
             //relation
-
-
+            var medicalPractices = new AgencyLinkedStudents();
             medicalPractices.Add(new AgencyLinkedStudent{});
+
+
+
+
             person.Forename = pupil.Forename;            
             person.Surname = pupil.Surname;
             person.MiddleName = pupil.BasicDetails.MiddleNames;
@@ -234,14 +254,13 @@ namespace SIMSInterface
             };
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
-            //mainApplication.DetailedApplication.EMails = emails; //till validate error
+            mainApplication.DetailedApplication.EMails = emails;
 
-
-            //mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
-            //mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
+            mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
+            mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
 
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
-            //mainApplication.DetailedApplication.MedicalPractices = medicalPractices;
+            //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail
             //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
             //mainApplication.DetailedApplication.Contacts = ;
             //mainApplication.DetailedApplication.Address = ;
@@ -266,8 +285,8 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
             //Fake for comparison
-            int abbeyStudentId = 12105; // Aaron Chris
-            ExternalExamination.AddResult(null, abbeyStudentId);
+            //int abbeyStudentId = 12105; // Aaron Chris
+            //ExternalExamination.AddResult(null, abbeyStudentId);
 
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
@@ -278,12 +297,16 @@ namespace SIMSInterface
                     message = "Could not save the database .";
                     success = false;
                 }
+                else 
+                {
+                    //if success then create external examination
+                    //we can use this id for Assessment
+                    var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
+                    //pupil.ExternalExaminationResults
 
-                //we can use this id for Assessment
-                var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
-                //pupil.ExternalExaminationResults
-
-                ExternalExamination.AddResults(pupil, insertedPersonalId);
+                    ExternalExamination.AddResults(pupil, insertedPersonalId);
+                }
+                
             }
             else
             {

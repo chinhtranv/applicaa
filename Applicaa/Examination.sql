@@ -67,8 +67,8 @@ exec  sims.exam_pix_get_school_history @person_id
 
   SELECT * FROM sims.exam_qualification
 
-  SELECT * FROM sims.asm_result
-
+  SELECT TOP 1000  * FROM sims.asm_result
+  ORDER BY result_id DESC
   SELECT * FROM sims.asm_aspect aa WHERE aa.aspect_id=7024
 
   SELECT * FROM  sims.exam_level el
@@ -85,3 +85,8 @@ exec  sims.exam_pix_get_school_history @person_id
   -- EXAM Cache populated
 
   sims.exam_pix_ExamCache_Populate 2018
+
+  SELECT TOP 1000 * FROM sims.exam_candidate e
+  ORDER BY e.candidate_id DESC
+
+  where  e.person_id IN  (12105 ,12107)
