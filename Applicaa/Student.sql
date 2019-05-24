@@ -331,3 +331,4 @@ from sims.asm_resultset rs
   SELECT * FROM [sims].[sims_base_group_type]
 
   SELECT * FROM [sims].[sims_base_group]
+  WHERE sims.sims_base_group.base_group_type_id = 60

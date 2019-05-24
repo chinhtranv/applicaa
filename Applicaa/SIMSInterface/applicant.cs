@@ -241,6 +241,11 @@ namespace SIMSInterface
 
             #endregion
 
+            #region
+
+            var relations = new ApplicationRelations();
+            #endregion
+
             mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN;                                  
             mainApplication.DetailedApplication.Ethnicity = ethic;
             mainApplication.DetailedApplication.EthnicDataSource = ethicDataSource;
@@ -252,12 +257,14 @@ namespace SIMSInterface
                 NationCode = countryOfBirth.Code,
                 NationID = countryOfBirth.ID
             };
+            
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
             mainApplication.DetailedApplication.EMails = emails;
-
             mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
+            //mainApplication.DetailedApplication.PopulateApplicationProficiencyInEnglish(new DataTable()); cannot populate - private method
+            //SENStudentProcess
 
             //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail
@@ -273,7 +280,7 @@ namespace SIMSInterface
             //mainApplication.DetailedApplication.MedicalFlag = ;            
             //mainApplication.DetailedApplication.EnglishProficiencies = ;
             //mainApplication.DetailedApplication.ProficiencyInEnglishDetailsCollection = schoolHistory;
-            //mainApplication.DetailedApplication.PopulateApplicationProficiencyInEnglish(new DataTable()); cannot populate - private method
+
             //mainApplication.DetailedApplication.ApplicationReferenceNumber = pupil.ApplicationReference;
             //mainApplication.DetailedApplication.UCI = pupil.UCI;
 
@@ -291,8 +298,8 @@ namespace SIMSInterface
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {
-                DataTable dtMessages = new DataTable();
-                if (!(mainApplication.Save(true, out dtMessages)))
+                DataTable tableMessages = new DataTable();
+                if (!(mainApplication.Save(true, out tableMessages)))
                 {
                     message = "Could not save the database .";
                     success = false;
@@ -306,6 +313,7 @@ namespace SIMSInterface
 
                     ExternalExamination.AddResults(pupil, insertedPersonalId);
                 }
+
                 
             }
             else
