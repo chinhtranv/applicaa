@@ -284,12 +284,20 @@ namespace SIMSInterface
             //mainApplication.DetailedApplication.ApplicationReferenceNumber = pupil.ApplicationReference;
             //mainApplication.DetailedApplication.UCI = pupil.UCI;
 
-            mainApplication.DetailedApplication.AppliedIntakeGroup = applicationBrowser.IntakeGroups[0];
+            var intakeGroups = applicationBrowser.IntakeGroups.Cast<IntakeGroup>().ToList();
+            var intake = intakeGroups.FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7");
+
+            //2018/2019 - Autumn Year  7 (A)
+            var admissionGroup = applicationBrowser.AdmissionGroups.Cast<AdmissionGroup>().ToList()
+                .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
+            var yeatInTaught = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
+
+            mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
             mainApplication.DetailedApplication.Status = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Applied");
-            mainApplication.DetailedApplication.AppliedAdmissionGroup = applicationBrowser.AdmissionGroups[0];
+            mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
-            mainApplication.DetailedApplication.YearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
+            mainApplication.DetailedApplication.YearTaughtIn = yeatInTaught;
 
             //Fake for comparison
             //int abbeyStudentId = 12105; // Aaron Chris
