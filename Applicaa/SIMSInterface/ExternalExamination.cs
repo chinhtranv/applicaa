@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SIMS.Entities.Exams;
 using SIMS.Processes.Exams;
 
@@ -6,16 +7,21 @@ namespace SIMSInterface
 {
     public class ExternalExamination
     {
-        public static bool AddResults(ATfilePupil pupil, int studentId)
+        public static List<CreateEntityResult> AddResults(ATfilePupil pupil, int studentId)
         {
             SIMS.Processes.ExamCache.Populate();
-
+            var entityResults = new List<CreateEntityResult>();
             foreach (var examination in pupil.ExternalExaminationResults)
             {
-                AddResult(examination, studentId);
+                var result = AddResult(examination, studentId);
+                entityResults.Add(new CreateEntityResult
+                {
+                    Type = EntityType.ExternalExamination,
+                    SimsResult = result
+                });
             }
 
-            return true;
+            return entityResults;
         }
 
         public static SimsResult AddResult(ATfilePupilExternalExaminationResult examination, int studentId)
@@ -74,8 +80,6 @@ namespace SIMSInterface
                 Errors = errors,
                 Message = message
             };
-
-
         }
     }
 }

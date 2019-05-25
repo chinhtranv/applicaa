@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using SIMS.Entities;
 using SIMSInterface;
 
 namespace Applicaa
@@ -34,7 +35,7 @@ namespace Applicaa
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
-            
+            btnProcess.Enabled = false;
             SIMSDllResolution.AddSIMSDllResolution();
 
             if (LoginHelper.SIMSlogin(AppSetting.Server, 
@@ -43,26 +44,40 @@ namespace Applicaa
                                     AppSetting.Password))
             {
                 //serialize object
-                var atf = ConvertToObject<ATfile>(txtInfo.Text);                
-                //Applicant.AspectSummary();
-                //Applicant.Assessment_Export();
-                //Applicant.MaintainGradesetsSummary();
-                //Applicant.GradesAndValues();                
+                var atf = ConvertToObject<ATfile>(txtInfo.Text);                               
+                var results = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
 
-                var re = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
-                if (re.Any(x => x.SimsResult.Status == Status.Failed))
+                if (results.Any(x => x.SimsResult.Status == Status.Failed))
                 {
-                    MessageBox.Show("Import Applicant failed ...", "Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    var strError = new StringBuilder();
+                                       
+                    foreach (var result in results)
+                    {                        
+                        string validationError = string.Join(", ", result.SimsResult.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                        strError.AppendLine(result.EntityName + " : " + result.SimsResult.Status + validationError);
+                    }
+
+                    strError.AppendLine(string.Empty);
+                    foreach (var message in Applicant.CacheMessages)
+                    {
+                        strError.AppendLine(message.Type + " : " + message.Messages);
+                    }
+
+                    txtInfo.Text = strError.ToString();
+                    MessageBox.Show(@"Import applicant failed ...", @"Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Import applicant successfully !","Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(@"Import applicant successfully !",@"Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnProcess.Enabled = true;
                 }
             }
             else
             {
                 MessageBox.Show(LoginHelper.ErrorMessage);
             }
+            
+
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -73,7 +88,7 @@ namespace Applicaa
                 txtInfo.Text = File.ReadAllText(filePath);
 
                 //TODO need to validate object
-
+                btnProcess.Enabled = true;
 
             }
         }

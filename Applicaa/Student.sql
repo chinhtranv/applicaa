@@ -26,13 +26,20 @@ where person_id = 8404
 SELECT * FROM sims.sims_person
 where forename LIKE '%ApplicantForename%'
 
-SELECT * FROM sims.stud_student s
+SELECT TOP 100 * FROM sims.stud_student s
 where s.person_id IN  (12105 ,12107)
+
+---
+
+
+SELECT TOP 100 * FROM sims.stud_student s
+where s.person_id IN  (SELECT person_id FROM sims.sims_person p
+							where p.forename LIKE '%Dang%')
 
 
 --person id
 SELECT * FROM sims.sims_person p
-where p.forename = 'Dang'
+where p.forename like '%Dang%'
 
 
 -- school
@@ -332,3 +339,13 @@ from sims.asm_resultset rs
 
   SELECT * FROM [sims].[sims_base_group]
   WHERE sims.sims_base_group.base_group_type_id = 60
+
+
+  -----
+  -- poplulate Student Cache : Phone Home, Phone Device
+  [sims].[sta_pix_initialise_student_cache]
+
+
+  SELECT TOP 1000 * FROM sims.sims_address
+
+  SELECT TOP 1000 * FROM sims.sims_country sc

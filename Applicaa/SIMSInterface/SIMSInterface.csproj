@@ -184,11 +184,16 @@
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\ThirdPartyProcesses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UserMessageEvents">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\UserMessageEvents.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddSIMSDllResolution.cs" />
     <Compile Include="Applicant.cs" />
+    <Compile Include="Assessment.cs" />
     <Compile Include="Attendance.cs" />
+    <Compile Include="CreateEntityResult.cs" />
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="ExternalExamination.cs" />
     <Compile Include="ExternalPopulation.cs" />

@@ -90,3 +90,15 @@ exec  sims.exam_pix_get_school_history @person_id
   ORDER BY e.candidate_id DESC
 
   where  e.person_id IN  (12105 ,12107)
+
+
+  -- Admit Appication
+
+  [sims].[adm_pix_ApplicationStatus_Update]
+
+  -- populate application
+
+  [sims].[adm_pix_AdmitApplicantDetail_PopulateApplications] 1041, 3
+
+
+   select * from sims.adm_application_status_category

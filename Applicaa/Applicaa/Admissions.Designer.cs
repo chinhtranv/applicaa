@@ -36,31 +36,28 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(14, 15);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSelect.Location = new System.Drawing.Point(12, 12);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(122, 45);
+            this.btnSelect.Size = new System.Drawing.Size(133, 36);
             this.btnSelect.TabIndex = 0;
-            this.btnSelect.Text = "Select ...";
+            this.btnSelect.Text = "Select xml file ...";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // txtInfo
             // 
-            this.txtInfo.Location = new System.Drawing.Point(14, 91);
-            this.txtInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtInfo.Location = new System.Drawing.Point(12, 73);
             this.txtInfo.Multiline = true;
             this.txtInfo.Name = "txtInfo";
             this.txtInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInfo.Size = new System.Drawing.Size(713, 412);
+            this.txtInfo.Size = new System.Drawing.Size(634, 330);
             this.txtInfo.TabIndex = 1;
             // 
             // btnProcess
             // 
-            this.btnProcess.Location = new System.Drawing.Point(408, 511);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnProcess.Location = new System.Drawing.Point(363, 422);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(189, 44);
+            this.btnProcess.Size = new System.Drawing.Size(168, 35);
             this.btnProcess.TabIndex = 2;
             this.btnProcess.Text = "Import to SIMS.net";
             this.btnProcess.UseVisualStyleBackColor = true;
@@ -68,10 +65,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(616, 511);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Location = new System.Drawing.Point(548, 422);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 44);
+            this.button3.Size = new System.Drawing.Size(98, 35);
             this.button3.TabIndex = 3;
             this.button3.Text = "Exit";
             this.button3.UseVisualStyleBackColor = true;
@@ -79,14 +75,13 @@
             // 
             // Admissions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 586);
+            this.ClientSize = new System.Drawing.Size(670, 469);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btnSelect);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Admissions";
             this.Text = "Applicaa";
             this.ResumeLayout(false);

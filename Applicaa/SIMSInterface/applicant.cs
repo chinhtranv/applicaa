@@ -1,90 +1,77 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using System.Globalization;
-using System.Xml;
 using SIMS.Entities;
 using SIMS.Entities.Admissions;
-using SIMS.Entities.Exams;
-using SIMS.Entities.ThirdParty;
-using SIMS.Entities.ThirdParty.SIF;
 using SIMS.Processes;
 using SIMS.Processes.Admissions;
-using SIMS.Processes.ThirdParty;
-using SIMS.UserInterfaces;
 using Country = SIMS.Entities.Country;
 using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
 
-using StudentCache = SIMS.Entities.StudentCache;
-using Telephone = SIMS.Entities.Telephone;
-
 namespace SIMSInterface
 {
-    public enum Status
+    public class CacheMessage
     {
-        Failed,
-        Success
+        public UserMessageEventEnum Type { get; set; }
+        public string Messages { get; set; }
     }
-
-    public class SimsResult
-    {
-        public Status Status { get; set; }
-        public string Message { get; set; }
-        public ValidationErrors Errors { get; set; }
-    }
-
-    public class CreateApplicantsResult
-    {
-        public string StudentName { get; set; }
-        public SimsResult SimsResult { get; set; }
-    }
-
     public class Applicant
     {
         static ApplicationBrowser applicationBrowser = new ApplicationBrowser();
         static MaintainApplication mainApplication = new MaintainApplication();
 
 
-        public static List<CreateApplicantsResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
+        public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {
             ConfigLogging();
             SIMS.Processes.GroupCache.Populate();
             SIMS.Processes.ExamCache.Populate();
-
-            
-
+            SIMS.Processes.PersonCache.Populate();
+            //SIMS.Processes.StudentCache.Populate();
             //SIMS.Processes.SchoolCache.;
 
             //SchoolCache.
-            //StudentCache.Populate();
-            //SIMS.Processes.PersonCache.Populate();
+
+
             //SIMS.Processes.ContactCache.Populate();
 
-            var rs = new List<CreateApplicantsResult>();
+            var entityResults = new List<CreateEntityResult>();
             foreach (var pupil in pupils)
             {
-                var applicant = CreateApplicant(pupil, header);
-                rs.Add(new CreateApplicantsResult
+                var createApplicantResult = CreateApplicant(pupil, header);
+                entityResults.Add(new CreateEntityResult
                 {
-                    StudentName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
-                    SimsResult = applicant
+                    EntityName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
+                    SimsResult = createApplicantResult,
+                    Type = EntityType.Applicant
                 });
             }
 
-            return rs;
+            return entityResults;
         }
 
         public static void ConfigLogging()
         {
             //Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
             // Set the  SIMS log file path (not used?)
+            CacheMessages= new List<CacheMessage>();
             Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
+            SIMS.Entities.Cache.ShowUserMessage += Cache_ShowUserMessage;
+        }
+
+        public static List<CacheMessage> CacheMessages { get; set; }
+
+        private static void Cache_ShowUserMessage(object sender, UserMessageEventArgs args)
+        {
+            CacheMessages.Add(new CacheMessage
+            {
+                Messages = args.Message,
+                Type = args.MessageType
+            });
+            
         }
 
         private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
@@ -103,19 +90,18 @@ namespace SIMSInterface
             var person = new Person();
             var schoolBrowse = new SchoolsBrowse();
             schoolBrowse.GetSchools("");
-
+            
             var ethic = (Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
             var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);
-            var leavingReason = (LeavingReason)LookupCache.LeavingReasons.ItemByCode(pupil.SchoolHistory.School.LeavingReason);
+            
 
-            //TODO Get NationID By Country of Birth
-
-            //var countryOfBirth = new Nationality { NationCode = pupil.BasicDetails.CountryofBirth, NationID = 1 };
             var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
             var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
 
-            #region populate schoolhistory
+            #region schoolhistory
+            var leavingReason = (LeavingReason)LookupCache.LeavingReasons.ItemByCode(pupil.SchoolHistory.School.LeavingReason);
+
             //find school by name
             string schoolName = "Green Abbey School";
             var listSchool = schoolBrowse.Schools.Cast<SIMS.Entities.School>().ToList();
@@ -135,21 +121,19 @@ namespace SIMSInterface
             };
             #endregion
 
+            #region MyRegion
 
             var disability = new StudentDisabilities(1);
 
 
 
-            #region
+            #endregion
 
-            //SqlBinding.BindAttribute(dataRow, "base_group_id", this.baseGroupID);
-            //SqlBinding.BindAttribute(dataRow, "base_group_type_id", this.baseGroupTypeID);
-            //SqlBinding.BindAttribute(dataRow, "start_date", this.startDate);
-            //SqlBinding.BindAttribute(dataRow, "end_date", this.endDate);
-            //SqlBinding.BindAttribute(dataRow, "country_id", this.CountryAttribute);
-            var countries = LookupCache.Countries.Cast<Country>().ToList();
-            var country = countries.FirstOrDefault();
 
+            #region FSM
+
+            
+            
             var fsm = new ApplicationFreeSchoolMeals();
             foreach (var freeMealSchool in pupil.FSMhistory.FSMinstance)
             {
@@ -201,9 +185,6 @@ namespace SIMSInterface
             var medicalPractices = new AgencyLinkedStudents();
             medicalPractices.Add(new AgencyLinkedStudent{});
 
-
-
-
             person.Forename = pupil.Forename;            
             person.Surname = pupil.Surname;
             person.MiddleName = pupil.BasicDetails.MiddleNames;
@@ -244,6 +225,35 @@ namespace SIMSInterface
             #region
 
             var relations = new ApplicationRelations();
+            #endregion
+
+            #region RESIDENT
+
+            var countries = LookupCache.Countries.Cast<Country>().ToList();
+            var country = countries.FirstOrDefault(x => x.Code == "GBR");
+
+            var addressTypes = SIMS.Entities.PersonCache.AddressTypes.Cast<AddressType>().ToList();
+            var residence = new ApplicationResidencyCollection();
+            residence.Add(new ApplicationResidency
+            {
+                               
+                Address = new Address
+                {
+                    Country= country,
+                    HouseName = "House name",
+                    Postcode = "ZZ99 9XX",
+                    Easting = "123456.7",
+                    Northing = "123456.7",
+                    County = "Somewhereshire",
+                    OSAPR = "",
+                    IsBFPO = false,
+                    Apartment = "",
+                    HouseNumber = "",
+                    Town = "",                    
+                    Street = "Addres Line 1" + "Addres Line 2",
+                },
+                AddressType = addressTypes.First() //Home
+            });
             #endregion
 
             mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN;                                  
@@ -290,23 +300,21 @@ namespace SIMSInterface
             //2018/2019 - Autumn Year  7 (A)
             var admissionGroup = applicationBrowser.AdmissionGroups.Cast<AdmissionGroup>().ToList()
                 .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
-            var yeatInTaught = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
 
+            var yearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
+            var applicationStatus = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Admitted");
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
-            mainApplication.DetailedApplication.Status = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Applied");
+            mainApplication.DetailedApplication.Status = applicationStatus;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
-            mainApplication.DetailedApplication.YearTaughtIn = yeatInTaught;
-
-            //Fake for comparison
-            //int abbeyStudentId = 12105; // Aaron Chris
-            //ExternalExamination.AddResult(null, abbeyStudentId);
-
+            mainApplication.DetailedApplication.YearTaughtIn = yearTaughtIn;
+            mainApplication.DetailedApplication.Residencies = residence; //Student Address
+            //mainApplication.DetailedApplication.ProficiencyInEnglishDetailsCollection
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {
-                DataTable tableMessages = new DataTable();
+                var tableMessages = new DataTable();
                 if (!(mainApplication.Save(true, out tableMessages)))
                 {
                     message = "Could not save the database .";
@@ -317,12 +325,8 @@ namespace SIMSInterface
                     //if success then create external examination
                     //we can use this id for Assessment
                     var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
-                    //pupil.ExternalExaminationResults
-
-                    ExternalExamination.AddResults(pupil, insertedPersonalId);
-                }
-
-                
+                    var createExternalExamiantion = ExternalExamination.AddResults(pupil, insertedPersonalId);
+                }                
             }
             else
             {
@@ -349,173 +353,5 @@ namespace SIMSInterface
             }
         }
 
-
-
-
-        public static void Assessment_Export()
-        {
-            SIMSAssessmentMessage sdo = new SIMSAssessmentMessage();
-
-            //ASSESSMENTRESULTCOMPONENT refers to Aspect
-            //ASSESSMENTRESULTGRADESET refers to GradeSets
-            //LEARNERASSESSMENTRESULTSET refers to ResultSets
-            //LEARNERASSESSMENTRESULT refers to Results in SIMS Assessment Manager
-
-
-            //noted : use homeSchoolId : 3a09f631-9103-47f1-8349-4be3438a3198
-
-            //var x = GuidToSifRefID(new Guid("3a09f631-9103-47f1-8349-4be3438a3198")); //remove hyphen
-            Dictionary<string, string> paramOptions = sdo.GetParamOptions(SIMSAssessmentMessage.ASSESSMENTRESULTCOMPONENT);
-
-
-            // The parameter passed to GetParamOptions will vary
-            // depending of what has been requested for export from Assessment
-            // WriteBack interfaces.
-            var xmlString = @"<SIMSAssessmentMessage>
-                                    <Header>
-                                        <MessageType>REQUEST</MessageType>
-                                        <MessageID>895339910C94496AAD7C8C16C5E8F3CE</MessageID>
-                                        <SourceID>PartnerTest</SourceID>
-                                        <DestinationID>3A09F631910347F183494BE3438A3198</DestinationID>
-                                    </Header>
-                                    <QueryObject
-                                        Type=""LEARNERASSESSMENTRESULTSET"">
-                                        <RequestParameters />
-                                    </QueryObject>
-                                    </SIMSAssessmentMessage>";
-            var request = new XmlDocument {InnerXml = xmlString};
-            XmlDocument data = sdo.Export(request);
-
-        }
-
-
-        public static string GuidToSifRefID(Guid? guid)
-        {
-            if (!guid.HasValue)
-                return (string)null;
-            return guid.Value.ToString("N").ToUpper();
-        }
-
-        #region ASSESSMENT
-       
-        public void Assessment_Import()
-        {
-            SIMSAssessmentMessage sdo = new SIMSAssessmentMessage();
-            Dictionary<string, string> paramOptions = sdo.GetParamOptions(SIMSAssessmentMessage.LEARNERASSESSMENTRESULT);
-
-            // The parameter passed to
-            // GetParamOptions will vary depending of what has been requested
-            // for importing data using Assessment WriteBack interfaces.
-            var xmlString = @"<?xml version=""1.0"" encoding=""UTF-8""
-                                    standalone=""yes""?>
-                                    <SIMSAssessmentMessage
-                                    xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-                                    <Header>
-                                    <MessageType>UPDATE</MessageType>
-                                    <MessageID>4F59D43BE9EC41F2A11EBD247352ADC8</MessageID>
-                                    <SourceID>PartnerTest</SourceID>
-                                    <DestinationID>A7BCF7D4E4224965A153A3EDA4243601
-                                    </DestinationID>
-                                    <Status>OK</Status>
-                                    </Header>
-                                    <DataObjects>
-                                    <LearnerAssessmentResult
-                                    RefId=""0BD7DE6C0D824686A751AEA426228303""
-                                    AssessmentComponentRefId=""48E292692A8842128D1E69ED707614ED""
-                                    LearnerPersonalRefId=""884D121CE6E549F3A67858336FCD3086"">
-                                    <SchoolInfoRefId>A7BCF7D4E4224965A153A3EDA4243601</SchoolInfoRefId>
-                                    <AchievementDate>2009-08-26</AchievementDate>
-                                    <Result>1</Result>
-                                    <ResultStatus>R</ResultStatus>
-                                    </LearnerAssessmentResult>
-                                    </DataObjects>
-                                    </SIMSAssessmentMessage>";
-            var request = new XmlDocument();
-            request.InnerText = xmlString;
-            var rs = sdo.Import(request);
-
-        }
-
-        //API used internally by SIMS
-        public static void AspectSummary()
-        {
-            string aspectname = "";
-            string columnheader = "";
-            string aspecttype = "u";
-            int owner = 0;
-            int module = 0;
-            string category_xml = "<root></root>";
-            string activeStatusCode = "";
-            SIMS.Processes.AspectSummary asmAspectSummary = new AspectSummary();
-
-            //[Obsolete("This method is deprecated and will not be available in future releases. Use the method PopulateAspects(string aspectName, string columnHeader, string aspectType, int owner, string category_xml, string activeStatusCode) instead.")]
-            asmAspectSummary.PopulateAspects(aspectname, columnheader, aspecttype, owner, module, category_xml);
-
-            //the error : Object not set reference is throwing ...
-            //ASMAspectSummary.PopulateAspects(aspectname, columnheader, aspecttype, owner,category_xml,activeStatusCode);
-        }
-
-        public void MaintainAspect()
-        {
-
-            int personId = 447;
-            SIMS.Processes.MaintainAspect asmMaintainAspect = new MaintainAspect();
-            asmMaintainAspect.Populate(new SIMS.Entities.Person(personId));
-            asmMaintainAspect.AspectEntity.AspectDescriptionAttribute.Value = "Dang 1";
-            
-            //saving AspectEntity
-            bool isvalid = asmMaintainAspect.Valid();
-            if (isvalid == true)
-            {
-                asmMaintainAspect.Save(new PerformanceCategorys());
-            }
-        }
-
-        public static void MaintainGradesetsSummary()
-        {
-            int moduleID = 0;
-            string suppliername = "";
-            string gradesetName = "";
-
-            SIMS.Processes.MaintainGradesetSummary asmMaintainGradeSetSummary = new MaintainGradesetSummary();
-            asmMaintainGradeSetSummary.Populate(moduleID, suppliername, gradesetName);
-            foreach (SIMS.Entities.ASMGradeSetSummary gradeSetSummary in asmMaintainGradeSetSummary.asmGradeSetSummarys)
-            {
-                //gradeSetSummary.NameAttribute;
-                //gradeSetSummary.
-                
-            }
-        }
-
-        public void MaintainGradeSet()
-        {
-            int gradeSetId = 12;
-            SIMS.Processes.MaintainGradeSet asmMaintainGradeSet = new MaintainGradeSet();
-            asmMaintainGradeSet.Populate(gradeSetId);
-            asmMaintainGradeSet.ASMGradeset.DescriptionAttribute.Value = "";
-            
-            //saving ASMGradeset Entity
-            bool isvalid = asmMaintainGradeSet.Valid();
-            if(isvalid == true)
-            {
-                asmMaintainGradeSet.Save();
-            }
-        }
-
-        public static void GradesAndValues()
-        {
-            int gradeSetId = 12;
-            SIMS.Processes.MaintainGradeSet asmMaintainGradeSet = new MaintainGradeSet();
-            asmMaintainGradeSet.Populate(gradeSetId);
-            foreach (SIMS.Entities.ASMGradeSetHistory asmGradeSetHistory in asmMaintainGradeSet.ASMGradeset.AsmGradesetHistorys.Value)
-            {
-                //insert code here to extract data
-                //asmGradeSetHistory.ASMGradesValues
-                //asmGradeSetHistory.GradesetID
-            }
-
-        }
-
-        #endregion
     }
 }
