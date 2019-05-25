@@ -19,6 +19,7 @@ namespace SIMSInterface
         public Status Status { get; set; }
         public string Message { get; set; }
         public ValidationErrors Errors { get; set; }
+        public int InsertedEntityId { get; set; }
     }
 
     public class CreateEntityResult

@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Example file for Admissions Data Transfer Version 15.0  -->
+<ATfile>
+  <Header>
+    <DocumentName>Admissions Data Transfer File</DocumentName>
+    <ATFversion>15.0</ATFversion>
+    <DateTime>2018-04-30T09:00:47</DateTime>
+    <DocumentQualifier>full</DocumentQualifier>
+    <SupplierID>NAW (for example files)</SupplierID>
+    <SourceSchool>
+      <LEA>999</LEA>
+      <Estab>2222</Estab>
+      <URN>123456</URN>
+      <SchoolName>Example Primary School</SchoolName>
+      <AcademicYear>2019</AcademicYear>
+    </SourceSchool>
+    <DestSchool>
+      <LEA>111</LEA>
+      <Estab>4444</Estab>
+      <URN>123456</URN>
+    </DestSchool>
+    <SuppInfo>
+      <SuppID>NAW (for example files)</SuppID>
+      <annotation>
+        <documentation>All SuppInfo Sections are similar</documentation>
+        <documentation>use and or &amp; not ampersand</documentation>
+      </annotation>
+      <foo>Any tags &amp; data can be used in these sections</foo>
+      <foo> fooatr="attributes as well if you like">36</foo>
+      <morefoo>Acacia Avenue</morefoo>
+      <nestedfoo>
+        <lastName>Surname</lastName>
+        <firstName>Forename</firstName>
+        <street>11 made-up street</street>
+      </nestedfoo>
+    </SuppInfo>
+  </Header>
+  <ATFpupilData>
+    <Pupil>
+      <ApplicationReference>999-2018-09-K-777777</ApplicationReference>
+      <UPN></UPN>
+      <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
+      <UCI>123456789876G</UCI>
+      <Surname>Dinh</Surname>
+      <Forename>Dang 4</Forename>
+      <DOB>1987-07-07</DOB>
+      <Gender>M</Gender>
+      <BasicDetails>
+        <UPN></UPN>
+        <PreferredSurname>Dang</PreferredSurname>
+        <FormerSurname>Dang</FormerSurname>
+        <PreferredForename>Dinh</PreferredForename>
+        <MiddleNames>Dang 4</MiddleNames>
+        <NCyearActual>10</NCyearActual>
+        <EnglishProficiencies>
+          <EnglishProficiency>
+            <ProficiencyInEnglish>E</ProficiencyInEnglish>
+            <ProficiencyInEnglishDate>2017-09-21</ProficiencyInEnglishDate>
+          </EnglishProficiency>
+        </EnglishProficiencies>
+        <CountryofBirth>VNM</CountryofBirth>
+        <Nationalities>
+          <Nationality>HAN</Nationality>
+        </Nationalities>
+        <Ethnicity>WBRI</Ethnicity>
+        <EthnicitySource>C</EthnicitySource>
+        <Languages>
+          <Type>
+            <LanguageType>F</LanguageType>
+            <Language>ENG</Language>
+          </Type>
+        </Languages>
+        <ServiceChild>N</ServiceChild>
+        <MedicalFlag>true</MedicalFlag>
+        <Disabilities>
+          <Disability>HAND</Disability>
+          <Disability>MED</Disability>
+        </Disabilities>
+        <SuppInfo>
+          <SuppID>SUPPLIER</SuppID>
+        </SuppInfo>
+      </BasicDetails>
+      <FSMhistory>
+        <FSMreviewDate>2017-10-21</FSMreviewDate>
+        <FSMinstance>
+          <FSMstartDate>2016-10-23</FSMstartDate>
+          <FSMendDate>2017-12-24</FSMendDate>
+          <UKcountry>ENG</UKcountry>
+        </FSMinstance>
+        <FSMinstance>
+          <FSMstartDate>2016-03-23</FSMstartDate>
+          <UKcountry>ENG</UKcountry>
+        </FSMinstance>
+      </FSMhistory>
+      <LookedAfter>
+        <InCare>true</InCare>
+        <CareAuthority>999</CareAuthority>
+      </LookedAfter>
+      <SENhistory>
+        <SEN>
+          <StartDate>2009-10-13</StartDate>
+          <SENprovision>K</SENprovision>
+        </SEN>
+        <SENneeds>
+          <SENneed>
+            <NeedStartDate>2015-10-13</NeedStartDate>
+            <NeedEndDate>2017-11-25</NeedEndDate>
+            <SENtypeRank>1</SENtypeRank>
+            <SENtype>SPLD</SENtype>
+          </SENneed>
+          <SENneed>
+            <NeedStartDate>2015-10-13</NeedStartDate>
+            <NeedEndDate>2017-11-25</NeedEndDate>
+            <SENtypeRank>2</SENtypeRank>
+            <SENtype>ASD</SENtype>
+          </SENneed>
+        </SENneeds>
+        <SuppInfo>
+          <SuppID>NAW (for example files)</SuppID>
+        </SuppInfo>
+      </SENhistory>
+      <Admissions>
+        <Accept>true</Accept>
+      </Admissions>
+      <Address>
+        <BS7666Address>
+          <SAON>903 Flat</SAON>
+          <PAON>  22      </PAON>
+          <Street>yen nghia</Street>
+          <Locality>Duong noi</Locality>
+          <Town>ha dong</Town>
+          <AdministrativeArea>Example Area</AdministrativeArea>
+          <PostTown>Example City</PostTown>
+          <UniquePropertyReferenceNumber>987654321</UniquePropertyReferenceNumber>
+        </BS7666Address>
+
+        <AddressLines>
+          <AddressLine1>Example Cottage</AddressLine1>
+          <AddressLine2>Example Lane</AddressLine2>
+          <AddressLine3>Exampleville</AddressLine3>
+          <AddressLine4>Example Town</AddressLine4>
+          <AddressLine5>ExampleShire</AddressLine5>
+        </AddressLines>
+        <County>Somewhereshire</County>
+        <PostCode>ZZ99 9XX</PostCode>
+        <Zip>56789</Zip>
+        <Country>GBR</Country>
+        <Easting>123456.7</Easting>
+        <Northing>123456.7</Northing>
+        <SuppInfo>
+          <SuppID>NAW (for example files)</SuppID>
+        </SuppInfo>
+      </Address>
+      <Phones>
+        <Phone>
+          <TelephoneType>H</TelephoneType>
+          <PhoneNo>01234 999999</PhoneNo>
+        </Phone>
+      </Phones>
+      <Email>name@domain.co.uk</Email>
+      <Contacts>
+        <Contact>
+          <Order>1</Order>
+          <Title>Mr</Title>
+          <Surname>ExampleSurname</Surname>
+          <Forename>ExampleForename</Forename>
+          <MiddleNames>ExampleMiddlename</MiddleNames>
+          <Gender>M</Gender>
+          <Relationship>PAF</Relationship>
+          <Responsibility>true</Responsibility>
+          <Address>
+            <AddressAsPupil>true</AddressAsPupil>
+          </Address>
+          <Phones>
+            <Phone>
+              <TelephoneType>H</TelephoneType>
+              <PhoneNo>01234 999999</PhoneNo>
+            </Phone>
+          </Phones>
+          <Email>name@domain.co.uk</Email>
+          <SuppInfo>
+            <SuppID>NAW (for example files)</SuppID>
+          </SuppInfo>
+        </Contact>
+        <Contact>
+          <Order>4</Order>
+          <Title>Mrs</Title>
+          <Surname>Smith</Surname>
+          <Forename>Joan</Forename>
+          <Gender>F</Gender>
+          <Relationship>PAF</Relationship>
+          <Responsibility>true</Responsibility>
+          <Address>
+            <BS7666Address>
+              <SAON>   2      Flat</SAON>
+              <PAON>  22      </PAON>
+              <Street>Example Crescent</Street>
+              <Locality>Exampleville</Locality>
+              <Town>Example Town</Town>
+              <AdministrativeArea>Example Area</AdministrativeArea>
+              <PostTown>Example City</PostTown>
+              <UniquePropertyReferenceNumber>12345678</UniquePropertyReferenceNumber>
+            </BS7666Address>
+
+            <AddressLines>
+              <AddressLine1>Example Cottage</AddressLine1>
+              <AddressLine2>Example Lane</AddressLine2>
+              <AddressLine3>Exampleville</AddressLine3>
+              <AddressLine4>Example Town</AddressLine4>
+              <AddressLine5>ExampleShire</AddressLine5>
+            </AddressLines>
+            <County>Somewhereshire</County>
+            <PostCode>ZZ99 9XX</PostCode>
+            <Zip>56789</Zip>
+            <Country>GBR</Country>
+            <Easting>123456.7</Easting>
+            <Northing>123456.7</Northing>
+          </Address>
+          <Phones>
+            <Phone>
+              <TelephoneType>H</TelephoneType>
+              <PhoneNo>01234-999999</PhoneNo>
+            </Phone>
+          </Phones>
+          <Email>name@domain.co.uk</Email>
+        </Contact>
+      </Contacts>
+      <SchoolHistory>
+        <School>
+          <LEA>999</LEA>
+          <Estab>2000</Estab>
+          <URN>123456</URN>
+          <SchoolName>Example Junior</SchoolName>
+          <EntryDate>2009-09-13</EntryDate>
+          <LeavingDate>2011-07-22</LeavingDate>
+          <LeavingReason>MS</LeavingReason>
+          <SuppInfo>
+            <SuppID>DfES (for example files)</SuppID>
+          </SuppInfo>
+        </School>
+      </SchoolHistory>
+      <SuppInfo>
+        <SuppID>String</SuppID>
+      </SuppInfo>
+
+      <ExternalExaminationResults>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode1</BoardCode>
+          <QualificationCode>QualificationCode1</QualificationCode>
+          <level>Level1</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2018</Year>
+          <Result>AA</Result>
+          <QAN>123456781</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode2</BoardCode>
+          <QualificationCode>QualificationCode2</QualificationCode>
+          <level>Level2</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2019</Year>
+          <Result>AA</Result>
+          <QAN>12345678</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+
+      </ExternalExaminationResults>
+    </Pupil>
+  
+    <Pupil>
+      <ApplicationReference>999-2018-09-K-123456</ApplicationReference>
+      <UPN>A123456789123</UPN>
+      <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
+      <UCI>123456789876G</UCI>
+      <Surname>ExampleSurname</Surname>
+      <Forename>ExampleForename</Forename>
+      <DOB>1987-07-07</DOB>
+      <Gender>M</Gender>
+      <BasicDetails>
+        <UPN>A12345678912A</UPN>
+        <PreferredSurname>Example</PreferredSurname>
+        <FormerSurname>MaidenName</FormerSurname>
+        <PreferredForename>Ex</PreferredForename>
+        <MiddleNames>ExampleMiddle</MiddleNames>
+        <NCyearActual>10</NCyearActual>
+        <EnglishProficiencies>
+          <EnglishProficiency>
+            <ProficiencyInEnglish>E</ProficiencyInEnglish>
+            <ProficiencyInEnglishDate>2017-09-21</ProficiencyInEnglishDate>
+          </EnglishProficiency>
+        </EnglishProficiencies>
+        <CountryofBirth>CAN</CountryofBirth>
+        <Nationalities>
+          <Nationality>CAN</Nationality>
+        </Nationalities>
+        <Ethnicity>WBRI</Ethnicity>
+        <EthnicitySource>C</EthnicitySource>
+        <Languages>
+          <Type>
+            <LanguageType>F</LanguageType>
+            <Language>ENG</Language>
+          </Type>
+          <Type>
+            <LanguageType>F</LanguageType>
+            <Language>ENG</Language>
+          </Type>
+        </Languages>
+        <ServiceChild>N</ServiceChild>
+        <MedicalFlag>true</MedicalFlag>
+        <Disabilities>
+          <Disability>HAND</Disability>
+          <Disability>MED</Disability>
+        </Disabilities>
+        <SuppInfo>
+          <SuppID>NAW (for example files)</SuppID>
+        </SuppInfo>
+      </BasicDetails>
+      <FSMhistory>
+        <FSMreviewDate>2017-10-21</FSMreviewDate>
+        <FSMinstance>
+          <FSMstartDate>2016-10-23</FSMstartDate>
+          <FSMendDate>2017-12-24</FSMendDate>
+          <UKcountry>ENG</UKcountry>
+        </FSMinstance>
+        <FSMinstance>
+          <FSMstartDate>2016-03-23</FSMstartDate>
+          <UKcountry>ENG</UKcountry>
+        </FSMinstance>
+      </FSMhistory>
+      <LookedAfter>
+        <InCare>true</InCare>
+        <CareAuthority>999</CareAuthority>
+      </LookedAfter>
+      <SENhistory>
+        <SEN>
+          <StartDate>2009-10-13</StartDate>
+          <SENprovision>K</SENprovision>
+        </SEN>
+        <SENneeds>
+          <SENneed>
+            <NeedStartDate>2015-10-13</NeedStartDate>
+            <NeedEndDate>2017-11-25</NeedEndDate>
+            <SENtypeRank>1</SENtypeRank>
+            <SENtype>SPLD</SENtype>
+          </SENneed>
+          <SENneed>
+            <NeedStartDate>2015-10-13</NeedStartDate>
+            <NeedEndDate>2017-11-25</NeedEndDate>
+            <SENtypeRank>2</SENtypeRank>
+            <SENtype>ASD</SENtype>
+          </SENneed>
+        </SENneeds>
+        <SuppInfo>
+          <SuppID>NAW (for example files)</SuppID>
+        </SuppInfo>
+      </SENhistory>
+      <Admissions>
+        <Accept>true</Accept>
+      </Admissions>
+      <Address>
+        <BS7666Address>
+          <SAON>   2      Flat</SAON>
+          <PAON>  22      </PAON>
+          <Street>Example Crescent</Street>
+          <Locality>Exampleville</Locality>
+          <Town>Example Town</Town>
+          <AdministrativeArea>Example Area</AdministrativeArea>
+          <PostTown>Example City</PostTown>
+          <UniquePropertyReferenceNumber>12345678</UniquePropertyReferenceNumber>
+        </BS7666Address>
+        
+        <AddressLines>
+          <AddressLine1>Example Cottage</AddressLine1>
+          <AddressLine2>Example Lane</AddressLine2>
+          <AddressLine3>Exampleville</AddressLine3>
+          <AddressLine4>Example Town</AddressLine4>
+          <AddressLine5>ExampleShire</AddressLine5>
+        </AddressLines>
+        <County>Somewhereshire</County>
+        <PostCode>ZZ99 9XX</PostCode>
+        <Zip>56789</Zip>
+        <Country>GBR</Country>
+        <Easting>123456.7</Easting>
+        <Northing>123456.7</Northing>
+        <SuppInfo>
+          <SuppID>NAW (for example files)</SuppID>
+        </SuppInfo>
+      </Address>
+      <Phones>
+        <Phone>
+          <TelephoneType>H</TelephoneType>
+          <PhoneNo>01234 999999</PhoneNo>
+        </Phone>
+      </Phones>
+      <Email>name@domain.co.uk</Email>
+      <Contacts>
+        <Contact>
+          <Order>1</Order>
+          <Title>Mr</Title>
+          <Surname>ExampleSurname</Surname>
+          <Forename>ExampleForename</Forename>
+          <MiddleNames>ExampleMiddlename</MiddleNames>
+          <Gender>M</Gender>
+          <Relationship>PAF</Relationship>
+          <Responsibility>true</Responsibility>
+          <Address>
+            <AddressAsPupil>true</AddressAsPupil>
+          </Address>
+          <Phones>
+            <Phone>
+              <TelephoneType>H</TelephoneType>
+              <PhoneNo>01234 999999</PhoneNo>
+            </Phone>
+          </Phones>
+          <Email>name@domain.co.uk</Email>
+          <SuppInfo>
+            <SuppID>NAW (for example files)</SuppID>
+          </SuppInfo>
+        </Contact>
+        <Contact>
+          <Order>4</Order>
+          <Title>Mrs</Title>
+          <Surname>Smith</Surname>
+          <Forename>Joan</Forename>
+          <Gender>F</Gender>
+          <Relationship>PAF</Relationship>
+          <Responsibility>true</Responsibility>
+          <Address>
+            <BS7666Address>
+              <SAON>   2      Flat</SAON>
+              <PAON>  22      </PAON>
+              <Street>Example Crescent</Street>
+              <Locality>Exampleville</Locality>
+              <Town>Example Town</Town>
+              <AdministrativeArea>Example Area</AdministrativeArea>
+              <PostTown>Example City</PostTown>
+              <UniquePropertyReferenceNumber>12345678</UniquePropertyReferenceNumber>
+            </BS7666Address>
+            
+            <AddressLines>
+              <AddressLine1>Example Cottage</AddressLine1>
+              <AddressLine2>Example Lane</AddressLine2>
+              <AddressLine3>Exampleville</AddressLine3>
+              <AddressLine4>Example Town</AddressLine4>
+              <AddressLine5>ExampleShire</AddressLine5>
+            </AddressLines>
+            <County>Somewhereshire</County>
+            <PostCode>ZZ99 9XX</PostCode>
+            <Zip>56789</Zip>
+            <Country>GBR</Country>
+            <Easting>123456.7</Easting>
+            <Northing>123456.7</Northing>
+          </Address>
+          <Phones>
+            <Phone>
+              <TelephoneType>H</TelephoneType>
+              <PhoneNo>01234-999999</PhoneNo>
+            </Phone>
+          </Phones>
+          <Email>name@domain.co.uk</Email>
+        </Contact>
+      </Contacts>
+      <SchoolHistory>
+        <School>
+          <LEA>999</LEA>
+          <Estab>2000</Estab>
+          <URN>123456</URN>
+          <SchoolName>Example Junior</SchoolName>
+          <EntryDate>2009-09-13</EntryDate>
+          <LeavingDate>2011-07-22</LeavingDate>
+          <LeavingReason>MS</LeavingReason>
+          <SuppInfo>
+            <SuppID>DfES (for example files)</SuppID>
+          </SuppInfo>
+        </School>
+      </SchoolHistory>
+      <SuppInfo>
+        <SuppID>String</SuppID>
+      </SuppInfo>
+
+      <ExternalExaminationResults>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode1</BoardCode>
+          <QualificationCode>QualificationCode1</QualificationCode>
+          <level>Level1</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2018</Year>
+          <Result>AA</Result>
+          <QAN>10002431</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+        <ExternalExaminationResult>
+          <BoardCode>BoardCode2</BoardCode>
+          <QualificationCode>QualificationCode2</QualificationCode>
+          <level>Level2</level>
+          <SubjectCode>subject_code</SubjectCode>
+          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
+          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
+          <AspectName>AspectName</AspectName>
+          <SchoolId>1</SchoolId>
+          <Month>12</Month>
+          <Year>2019</Year>
+          <Result>AA</Result>
+          <QAN>10002431</QAN>
+          <ResultDate>1</ResultDate>
+        </ExternalExaminationResult>
+      </ExternalExaminationResults>
+
+    </Pupil>
+  </ATFpupilData>
+</ATfile>

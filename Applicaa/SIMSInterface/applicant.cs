@@ -10,18 +10,27 @@ using Country = SIMS.Entities.Country;
 using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
+using StudentCache = SIMS.Entities.StudentCache;
+using UPNEnum = SIMS.Entities.AcademicPerson.UPNEnum;
 
 namespace SIMSInterface
 {
-    public class CacheMessage
-    {
-        public UserMessageEventEnum Type { get; set; }
-        public string Messages { get; set; }
-    }
     public class Applicant
     {
         static ApplicationBrowser applicationBrowser = new ApplicationBrowser();
         static MaintainApplication mainApplication = new MaintainApplication();
+
+        public static List<CacheMessage> CacheMessages { get; set; }
+
+        private static void Cache_ShowUserMessage(object sender, UserMessageEventArgs args)
+        {
+            CacheMessages.Add(new CacheMessage
+            {
+                Messages = args.Message,
+                Type = args.MessageType
+            });
+
+        }
 
 
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
@@ -30,12 +39,8 @@ namespace SIMSInterface
             SIMS.Processes.GroupCache.Populate();
             SIMS.Processes.ExamCache.Populate();
             SIMS.Processes.PersonCache.Populate();
-            //SIMS.Processes.StudentCache.Populate();
+            SIMS.Processes.StudentCache.Populate();
             //SIMS.Processes.SchoolCache.;
-
-            //SchoolCache.
-
-
             //SIMS.Processes.ContactCache.Populate();
 
             var entityResults = new List<CreateEntityResult>();
@@ -60,18 +65,6 @@ namespace SIMSInterface
             CacheMessages= new List<CacheMessage>();
             Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
             SIMS.Entities.Cache.ShowUserMessage += Cache_ShowUserMessage;
-        }
-
-        public static List<CacheMessage> CacheMessages { get; set; }
-
-        private static void Cache_ShowUserMessage(object sender, UserMessageEventArgs args)
-        {
-            CacheMessages.Add(new CacheMessage
-            {
-                Messages = args.Message,
-                Type = args.MessageType
-            });
-            
         }
 
         private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
@@ -123,17 +116,58 @@ namespace SIMSInterface
 
             #region MyRegion
 
-            var disability = new StudentDisabilities(1);
+            //"RecordId",
+            //"PersonId",
+            //"StartDate",
+            //"EndDate",
+            //"DisabilityId", --need to find
+            //"Comment",
+            //"Status"
+            var studentDisaibilities1 = StudentCache.StudentDisaibilities.ItemByCode("HAND");
+            var studentDisaibilities2 = StudentCache.StudentDisaibilities.ItemByCode("MED");
+
+            //return new string[7] { "RecordId", "PersonId", "StartDate", "EndDate", "DisabilityId", "Comment", "Status" };
+            //SqlBinding.BindAttribute(row, "record_id", this.id);
+            //SqlBinding.BindAttribute(row, "person_id", this.personId);
+            //SqlBinding.BindAttribute(row, "start_date", this.startDate);
+            //SqlBinding.BindAttribute(row, "end_date", this.endDate);
+
+            //disability_id
+
+            //"RecordId",
+            //"PersonId",
+            //"StartDate",
+            //"EndDate",
+            //"DisabilityId",
+            //"Comment",
+            //"Status"
+
+            var disabilityDataTable = new DataTable();
+            disabilityDataTable.Columns.Add("RecordId", typeof(string));
+            disabilityDataTable.Columns.Add("PersonId", typeof(string));
+            disabilityDataTable.Columns.Add("StartDate", typeof(DateTime));
+            disabilityDataTable.Columns.Add("EndDate", typeof(DateTime));
+            disabilityDataTable.Columns.Add("DisabilityId", typeof(int));
+            disabilityDataTable.Columns.Add("Comment", typeof(string));
+            disabilityDataTable.Columns.Add("Status", typeof(string));
+            
+            var rowD = disabilityDataTable.NewRow();
+            rowD["RecordId"] = IDFactory.GetID();
+            rowD["PersonId"] = person.ID;
+            rowD["StartDate"] = DateTime.Now;
+            rowD["EndDate"] = DateTime.Now;
+            rowD["DisabilityId"] = studentDisaibilities1.ID;
+            rowD["Comment"] = "";
+            rowD["Status"] = "";
+            disabilityDataTable.Rows.Add(rowD);
+            var disability = new StudentDisabilities(0, disabilityDataTable, InformationDomainEnum.StudentWelfareDisabilities);
 
 
 
             #endregion
 
 
-            #region FSM
-
-            
-            
+            #region FSM                       
             var fsm = new ApplicationFreeSchoolMeals();
             foreach (var freeMealSchool in pupil.FSMhistory.FSMinstance)
             {
@@ -176,8 +210,6 @@ namespace SIMSInterface
             table.Rows.Add(row);
             //m_Email, main, location is required
             var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
-
-
             #endregion
 
 
@@ -255,32 +287,37 @@ namespace SIMSInterface
                 AddressType = addressTypes.First() //Home
             });
             #endregion
-
-            mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN;                                  
+            var countryOfBirthValue = new Nationality
+            {
+                NationCode = countryOfBirth.Code,
+                NationID = countryOfBirth.ID
+            };
+            mainApplication.DetailedApplication.IssueUPN = UPNEnum.IssuePermanent; //hackfor dumpData                                 
+            mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN + Guid.NewGuid().ToString("N");                                  
             mainApplication.DetailedApplication.Ethnicity = ethic;
             mainApplication.DetailedApplication.EthnicDataSource = ethicDataSource;
             //need an example
             //The number you have entered does not match the formula used for allocating Unique Learner Numbers
             //mainApplication.DetailedApplication.ULN = pupil.UniqueLearnerNumber.ToString();
-            mainApplication.DetailedApplication.CountryOfBirth = new Nationality
-            {
-                NationCode = countryOfBirth.Code,
-                NationID = countryOfBirth.ID
-            };
-            
+            mainApplication.DetailedApplication.CountryOfBirth = countryOfBirthValue;
             mainApplication.DetailedApplication.SchoolHistory = schoolHistory;
             mainApplication.DetailedApplication.Telephones = phones;
             mainApplication.DetailedApplication.EMails = emails;
             mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
-            mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; //need to ask FSM
+            mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = fsm; 
+            mainApplication.DetailedApplication.Residencies = residence; //Student Address
+            mainApplication.DetailedApplication.ApplicantDisabilities = disability;
+            //var xml2 = mainApplication.DetailedApplication.Residencies.GetCohabiteesSaveXML();
+            //var xml = mainApplication.DetailedApplication.ApplicantDisabilities.ToXmlParameter();
+            
+
             //mainApplication.DetailedApplication.PopulateApplicationProficiencyInEnglish(new DataTable()); cannot populate - private method
             //SENStudentProcess
 
-            //mainApplication.DetailedApplication.ApplicantDisabilities = disability;
+
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail
             //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
             //mainApplication.DetailedApplication.Contacts = ;
-            //mainApplication.DetailedApplication.Address = ;
 
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.LookedAfter = ;
@@ -288,10 +325,7 @@ namespace SIMSInterface
             //mainApplication.DetailedApplication.AddressLines = ;            
             //mainApplication.DetailedApplication.ServiceChild = ;
             //mainApplication.DetailedApplication.MedicalFlag = ;            
-            //mainApplication.DetailedApplication.EnglishProficiencies = ;
-            //mainApplication.DetailedApplication.ProficiencyInEnglishDetailsCollection = schoolHistory;
-
-            //mainApplication.DetailedApplication.ApplicationReferenceNumber = pupil.ApplicationReference;
+            //mainApplication.DetailedApplication.EnglishProficiencies = ;           
             //mainApplication.DetailedApplication.UCI = pupil.UCI;
 
             var intakeGroups = applicationBrowser.IntakeGroups.Cast<IntakeGroup>().ToList();
@@ -302,15 +336,14 @@ namespace SIMSInterface
                 .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
 
             var yearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
-            var applicationStatus = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Admitted");
+            var admitted = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Admitted");
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
-            mainApplication.DetailedApplication.Status = applicationStatus;
+            mainApplication.DetailedApplication.Status = admitted;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = yearTaughtIn;
-            mainApplication.DetailedApplication.Residencies = residence; //Student Address
-            //mainApplication.DetailedApplication.ProficiencyInEnglishDetailsCollection
+           
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {
@@ -339,7 +372,9 @@ namespace SIMSInterface
             {
                 return new SimsResult
                 {
-                    Status = Status.Success
+                    Status = Status.Success,
+                    Errors = new ValidationErrors(),
+                    Message = string.Empty
                 };
             }
             else

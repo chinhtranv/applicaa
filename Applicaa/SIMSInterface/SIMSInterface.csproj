@@ -193,6 +193,7 @@
     <Compile Include="Applicant.cs" />
     <Compile Include="Assessment.cs" />
     <Compile Include="Attendance.cs" />
+    <Compile Include="CacheMessage.cs" />
     <Compile Include="CreateEntityResult.cs" />
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="ExternalExamination.cs" />
