@@ -87,65 +87,20 @@ namespace SIMSInterface
             var person = new Person();
                         
             var ethic = (Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
-            var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);            
-            
-            var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
+            var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);                        
+            //var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
 
             #region schoolhistory
             var schoolHistory = PopulateSchoolHistory(pupil, enrollmentMode);
-
             #endregion
 
             #region disability
-
-            var disabilityDataTable = new DataTable();
-            disabilityDataTable.Columns.Add("record_id", typeof(string));
-            disabilityDataTable.Columns.Add("person_id", typeof(string));
-            disabilityDataTable.Columns.Add("start_date", typeof(DateTime));
-            disabilityDataTable.Columns.Add("end_date", typeof(DateTime));
-            disabilityDataTable.Columns.Add("disability_id", typeof(int));
-            disabilityDataTable.Columns.Add("comment", typeof(string));
-            
-            foreach (var pupilDisability in pupil.BasicDetails.Disabilities)
-            {
-                var disabilityType = StudentCache.StudentDisaibilities.ItemByCode(pupilDisability);
-                var rowD = disabilityDataTable.NewRow();
-                rowD["record_id"] = IDFactory.GetID();
-                rowD["person_id"] = person.ID;
-                rowD["start_date"] = DateTime.Now;
-                rowD["end_date"] = DateTime.Now;
-                rowD["disability_id"] = disabilityType.ID;
-                rowD["comment"] = "";
-                
-                disabilityDataTable.Rows.Add(rowD);
-            }
-            
-            var disability = new StudentDisabilities(0,InformationDomainEnum.None);
-            foreach (DataRow rowDis in disabilityDataTable.Rows)
-            {
-                var stu = new StudentDisability(0, rowDis, InformationDomainEnum.None)
-                    { Status = StatusEnum.New};
-                disability.Add(stu);
-            }
-            
-
+            var disability = PopulateStudentDisabilities(pupil, person);
             #endregion
 
             #region FSM                       
-            var freeSchoolMeals = new ApplicationFreeSchoolMeals();
-            foreach (var freeMealSchool in pupil.FSMhistory.FSMinstance)
-            {                
-                freeSchoolMeals.Add(new ApplicationFreeSchoolMeal
-                {
-                    StartDate = freeMealSchool.FSMstartDate,
-                    EndDate = freeMealSchool.FSMendDate,
-                    BaseGroupID = 60, // Free Meals
-                    BaseGroupTypeID = 18 //Free School Meal
-                    //country
-                    //motes
-                });
-            }
+            var freeSchoolMeals = PopulateFreeSchoolMeals(pupil);
             #endregion
 
             #region EMails
@@ -206,7 +161,7 @@ namespace SIMSInterface
             var relations = new ApplicationRelations();
             #endregion
 
-            #region RESIDENT
+            #region Address - Resident
 
             var countries = LookupCache.Countries.Cast<Country>().ToList();
             var country = countries.FirstOrDefault(x => x.Code == "GBR");
@@ -322,13 +277,25 @@ namespace SIMSInterface
                     //we can use this id for Assessment
                     var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
                     var createExternalExamiantion = ExternalExamination.AddResults(pupil, insertedPersonalId);
-
-                    return new SimsResult
+                    if(createExternalExamiantion.Any(x => x.SimsResult.Status == Status.Failed))
                     {
-                        Status = Status.Success,
-                        Errors = new ValidationErrors(),
-                        Message = string.Empty
-                    };
+                        return new SimsResult
+                        {
+                            Status = Status.Failed,
+                            Errors = new ValidationErrors(),
+                            Message = "Create examination failed ... "
+                        };
+                    }
+                    else
+                    {
+                        return new SimsResult
+                        {
+                            Status = Status.Success,
+                            Errors = new ValidationErrors(),
+                            Message = string.Empty
+                        };
+                    }
+                    
                 }
 
 
@@ -354,14 +321,73 @@ namespace SIMSInterface
             }
 
 
-        }//end create applicant
+        }
 
-        private static SchoolHistoryCollection PopulateSchoolHistory(ATfilePupil pupil, 
+        private static ApplicationFreeSchoolMeals PopulateFreeSchoolMeals(ATfilePupil pupil)
+        {
+            int baseGroupId = 60; // Free Meals
+            int baseGroupTypeId = 18; //Free School Meal
+            var freeSchoolMeals = new ApplicationFreeSchoolMeals();
+            if (pupil.FSMhistory == null || !pupil.FSMhistory.FSMinstance.Any())
+                return freeSchoolMeals;
+            foreach (var freeMealSchool in pupil.FSMhistory.FSMinstance)
+            {
+                freeSchoolMeals.Add(new ApplicationFreeSchoolMeal
+                {
+                    StartDate = freeMealSchool.FSMstartDate,
+                    EndDate = freeMealSchool.FSMendDate,
+                    BaseGroupID = baseGroupId, 
+                    BaseGroupTypeID = baseGroupTypeId                   
+                });
+            }
+
+            return freeSchoolMeals;
+        }
+
+        private static StudentDisabilities PopulateStudentDisabilities(ATfilePupil pupil, Person person)
+        {
+            int personId = 0;
+            var disability = new StudentDisabilities(personId, InformationDomainEnum.None);
+            var disabilityDataTable = new DataTable();
+            disabilityDataTable.Columns.Add("record_id", typeof(string));
+            disabilityDataTable.Columns.Add("person_id", typeof(string));
+            disabilityDataTable.Columns.Add("start_date", typeof(DateTime));
+            disabilityDataTable.Columns.Add("end_date", typeof(DateTime));
+            disabilityDataTable.Columns.Add("disability_id", typeof(int));
+            disabilityDataTable.Columns.Add("comment", typeof(string));
+            if (pupil.BasicDetails == null || !pupil.BasicDetails.Disabilities.Any())
+                return disability;
+
+            foreach (var pupilDisability in pupil.BasicDetails.Disabilities)
+            {
+                var disabilityType = StudentCache.StudentDisaibilities.ItemByCode(pupilDisability);
+                var rowD = disabilityDataTable.NewRow();
+                rowD["record_id"] = IDFactory.GetID();
+                rowD["person_id"] = person.ID;
+                rowD["start_date"] = DateTime.Now;
+                //rowD["end_date"] = DateTime.Now; //set end date is null
+                rowD["disability_id"] = disabilityType.ID;
+                rowD["comment"] = "";
+
+                disabilityDataTable.Rows.Add(rowD);
+            }
+
             
+            foreach (DataRow rowDis in disabilityDataTable.Rows)
+            {
+                var stu = new StudentDisability(personId, rowDis, InformationDomainEnum.None)
+                    {Status = StatusEnum.New};
+                disability.Add(stu);
+            }
+
+            return disability;
+        }
+
+        private static SchoolHistoryCollection PopulateSchoolHistory(ATfilePupil pupil,             
             DFESEnrolmentStatus enrollmentMode)
         {
             var schoolBrowse = new SchoolsBrowse();
-            schoolBrowse.GetSchools("");
+            schoolBrowse.GetSchools(string.Empty);
             var leavingReason = (LeavingReason) LookupCache.LeavingReasons.ItemByCode(pupil.SchoolHistory.School.LeavingReason);
 
             //find school by name
