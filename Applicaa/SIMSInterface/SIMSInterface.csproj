@@ -81,6 +81,9 @@
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\CacheProcesses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DinnerMoneyEntities">
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\DinnerMoneyEntities.dll</HintPath>
+    </Reference>
     <Reference Include="DocManagementEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\DocManagementEntities.dll</HintPath>
       <Private>False</Private>

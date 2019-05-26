@@ -42,14 +42,14 @@
       <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
-      <Forename>Dang 7</Forename>
-      <DOB>1987-07-07</DOB>
+      <Forename>Dang 8</Forename>
+      <DOB>2007-07-07</DOB>
       <Gender>M</Gender>
       <BasicDetails>
         <UPN>A123456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
-        <PreferredForename>Dinh 7</PreferredForename>
+        <PreferredForename>Dinh 8</PreferredForename>
         <MiddleNames>Dang</MiddleNames>
         <NCyearActual>10</NCyearActual>
         <EnglishProficiencies>
