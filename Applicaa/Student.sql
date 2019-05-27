@@ -354,3 +354,7 @@ from sims.asm_resultset rs
   SELECT TOP 1000  * FROM sims.stud_contact
 
   SELECT TOP 1000 * FROM sims.adm_application_relation
+
+  -- save student information
+
+  [sims].[sta_pix_EditStudentInformation_Save_705]

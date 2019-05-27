@@ -40,17 +40,7 @@ namespace SIMSInterface
 
                 }
             }
-            var result = editStudINV.Save();
-            if (result == StudentEditResult.Success)
-            {
-                Console.WriteLine("Success !");
-            }
-            else if (result == StudentEditResult.Failure)
-            {
-                var errors = editStudINV.Student.ValidationErrors;
-                Console.WriteLine("Failure ");
-            }
-            return;
+           
             
 
             // NHS Number, Emergency Consent,
@@ -144,6 +134,19 @@ namespace SIMSInterface
 
 
             }
+
+
+            var result = editStudINV.Save();
+            if (result == StudentEditResult.Success)
+            {
+                Console.WriteLine("Success !");
+            }
+            else if (result == StudentEditResult.Failure)
+            {
+                var errors = editStudINV.Student.ValidationErrors;
+                Console.WriteLine("Failure ");
+            }
+            
         }
     }
 }
