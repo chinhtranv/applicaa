@@ -42,14 +42,14 @@
       <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
-      <Forename>Dang 9</Forename>
+      <Forename>Dang 11</Forename>
       <DOB>1980-07-07</DOB>
       <Gender>M</Gender>	  
       <BasicDetails>
         <UPN>A123456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
-        <PreferredForename>Dinh 9</PreferredForename>
+        <PreferredForename>Dinh 11</PreferredForename>
         <MiddleNames>Dang</MiddleNames>
         <NCyearActual>10</NCyearActual>
         <EnglishProficiencies>
@@ -183,7 +183,7 @@
             <Phone>
               <TelephoneType>H</TelephoneType>
               <PhoneNo>01234 999999</PhoneNo>
-            </Phone>
+            </Phone>			
           </Phones>
           <Email>name@domain.co.uk</Email>
           <SuppInfo>

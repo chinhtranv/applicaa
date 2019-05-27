@@ -349,3 +349,8 @@ from sims.asm_resultset rs
   SELECT TOP 1000 * FROM sims.sims_address
 
   SELECT TOP 1000 * FROM sims.sims_country sc
+
+
+  SELECT TOP 1000  * FROM sims.stud_contact
+
+  SELECT TOP 1000 * FROM sims.adm_application_relation

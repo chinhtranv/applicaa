@@ -75,11 +75,14 @@ namespace SIMSInterface
             var phones = PopulateTelephone(pupil, person);
             var residence = PopulateAddress(pupil);
             var countryOfBirthValue = PopulateCountryOfBirth(pupil);
+            var relations = PopulateRelations(pupil);
 
 
-            //relation
+            #region Medical Practice
             var medicalPractices = new AgencyLinkedStudents();
-            medicalPractices.Add(new AgencyLinkedStudent{});
+            medicalPractices.Add(new AgencyLinkedStudent { });
+            #endregion
+
 
             person.Forename = pupil.Forename;            
             person.Surname = pupil.Surname;
@@ -101,13 +104,12 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.EMails = emails;
             mainApplication.DetailedApplication.FSMReviewDate = pupil.FSMhistory.FSMreviewDate;
             mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = freeSchoolMeals; 
-            mainApplication.DetailedApplication.Residencies = residence; //Student Address
+            mainApplication.DetailedApplication.Residencies = residence; 
             mainApplication.DetailedApplication.ApplicantDisabilities = disability;
+            mainApplication.DetailedApplication.Relations = relations; 
             
             //SENStudentProcess
-            //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail
-            //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
-            //mainApplication.DetailedApplication.Contacts = ;
+            //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail           
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
             //mainApplication.DetailedApplication.LookedAfter = ;                      
             //mainApplication.DetailedApplication.ServiceChild = ;
@@ -188,6 +190,48 @@ namespace SIMSInterface
             }
 
 
+        }
+
+        private static ApplicationRelations PopulateRelations(ATfilePupil pupil)
+        {            
+            var relations = new ApplicationRelations();
+            if (pupil.Contacts == null || !pupil.Contacts.Any())
+                return relations;
+
+            foreach (var contact in pupil.Contacts)
+            {
+                var personId = 8404; //Abbey6 DANG;
+                relations.Add(new ApplicationRelation
+                {
+                    Status = StudentContactStatus.New,
+                    ContactPerson = new ContactSummary
+                    {
+                        Surname = contact.Surname,
+                        Forename = contact.Forename,
+                        PersonIDAttribute =
+                        {
+                            Value = personId
+                        },
+                        MiddleName = contact.MiddleNames,
+                        Title = (Title)LookupCache.Titles.ItemByCode(contact.Title),
+                        LegalOrderCountAttribute =
+                        {
+                            Value = contact.Order
+                        },
+                        Gender = (Gender)LookupCache.Genders.ItemByCode(contact.Gender),
+                        MainTelephone = new Telephone()
+                        {
+                            Number = contact.Phones.Phone.PhoneNo,
+                            Location = { }
+                        }
+                    },
+                    EmailBills = true,
+                    RelationType = (RelationType)LookupCache.RelationTypes.ItemByCode("PAF"),
+                    ParentalResponsibility = true,
+                });
+            }
+           
+            return relations;
         }
 
         private static ApplicationResidencyCollection PopulateAddress(ATfilePupil pupil)
