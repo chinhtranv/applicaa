@@ -69,6 +69,10 @@
             <LanguageType>F</LanguageType>
             <Language>ENG</Language>
           </Type>
+		  <Type>
+            <LanguageType>F</LanguageType>
+            <Language>VND</Language>
+          </Type>
         </Languages>
         <ServiceChild>N</ServiceChild>
         <MedicalFlag>true</MedicalFlag>
@@ -155,6 +159,10 @@
         <Phone>
           <TelephoneType>H</TelephoneType>
           <PhoneNo>01234 999999</PhoneNo>
+        </Phone>
+		<Phone>
+          <TelephoneType>H</TelephoneType>
+          <PhoneNo>01234 777777</PhoneNo>
         </Phone>
       </Phones>
       <Email>name@domain.co.uk</Email>

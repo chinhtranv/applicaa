@@ -23,29 +23,7 @@ namespace SIMSInterface
         static MaintainApplication mainApplication = new MaintainApplication();
         public static List<CacheMessage> CacheMessages { get; set; }
 
-        #region HELPER Method
-        public static void ConfigLogging()
-        {
-            //Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
-            // Set the  SIMS log file path (not used?)
-            CacheMessages = new List<CacheMessage>();
-            Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
-            SIMS.Entities.Cache.ShowUserMessage += Cache_ShowUserMessage;
-        }
-
-        private static void Cache_ShowUserMessage(object sender, UserMessageEventArgs args)
-        {
-            CacheMessages.Add(new CacheMessage
-            {
-                Messages = args.Message,
-                Type = args.MessageType
-            });
-
-        }
-        #endregion
-
-
-
+       
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {
             ConfigLogging();
@@ -87,120 +65,17 @@ namespace SIMSInterface
             var person = new Person();
                         
             var ethic = (Ethnicity) GroupCache.Ethnicities.ItemByCode(pupil.BasicDetails.Ethnicity);
-            var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);                        
+            var ethicDataSource = GroupCache.EthnicDataSources.Item(pupil.BasicDetails.EthnicitySource);
             //var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
-
-            #region schoolhistory
             var schoolHistory = PopulateSchoolHistory(pupil, enrollmentMode);
-            #endregion
-
-            #region disability
             var disability = PopulateStudentDisabilities(pupil, person);
-            #endregion
-
-            #region FSM                       
             var freeSchoolMeals = PopulateFreeSchoolMeals(pupil);
-            #endregion
+            var emails = PopulateEMail(pupil, person);
+            var phones = PopulateTelephone(pupil, person);
+            var residence = PopulateAddress(pupil);
+            var countryOfBirthValue = PopulateCountryOfBirth(pupil);
 
-            #region EMails
-
-            var table = new DataTable();
-            table.Columns.Add("email_id", typeof(string));
-            table.Columns.Add("person_id", typeof(string));
-            table.Columns.Add("location", typeof(int));
-            table.Columns.Add("main", typeof(string));
-            table.Columns.Add("primary", typeof(string));
-            table.Columns.Add("email_address", typeof(string));
-            table.Columns.Add("notes", typeof(string));
-            table.Columns.Add("use_for_fees_documents", typeof(bool));
-            var row = table.NewRow();
-            row["email_id"] = IDFactory.GetID();
-            row["person_id"] = person.ID;
-            row["location"] = 1; 
-            row["main"] = "T";
-            row["primary"] = "T";
-            row["email_address"] = pupil.Email;
-            row["notes"] = string.Empty;
-            row["use_for_fees_documents"] = false;
-            table.Rows.Add(row);
-            //m_Email, main, location is required
-            var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
-            #endregion
-
-            #region Telephones
-            //(IIDCodeDescriptionEntity) new CodeDescriptionEntity(-1, "XXX", "XXXXXXXXXX"))
-            //IDFactory.GetID();
-
-            var telephoneTable = new DataTable();
-            telephoneTable.Columns.Add("telephone_id", typeof(int));
-            telephoneTable.Columns.Add("person_id", typeof(int));
-            telephoneTable.Columns.Add("device", typeof(int));
-            telephoneTable.Columns.Add("location", typeof(int));
-            telephoneTable.Columns.Add("number", typeof(string));
-            telephoneTable.Columns.Add("main", typeof(string));
-            telephoneTable.Columns.Add("primary", typeof(string));
-            telephoneTable.Columns.Add("notes", typeof(string));
-            var rowTelephone = telephoneTable.NewRow();
-            telephoneTable.Rows.Add(rowTelephone);
-            rowTelephone["telephone_id"] = 1;
-            rowTelephone["person_id"] = person.ID;
-            rowTelephone["number"] = pupil.Phones.Phone.PhoneNo;
-            rowTelephone["notes"] = pupil.Phones.Phone.TelephoneType;
-            rowTelephone["main"] = "T"; //true
-            rowTelephone["primary"] = "T";
-            rowTelephone["device"] = 1; //Telephone
-            rowTelephone["location"] = 1; //Home
-
-            var phones = new TelephoneCollection(telephoneTable, InformationDomainEnum.ApplicationTelephoneEmail);
-
-            #endregion
-
-            #region Relations
-
-            var relations = new ApplicationRelations();
-            #endregion
-
-            #region Address - Resident
-
-            var countries = LookupCache.Countries.Cast<Country>().ToList();
-            var country = countries.FirstOrDefault(x => x.Code == "GBR");
-
-            var addressTypes = SIMS.Entities.PersonCache.AddressTypes.Cast<AddressType>().ToList();
-            var residence = new ApplicationResidencyCollection();
-            residence.Add(new ApplicationResidency
-            {
-
-                Address = new Address
-                {
-                    Country = country,
-                    HouseName = "House name",
-                    Postcode = "ZZ99 9XX",
-                    Easting = "123456.7",
-                    Northing = "123456.7",
-                    County = "Somewhereshire",
-                    OSAPR = "",
-                    IsBFPO = false,
-                    Apartment = "",
-                    HouseNumber = "",
-                    Town = "",
-                    Street = "Addres Line 1" + "Addres Line 2",
-                },
-                AddressType = addressTypes.First() //Home
-            });
-            #endregion
-
-            #region CountryOfBirth
-
-            var countryOfBirth = (Nation)LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
-            var countryOfBirthValue = new Nationality
-            {
-                NationCode = countryOfBirth.Code,
-                NationID = countryOfBirth.ID
-            };
-
-
-            #endregion
 
             //relation
             var medicalPractices = new AgencyLinkedStudents();
@@ -229,19 +104,12 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.Residencies = residence; //Student Address
             mainApplication.DetailedApplication.ApplicantDisabilities = disability;
             
-
-            //mainApplication.DetailedApplication.PopulateApplicationProficiencyInEnglish(new DataTable()); cannot populate - private method
             //SENStudentProcess
-
-
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail
             //mainApplication.DetailedApplication.Relations = relations; //relation not belong to contacts
             //mainApplication.DetailedApplication.Contacts = ;
-
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
-            //mainApplication.DetailedApplication.LookedAfter = ;
-            //mainApplication.DetailedApplication.BS7666Address = ;
-            //mainApplication.DetailedApplication.AddressLines = ;            
+            //mainApplication.DetailedApplication.LookedAfter = ;                      
             //mainApplication.DetailedApplication.ServiceChild = ;
             //mainApplication.DetailedApplication.MedicalFlag = ;            
             //mainApplication.DetailedApplication.EnglishProficiencies = ;           
@@ -249,8 +117,7 @@ namespace SIMSInterface
 
             var intakeGroups = applicationBrowser.IntakeGroups.Cast<IntakeGroup>().ToList();
             var intake = intakeGroups.FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7");
-
-            //2018/2019 - Autumn Year  7 (A)
+            
             var admissionGroup = applicationBrowser.AdmissionGroups.Cast<AdmissionGroup>().ToList()
                 .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
 
@@ -321,6 +188,154 @@ namespace SIMSInterface
             }
 
 
+        }
+
+        private static ApplicationResidencyCollection PopulateAddress(ATfilePupil pupil)
+        {
+            var countries = LookupCache.Countries.Cast<Country>().ToList();
+            var country = countries.FirstOrDefault(x => x.Code == pupil.Address.Country);
+
+            var addressTypes = SIMS.Entities.PersonCache.AddressTypes.Cast<AddressType>().ToList();
+            var residence = new ApplicationResidencyCollection();
+            var addressLines = string.Format("{0} {1} {2} {3} {4}", pupil.Address.AddressLines.AddressLine1,
+                pupil.Address.AddressLines.AddressLine2,
+                pupil.Address.AddressLines.AddressLine3,
+                pupil.Address.AddressLines.AddressLine4,
+                pupil.Address.AddressLines.AddressLine5
+            );
+            string street = string.Empty,
+                apartment = string.Empty,
+                houseNumber = string.Empty,
+                town = string.Empty,
+                houseName = string.Empty;
+
+
+            if (pupil.Address.BS7666Address != null)
+            {
+                street = pupil.Address.BS7666Address.Street;
+                apartment = pupil.Address.BS7666Address.SAON;
+                houseNumber = pupil.Address.BS7666Address.PAON.ToString();
+                town = pupil.Address.BS7666Address.Town;
+                houseName = pupil.Address.BS7666Address.UniquePropertyReferenceNumber.ToString();
+            }
+
+            residence.Add(new ApplicationResidency
+            {
+                Address = new Address
+                {
+                    Country = country,
+                    HouseName = houseName,
+                    Postcode = pupil.Address.PostCode,
+                    Easting = pupil.Address.Easting.ToString(),
+                    Northing = pupil.Address.Northing.ToString(),
+                    County = pupil.Address.County,
+                    OSAPR = "",
+                    IsBFPO = false,
+                    Apartment = apartment,
+                    HouseNumber = houseNumber,
+                    Town = town,
+                    Street = street,
+                },
+                AddressType = addressTypes.First() //Home
+            });
+            return residence;
+        }
+
+        #region HELPER Method
+        public static void ConfigLogging()
+        {
+            //Cache.LogFile = @"D:\Upwork\TimDixon\src\applicaa\Applicaa\Applicaa\bin\Debug\log.txt";
+            // Set the  SIMS log file path (not used?)
+            CacheMessages = new List<CacheMessage>();
+            Cache.LogFile = (Environment.SpecialFolder.CommonApplicationData) + "\\SIMS_Log.txt";
+            SIMS.Entities.Cache.ShowUserMessage += Cache_ShowUserMessage;
+        }
+
+        private static void Cache_ShowUserMessage(object sender, UserMessageEventArgs args)
+        {
+            CacheMessages.Add(new CacheMessage
+            {
+                Messages = args.Message,
+                Type = args.MessageType
+            });
+
+        }
+        #endregion
+
+
+
+
+        private static Nationality PopulateCountryOfBirth(ATfilePupil pupil)
+        {
+            var countryOfBirth = (Nation) LookupCache.Nations.ItemByCode(pupil.BasicDetails.CountryofBirth);
+            var countryOfBirthValue = new Nationality
+            {
+                NationCode = countryOfBirth.Code,
+                NationID = countryOfBirth.ID
+            };
+            return countryOfBirthValue;
+        }
+
+        private static TelephoneCollection PopulateTelephone(ATfilePupil pupil, Person person)
+        {
+            //(IIDCodeDescriptionEntity) new CodeDescriptionEntity(-1, "XXX", "XXXXXXXXXX"))
+            //IDFactory.GetID();
+
+            var telephoneTable = new DataTable();
+            telephoneTable.Columns.Add("telephone_id", typeof(int));
+            telephoneTable.Columns.Add("person_id", typeof(int));
+            telephoneTable.Columns.Add("device", typeof(int));
+            telephoneTable.Columns.Add("location", typeof(int));
+            telephoneTable.Columns.Add("number", typeof(string));
+            telephoneTable.Columns.Add("main", typeof(string));
+            telephoneTable.Columns.Add("primary", typeof(string));
+            telephoneTable.Columns.Add("notes", typeof(string));
+            if(pupil.Phones == null)
+                return new TelephoneCollection(telephoneTable, InformationDomainEnum.ApplicationTelephoneEmail);
+
+            var rowTelephone = telephoneTable.NewRow();
+            telephoneTable.Rows.Add(rowTelephone);
+            rowTelephone["telephone_id"] = 1;
+            rowTelephone["person_id"] = person.ID;
+            rowTelephone["number"] = pupil.Phones.Phone.PhoneNo;
+            rowTelephone["notes"] = pupil.Phones.Phone.TelephoneType;
+            rowTelephone["main"] = "T"; //true
+            rowTelephone["primary"] = "T";
+            rowTelephone["device"] = 1; //Telephone
+            rowTelephone["location"] = 1; //Home
+
+            var phones = new TelephoneCollection(telephoneTable, InformationDomainEnum.ApplicationTelephoneEmail);
+            return phones;
+        }
+
+        private static EMailCollection PopulateEMail(ATfilePupil pupil, Person person)
+        {
+            var table = new DataTable();
+            table.Columns.Add("email_id", typeof(string));
+            table.Columns.Add("person_id", typeof(string));
+            table.Columns.Add("location", typeof(int));
+            table.Columns.Add("main", typeof(string));
+            table.Columns.Add("primary", typeof(string));
+            table.Columns.Add("email_address", typeof(string));
+            table.Columns.Add("notes", typeof(string));
+            table.Columns.Add("use_for_fees_documents", typeof(bool));
+
+            if(string.IsNullOrEmpty(pupil.Email))
+                return new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
+
+            var row = table.NewRow();
+            row["email_id"] = IDFactory.GetID();
+            row["person_id"] = person.ID;
+            row["location"] = 1;
+            row["main"] = "T";
+            row["primary"] = "T";
+            row["email_address"] = pupil.Email;
+            row["notes"] = string.Empty;
+            row["use_for_fees_documents"] = false;
+            table.Rows.Add(row);
+            //m_Email, main, location is required
+            var emails = new EMailCollection(InformationDomainEnum.ApplicationTelephoneEmail, table);
+            return emails;
         }
 
         private static ApplicationFreeSchoolMeals PopulateFreeSchoolMeals(ATfilePupil pupil)
@@ -395,19 +410,21 @@ namespace SIMSInterface
             var listSchool = schoolBrowse.Schools.Cast<SIMS.Entities.School>().ToList();
             var school = listSchool.FirstOrDefault(x => x.Name == schoolName);
 
-            var schoolHistory = new SchoolHistoryCollection
+            var schoolHistories = new SchoolHistoryCollection();
+            if (pupil.SchoolHistory == null)
+                return schoolHistories;
+
+            schoolHistories.Add(new SchoolHistory
             {
-                new SchoolHistory
-                {
-                    StartDate = pupil.SchoolHistory.School.EntryDate,
-                    School = school,
-                    IsCurrentSchool = false,
-                    DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
-                    ReasonForLeaving = leavingReason,
-                    EnrollmentMode = enrollmentMode
-                }
-            };
-            return schoolHistory;
+                StartDate = pupil.SchoolHistory.School.EntryDate,
+                School = school,
+                IsCurrentSchool = false,
+                DateOfLeaving = pupil.SchoolHistory.School.LeavingDate,
+                ReasonForLeaving = leavingReason,
+                EnrollmentMode = enrollmentMode
+            });
+            
+            return schoolHistories;
         }
 
 
