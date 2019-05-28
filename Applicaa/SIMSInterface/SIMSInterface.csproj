@@ -206,6 +206,8 @@
     <Compile Include="SIMSAssessment.cs" />
     <Compile Include="SIMSLocation.cs" />
     <Compile Include="StudentEDIT.cs" />
+    <Compile Include="StudentExtension.cs" />
+    <Compile Include="StudentItem.cs" />
     <Compile Include="Students.cs" />
   </ItemGroup>
   <ItemGroup>

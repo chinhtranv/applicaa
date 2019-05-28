@@ -358,3 +358,17 @@ from sims.asm_resultset rs
   -- save student information
 
   [sims].[sta_pix_EditStudentInformation_Save_705]
+
+  -- STUDENT browse
+
+  exec sims.sta_pix_StudentBrowse_GetStudents @surname='%',@forename='%',@year='%',@reg='%',@house='%',@tier='%',@effective_date='2019-05-28 10:43:45.830',@roll_mode='Current',@show_photo='F',@use_dm='F',@admission_no='%'
+
+
+  exec sims.sta_pix_StudentBrowse_GetStudents @surname='%',@forename='%',@year='%',@reg='%',@house='%',@tier='%',@effective_date='2019-05-28 10:43:45.830',@roll_mode='Current',@show_photo='F',@use_dm='F',@admission_no='005150'
+
+
+  --Get all students XML
+
+  sims.tpa_pix_get_students_all --2188
+
+  SELECT count(*) FROM sims.stud_student

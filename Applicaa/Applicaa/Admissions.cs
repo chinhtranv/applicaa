@@ -37,6 +37,10 @@ namespace Applicaa
                                     AppSetting.User, 
                                     AppSetting.Password))
             {
+
+                //var student = Students.SeekingStudent(uln: "", upn: "G823432110124", uci: "");
+                //return;
+
                 //serialize object
                 var atf = ConvertToObject<ATfile>(txtInfo.Text);                               
                 var results = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
