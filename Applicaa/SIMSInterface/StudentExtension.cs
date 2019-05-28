@@ -9,7 +9,8 @@ namespace SIMSInterface
     public class StudentExtension : DatabaseCommandCreator
     {
         public StudentItem GetStudentByCriteria(string uln, string upn, string uci)
-        {            
+        {      
+            //validate the inputs
             if (string.IsNullOrEmpty(uln) &&
                 string.IsNullOrEmpty(upn) &&
                 string.IsNullOrEmpty(uci)
@@ -20,6 +21,7 @@ namespace SIMSInterface
             
             using (SqlConnection conn = new SqlConnection(DatabaseHelper.PopulateConnectionString()))
             {
+                if(!conn.IsAvailable()) throw new System.Exception("The connection string is not correct ...");
                 conn.Open();
                 string sql = PopulateSql();
                 var cmd = new SqlCommand(sql, conn) {CommandType = CommandType.Text};
@@ -45,6 +47,8 @@ namespace SIMSInterface
 
             return null;
         }
+
+        
 
         private static string PopulateSql()
         {

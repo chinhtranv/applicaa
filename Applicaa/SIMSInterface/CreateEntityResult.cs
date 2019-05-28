@@ -11,7 +11,8 @@ namespace SIMSInterface
     public enum EntityType
     {
         Applicant,
-        ExternalExamination
+        ExternalExamination,
+        UpdateStudent
     }
 
     public class SimsResult

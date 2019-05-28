@@ -21,6 +21,7 @@ namespace SIMSInterface
     {
         static ApplicationBrowser applicationBrowser = new ApplicationBrowser();
         static MaintainApplication mainApplication = new MaintainApplication();
+        
         public static List<CacheMessage> CacheMessages { get; set; }
 
        
@@ -31,19 +32,54 @@ namespace SIMSInterface
             SIMS.Processes.ExamCache.Populate();
             SIMS.Processes.PersonCache.Populate();
             SIMS.Processes.StudentCache.Populate();
-            //SIMS.Processes.SchoolCache.;
-            //SIMS.Processes.ContactCache.Populate();
+            SIMS.Processes.SchoolCache.Populate();
+            SIMS.Processes.ContactCache.Populate();
 
             var entityResults = new List<CreateEntityResult>();
             foreach (var pupil in pupils)
             {
-                var createApplicantResult = CreateApplicant(pupil, header);
-                entityResults.Add(new CreateEntityResult
+                //check the student is existed or not
+                var studentItem = Students.SeekingStudent(pupil.UniqueLearnerNumber.ToString(), pupil.UPN, pupil.UCI);
+
+                if(studentItem == null)
                 {
-                    EntityName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
-                    SimsResult = createApplicantResult,
-                    Type = EntityType.Applicant
-                });
+                    var createApplicantResult = CreateApplicant(pupil, header);
+                    entityResults.Add(new CreateEntityResult
+                    {
+                        EntityName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
+                        SimsResult = createApplicantResult,
+                        Type = EntityType.Applicant
+                    });
+
+                    if (createApplicantResult.Status == Status.Success)
+                    {
+                        var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
+                        var examResults = ExternalExamination.AddResults(pupil, insertedPersonalId);
+
+                        foreach (CreateEntityResult exRs in examResults)
+                        {
+                            entityResults.Add(new CreateEntityResult
+                            {
+                                EntityName = exRs.EntityName,
+                                SimsResult = exRs.SimsResult,
+                                Type = EntityType.ExternalExamination
+                            });
+                        }
+                    }
+                    
+                   
+                }
+                else
+                {
+                    var updateStudentResult = Students.UpdateStudentInfomation(studentItem.PersonId, pupil);
+                    //if(updateStudentResult == StudentEditResult.Success)
+                    //{
+                    //    var examResults = ExternalExamination.AddResults(pupil, studentItem.PersonId);
+                    //}
+                    
+                }
+
+                
             }
 
             return entityResults;
@@ -137,55 +173,42 @@ namespace SIMSInterface
             {                
                 if (!(mainApplication.Save(true, out _)))
                 {
-                    message = "Could not save the database .";
+                    message = "Could not save the to the database .";
                     success = false;
                 }
                 else 
                 {
-                    //if success then create external examination
-                    //we can use this id for Assessment
-                    var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
-                    var createExternalExamiantion = ExternalExamination.AddResults(pupil, insertedPersonalId);
-                    if(createExternalExamiantion.Any(x => x.SimsResult.Status == Status.Failed))
-                    {
-                        return new SimsResult
-                        {
-                            Status = Status.Failed,
-                            Errors = new ValidationErrors(),
-                            Message = "Create examination failed ... "
-                        };
-                    }
-                    else
-                    {
-                        return new SimsResult
-                        {
-                            Status = Status.Success,
-                            Errors = new ValidationErrors(),
-                            Message = string.Empty
-                        };
-                    }
-                    
+                    message = "Saved applicant successfully ...";
+                    success = true;
+
                 }
 
 
-                return new SimsResult
-                {
-                    Status = Status.Failed,
-                    Errors = errors,
-                    Message = message
-                };
             }
             else
-            { // Failed validation
+            { 
+                // Failed validation
                 success = false;
                 message = "Applicant validation failed ...";
                 mainApplication.DetailedApplication.ValidationErrors(errors);
 
+            }
+
+            if(success)
+            {
+                return new SimsResult
+                {
+                    Status = Status.Success,
+                    Message = message
+                };
+            }
+            else
+            {
                 return new SimsResult
                 {
                     Status = Status.Failed,
-                    Errors = errors,
-                    Message = message
+                    Message = message,
+                    Errors = errors
                 };
             }
 
