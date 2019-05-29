@@ -3,11 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Serialization;
 using SIMS.Entities;
 using SIMSInterface;
-
+using Common;
 namespace Applicaa
 {
     public partial class Admissions : Form
@@ -29,6 +27,10 @@ namespace Applicaa
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+
+            Log.Info("====================================================================== ");
+            Log.Info("====================================================================== ");
+            Log.Info("Start to import ATFfile ... ");
             btnProcess.Enabled = false;
             SIMSDllResolution.AddSIMSDllResolution();
 
@@ -37,16 +39,20 @@ namespace Applicaa
                                     AppSetting.User, 
                                     AppSetting.Password))
             {
+                Log.Info("import is starting ... ");
+                var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text);
 
-                //var student = Students.SeekingStudent(uln: "", upn: "G823432110124", uci: "");
-                //return;
+                Log.Info("XML content file : ");
+                Log.Info(txtInfo.Text);
 
-                //serialize object
-                var atf = ConvertToObject<ATfile>(txtInfo.Text);                               
+                Log.Info("Serilized content data :");
+                Log.Info(atf.ATFpupilData);
+                
                 var results = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
-
+                               
                 if (results.Any(x => x.SimsResult.Status == Status.Failed))
                 {
+                    
                     var strError = new StringBuilder();
                                        
                     foreach (var result in results)
@@ -62,16 +68,22 @@ namespace Applicaa
                     }
 
                     txtInfo.Text = strError.ToString();
+
+                    Log.Info("Importing applicant failed : ");
+                    Log.Info(strError.ToString());
                     MessageBox.Show(@"Import applicant failed ...", @"Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
+                    Log.Info("Importing successfully. ");                   
                     MessageBox.Show(@"Import applicant successfully !",@"Applicaa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnProcess.Enabled = true;
                 }
             }
             else
             {
+
+                Log.Info("Login to SIMS.net failed ... ");
                 MessageBox.Show(LoginHelper.ErrorMessage);
             }
             
@@ -88,32 +100,6 @@ namespace Applicaa
                 //TODO need to validate object
                 btnProcess.Enabled = true;
 
-            }
-        }
-
-
-
-        public T ConvertToObject<T>(string xml)
-        {
-            StringReader stream = null;
-            XmlTextReader reader = null;
-            try
-            {
-                // serialise to object
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                stream = new StringReader(xml); // read xml data
-                reader = new XmlTextReader(stream);  // create reader
-                // covert reader to object
-                return (T)serializer.Deserialize(reader);
-            }
-            catch
-            {
-                return default(T);
-            }
-            finally
-            {
-                stream?.Close();
-                reader?.Close();
             }
         }
 

@@ -21,7 +21,11 @@ namespace SIMSInterface
             
             using (SqlConnection conn = new SqlConnection(DatabaseHelper.PopulateConnectionString()))
             {
-                if(!conn.IsAvailable()) throw new System.Exception("The connection string is not correct ...");
+                if (!conn.IsAvailable())
+                {
+                    Log.Info("Could not connect to SIMS database server. Please verify the connection string value ...");
+                    throw new System.Exception("The connection string is not correct ...");
+                }
                 conn.Open();
                 string sql = PopulateSql();
                 var cmd = new SqlCommand(sql, conn) {CommandType = CommandType.Text};

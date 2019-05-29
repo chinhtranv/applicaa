@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
+using Common;
 using SIMS.Entities;
 using SIMS.Entities.Admissions;
 using SIMS.Entities.DinnerMoney;
@@ -28,31 +29,32 @@ namespace SIMSInterface
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {
             ConfigLogging();
-            SIMS.Processes.GroupCache.Populate();
-            SIMS.Processes.ExamCache.Populate();
-            SIMS.Processes.PersonCache.Populate();
-            SIMS.Processes.StudentCache.Populate();
-            SIMS.Processes.SchoolCache.Populate();
-            SIMS.Processes.ContactCache.Populate();
+            PopulateCacheData();
 
             var entityResults = new List<CreateEntityResult>();
             foreach (var pupil in pupils)
             {
+                var studentName = pupil.Forename + " " + pupil.Surname;
+                Log.Info("Start processing the student : "+ pupil.Forename + " " + pupil.Surname);
                 //check the student is existed or not
                 var studentItem = Students.SeekingStudent(pupil.UniqueLearnerNumber.ToString(), pupil.UPN, pupil.UCI);
 
                 if(studentItem == null)
                 {
+
+                    Log.Info("Applicant : " + studentName + " is not exist in the SIMS database .");
+                    Log.Info("Applicant : " + studentName + " is being created .");
                     var createApplicantResult = CreateApplicant(pupil, header);
                     entityResults.Add(new CreateEntityResult
                     {
-                        EntityName = pupil.ApplicationReference + " - " + pupil.Forename + " " + pupil.Surname,
+                        EntityName = pupil.ApplicationReference + " - " + studentName,
                         SimsResult = createApplicantResult,
                         Type = EntityType.Applicant
                     });
 
                     if (createApplicantResult.Status == Status.Success)
                     {
+                        Log.Info("Applicant : " + studentName + " created successfully. ");
                         var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
                         var examResults = ExternalExamination.AddResults(pupil, insertedPersonalId);
 
@@ -66,23 +68,43 @@ namespace SIMSInterface
                             });
                         }
                     }
-                    
-                   
+                    else
+                    {
+                        Log.Info("Creating applicant : " + studentName + " failed.");
+                        Log.Info(createApplicantResult.Message);
+                        foreach (var error in createApplicantResult.Errors)
+                        {
+                            Log.Info(error.ToString());
+                        }
+
+                    }                                       
                 }
                 else
                 {
+                    Log.Info("Applicant : " + studentName + " is EXISTED in the SIMS database .");
+                    Log.Info("Applicant : " + studentName + " will update the stu information .");
                     var updateStudentResult = Students.UpdateStudentInfomation(studentItem.PersonId, pupil);
-                    //if(updateStudentResult == StudentEditResult.Success)
-                    //{
-                    //    var examResults = ExternalExamination.AddResults(pupil, studentItem.PersonId);
-                    //}
-                    
+                    if (updateStudentResult.Status == Status.Success)
+                    {
+                        var examResults = ExternalExamination.AddResults(pupil, studentItem.PersonId);
+                    }
+
                 }
 
                 
             }
 
             return entityResults;
+        }
+
+        private static void PopulateCacheData()
+        {
+            SIMS.Processes.GroupCache.Populate();
+            SIMS.Processes.ExamCache.Populate();
+            SIMS.Processes.PersonCache.Populate();
+            SIMS.Processes.StudentCache.Populate();
+            SIMS.Processes.SchoolCache.Populate();
+            SIMS.Processes.ContactCache.Populate();
         }
 
         private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
@@ -111,14 +133,12 @@ namespace SIMSInterface
             var phones = PopulateTelephone(pupil, person);
             var residence = PopulateAddress(pupil);
             var countryOfBirthValue = PopulateCountryOfBirth(pupil);
-            var relations = PopulateRelations(pupil);
-
+           
 
             #region Medical Practice
             var medicalPractices = new AgencyLinkedStudents();
             medicalPractices.Add(new AgencyLinkedStudent { });
             #endregion
-
 
             person.Forename = pupil.Forename;            
             person.Surname = pupil.Surname;
@@ -142,7 +162,9 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.ApplicantFreeSchoolMeals = freeSchoolMeals; 
             mainApplication.DetailedApplication.Residencies = residence; 
             mainApplication.DetailedApplication.ApplicantDisabilities = disability;
-            mainApplication.DetailedApplication.Relations = relations; 
+
+            //var relations = PopulateRelations(pupil); //pending to import
+            //mainApplication.DetailedApplication.Relations = relations; 
             
             //SENStudentProcess
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail           

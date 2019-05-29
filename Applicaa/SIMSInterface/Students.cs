@@ -38,24 +38,22 @@ namespace SIMSInterface
             return StudentEx.GetStudentByCriteria(uln, upn, uci);
         }
 
-        public static CreateEntityResult UpdateStudentInfomation(int personId, ATfilePupil pupil)
+        public static SimsResult UpdateStudentInfomation(int personId, ATfilePupil pupil)
         {
             var yearGroups = SIMS.Entities.GroupCache.YearGroups;
             var nationalCurriculumYear = SIMS.Entities.GroupCache.NationalCurriculumYears;
 
-
             bool success = false;
-            var identityINV = new Person(personId);
-            var studentBrowse = new StudentBrowseProcess();
+            string message = string.Empty;
+            var identityINV = new Person(personId);            
             var editStudentInformation = new EditStudentInformation();
 
 
             editStudentInformation.Load(identityINV, System.DateTime.Now);
-            editStudentInformation.Student.IssueUPN = UPNEnum.Permanent; //hackfor dumpData 
-            editStudentInformation.Student.UPN = "A123456789012";
-            
-            editStudentInformation.Student.FSMReviewDateAttribute.IsNull = true;
 
+            editStudentInformation.Student.IssueUPN = UPNEnum.Permanent; //hackfor dumpData 
+            editStudentInformation.Student.UPN = "A123456789012";            
+            editStudentInformation.Student.FSMReviewDateAttribute.IsNull = true;
 
             editStudentInformation.Student.Surname = pupil.Surname;
             editStudentInformation.Student.DateOfBirth = pupil.DOB;
@@ -67,33 +65,29 @@ namespace SIMSInterface
             {                
                 var rs = editStudentInformation.Save();
                 success = rs == StudentEditResult.Success;
+                message = "Update student successfully.";
             }
             else
             {
-                success = false;                
+                success = false;
+                message = "Student validation failed ...";
             }
 
             if (success)
             {
-                return new CreateEntityResult
+                return new SimsResult
                 {
-                    Type = EntityType.UpdateStudent,
-                    SimsResult = new SimsResult
-                    {
-                        Status = Status.Success
-                    }
+                    Status = Status.Failed,
+                    Message = message
                 };
             }
             else
             {
-                return new CreateEntityResult
+                return new SimsResult
                 {
-                    Type = EntityType.UpdateStudent,
-                    SimsResult = new SimsResult
-                    {
-                        Status = Status.Failed,
-                        Errors = editStudentInformation.Student.ValidationErrors
-                    }
+                    Status = Status.Success,
+                    Message = message,
+                    Errors = editStudentInformation.Student.ValidationErrors
                 };
             }
         }

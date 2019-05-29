@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
+
 
 namespace Applicaa
 {
@@ -14,6 +13,9 @@ namespace Applicaa
         [STAThread]
         static void Main()
         {
+            Log.InitialiseLogger();
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Admissions());
