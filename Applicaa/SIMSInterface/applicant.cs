@@ -128,10 +128,18 @@ namespace SIMSInterface
             //var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
             var schoolHistory = PopulateSchoolHistory(pupil, enrollmentMode);
+            if(schoolHistory.Count == 0) Log.Info("Student has NO school history");
+
             var disability = PopulateStudentDisabilities(pupil, person);
+            if (disability.Count == 0) Log.Info("Student has NO disability");
+
             var freeSchoolMeals = PopulateFreeSchoolMeals(pupil);
+            if (freeSchoolMeals.Count == 0) Log.Info("Student has NO freeSchoolMeals");
+
             var emails = PopulateEMail(pupil, person);
+            
             var phones = PopulateTelephone(pupil, person);
+            
             var residence = PopulateAddress(pupil);
             var countryOfBirthValue = PopulateCountryOfBirth(pupil);
            
