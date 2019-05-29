@@ -54,10 +54,11 @@ namespace SIMSInterface
 
                     if (createApplicantResult.Status == Status.Success)
                     {
-                        Log.Info("Applicant : " + studentName + " created successfully. ");
+                        
                         var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
+                        Log.Info("Applicant : " + studentName + " created successfully. The Person Id : " + insertedPersonalId);
                         var examResults = ExternalExamination.AddResults(pupil, insertedPersonalId);
-
+                        
                         foreach (CreateEntityResult exRs in examResults)
                         {
                             entityResults.Add(new CreateEntityResult

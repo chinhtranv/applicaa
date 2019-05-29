@@ -6,7 +6,6 @@ namespace Applicaa
 {
     public class XmlHelper
     {
-
         public static T ConvertToObject<T>(string xml)
         {
             StringReader stream = null;
