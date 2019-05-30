@@ -28,10 +28,27 @@ namespace SIMSInterface
        
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {
+            var entityResults = new List<CreateEntityResult>();
+            if (!pupils.Any())
+            {
+                var errors = new ValidationErrors();
+                errors.Add(new ValidationError("The list of pupil is empty", "input xml",""));
+                entityResults.Add(new CreateEntityResult
+                {
+                    SimsResult = new SimsResult
+                    {
+                        Status = Status.Failed,
+                        Errors = errors,
+                        Message = "The list of pupil is empty",                        
+                    },
+                    Type = EntityType.Applicant,
+                    EntityName = "Pupils "
+                });
+            }
+
             ConfigLogging();
             PopulateCacheData();
-
-            var entityResults = new List<CreateEntityResult>();
+            
             foreach (var pupil in pupils)
             {
                 var studentName = pupil.Forename + " " + pupil.Surname;

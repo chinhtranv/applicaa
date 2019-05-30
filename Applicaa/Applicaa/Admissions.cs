@@ -27,7 +27,6 @@ namespace Applicaa
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
-
             Log.Info("====================================================================== ");
             Log.Info("====================================================================== ");
             Log.Info("Start to import ATFfile ... ");
@@ -39,10 +38,6 @@ namespace Applicaa
                                     AppSetting.User, 
                                     AppSetting.Password))
             {
-
-
-
-
                 Log.Info("import is starting ... ");
                 var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text);
 
@@ -55,14 +50,15 @@ namespace Applicaa
                 var results = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
                                
                 if (results.Any(x => x.SimsResult.Status == Status.Failed))
-                {
-                    
-                    var strError = new StringBuilder();
-                                       
+                {                    
+                    var strError = new StringBuilder();                                       
                     foreach (var result in results)
-                    {                        
-                        string validationError = string.Join(", ", result.SimsResult.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
-                        strError.AppendLine(result.EntityName + " : " + result.SimsResult.Status + validationError);
+                    {
+                        string validationError = string.Empty;
+
+                        if (result.SimsResult.Errors != null)                       
+                           validationError = string.Join(", ", result.SimsResult.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                        strError.AppendLine(result.EntityName + " : " + result.SimsResult.Status + " - "+ validationError);
                     }
 
                     strError.AppendLine(string.Empty);
