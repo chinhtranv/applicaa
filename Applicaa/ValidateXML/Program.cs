@@ -19,7 +19,8 @@ namespace ValidateXML
         static void Main(string[] args)
         {
             ErrorMessages = new List<string>();
-            ValidateATFFile("ATfile");
+            
+            ValidateATFFile("ATFile_EmptyError2");
             //GenerateAssessmentXMLFile();
 
             if (!ErrorMessages.Any())
@@ -43,7 +44,7 @@ namespace ValidateXML
             var path = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
             XmlSchemaSet schema = new XmlSchemaSet();
             schema.Add("", path + "\\ATfile.xsd");
-            XmlReader rd = XmlReader.Create(path + $"\\{fileName}.xml");
+            XmlReader rd = XmlReader.Create(path + $"\\XmlFiles\\{fileName}.xml");
             XDocument doc = XDocument.Load(rd);
             doc.Validate(schema, ValidationEventHandler);
         }

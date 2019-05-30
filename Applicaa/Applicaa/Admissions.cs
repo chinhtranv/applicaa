@@ -41,8 +41,7 @@ namespace Applicaa
             {
 
 
-                EditSENStudent.UpdateStudent();
-                return;
+
 
                 Log.Info("import is starting ... ");
                 var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text);
