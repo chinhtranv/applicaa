@@ -199,6 +199,7 @@
     <Compile Include="CacheMessage.cs" />
     <Compile Include="CreateEntityResult.cs" />
     <Compile Include="DatabaseConfig.cs" />
+    <Compile Include="EditSENStudent.cs" />
     <Compile Include="ExternalExamination.cs" />
     <Compile Include="ExternalPopulation.cs" />
     <Compile Include="LoginHelper.cs" />
