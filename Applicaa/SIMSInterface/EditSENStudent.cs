@@ -11,7 +11,7 @@ namespace SIMSInterface
     {
         public static void UpdateStudent()
         {
-
+            // need to ask Harry about the structure
             // for check detail please have a alook on Chris Aaron
 
             SIMS.Processes.SENCache.Populate();

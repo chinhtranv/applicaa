@@ -14,15 +14,53 @@ namespace ValidateXML
 {
     class Program
     {
+        public static List<string> ErrorMessages { get; set; }
+
         static void Main(string[] args)
         {
-            //ValidateATFFile();
-            GenerateAssessmentXMLFile();
+            ErrorMessages = new List<string>();
+            ValidateATFFile("ATfile");
+            //GenerateAssessmentXMLFile();
 
+            if (!ErrorMessages.Any())
+            {
+                Console.WriteLine("There are no error ... ");
+            }
+            else
+            {
+                foreach (var error in ErrorMessages)
+                {
+                    Console.WriteLine(error);
+                }
+            }
 
             Console.WriteLine("- DONE -");
             Console.ReadLine();
         }
+
+        private static void ValidateATFFile(string fileName)
+        {            
+            var path = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
+            XmlSchemaSet schema = new XmlSchemaSet();
+            schema.Add("", path + "\\ATfile.xsd");
+            XmlReader rd = XmlReader.Create(path + $"\\{fileName}.xml");
+            XDocument doc = XDocument.Load(rd);
+            doc.Validate(schema, ValidationEventHandler);
+        }
+
+        static void ValidationEventHandler(object sender, ValidationEventArgs e)
+        {
+            XmlSeverityType type = XmlSeverityType.Warning;
+            if (Enum.TryParse<XmlSeverityType>("Error", out type))
+            {
+                if (type == XmlSeverityType.Error)
+                {
+                    ErrorMessages.Add(e.Message);
+                }
+            }
+        }
+
+
 
         private static void GenerateAssessmentXMLFile()
         {
@@ -160,29 +198,6 @@ namespace ValidateXML
                 serializer.Serialize(stream, data);
         }
 
-        private static void ValidateATFFile()
-        {
-            string fileName = "ATfile";
-
-            var path = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
-            XmlSchemaSet schema = new XmlSchemaSet();
-            schema.Add("", path + $"\\{fileName}.xsd");
-            XmlReader rd = XmlReader.Create(path + $"\\{fileName}_Error.xml");
-            XDocument doc = XDocument.Load(rd);
-            doc.Validate(schema, ValidationEventHandler);
-        }
-
-        static void ValidationEventHandler(object sender, ValidationEventArgs e)
-        {
-            XmlSeverityType type = XmlSeverityType.Warning;
-            if (Enum.TryParse<XmlSeverityType>("Error", out type))
-            {
-                if (type == XmlSeverityType.Error)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-        }
 
     }
 }

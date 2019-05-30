@@ -160,7 +160,7 @@
           <TelephoneType>H</TelephoneType>
           <PhoneNo>01234 999999</PhoneNo>
         </Phone>
-		<Phone>
+		    <Phone>
           <TelephoneType>H</TelephoneType>
           <PhoneNo>01234 777777</PhoneNo>
         </Phone>

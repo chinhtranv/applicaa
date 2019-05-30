@@ -421,7 +421,7 @@ public partial class ATfilePupil {
     
     private ATfilePupilAddress addressField;
     
-    private ATfilePupilPhones phonesField;
+    private ATfilePupilPhone[] phonesField;
     
     private string emailField;
     
@@ -575,7 +575,8 @@ public partial class ATfilePupil {
     }
     
     /// <remarks/>
-    public ATfilePupilPhones Phones {
+    [System.Xml.Serialization.XmlArrayItemAttribute("Phone", IsNullable=false)]
+    public ATfilePupilPhone[] Phones {
         get {
             return this.phonesField;
         }
@@ -1597,28 +1598,7 @@ public partial class ATfilePupilAddressSuppInfo {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfilePupilPhones {
-    
-    private ATfilePupilPhonesPhone phoneField;
-    
-    /// <remarks/>
-    public ATfilePupilPhonesPhone Phone {
-        get {
-            return this.phoneField;
-        }
-        set {
-            this.phoneField = value;
-        }
-    }
-}
-
-/// <remarks/>
-[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
-[System.SerializableAttribute()]
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.ComponentModel.DesignerCategoryAttribute("code")]
-[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-public partial class ATfilePupilPhonesPhone {
+public partial class ATfilePupilPhone {
     
     private string telephoneTypeField;
     
