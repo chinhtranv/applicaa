@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using FluentValidation.Results;
+using ValidateXML.Validation;
 
 
 namespace ValidateXML
@@ -20,20 +23,17 @@ namespace ValidateXML
         {
             ErrorMessages = new List<string>();
             
-            ValidateATFFile("ATFile_EmptyError2");
-            //GenerateAssessmentXMLFile();
+            Console.WriteLine("");
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Starting validate : ATFFile");
+            ValidateATFFile("ATFile");
 
-            if (!ErrorMessages.Any())
-            {
-                Console.WriteLine("There are no error ... ");
-            }
-            else
-            {
-                foreach (var error in ErrorMessages)
-                {
-                    Console.WriteLine(error);
-                }
-            }
+            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("Starting validate : ATFile_EmptyError2");
+            ValidateATFFile("ATFile_EmptyError2");
+            //ValidateATFFile("ATFile_EmptyError2");
+            //GenerateAssessmentXMLFile();
+            
 
             Console.WriteLine("- DONE -");
             Console.ReadLine();
@@ -44,9 +44,64 @@ namespace ValidateXML
             var path = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase)).LocalPath;
             XmlSchemaSet schema = new XmlSchemaSet();
             schema.Add("", path + "\\ATfile.xsd");
-            XmlReader rd = XmlReader.Create(path + $"\\XmlFiles\\{fileName}.xml");
-            XDocument doc = XDocument.Load(rd);
-            doc.Validate(schema, ValidationEventHandler);
+            var filePath = path + $"\\XmlFiles\\{fileName}.xml";
+
+            
+            //XmlReader rd = XmlReader.Create(filePath);
+            //XDocument doc = XDocument.Load(rd);
+            //doc.Validate(schema, ValidationEventHandler);
+
+
+            var xmlContent = File.ReadAllText(filePath);
+            var atf = XmlHelper.ConvertToObject<ATfile>(xmlContent,out var errorMessages);
+            if (atf == null)
+            {
+                Console.WriteLine("Xml content is not valid");
+                Console.WriteLine("Messages : " + errorMessages);
+            }
+
+            if (atf == null)
+                return;
+
+            //start validation
+            var validator = new ATfileValidator();
+            ValidationResult results = validator.Validate(atf);
+            
+            if (!results.IsValid)
+            {
+                Console.WriteLine("ATFile validation failed ...");
+                foreach (var failure in results.Errors)
+                {                    
+                    Console.WriteLine("Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                }
+            }
+            else
+            {
+                bool flag = true;
+                //if success the validate each pupil
+                
+                foreach (var atfPupil in atf.ATFpupilData)
+                {
+                    var pupilATfilePupiValidator = new ATfilePupiValidator();
+                    ValidationResult pupilValidatorResult = pupilATfilePupiValidator.Validate(atfPupil);
+                    if (!pupilValidatorResult.IsValid)
+                    {
+                        Console.WriteLine("Student "+ atfPupil.Forename + " " +atfPupil.Surname + " validation failed ...");
+                        int index = 1;
+                        foreach (var failure in pupilValidatorResult.Errors)
+                        {
+                            Console.WriteLine(index + " - Property " + failure.PropertyName + " failed validation. Error was: " + failure.ErrorMessage);
+                            index++;
+                        }
+
+                        flag = false;
+                    }
+                }
+                if (flag)
+                {
+                    Console.WriteLine("Student has no error..");
+                }
+            }
         }
 
         static void ValidationEventHandler(object sender, ValidationEventArgs e)

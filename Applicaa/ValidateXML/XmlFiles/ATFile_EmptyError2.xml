@@ -38,6 +38,21 @@
   <ATFpupilData>
     <Pupil>
       <ApplicationReference>999-2018-09-K-777777</ApplicationReference>
+      <UPN>A123456778</UPN>
+      <Surname>Minh</Surname>
+      <Forename>Chau</Forename>
+      <Gender>M</Gender>
+      <DOB>1980-07-07</DOB>      
     </Pupil>
+
+    <Pupil>
+      <ApplicationReference>999-2018-09-K-777777</ApplicationReference>
+      <UPN>A123456798</UPN>
+      <Surname>Dinh</Surname>
+      <Forename>Dang</Forename>      
+      <Gender>F</Gender>
+      <DOB>1980-01-01</DOB>
+    </Pupil>
+
   </ATFpupilData>
 </ATfile>

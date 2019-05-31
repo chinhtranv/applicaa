@@ -44,7 +44,7 @@ namespace Applicaa
                 Log.Info("XML content file : ");
                 Log.Info(txtInfo.Text);
 
-                Log.Info("Serilized content data :");
+                Log.Info("Serialized content data :");
                 Log.Info(atf.ATFpupilData);
                 
                 var results = Applicant.CreateApplicants(atf.ATFpupilData, atf.Header);
