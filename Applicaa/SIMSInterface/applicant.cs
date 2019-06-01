@@ -215,6 +215,7 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = yearTaughtIn;
+            
            
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())

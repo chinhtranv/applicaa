@@ -30,6 +30,7 @@ namespace SIMSInterface
             editStudINV.Student.MiddleName = "Tom DANG";
             editStudINV.Student.YearGroup = yearGroups.Item(0);
             editStudINV.Student.NationalCurriculumYear = nationalCurriculumYear.Item(0);
+            
 
             foreach (SIMS.Entities.House grp in studentBrowse.Houses)
             {   //Insert Code here 
