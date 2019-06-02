@@ -40,7 +40,7 @@ SELECT *
         LEFT JOIN sims.curr_segment_tier cst ON cs.cycle_segment_id = cst.cycle_segment_id 
 		--AND cst.base_group_id = @tier_id
         --WHERE cst.base_group_id = @tier_id OR @tier_id = 0 OR cs.cycle_segment_id IS NULL
-         
+         where bg.short_name LIKE '10A/Mu1'
        ORDER BY bg.base_group_id  
          
 
@@ -51,3 +51,43 @@ exec sims.mid_pix_retrieve_student_classes @PersonID=12105,@effective_date='2019
 
 --EditStudentPLASCClassType
 [sims].[plasc_pix_EditStudentPLASCClassType_SaveDetails]
+
+SELECT * FROM sims.plasc_student_class
+
+SELECT * FROM sims.plasc_student_class
+
+exec sims.mid_pix_retrieve_student_classes @PersonID=12105,@effective_date='2019-06-01 00:00:00'
+/*
+class_id	code	description	staff_id	staff	noofperiods	subject_title
+4950	HCL Hooke	Hooke	81	Mrs W Harris	0	Hooke
+
+*/
+
+
+SELECT * from sims.sims_member
+
+
+-------------------------------------------------------
+SELECT cvc.*,gm.* 
+FROM sims.sims_base_group gm
+
+join sims.curr_via_classes cvc
+    on gm.base_group_id = cvc.base_group_id
+	where gm.base_group_type_id = 2 -- class
+	AND cvc.code LIKE '%10A/Mu1%'
+
+------------------------------------------------------
+	SELECT * FROM sims.curr_via_classes
+
+SELECT * FROM sims.sims_base_group_type
+WHERE code = 'Class'
+
+------------------------------
+
+plasc_pix_EditStudentPLASCClassType_GetDetails
+
+
+-- SAVE student to class [sims].[curr_pix_CurrSchemeDetail_Save]
+
+
+curr_pix_CurrSchemeDetail_Load

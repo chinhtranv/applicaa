@@ -81,6 +81,14 @@
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\CacheProcesses.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CurrEntities, Version=7.186.31.0, Culture=neutral, PublicKeyToken=21f532fe36bf9cd6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\CurrEntities.dll</HintPath>
+    </Reference>
+    <Reference Include="CurrProcesses, Version=7.186.31.0, Culture=neutral, PublicKeyToken=21f532fe36bf9cd6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\CurrProcesses.dll</HintPath>
+    </Reference>
     <Reference Include="DinnerMoneyEntities">
       <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\DinnerMoneyEntities.dll</HintPath>
     </Reference>
@@ -207,6 +215,7 @@
     <Compile Include="SIMSAssessment.cs" />
     <Compile Include="SIMSLocation.cs" />
     <Compile Include="SqlExtensions.cs" />
+    <Compile Include="StudentClasses.cs" />
     <Compile Include="StudentEDIT.cs" />
     <Compile Include="StudentExtension.cs" />
     <Compile Include="StudentItem.cs" />
