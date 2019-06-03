@@ -39,18 +39,6 @@ namespace Applicaa
                                     AppSetting.Password))
             {
 
-                //public static void AttachClassToStudent(string schemeType, string schemaName, string admissionNumber, string className)
-                //{
-                //    //schemaType : Block,Brand,Cluster,Alternative
-                //    //schemeName : 10x English
-                //    //admissionNumber : 005152 --Dang Dinh Dang
-                //    //class name : 10x/En1, 11A/Ps
-
-                //ClassProcess.AttachClassToStudent(SchemeType.Block.ToString(), "11xy PSE", "005152", "11B/Ps"); //only one class on the schema Type
-                //ClassProcess.AttachClassToStudent(schemeType :SchemeType.Cluster.ToString(),schemaName: "10B/Ar1a", admissionNumber: "005152",className: "10B/Ar1a");
-                //ClassProcess.AttachClassToStudent(schemeType :SchemeType.Block.ToString(),schemaName: "7x Maths", admissionNumber: "005152",className: "7x/Ma1");
-                //return;
-
                 Log.Info("import is starting ... ");
                 var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text);
 

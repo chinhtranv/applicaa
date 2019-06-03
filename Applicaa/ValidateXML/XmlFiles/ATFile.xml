@@ -42,14 +42,14 @@
       <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
-      <Forename>Dang 11</Forename>
+      <Forename>Dang 16</Forename>
       <DOB>1980-07-07</DOB>
       <Gender>M</Gender>	  
       <BasicDetails>
         <UPN>A123456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
-        <PreferredForename>Dinh 11</PreferredForename>
+        <PreferredForename>Dinh 16</PreferredForename>
         <MiddleNames>Dang</MiddleNames>
         <NCyearActual>10</NCyearActual>
         <EnglishProficiencies>
@@ -69,7 +69,7 @@
             <LanguageType>F</LanguageType>
             <Language>ENG</Language>
           </Type>
-		  <Type>
+		      <Type>
             <LanguageType>F</LanguageType>
             <Language>VND</Language>
           </Type>
@@ -159,19 +159,15 @@
         <Phone>
           <TelephoneType>H</TelephoneType>
           <PhoneNo>01234 999999</PhoneNo>
-        </Phone>
-		    <Phone>
-          <TelephoneType>H</TelephoneType>
-          <PhoneNo>01234 777777</PhoneNo>
-        </Phone>
+        </Phone>		    
       </Phones>
       <Email>name@domain.co.uk</Email>
       <Contacts>
         <Contact>
           <Order>1</Order>
           <Title>Mr</Title>
-          <Surname>ExampleSurname</Surname>
-          <Forename>ExampleForename</Forename>
+          <Surname>ExampleSurname 15</Surname>
+          <Forename>ExampleForename 15</Forename>
           <MiddleNames>ExampleMiddlename</MiddleNames>
           <Gender>M</Gender>
           <Relationship>PAF</Relationship>
@@ -253,36 +249,25 @@
 
       <ExternalExaminationResults>
         <ExternalExaminationResult>
-          <BoardCode>BoardCode1</BoardCode>
-          <QualificationCode>QualificationCode1</QualificationCode>
-          <level>Level1</level>
-          <SubjectCode>subject_code</SubjectCode>
-          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
-          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
-          <AspectName>AspectName</AspectName>
-          <SchoolId>1</SchoolId>
-          <Month>12</Month>
+          <BoardCode>OCR</BoardCode>          
+          <Level>ABQ/B</Level>
+          <SubjectCode>0020</SubjectCode>          
+          <School>Green Abbey School</School>         
           <Year>2018</Year>
-          <Result>AA</Result>
-          <QAN>123456781</QAN>
-          <ResultDate>1</ResultDate>
+          <Result>P</Result>
+		  <ResultType>Result</ResultType>
+          <QAN>10002431</QAN>          
         </ExternalExaminationResult>
         <ExternalExaminationResult>
-          <BoardCode>BoardCode2</BoardCode>
-          <QualificationCode>QualificationCode2</QualificationCode>
-          <level>Level2</level>
-          <SubjectCode>subject_code</SubjectCode>
-          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
-          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
-          <AspectName>AspectName</AspectName>
-          <SchoolId>1</SchoolId>
-          <Month>12</Month>
-          <Year>2019</Year>
-          <Result>AA</Result>
-          <QAN>12345678</QAN>
-          <ResultDate>1</ResultDate>
+          <BoardCode>OCR</BoardCode>          
+          <Level>ABQ/B</Level>
+          <SubjectCode>0020</SubjectCode>          
+          <School>Green Abbey School</School>         
+          <Year>2018</Year>
+          <Result>P</Result>
+		  <ResultType>Result</ResultType>
+          <QAN>10002431</QAN>          
         </ExternalExaminationResult>
-
       </ExternalExaminationResults>
     </Pupil>
   
@@ -499,34 +484,24 @@
 
       <ExternalExaminationResults>
         <ExternalExaminationResult>
-          <BoardCode>BoardCode1</BoardCode>
-          <QualificationCode>QualificationCode1</QualificationCode>
-          <level>Level1</level>
-          <SubjectCode>subject_code</SubjectCode>
-          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
-          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
-          <AspectName>AspectName</AspectName>
-          <SchoolId>1</SchoolId>
-          <Month>12</Month>
+          <BoardCode>OCR</BoardCode>          
+          <Level>ABQ/B</Level>
+          <SubjectCode>0020</SubjectCode>          
+          <School>Green Abbey School</School>         
           <Year>2018</Year>
-          <Result>AA</Result>
-          <QAN>10002431</QAN>
-          <ResultDate>1</ResultDate>
+          <Result>P</Result>
+		  <ResultType>Result</ResultType>
+          <QAN>10002431</QAN>          
         </ExternalExaminationResult>
         <ExternalExaminationResult>
-          <BoardCode>BoardCode2</BoardCode>
-          <QualificationCode>QualificationCode2</QualificationCode>
-          <level>Level2</level>
-          <SubjectCode>subject_code</SubjectCode>
-          <ExternalResultTypeCode>subject_code</ExternalResultTypeCode>
-          <ExternalResultTypeDescription>subject_code</ExternalResultTypeDescription>
-          <AspectName>AspectName</AspectName>
-          <SchoolId>1</SchoolId>
-          <Month>12</Month>
-          <Year>2019</Year>
-          <Result>AA</Result>
-          <QAN>10002431</QAN>
-          <ResultDate>1</ResultDate>
+          <BoardCode>OCR</BoardCode>          
+          <Level>ABQ/B</Level>
+          <SubjectCode>0020</SubjectCode>          
+          <School>Green Abbey School</School>         
+          <Year>2018</Year>
+          <Result>P</Result>
+		  <ResultType>Result</ResultType>
+          <QAN>10002431</QAN>          
         </ExternalExaminationResult>
       </ExternalExaminationResults>
 

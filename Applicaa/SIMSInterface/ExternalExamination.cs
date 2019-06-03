@@ -32,14 +32,23 @@ namespace SIMSInterface
             string message = string.Empty;
                    
             //fake data ...
-            int year = 2018;
-            string subjectCode = "0020"; //learning skill
-            string board  = "OCR";
-            string level  = "ABQ/B"; //ABQ Unassigned
-            string QAN = "10002431"; //8 numbers            
-            string resultType = "Result";
-            string result = "P"; //pass
-            string schoolName = "Green Abbey School";
+            //int year = 2018;
+            //string subjectCode = "0020"; //learning skill
+            //string board  = "OCR";
+            //string level  = "ABQ/B"; //ABQ Unassigned
+            //string QAN = "10002431"; //8 numbers            
+            //string resultType = "Result";
+            //string result = "P"; //pass
+            //string schoolName = "Green Abbey School";
+
+            int year = examination.Year;
+            string subjectCode = examination.SubjectCode; //learning skill
+            string board  = examination.BoardCode;
+            string level  = examination.Level; //ABQ Unassigned
+            string QAN = examination.QAN.ToString(); //8 numbers            
+            string resultType = examination.ResultType;
+            string result = examination.Result; //pass
+            string schoolName = examination.School;
 
             var manageExternalExamResult = new ManageExternalExamResult(studentId);
             manageExternalExamResult.ExamResult.QAN = QAN;

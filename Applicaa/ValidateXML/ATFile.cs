@@ -2376,29 +2376,19 @@ public partial class ATfilePupilExternalExaminationResult {
     
     private string boardCodeField;
     
-    private string qualificationCodeField;
-    
     private string levelField;
     
     private string subjectCodeField;
     
-    private string externalResultTypeCodeField;
-    
-    private string externalResultTypeDescriptionField;
-    
-    private string aspectNameField;
-    
-    private byte schoolIdField;
-    
-    private byte monthField;
+    private string schoolField;
     
     private ushort yearField;
     
     private string resultField;
     
-    private uint qANField;
+    private string resultTypeField;
     
-    private byte resultDateField;
+    private uint qANField;
     
     /// <remarks/>
     public string BoardCode {
@@ -2411,17 +2401,7 @@ public partial class ATfilePupilExternalExaminationResult {
     }
     
     /// <remarks/>
-    public string QualificationCode {
-        get {
-            return this.qualificationCodeField;
-        }
-        set {
-            this.qualificationCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string level {
+    public string Level {
         get {
             return this.levelField;
         }
@@ -2441,52 +2421,12 @@ public partial class ATfilePupilExternalExaminationResult {
     }
     
     /// <remarks/>
-    public string ExternalResultTypeCode {
+    public string School {
         get {
-            return this.externalResultTypeCodeField;
+            return this.schoolField;
         }
         set {
-            this.externalResultTypeCodeField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string ExternalResultTypeDescription {
-        get {
-            return this.externalResultTypeDescriptionField;
-        }
-        set {
-            this.externalResultTypeDescriptionField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public string AspectName {
-        get {
-            return this.aspectNameField;
-        }
-        set {
-            this.aspectNameField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public byte SchoolId {
-        get {
-            return this.schoolIdField;
-        }
-        set {
-            this.schoolIdField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public byte Month {
-        get {
-            return this.monthField;
-        }
-        set {
-            this.monthField = value;
+            this.schoolField = value;
         }
     }
     
@@ -2511,22 +2451,22 @@ public partial class ATfilePupilExternalExaminationResult {
     }
     
     /// <remarks/>
+    public string ResultType {
+        get {
+            return this.resultTypeField;
+        }
+        set {
+            this.resultTypeField = value;
+        }
+    }
+    
+    /// <remarks/>
     public uint QAN {
         get {
             return this.qANField;
         }
         set {
             this.qANField = value;
-        }
-    }
-    
-    /// <remarks/>
-    public byte ResultDate {
-        get {
-            return this.resultDateField;
-        }
-        set {
-            this.resultDateField = value;
         }
     }
 }

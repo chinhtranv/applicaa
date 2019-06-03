@@ -386,18 +386,13 @@
                             <xs:complexType>
                               <xs:sequence>
                                 <xs:element name="BoardCode" type="xs:string" />
-                                <xs:element name="QualificationCode" type="xs:string" />
-                                <xs:element name="level" type="xs:string" />
+                                <xs:element name="Level" type="xs:string" />
                                 <xs:element name="SubjectCode" type="xs:string" />
-                                <xs:element name="ExternalResultTypeCode" type="xs:string" />
-                                <xs:element name="ExternalResultTypeDescription" type="xs:string" />
-                                <xs:element name="AspectName" type="xs:string" />
-                                <xs:element name="SchoolId" type="xs:unsignedByte" />
-                                <xs:element name="Month" type="xs:unsignedByte" />
+                                <xs:element name="School" type="xs:string" />
                                 <xs:element name="Year" type="xs:unsignedShort" />
                                 <xs:element name="Result" type="xs:string" />
+                                <xs:element name="ResultType" type="xs:string" />
                                 <xs:element name="QAN" type="xs:unsignedInt" />
-                                <xs:element name="ResultDate" type="xs:unsignedByte" />
                               </xs:sequence>
                             </xs:complexType>
                           </xs:element>
