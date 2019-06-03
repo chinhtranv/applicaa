@@ -91,3 +91,125 @@ plasc_pix_EditStudentPLASCClassType_GetDetails
 
 
 curr_pix_CurrSchemeDetail_Load
+
+-- MEMBER TABLE
+-- base group id and person id
+SELECT bt.code AS GroupType,
+	  sbg.code AS ClassName,
+	  sm.* FROM sims.sims_member sm
+		INNER JOIN sims.sims_base_group sbg ON sm.base_group_id = sbg.base_group_id
+		INNER JOIN sims.sims_base_group_type bt ON sbg.base_group_type_id = bt.base_group_type_id
+where sm.person_id = 12583 --9 rows
+
+-- find class
+SELECT * FROM sims.sims_base_group bg where bg.base_group_id = 11673
+
+-- list all class
+SELECT * FROM sims.sims_base_group bg WHERE bg.base_group_type_id =2
+
+SELECT * FROM sims.sims_base_group_type
+
+SELECT * FROM sims.sims_base_group bg
+where bg.description like '%ALT:Fri:1%'
+
+SELECT * FROM sims.curr_scheme
+where sims.curr_scheme.external_name = '12a Option A' -- scheme_id 4236
+
+
+SELECT * FROM sims.curr_scheme_type cst
+
+SELECT * FROM sims.curr_scheme
+where sims.curr_scheme.external_name = '10x English' -- scheme_id 4236
+
+SELECT * from sims.sims_base_group
+WHERE sims.sims_base_group.base_group_id =11673 -- base group type id 2 : class
+
+SELECT * from sims.sims_base_group bg
+WHERE bg.base_group_id IN (9693, 9694)
+
+
+exec sims.curr_pix_CurrSchemeDetail_Load @acad_year_event_instance_id=42098,@group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11701'' /> <row base_group_id=''11710'' /> <row base_group_id=''11709'' /></data>',@scheme_id=4236
+
+
+exec sims.curr_pix_CurrSchemeDetail_Save @group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11710'' /> <row base_group_id=''11709'' /></data>',@student_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>',@members_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>'
+
+exec sims.curr_pix_CurrSchemeDetail_Save @group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11673'' /> <row base_group_id=''11674'' /> <row base_group_id=''11675'' /></data>',@student_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>',@members_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>'
+
+exec sims.curr_pix_CurrSchemeDetail_Save @group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''9693'' /> <row base_group_id=''9694'' /></data>',@student_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>',@members_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>'
+
+
+SELECT  cycle_segment_id FROM sims.curr_scheme cs WHERE cs.scheme_id = 4236
+/*
+1	Bands
+2	Block
+3	Cluster
+4	Alternative
+*/
+
+SELECT * FROM sims.curr_scheme_type
+
+-----------------------------------------------------
+-- CurrCache populate
+-- sims.curr_pix_CurrCache_Populate
+
+SELECT * from    sims.sims_event_instance tei
+where tei.event_instance_id = 14199
+
+-- Table 2 = Destination-group -------------------------------------------
+-- find start, end date for class
+
+-- to determine start , end date of class
+
+SELECT  
+		tei.event_instance_id ,
+
+		tei.narrative,
+		t.description,
+		s.* 
+FROM sims.curr_scheme s
+INNER JOIN sims.curr_scheme_type t ON s.scheme_type_id = t.scheme_type_id
+INNER JOIN sims.sims_event_instance tei ON s.event_instance_id = tei.event_instance_id
+where s.external_name = '10B/Ar1a' -- scheme_id 4236
+ORDER BY tei.event_start DESC
+-- Academic Year 2017/2018
+--list all class base on schema_type_id
+
+SELECT  [scheme_id]     = tdg.scheme_id
+,       [base_group_id] = tdg.base_group_id
+,       [start_date]    = tdg.start_date
+,       [end_date]      = tdg.end_date
+,bg.description AS ClassName
+,ts.*
+FROM    sims.curr_destinationgroup tdg
+JOIN    sims.curr_scheme ts
+  ON    ts.scheme_id = tdg.scheme_id
+  JOIN sims.sims_base_group bg ON tdg.base_group_id = bg.base_group_id
+
+where ts.scheme_id = 4235 --'10B/Ar1a'
+
+--where  tdg.base_group_id = 11673
+
+SELECT * FROM sims.curr_group
+SELECT * FROM sims.curr_class
+
+
+-- Academic Year 2018/2019 : event_id : 251
+SELECT * FROM sims.sims_event
+where sims.sims_event.event_type_id = 2
+ORDER BY sims.sims_event.event_id DESC
+
+SELECT * FROM sims.sims_event_type [set]
+
+
+
+select  tei.event_id
+,       tei.event_instance_id
+,		te.description
+,		[narrative]  = null
+,		[start_date] = tei.event_start
+,		[end_date]   = tei.event_end
+,		[current]    = 'F'
+from    sims.sims_event_instance tei
+join    sims.sims_event te
+on      te.event_id = tei.event_id
+where   tei.event_instance_id = 251

@@ -4,43 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SIMS.Entities;
+using SIMS.Processes;
 
 namespace SIMSInterface
 {
-    public class ExternalPopulationTest
-    {
-        private void CreateMemberInClass()
-        {
-            //It will deal with schemes of all types (Bands, Blocks and Clusters) and will also allow non-eligible memberships to be created
-            ExternalPopulation scatter = new ExternalPopulation();
-            if (scatter.LoadScheme("Block", "10xy Option A"))
-            {
-                scatter.CreateMember("004604", "10A/Mu1");
-                scatter.CreateMember("004605", "10A/Fr1");
-
-                // this next student is not eligible, so need to set “Strict” to false.
-
-                scatter.Process.Strict = false;
-                scatter.CreateMember("004343", "10A/Mu1");
-                scatter.Save();
-
-            }
-
-            if (scatter.LoadScheme("Block", "10xy Option B"))
-            {
-                scatter.CreateMember("004604", "10B/Ar1");
-                scatter.Save();            
-            }
-
-            if (scatter.LoadScheme("Cluster", "10B/Pt1"))
-            {
-                scatter.CreateMember("004604", "10B/Pt1");
-                scatter.Save();
-            }
-
-        }
-    }
-
     public class ExternalPopulation
 
     {
@@ -111,7 +78,10 @@ namespace SIMSInterface
                     newStudent.AssignToGroup(group, csdProcess.EDR, csdProcess.Strict);
                     csdProcess.UpdateStudent(existingStudent, newStudent);
                     return true;
-
+                }
+                else
+                {
+                    throw new System.Exception("Group is NULL");
                 }
             }
             return false;
@@ -119,7 +89,22 @@ namespace SIMSInterface
 
         public void Save()
         {
-            if (this.csdProcess != null) this.csdProcess.Save();
+            if (csdProcess.Valid())
+            {
+                if (this.csdProcess != null)
+                {
+                    //bool isChanged = this.csdProcess.Changed();
+                    var success = this.csdProcess.Save();
+                    if (!success)
+                    {
+                        throw new System.Exception("cdsProcess is failed ...");
+                    }
+                }
+            }
+            else
+            {
+                throw new System.Exception("cdsProcess is not valid .");
+            }
         }
 
         private System.Collections.Generic.SortedList<string, CurrStudentSummary> LoadStudents()
