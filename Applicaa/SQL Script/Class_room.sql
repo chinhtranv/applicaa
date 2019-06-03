@@ -110,10 +110,18 @@ SELECT * FROM sims.sims_base_group bg WHERE bg.base_group_type_id =2
 SELECT * FROM sims.sims_base_group_type
 
 SELECT * FROM sims.sims_base_group bg
-where bg.description like '%ALT:Fri:1%'
+where bg.description like '%10B/Ar1a%'
+
 
 SELECT * FROM sims.curr_scheme
 where sims.curr_scheme.external_name = '12a Option A' -- scheme_id 4236
+
+SELECT * FROM sims.curr_scheme
+where sims.curr_scheme.external_name = '7y Maths' -- scheme_id 4236
+
+SELECT * FROM sims.curr_scheme
+where sims.curr_scheme.external_name = '10B/Ar1a' -- scheme_id 4236
+
 
 
 SELECT * FROM sims.curr_scheme_type cst
@@ -169,7 +177,7 @@ SELECT
 FROM sims.curr_scheme s
 INNER JOIN sims.curr_scheme_type t ON s.scheme_type_id = t.scheme_type_id
 INNER JOIN sims.sims_event_instance tei ON s.event_instance_id = tei.event_instance_id
-where s.external_name = '10B/Ar1a' -- scheme_id 4236
+where s.external_name = '7x Maths' -- scheme_id 4236
 ORDER BY tei.event_start DESC
 -- Academic Year 2017/2018
 --list all class base on schema_type_id
@@ -185,7 +193,7 @@ JOIN    sims.curr_scheme ts
   ON    ts.scheme_id = tdg.scheme_id
   JOIN sims.sims_base_group bg ON tdg.base_group_id = bg.base_group_id
 
-where ts.scheme_id = 4235 --'10B/Ar1a'
+where ts.scheme_id = 4088 --'7x Maths'
 
 --where  tdg.base_group_id = 11673
 
