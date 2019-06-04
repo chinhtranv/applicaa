@@ -58,7 +58,6 @@ namespace SIMSInterface
 
                 if(studentItem == null)
                 {
-
                     Log.Info("Applicant : " + studentName + " is not exist in the SIMS database .");
                     Log.Info("Applicant : " + studentName + " is being created .");
                     var createApplicantResult = CreateApplicant(pupil, header);
@@ -71,7 +70,6 @@ namespace SIMSInterface
 
                     if (createApplicantResult.Status == Status.Success)
                     {
-                        
                         var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
                         Log.Info("Applicant : " + studentName + " created successfully. The Person Id : " + insertedPersonalId);
                         var examResults = ExternalExamination.AddResults(pupil, insertedPersonalId);
@@ -105,6 +103,35 @@ namespace SIMSInterface
                     if (updateStudentResult.Status == Status.Success)
                     {
                         var examResults = ExternalExamination.AddResults(pupil, studentItem.PersonId);
+                        foreach (CreateEntityResult exRs in examResults)
+                        {
+                            entityResults.Add(new CreateEntityResult
+                            {
+                                EntityName = exRs.EntityName,
+                                SimsResult = exRs.SimsResult,
+                                Type = EntityType.ExternalExamination
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Log.Info("Update student failed ...");
+                        Log.Info(updateStudentResult.Message);
+                        if (updateStudentResult.Errors.Count > 0)
+                        {
+                            foreach (ValidationError error in updateStudentResult.Errors)
+                            {
+                                Log.Info(error.Message);
+                            }
+                        }
+
+                        entityResults.Add(new CreateEntityResult
+                        {
+                            EntityName = studentName,
+                            SimsResult = updateStudentResult,
+                            Type = EntityType.UpdateStudent,
+                            
+                        });
                     }
 
                 }
@@ -127,6 +154,7 @@ namespace SIMSInterface
 
         private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
         {
+           
             string message = string.Empty;
 
             if (pupil == null) return new SimsResult
@@ -134,7 +162,7 @@ namespace SIMSInterface
                 Status = Status.Failed,
                 Message = "Pupil can not be null"
             };
-           
+            Log.Info("Starting import data for student : " + pupil.Forename + " " + pupil.Surname);
             var enrollmentMode = (SIMS.Entities.DFESEnrolmentStatus)SIMS.Entities.LookupCache.DFESEnrolmentStatuses.Item(0);
             bool success = true;
             var errors = new SIMS.Entities.ValidationErrors();
@@ -154,16 +182,20 @@ namespace SIMSInterface
             if (freeSchoolMeals.Count == 0) Log.Info("Student has NO freeSchoolMeals");
 
             var emails = PopulateEMail(pupil, person);
-            
+            if(emails.Value.Count == 0) Log.Info("Student has NO emails");
+
             var phones = PopulateTelephone(pupil, person);
-            
+            if (phones.Value.Count == 0) Log.Info("Student has NO phones");
+
             var residence = PopulateAddress(pupil);
+            if (residence.Count == 0) Log.Info("Student has NO residence");
+
             var countryOfBirthValue = PopulateCountryOfBirth(pupil);
            
 
             #region Medical Practice
-            var medicalPractices = new AgencyLinkedStudents();
-            medicalPractices.Add(new AgencyLinkedStudent { });
+            //var medicalPractices = new AgencyLinkedStudents();
+            //medicalPractices.Add(new AgencyLinkedStudent { });
             #endregion
 
             person.Forename = pupil.Forename;            
@@ -173,9 +205,22 @@ namespace SIMSInterface
             person.DateOfBirth = pupil.DOB;
 
             mainApplication.CreateApplicationFromPerson(person);
-            mainApplication.DetailedApplication.IssueUPN = UPNEnum.IssuePermanent; //hackfor dumpData                                 
-            mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN + Guid.NewGuid().ToString("N");                                  
+
+            if (!string.IsNullOrEmpty(pupil.UPN))
+            {
+                //for ex : A123456778
+                //         A123456789012
+                //mainApplication.DetailedApplication.IssueUPN = UPNEnum.IssuePermanent; //hackfor dumpData                                 
+                //mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN + Guid.NewGuid().ToString("N");                                  
+                mainApplication.DetailedApplication.UniquePupilNo = pupil.UPN;
+            }
+            
             mainApplication.DetailedApplication.Ethnicity = ethic;
+            if (!string.IsNullOrEmpty(pupil.UniqueLearnerNumber.ToString()))
+            {
+                mainApplication.DetailedApplication.ULN = pupil.UniqueLearnerNumber.ToString();
+            }
+            
             mainApplication.DetailedApplication.EthnicDataSource = ethicDataSource;
             //need an example
             //The number you have entered does not match the formula used for allocating Unique Learner Numbers
@@ -215,8 +260,7 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = yearTaughtIn;
-            
-           
+
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
             {                
@@ -229,10 +273,7 @@ namespace SIMSInterface
                 {
                     message = "Saved applicant successfully ...";
                     success = true;
-
                 }
-
-
             }
             else
             { 
@@ -240,7 +281,6 @@ namespace SIMSInterface
                 success = false;
                 message = "Applicant validation failed ...";
                 mainApplication.DetailedApplication.ValidationErrors(errors);
-
             }
 
             if(success)
@@ -260,8 +300,6 @@ namespace SIMSInterface
                     Errors = errors
                 };
             }
-
-
         }
 
         public void AssignClassToStudent()

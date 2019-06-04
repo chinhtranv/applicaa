@@ -110,6 +110,7 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\ATfileValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ATFile.xsd">
@@ -117,8 +118,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

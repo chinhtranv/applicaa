@@ -18,7 +18,6 @@ namespace SIMSInterface
         public SIMS.Processes.CurrSchemeDetail Process { get { return this.csdProcess; } }
 
         public ExternalPopulation()
-
         {
             this.schemesByName = LoadSchemes();
             this.studentsByAdno = LoadStudents();

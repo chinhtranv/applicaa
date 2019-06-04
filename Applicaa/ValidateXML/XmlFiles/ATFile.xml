@@ -38,15 +38,15 @@
   <ATFpupilData>
     <Pupil>
       <ApplicationReference>999-2018-09-K-777777</ApplicationReference>
-      <UPN>A123456778</UPN>
-      <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
+      <UPN>A923456778</UPN>
+      <UniqueLearnerNumber>1234567898</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
       <Forename>Dang 16</Forename>
       <DOB>1980-07-07</DOB>
       <Gender>M</Gender>	  
       <BasicDetails>
-        <UPN>A123456778</UPN>
+        <UPN>A923456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
         <PreferredForename>Dinh 16</PreferredForename>
@@ -273,15 +273,15 @@
   
     <Pupil>
       <ApplicationReference>999-2018-09-K-123456</ApplicationReference>
-      <UPN>A123456789123</UPN>
-      <UniqueLearnerNumber>12345678987</UniqueLearnerNumber>
+      <UPN>A923456789123</UPN>
+      <UniqueLearnerNumber>1234567998</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>ExampleSurname</Surname>
       <Forename>ExampleForename</Forename>
       <DOB>1987-07-07</DOB>
       <Gender>M</Gender>
       <BasicDetails>
-        <UPN>A12345678912A</UPN>
+        <UPN>A923456789123</UPN>
         <PreferredSurname>Example</PreferredSurname>
         <FormerSurname>MaidenName</FormerSurname>
         <PreferredForename>Ex</PreferredForename>

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -6,8 +7,10 @@ namespace Applicaa
 {
     public class XmlHelper
     {
-        public static T ConvertToObject<T>(string xml)
+        public static T ConvertToObject<T>(string xml, out string messages)
         {
+            messages = string.Empty;
+
             StringReader stream = null;
             XmlTextReader reader = null;
             try
@@ -19,8 +22,13 @@ namespace Applicaa
                 // covert reader to object
                 return (T)serializer.Deserialize(reader);
             }
-            catch
+            catch (Exception ex)
             {
+                messages = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    messages += " [ " + ex.InnerException.Message + " ]";
+                }
                 return default(T);
             }
             finally

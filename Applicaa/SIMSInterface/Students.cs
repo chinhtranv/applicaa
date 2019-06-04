@@ -8,7 +8,6 @@ namespace SIMSInterface
     public class Students
     {
         public static StudentExtension StudentEx => new StudentExtension();
-
         /// <summary>
         /// Use a third party API call to return current student data
         /// NB: Just because the API returns data, there is no implied right to pass all of the data returned to 
@@ -48,13 +47,15 @@ namespace SIMSInterface
             var identityINV = new Person(personId);            
             var editStudentInformation = new EditStudentInformation();
 
-
             editStudentInformation.Load(identityINV, System.DateTime.Now);
 
-            editStudentInformation.Student.IssueUPN = UPNEnum.Permanent; //hackfor dumpData 
-            editStudentInformation.Student.UPN = "A123456789012";            
+            if (!string.IsNullOrEmpty(pupil.UPN))
+            {
+                editStudentInformation.Student.IssueUPN = UPNEnum.Permanent; //hackfor dumpData 
+                //editStudentInformation.Student.UPN = "A123456789012";            
+                editStudentInformation.Student.UPN = pupil.UPN;
+            }
             editStudentInformation.Student.FSMReviewDateAttribute.IsNull = true;
-
             editStudentInformation.Student.Surname = pupil.Surname;
             editStudentInformation.Student.DateOfBirth = pupil.DOB;
             editStudentInformation.Student.Forename = pupil.Forename;
@@ -77,7 +78,7 @@ namespace SIMSInterface
             {
                 return new SimsResult
                 {
-                    Status = Status.Failed,
+                    Status = Status.Success,
                     Message = message
                 };
             }
@@ -85,7 +86,7 @@ namespace SIMSInterface
             {
                 return new SimsResult
                 {
-                    Status = Status.Success,
+                    Status = Status.Failed,
                     Message = message,
                     Errors = editStudentInformation.Student.ValidationErrors
                 };
