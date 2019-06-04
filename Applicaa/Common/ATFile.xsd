@@ -67,7 +67,7 @@
                   <xs:sequence>
                     <xs:element name="ApplicationReference" type="xs:string" />
                     <xs:element name="UPN" type="xs:string" />
-                    <xs:element name="UniqueLearnerNumber" type="xs:unsignedLong" />
+                    <xs:element name="UniqueLearnerNumber" type="xs:string" />
                     <xs:element name="UCI" type="xs:string" />
                     <xs:element name="Surname" type="xs:string" />
                     <xs:element name="Forename" type="xs:string" />

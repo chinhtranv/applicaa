@@ -39,7 +39,7 @@
     <Pupil>
       <ApplicationReference>999-2018-09-K-777777</ApplicationReference>
       <UPN>A923456778</UPN>
-      <UniqueLearnerNumber>1234567898</UniqueLearnerNumber>
+      <UniqueLearnerNumber>A1234567898</UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
       <Forename>Dang 16</Forename>
@@ -159,7 +159,11 @@
         <Phone>
           <TelephoneType>H</TelephoneType>
           <PhoneNo>01234 999999</PhoneNo>
-        </Phone>		    
+        </Phone>
+        <Phone>
+          <TelephoneType>H</TelephoneType>
+          <PhoneNo>01234 999999</PhoneNo>
+        </Phone>
       </Phones>
       <Email>name@domain.co.uk</Email>
       <Contacts>
@@ -251,7 +255,7 @@
         <ExternalExaminationResult>
           <BoardCode>OCR</BoardCode>          
           <Level>ABQ/B</Level>
-          <SubjectCode>0020</SubjectCode>          
+          <SubjectCode>A0020</SubjectCode>          
           <School>Green Abbey School</School>         
           <Year>2018</Year>
           <Result>P</Result>

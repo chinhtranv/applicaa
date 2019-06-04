@@ -397,7 +397,7 @@ public partial class ATfilePupil {
     
     private string uPNField;
     
-    private ulong uniqueLearnerNumberField;
+    private string uniqueLearnerNumberField;
     
     private string uCIField;
     
@@ -454,7 +454,7 @@ public partial class ATfilePupil {
     }
     
     /// <remarks/>
-    public ulong UniqueLearnerNumber {
+    public string UniqueLearnerNumber {
         get {
             return this.uniqueLearnerNumberField;
         }

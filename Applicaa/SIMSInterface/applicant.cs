@@ -216,9 +216,9 @@ namespace SIMSInterface
             }
             
             mainApplication.DetailedApplication.Ethnicity = ethic;
-            if (!string.IsNullOrEmpty(pupil.UniqueLearnerNumber.ToString()))
+            if (!string.IsNullOrEmpty(pupil.UniqueLearnerNumber))
             {
-                mainApplication.DetailedApplication.ULN = pupil.UniqueLearnerNumber.ToString();
+                mainApplication.DetailedApplication.ULN = pupil.UniqueLearnerNumber;
             }
             
             mainApplication.DetailedApplication.EthnicDataSource = ethicDataSource;
