@@ -27,6 +27,7 @@ namespace Applicaa
         }
 
         private const string Applicaa = "Applicaa";
+
         private void btnProcess_Click(object sender, EventArgs e)
         {
             Log.Info("====================================================================== ");
@@ -94,12 +95,11 @@ namespace Applicaa
                     var strMsg = new StringBuilder();
                     foreach (var result in results)
                     {
-                        strMsg.AppendLine(result.EntityName + " : " + result.SimsResult.Status);
+                        strMsg.AppendLine(result.Type + " >> "+ result.EntityName + " : " + result.SimsResult.Status);
                     }
                     txtInfo.Text = strMsg.ToString();
 
                     MessageBox.Show(@"Import applicant successfully !", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnProcess.Enabled = true;
                 }
             }
             else

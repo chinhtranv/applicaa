@@ -17,6 +17,7 @@ namespace SIMSInterface
                 entityResults.Add(new CreateEntityResult
                 {
                     Type = EntityType.ExternalExamination,
+                    EntityName = examination.BoardCode + " - " + examination.Level + " - " + examination.QAN,
                     SimsResult = result
                 });
             }
