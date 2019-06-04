@@ -33,15 +33,15 @@
   <ItemGroup>
     <Reference Include="AbstractProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\AbstractProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AdmissionsEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\AdmissionsEntities.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AdmissionsProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\AdmissionsProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AdmissionsUserInterfaces">
       <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\AdmissionsUserInterfaces.dll</HintPath>
@@ -75,7 +75,7 @@
     </Reference>
     <Reference Include="Cache">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\Cache.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CacheProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\CacheProcesses.dll</HintPath>
@@ -94,11 +94,11 @@
     </Reference>
     <Reference Include="DocManagementEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\DocManagementEntities.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DocManagementProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\DocManagementProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ExamEntities">
       <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\ExamEntities.dll</HintPath>
@@ -120,15 +120,15 @@
     </Reference>
     <Reference Include="LoginProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\LoginProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LookupEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\LookupEntities.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LookupProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\LookupProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="PastoralContext">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\PastoralContext.dll</HintPath>
@@ -165,7 +165,7 @@
     </Reference>
     <Reference Include="SENStudentProcesses">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\SENStudentProcesses.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="StudentEntities">
       <HintPath>c:\Program Files (x86)\SIMS\SIMS .net\Student Entities.dll</HintPath>
