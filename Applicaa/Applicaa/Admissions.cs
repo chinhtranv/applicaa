@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -98,7 +99,7 @@ namespace Applicaa
                         strMsg.AppendLine(result.Type + " >> "+ result.EntityName + " : " + result.SimsResult.Status);
                     }
                     txtInfo.Text = strMsg.ToString();
-
+                    Log.Info(strMsg.ToString());
                     MessageBox.Show(@"Import applicant successfully !", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -163,8 +164,7 @@ namespace Applicaa
             {
                 var filePath = openFileDialog1.FileName;
                 txtInfo.Text = File.ReadAllText(filePath);
-
-                
+                lblFileName.Text = filePath;
                 btnProcess.Enabled = true;
             }
         }
@@ -172,6 +172,28 @@ namespace Applicaa
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text, out var errorMessages);
+            if (atf == null)
+            {
+                MessageBox.Show(@"Xml content is not valid", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtInfo.Text = errorMessages;
+                Log.Info(@"Xml content is not valid" + errorMessages);
+            }
+
+            else if (!ValidationATFile(atf, out var validationMessages))
+            {
+                MessageBox.Show(@"ATFile validation error", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtInfo.Text = validationMessages;
+                Log.Info(@"ATFile validation error : " + validationMessages);
+            }
+            else
+            {
+                MessageBox.Show(@"The file is quite valid, you can import to sims.net now ... ", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

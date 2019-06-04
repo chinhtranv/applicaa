@@ -31,7 +31,8 @@ namespace SIMSInterface
             bool success = false;
             var errors = new SIMS.Entities.ValidationErrors();
             string message = string.Empty;
-                   
+
+            #region example data
             //fake data ...
             //int year = 2018;
             //string subjectCode = "0020"; //learning skill
@@ -41,6 +42,7 @@ namespace SIMSInterface
             //string resultType = "Result";
             //string result = "P"; //pass
             //string schoolName = "Green Abbey School";
+            #endregion
 
             int year = examination.Year;
             string subjectCode = examination.SubjectCode; //learning skill

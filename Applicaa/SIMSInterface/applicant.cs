@@ -314,9 +314,7 @@ namespace SIMSInterface
 
             //ClassProcess.AttachClassToStudent(SchemeType.Block.ToString(), "11xy PSE", "005152", "11B/Ps"); //only one class on the schema Type
             //ClassProcess.AttachClassToStudent(schemeType :SchemeType.Cluster.ToString(),schemaName: "10B/Ar1a", admissionNumber: "005152",className: "10B/Ar1a");
-            //ClassProcess.AttachClassToStudent(schemeType :SchemeType.Block.ToString(),schemaName: "7x Maths", admissionNumber: "005152",className: "7x/Ma1");
-            //return;
-
+            ClassProcess.AttachClassToStudent(schemeType :SchemeType.Block.ToString(),schemaName: "7x Maths", admissionNumber: "005152",className: "7x/Ma1");
         }
 
         private static ApplicationRelations PopulateRelations(ATfilePupil pupil)
