@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admissions));
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
@@ -105,6 +106,7 @@
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.btnSelect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Admissions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Import students";

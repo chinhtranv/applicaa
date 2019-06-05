@@ -164,5 +164,8 @@
       <Name>SIMSInterface</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="applicaasimsintergration.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
