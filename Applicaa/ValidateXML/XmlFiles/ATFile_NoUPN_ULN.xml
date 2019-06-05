@@ -269,6 +269,25 @@
           <QAN>10002431</QAN>          
         </ExternalExaminationResult>
       </ExternalExaminationResults>
+	  
+	  <Classes>
+        <Class>
+          <SchemaType>Block</SchemaType>
+          <SchemaName>11xy PSE</SchemaName>
+          <ClassName>11B/Ps</ClassName>
+        </Class>
+        <Class>
+          <SchemaType>Cluster</SchemaType>
+          <SchemaName>10B/Ar1a</SchemaName>
+          <ClassName>10B/Ar1a</ClassName>
+        </Class>
+        <Class>
+          <SchemaType>Block</SchemaType>
+          <SchemaName>7x Maths</SchemaName>
+          <ClassName>7x/Ma1</ClassName>
+        </Class>
+      </Classes>
+	  
     </Pupil>
   
     <Pupil>

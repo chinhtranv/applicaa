@@ -12,7 +12,8 @@ namespace SIMSInterface
     {
         Applicant,
         ExternalExamination,
-        UpdateStudent
+        UpdateStudent,
+        AddStudentClass
     }
 
     public class SimsResult

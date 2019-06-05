@@ -70,6 +70,7 @@ namespace SIMSInterface
 
                     if (createApplicantResult.Status == Status.Success)
                     {
+                        #region Continue to create the external examination
                         var insertedPersonalId = mainApplication.DetailedApplication.PersonID;
                         Log.Info("Applicant : " + studentName + " created successfully. The Person Id : " + insertedPersonalId);
                         var examResults = ExternalExamination.AddResults(pupil, insertedPersonalId);
@@ -83,25 +84,44 @@ namespace SIMSInterface
                                 Type = EntityType.ExternalExamination
                             });
                         }
+                        #endregion
+
+                        #region attach class to student
+
+                        var admissionNumber = mainApplication.DetailedApplication.AdmissionNumberAttribute.Value;
+                        var classResults = AddClassses(pupil, admissionNumber);
+                        foreach (var classResult in classResults)
+                        {
+                            entityResults.Add(new CreateEntityResult
+                            {
+                                EntityName = classResult.EntityName,
+                                SimsResult = classResult.SimsResult,
+                                Type = EntityType.AddStudentClass
+                            });
+                        }
+
+                        #endregion
                     }
                     else
                     {
+                        #region Handle failed case
                         Log.Info("Creating applicant : " + studentName + " failed.");
                         Log.Info(createApplicantResult.Message);
                         foreach (var error in createApplicantResult.Errors)
                         {
                             Log.Info(error.ToString());
                         }
-
-                    }                                       
+                        #endregion
+                    }
                 }
                 else
                 {
-                    Log.Info("Applicant : " + studentName + " is EXISTED in the SIMS database .");
-                    Log.Info("Applicant : " + studentName + " will update the stu information .");
+                    Log.Info("Applicant : " + studentName + " is EXISTED in the SIMS database, " + "Applicant : " + studentName + " will update the stu information .");
                     var updateStudentResult = Students.UpdateStudentInfomation(studentItem.PersonId, pupil);
                     if (updateStudentResult.Status == Status.Success)
                     {
+
+                        #region Continue to create the external examination
                         var examResults = ExternalExamination.AddResults(pupil, studentItem.PersonId);
                         foreach (CreateEntityResult exRs in examResults)
                         {
@@ -112,9 +132,11 @@ namespace SIMSInterface
                                 Type = EntityType.ExternalExamination
                             });
                         }
+                        #endregion
                     }
                     else
                     {
+                        #region Handle failed case
                         Log.Info("Update student failed ...");
                         Log.Info(updateStudentResult.Message);
                         if (updateStudentResult.Errors.Count > 0)
@@ -130,13 +152,12 @@ namespace SIMSInterface
                             EntityName = studentName,
                             SimsResult = updateStudentResult,
                             Type = EntityType.UpdateStudent,
-                            
+
                         });
+                        #endregion
+
                     }
-
                 }
-
-                
             }
 
             return entityResults;
@@ -302,19 +323,43 @@ namespace SIMSInterface
             }
         }
 
-        public void AssignClassToStudent()
+        public static List<CreateEntityResult> AddClassses(ATfilePupil pupil, string admisionNumber)
         {
+            var result = new List<CreateEntityResult>();
+            if (pupil.Classes == null || !pupil.Classes.Any())
+            {
+                Log.Info("Student has NO classes");
+                return result;
+            }
 
-            //public static void AttachClassToStudent(string schemeType, string schemaName, string admissionNumber, string className)
-            //{
-            //    //schemaType : Block,Brand,Cluster,Alternative
-            //    //schemeName : 10x English
-            //    //admissionNumber : 005152 --Dang Dinh Dang
-            //    //class name : 10x/En1, 11A/Ps
+            if (string.IsNullOrEmpty(admisionNumber))
+            {
+                Log.Info("student has no Admission number");
+                result.Add(new CreateEntityResult
+                {
+                    Type = EntityType.AddStudentClass,
+                    EntityName = pupil.Forename + " "+pupil.Surname,
+                    SimsResult = new SimsResult
+                    {
+                        Status = Status.Failed,
+                        Message = "student has no Admission number"
+                    }
+                });
+                return result;
+            }
 
-            //ClassProcess.AttachClassToStudent(SchemeType.Block.ToString(), "11xy PSE", "005152", "11B/Ps"); //only one class on the schema Type
-            //ClassProcess.AttachClassToStudent(schemeType :SchemeType.Cluster.ToString(),schemaName: "10B/Ar1a", admissionNumber: "005152",className: "10B/Ar1a");
-            ClassProcess.AttachClassToStudent(schemeType :SchemeType.Block.ToString(),schemaName: "7x Maths", admissionNumber: "005152",className: "7x/Ma1");
+            foreach (var studentClass in pupil.Classes)
+            {
+                var addClassResult = ClassProcess.AttachClassToStudent(studentClass.SchemaType, studentClass.SchemaName, admisionNumber, studentClass.ClassName);
+                result.Add(new CreateEntityResult
+                {
+                    SimsResult = addClassResult,
+                    EntityName = studentClass.SchemaType + " - "+ studentClass.SchemaName + " - "+ admisionNumber + " - "+ studentClass.ClassName,
+                    Type = EntityType.AddStudentClass
+                });
+            }
+
+            return result;
         }
 
         private static ApplicationRelations PopulateRelations(ATfilePupil pupil)

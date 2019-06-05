@@ -433,6 +433,8 @@ public partial class ATfilePupil {
     
     private ATfilePupilExternalExaminationResult[] externalExaminationResultsField;
     
+    private ATfilePupilClass[] classesField;
+    
     /// <remarks/>
     public string ApplicationReference {
         get {
@@ -634,6 +636,17 @@ public partial class ATfilePupil {
         }
         set {
             this.externalExaminationResultsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("Class", IsNullable=false)]
+    public ATfilePupilClass[] Classes {
+        get {
+            return this.classesField;
+        }
+        set {
+            this.classesField = value;
         }
     }
 }
@@ -2467,6 +2480,51 @@ public partial class ATfilePupilExternalExaminationResult {
         }
         set {
             this.qANField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+public partial class ATfilePupilClass {
+    
+    private string schemaTypeField;
+    
+    private string schemaNameField;
+    
+    private string classNameField;
+    
+    /// <remarks/>
+    public string SchemaType {
+        get {
+            return this.schemaTypeField;
+        }
+        set {
+            this.schemaTypeField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string SchemaName {
+        get {
+            return this.schemaNameField;
+        }
+        set {
+            this.schemaNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string ClassName {
+        get {
+            return this.classNameField;
+        }
+        set {
+            this.classNameField = value;
         }
     }
 }

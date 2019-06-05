@@ -21,21 +21,6 @@ namespace SIMSInterface
         /// <param name="className"></param>
         public static SimsResult AttachClassToStudent(string schemeType,string schemaName, string admissionNumber, string className)
         {
-            #region NOTED
-            //schemaType : Block,Brand,Cluster,Alternative
-            //schemeName : 10x English
-            //admissionNumber : 005152
-            //class name : 10x/En1, 11A/Ps
-
-            //if (scatter.LoadScheme(schemeType: SchemeType.Block.ToString(), schemeName:"10x English"))
-            //{
-            //    scatter.Process.Strict = false;
-            //    scatter.CreateMember(studentAdno :"005152", groupName: "10x/En1"); // Dinh Dang 11
-            //    //scatter.Save();
-            //}
-
-            #endregion
-
             SIMS.Processes.CurrCache.Populate();
             var scatter = new ExternalPopulation();
             string messages = string.Empty;

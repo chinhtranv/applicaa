@@ -42,14 +42,14 @@
       <UniqueLearnerNumber></UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
-      <Forename>Dang 18</Forename>
+      <Forename>Dang 22</Forename>
       <DOB>1980-07-07</DOB>
       <Gender>M</Gender>	  
       <BasicDetails>
         <UPN>A123456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
-        <PreferredForename>Dinh 18</PreferredForename>
+        <PreferredForename>Dinh 22</PreferredForename>
         <MiddleNames>Dang</MiddleNames>
         <NCyearActual>10</NCyearActual>
         <EnglishProficiencies>
@@ -269,6 +269,26 @@
           <QAN>10002431</QAN>          
         </ExternalExaminationResult>
       </ExternalExaminationResults>
+	  
+	  <Classes>
+        <Class>
+          <SchemaType>Block</SchemaType>
+          <SchemaName>11xy PSE</SchemaName>
+          <ClassName>11B/Ps</ClassName>
+        </Class>
+        <Class>
+          <SchemaType>Cluster</SchemaType>
+          <SchemaName>10B/Ar1a</SchemaName>
+          <ClassName>10B/Ar1a</ClassName>
+        </Class>
+        <Class>
+          <SchemaType>Block</SchemaType>
+          <SchemaName>7x Maths</SchemaName>
+          <ClassName>7x/Ma1</ClassName>
+        </Class>
+      </Classes>
+	  
+	  
     </Pupil>
   
     <Pupil>

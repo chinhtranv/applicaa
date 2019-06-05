@@ -43,7 +43,8 @@ namespace SIMSInterface
                         Forename = reader["forename"].ToString(),
                         Upn = reader["upn"].ToString(),
                         Uln = reader["unique_learner_number"].ToString(),
-                        Uci = reader["uci"].ToString()
+                        Uci = reader["uci"].ToString(),
+                        AdmissionNumber = reader["admission_number"].ToString()
                     };
                 }
 
