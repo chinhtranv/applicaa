@@ -21,7 +21,6 @@ namespace SIMSInterface
         /// <param name="className"></param>
         public static SimsResult AttachClassToStudent(string schemeType,string schemaName, string admissionNumber, string className)
         {
-            SIMS.Processes.CurrCache.Populate();
             var scatter = new ExternalPopulation();
             string messages = string.Empty;
             bool success = false;

@@ -171,6 +171,7 @@ namespace SIMSInterface
             SIMS.Processes.StudentCache.Populate();
             SIMS.Processes.SchoolCache.Populate();
             SIMS.Processes.ContactCache.Populate();
+            SIMS.Processes.CurrCache.Populate();
         }
 
         private static SimsResult CreateApplicant(ATfilePupil pupil, ATfileHeader header)
