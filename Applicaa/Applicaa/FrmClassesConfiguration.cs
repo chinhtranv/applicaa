@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Applicaa
 {
-    public partial class StudentSelection : Form
+    public partial class FrmClassesConfiguration : Form
     {
-        public StudentSelection()
+        public FrmClassesConfiguration()
         {
             InitializeComponent();
         }

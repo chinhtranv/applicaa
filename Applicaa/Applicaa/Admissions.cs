@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Applicaa.Helper;
 using SIMS.Entities;
 using SIMSInterface;
 using Common;
@@ -44,7 +45,7 @@ namespace Applicaa
                 var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text, out var errorMessages);
                 if (atf == null)
                 {
-                    MessageBox.Show(@"Xml content is not valid", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxHelper.ShowError(@"Xml content is not valid");
                     txtInfo.Text = errorMessages;
                     Log.Info(@"Xml content is not valid" + errorMessages);
                     return;
@@ -52,7 +53,7 @@ namespace Applicaa
 
                 if (!ValidationATFile(atf, out var validationMessages))
                 {
-                    MessageBox.Show(@"ATFile validation error" ,Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxHelper.ShowError(@"ATFile validation error");
                     txtInfo.Text = validationMessages;
                     Log.Info(@"ATFile validation error : " + validationMessages);
                     return;
@@ -88,7 +89,7 @@ namespace Applicaa
 
                     Log.Info("Importing applicant failed : ");
                     Log.Info(strError.ToString());
-                    MessageBox.Show(@"Import applicant failed ...", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxHelper.ShowInfo(@"Import applicant failed ...");
                 }
                 else
                 {
@@ -100,14 +101,14 @@ namespace Applicaa
                     }
                     txtInfo.Text = strMsg.ToString();
                     Log.Info(strMsg.ToString());
-                    MessageBox.Show(@"Import applicant successfully !", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxHelper.ShowInfo(@"Import applicant successfully !");
                 }
             }
             else
             {
 
                 Log.Info("Login to SIMS.net failed ... ");
-                MessageBox.Show(LoginHelper.ErrorMessage);
+                MessageBoxHelper.ShowError(LoginHelper.ErrorMessage);
             }
         }
 
@@ -179,20 +180,20 @@ namespace Applicaa
             var atf = XmlHelper.ConvertToObject<ATfile>(txtInfo.Text, out var errorMessages);
             if (atf == null)
             {
-                MessageBox.Show(@"Xml content is not valid", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowError(@"Xml content is not valid");
                 txtInfo.Text = errorMessages;
                 Log.Info(@"Xml content is not valid" + errorMessages);
             }
 
             else if (!ValidationATFile(atf, out var validationMessages))
             {
-                MessageBox.Show(@"ATFile validation error", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxHelper.ShowError(@"ATFile validation error");
                 txtInfo.Text = validationMessages;
                 Log.Info(@"ATFile validation error : " + validationMessages);
             }
             else
             {
-                MessageBox.Show(@"The file is quite valid, you can import to sims.net now ... ", Applicaa, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxHelper.ShowInfo(@"The file is quite valid, you can import to sims.net now ... ");
             }
         }
     }
