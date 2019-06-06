@@ -13,10 +13,10 @@ using FluentValidation.Results;
 
 namespace Applicaa
 {
-    public partial class Admissions : Form
+    public partial class FrmAdmissions : Form
     {
         private OpenFileDialog openFileDialog1;
-        public Admissions()
+        public FrmAdmissions()
         {
             InitializeComponent();
 

@@ -18,7 +18,7 @@ namespace Applicaa
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmStudentSelection());
+            Application.Run(new FrmAdmissions());
         }
     }
 }

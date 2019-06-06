@@ -1,6 +1,6 @@
 ﻿namespace Applicaa
 {
-    partial class Admissions
+    partial class FrmAdmissions
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admissions));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAdmissions));
             this.btnSelect = new System.Windows.Forms.Button();
             this.txtInfo = new System.Windows.Forms.TextBox();
             this.btnProcess = new System.Windows.Forms.Button();
