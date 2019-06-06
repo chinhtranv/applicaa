@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public static class MisIntergration
+    public static class MisIntegration
     {
         public static string AuthUser;
         public static string AuthPassword;
+        public static bool IsImportExamResults;
+        public static bool IsImportClasses;
+
+
+
     }
 }

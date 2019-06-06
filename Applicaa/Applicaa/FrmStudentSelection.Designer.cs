@@ -31,30 +31,30 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.studentsGrid = new System.Windows.Forms.DataGridView();
-            this.btnNext = new System.Windows.Forms.Button();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SchoolName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 19);
+            this.label1.Location = new System.Drawing.Point(34, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(293, 17);
+            this.label1.Size = new System.Drawing.Size(336, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Import student info from Addmission+ to SIMS";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 54);
+            this.label2.Location = new System.Drawing.Point(34, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 17);
+            this.label2.Size = new System.Drawing.Size(120, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "Select students";
             // 
@@ -69,21 +69,12 @@
             this.SchoolName,
             this.Age,
             this.Select});
-            this.studentsGrid.Location = new System.Drawing.Point(33, 88);
+            this.studentsGrid.Location = new System.Drawing.Point(37, 110);
+            this.studentsGrid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.studentsGrid.Name = "studentsGrid";
             this.studentsGrid.RowTemplate.Height = 24;
-            this.studentsGrid.Size = new System.Drawing.Size(692, 319);
+            this.studentsGrid.Size = new System.Drawing.Size(778, 399);
             this.studentsGrid.TabIndex = 1;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(624, 428);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(101, 34);
-            this.btnNext.TabIndex = 2;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // FirstName
             // 
@@ -115,16 +106,28 @@
             this.Select.HeaderText = "Select";
             this.Select.Name = "Select";
             // 
-            // StudentSelection
+            // btnNext
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.btnNext.Location = new System.Drawing.Point(702, 535);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(114, 42);
+            this.btnNext.TabIndex = 2;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // FrmStudentSelection
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 493);
+            this.ClientSize = new System.Drawing.Size(846, 621);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.studentsGrid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "StudentSelection";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "FrmStudentSelection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";
             this.Load += new System.EventHandler(this.StudentSelection_Load);

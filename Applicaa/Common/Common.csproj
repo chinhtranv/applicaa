@@ -110,6 +110,7 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DataModel\Student.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="MisIntergration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ATfileValidator.cs" />
   </ItemGroup>
