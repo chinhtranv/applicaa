@@ -885,6 +885,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1A04AEDEEC2B412A93E0E0B284ACBCB8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1A5A421B27A6F8DE23F47603E048DD6B"
         "OwnerKey" = "8:_49F8BD38DC05469A885E0F64538F0947"
         "MsmSig" = "8:_UNDEFINED"
@@ -989,12 +995,6 @@
         {
         "MsmKey" = "8:_25AFFC91A1E6C4D49CFA4F44E1600FD0"
         "OwnerKey" = "8:_49F8BD38DC05469A885E0F64538F0947"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2AE24761F8D9467F931937AB6723495C"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -4732,6 +4732,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -5351,6 +5359,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1A04AEDEEC2B412A93E0E0B284ACBCB8"
+            {
+            "SourcePath" = "8:..\\Applicaa\\applicaa_symbol_z2F_icon.ico"
+            "TargetName" = "8:applicaa_symbol_z2F_icon.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_B1E6BEDB7E9A42E8B1C97241AC875A90"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1A5A421B27A6F8DE23F47603E048DD6B"
             {
             "AssemblyRegister" = "3:1"
@@ -5628,26 +5656,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2AE24761F8D9467F931937AB6723495C"
-            {
-            "SourcePath" = "8:..\\Applicaa\\applicaasimsintergration.ico"
-            "TargetName" = "8:applicaasimsintergration.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_B1E6BEDB7E9A42E8B1C97241AC875A90"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2C9CF9369E451C8740578718BF1DC923"
@@ -9861,7 +9869,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ApplicaaSIMSIntegration"
         "ProductCode" = "8:{562C0479-3283-416F-8727-AD595C6CF7F3}"
-        "PackageCode" = "8:{20FD75BE-F387-4B80-85C4-8641A7213E59}"
+        "PackageCode" = "8:{E9FB16BE-41AB-495A-B1BE-0ADE0ACFCC7C}"
         "UpgradeCode" = "8:{AFF352FC-A4CB-49DF-AF3F-AB78925C5AA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -9992,7 +10000,7 @@
             "Target" = "8:_49F8BD38DC05469A885E0F64538F0947"
             "Folder" = "8:_BB829A62F9794E01A57518BEC9DA551E"
             "WorkingFolder" = "8:_B1E6BEDB7E9A42E8B1C97241AC875A90"
-            "Icon" = "8:_2AE24761F8D9467F931937AB6723495C"
+            "Icon" = "8:_1A04AEDEEC2B412A93E0E0B284ACBCB8"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BB3F96BEA54540C398A00EA0DBF014A0"

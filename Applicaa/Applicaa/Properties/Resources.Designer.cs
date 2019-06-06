@@ -63,9 +63,9 @@ namespace Applicaa.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon applicaasimsintergration {
+        internal static System.Drawing.Icon applicaa_symbol_z2F_icon {
             get {
-                object obj = ResourceManager.GetObject("applicaasimsintergration", resourceCulture);
+                object obj = ResourceManager.GetObject("applicaa_symbol_z2F_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="applicaasimsintergration.ico" />
+    <Content Include="applicaa_symbol_z2F_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

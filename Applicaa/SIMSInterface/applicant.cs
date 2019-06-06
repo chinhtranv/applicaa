@@ -274,7 +274,8 @@ namespace SIMSInterface
             var admissionGroup = applicationBrowser.AdmissionGroups.Cast<AdmissionGroup>().ToList()
                 .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
 
-            var yearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(0);
+            var yearGroup = SIMS.Entities.GroupCache.YearGroups.Item(1);
+            var yearTaughtIn = SIMS.Entities.GroupCache.NationalCurriculumYears.Item(1);
             var admitted = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Admitted");
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
             mainApplication.DetailedApplication.Status = admitted;
@@ -282,6 +283,7 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
             mainApplication.DetailedApplication.YearTaughtIn = yearTaughtIn;
+            mainApplication.DetailedApplication.YearGroup = yearGroup;
 
             //return new SimsResult();
             if (mainApplication.DetailedApplication.Valid())
