@@ -226,6 +226,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admission.png" />
     <Content Include="applicaa_symbol_z2F_icon.ico" />
   </ItemGroup>
   <ItemGroup>
