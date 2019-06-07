@@ -217,7 +217,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="applicaasimsintergration.ico" />
     <Content Include="applicaa_symbol_z2F_icon.ico" />
   </ItemGroup>
   <ItemGroup>
