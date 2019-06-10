@@ -372,3 +372,59 @@ from sims.asm_resultset rs
   sims.tpa_pix_get_students_all --2188
 
   SELECT count(*) FROM sims.stud_student
+
+
+
+
+
+  --list all student in a class
+exec sims.mid_pix_retrieve_group_basic @base_group_ID=12303,@listdate='2019-06-10 00:00:00'
+
+SELECT * FROM sims.stud_via_group_members
+WHERE sims.stud_via_group_members.base_group_id = 12303
+
+
+  select base_group_id    = vm.base_group_id
+    ,      person_id        = vsb.person_id
+    ,      surname          = vsb.surname
+    ,      forename         = vsb.forename
+    ,      midname          = vsb.midname
+    ,      gender           = vsb.gender
+    ,      dob              = vsb.dob
+    ,      legal_surname    = vsb.legal_surname
+    ,      chosen_forename  = vsb.chosen_forename
+    ,      admission_number = vsb.admission_number
+    ,      unique_pupil_no  = vsb.unique_pupil_no
+    ,      reg_group        = vsb.reg_group ---
+    ,      year_group       = vsb.year_group --
+    ,      house_name       = vsb.house_name
+    ,      boarder          = vsb.boarder
+    ,      start_date       = vm.start_date
+    ,      end_date         = vm.end_date
+    ,      roll_mode        = vsb.roll_mode  
+       
+    from   sims.sims_via_group_members vm
+    join   sims.stud_via_student_browse vsb
+    on     (vm.person_id = vsb.person_id)
+	WHERE base_group_id = 12303 -- person id : 12738 , 12742
+
+
+select    person_id                     = vp.person_id,
+	 
+	 vsb.current_year, --
+	 vsb.current_ncyear, -- 
+	 vsb.current_reg
+	 from      sims.sims_via_person_details  vp
+  join      sims.stud_student vsb
+  on        vsb.person_id                 = vp.person_id
+  where vp.person_id IN (12738 , 12742)
+
+  SELECT * FROM sims.stud_student vsb
+  where vsb.person_id IN (12738 ,12740 , 12742, 12744, 12748)
+--  ,        [current_reg]     		= stud.current_reg
+--,        [current_year]    		= stud.current_year
+--,        [current_house]   		= stud.current_house
+
+
+  exec sims.sta_pix_StudentBrowse_GetStudents @surname='%',@forename='Dang%',@year='%',@reg='%',@house='%',@tier='%',@effective_date='2019-06-10 11:04:49.717',@roll_mode='Any',@show_photo='F',@use_dm='F',@admission_no='%'
+

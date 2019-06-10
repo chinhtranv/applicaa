@@ -123,8 +123,9 @@ SELECT * FROM sims.curr_scheme
 where sims.curr_scheme.external_name = '10B/Ar1a' -- scheme_id 4236
 
 
-
+-- Current schema type : Bands, Block, Cluster, Alternative
 SELECT * FROM sims.curr_scheme_type cst
+
 
 SELECT * FROM sims.curr_scheme
 where sims.curr_scheme.external_name = '10x English' -- scheme_id 4236
@@ -138,7 +139,12 @@ WHERE bg.base_group_id IN (9693, 9694)
 
 exec sims.curr_pix_CurrSchemeDetail_Load @acad_year_event_instance_id=42098,@group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11701'' /> <row base_group_id=''11710'' /> <row base_group_id=''11709'' /></data>',@scheme_id=4236
 
+--list all class belong to student
 
+exec sims.mid_pix_retrieve_student_classes @PersonID=12742,@effective_date='2019-06-10 11:05:45.287'
+
+
+-- save class to specific student
 exec sims.curr_pix_CurrSchemeDetail_Save @group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11710'' /> <row base_group_id=''11709'' /></data>',@student_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>',@members_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>'
 
 exec sims.curr_pix_CurrSchemeDetail_Save @group_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data> <row base_group_id=''11673'' /> <row base_group_id=''11674'' /> <row base_group_id=''11675'' /></data>',@student_ids_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>',@members_XML='<?xml version="1.0" encoding="ISO-8859-1"?><data></data>'
@@ -179,6 +185,9 @@ INNER JOIN sims.curr_scheme_type t ON s.scheme_type_id = t.scheme_type_id
 INNER JOIN sims.sims_event_instance tei ON s.event_instance_id = tei.event_instance_id
 where s.external_name = '7x Maths' -- scheme_id 4236
 ORDER BY tei.event_start DESC
+
+
+
 -- Academic Year 2017/2018
 --list all class base on schema_type_id
 
@@ -202,8 +211,8 @@ SELECT * FROM sims.curr_class
 
 
 -- Academic Year 2018/2019 : event_id : 251
-SELECT * FROM sims.sims_event
-where sims.sims_event.event_type_id = 2
+SELECT * FROM sims.sims_event 
+where sims.sims_event.event_type_id = 2 -- Academic Year
 ORDER BY sims.sims_event.event_id DESC
 
 SELECT * FROM sims.sims_event_type [set]
@@ -221,3 +230,64 @@ from    sims.sims_event_instance tei
 join    sims.sims_event te
 on      te.event_id = tei.event_id
 where   tei.event_instance_id = 251
+
+
+--
+
+SELECT * FROM  sims.sims_academic_person
+
+SELECT * FROM sims.curr_via_student_timetable_basic
+
+SELECT * FROM sims.curr_class
+
+SELECT * FROM sims.sims_via_basegroups
+
+SELECT * FROM sims.curr_subject_code
+
+SELECT * FROM sims.curr_subject_codeset
+--VIEW
+SELECT * FROM sims.curr_via_classes
+
+select   [base_group_id]    = tcc.base_group_id
+       , [code]             = vbg.code
+       , [description]      = vbg.description
+       , [active_state]     = vbg.active_state
+       , [populate_mode]    = vbg.active_state
+       , [subject_code_id]  = tcc.subject_code_id 
+       , [subject_code]     = coalesce(tsc.code, '??')
+       , [subject_title]    = coalesce(tsc.title, 'Undefined')
+       , [subj_codeset_id]  = tsc.subj_codeset_id 
+       , [subject_owner]    = tcs.owner
+  from sims.curr_class           tcc
+  join sims.sims_via_basegroups  vbg 
+    on vbg.base_group_id = tcc.base_group_id 
+  left join sims.curr_subject_code    tsc  
+    on tsc.subject_code_id = tcc.subject_code_id 
+  left join sims.curr_subject_codeset tcs
+    on tcs.subj_codeset_id = tsc.subj_codeset_id  
+
+
+--VIEW class supervisor
+SELECT * FROM sims.sims_via_group_supervisors
+
+SELECT        tbg.short_name AS code, 
+tbg.description,
+ tbg.base_group_id,
+  ISNULL(tsg.main, 'F') AS main, 
+tbg.base_group_type_id, 
+tbg.typecode, 
+tgs.group_supervisor_id, tgs.start_date,
+ tgs.end_date, 
+ tgs.person_id, 
+                         tgs.supervisor_title_id AS super_title_id, tgst.description AS super_title, 
+						 ve.initials AS staff_initials, 
+						 sims.add_fnc_person_name(tgs.person_id, 3) AS staff_name,
+						  sims.add_fnc_person_name(tgs.person_id, 6) 
+                         AS browse_name
+FROM            sims.sims_group_supervisor AS tgs INNER JOIN
+                         sims.sims_supervisor_title AS tgst ON tgs.supervisor_title_id = tgst.supervisor_title_id LEFT OUTER JOIN
+                         sims.per_via_employees_academic AS ve ON tgs.person_id = ve.person_id INNER JOIN
+                         sims.sims_via_basegroups AS tbg ON tgs.base_group_id = tbg.base_group_id LEFT OUTER JOIN
+                         sims.sims_supertitle_grouptype AS tsg ON tgs.supervisor_title_id = tsg.supervisor_title_id AND tsg.base_group_type_id = tbg.base_group_type_id
+
+
