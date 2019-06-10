@@ -279,7 +279,8 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
             mainApplication.DetailedApplication.Status = admitted;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
-            mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
+            //mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
+            mainApplication.DetailedApplication.AdmissionDate = DateTime.Now;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
 
 
