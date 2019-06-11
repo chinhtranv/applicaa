@@ -73,6 +73,9 @@ namespace SIMSInterface
                             schemeStudentsByAdno.Add(studentAdno, existingStudent);
                         }
                     }
+
+                    if (existingStudent == null) return false;
+
                     CurrStudent newStudent = new CurrStudent(existingStudent);
                     newStudent.AssignToGroup(group, csdProcess.EDR, csdProcess.Strict);
                     csdProcess.UpdateStudent(existingStudent, newStudent);

@@ -270,22 +270,12 @@
         </ExternalExaminationResult>
       </ExternalExaminationResults>
 	  
-	  <Classes>
-        <Class>
-          <SchemaType>Block</SchemaType>
-          <SchemaName>11xy PSE</SchemaName>
-          <ClassName>11B/Ps</ClassName>
-        </Class>
+	  <Classes>        
         <Class>
           <SchemaType>Cluster</SchemaType>
           <SchemaName>10x/Bi1</SchemaName>
           <ClassName>10x/Bi1</ClassName>
-        </Class>
-        <Class>
-          <SchemaType>Block</SchemaType>
-          <SchemaName>7x Maths</SchemaName>
-          <ClassName>7x/Ma1</ClassName>
-        </Class>
+        </Class>       
       </Classes>
 	  
     </Pupil>

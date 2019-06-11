@@ -258,7 +258,7 @@ namespace SIMSInterface
 
             //var relations = PopulateRelations(pupil); //pending to import
             //mainApplication.DetailedApplication.Relations = relations; 
-            
+
             //SENStudentProcess
             //mainApplication.DetailedApplication.MedicalPractices = medicalPractices; //not belong to Medical Detail           
             //mainApplication.DetailedApplication.LanguageSource = language; //need to ask
@@ -270,17 +270,16 @@ namespace SIMSInterface
 
             var intakeGroups = applicationBrowser.IntakeGroups.Cast<IntakeGroup>().ToList();
             var intake = intakeGroups.FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7");
-            
+
             var admissionGroup = applicationBrowser.AdmissionGroups.Cast<AdmissionGroup>().ToList()
                 .FirstOrDefault(x => x.Name == "2018/2019 - Autumn Year  7 (A)");
 
-            
+
             var admitted = (SIMS.Entities.Admissions.ApplicationStatus)applicationBrowser.ApplicationStatusCollection.ItemByDescription("Admitted");
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
             mainApplication.DetailedApplication.Status = admitted;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
-            //mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
-            mainApplication.DetailedApplication.AdmissionDate = DateTime.Now;
+            mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
 
 
