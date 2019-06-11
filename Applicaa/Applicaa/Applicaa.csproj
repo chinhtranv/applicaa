@@ -143,11 +143,23 @@
     <Compile Include="FrmClassesConfiguration.Designer.cs">
       <DependentUpon>FrmClassesConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHome.Designer.cs">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSyncData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSyncData.Designer.cs">
+      <DependentUpon>FrmSyncData.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\MessageBoxHelper.cs" />
     <Compile Include="FrmImportStudents.cs">
@@ -177,6 +189,9 @@
     <EmbeddedResource Include="FrmClassesConfiguration.resx">
       <DependentUpon>FrmClassesConfiguration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmHome.resx">
+      <DependentUpon>FrmHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmImportStudents.resx">
       <DependentUpon>FrmImportStudents.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSyncData.resx">
+      <DependentUpon>FrmSyncData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -280,8 +280,8 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.Status = admitted;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
 
-            //var academicYear = SIMS.Entities.CurrCache.AcadYear;
-            mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
+            var academicYear = SIMS.Entities.CurrCache.AcadYear;
+            mainApplication.DetailedApplication.AdmissionDate = academicYear.Start;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
 
 
