@@ -4,7 +4,7 @@
   <Header>
     <DocumentName>Admissions Data Transfer File</DocumentName>
     <ATFversion>15.0</ATFversion>
-    <DateTime>2018-04-30T09:00:47</DateTime>
+    <DateTime>2018-09-01T09:00:47</DateTime>
     <DocumentQualifier>full</DocumentQualifier>
     <SupplierID>NAW (for example files)</SupplierID>
     <SourceSchool>
@@ -42,14 +42,14 @@
       <UniqueLearnerNumber></UniqueLearnerNumber>
       <UCI>123456789876G</UCI>
       <Surname>Dinh</Surname>
-      <Forename>Dang 1106 1</Forename>
+      <Forename>Dang 1106-3</Forename>
       <DOB>1980-07-07</DOB>
       <Gender>M</Gender>	  
       <BasicDetails>
         <UPN>A123456778</UPN>
         <PreferredSurname>Dang</PreferredSurname>
         <FormerSurname>Dang</FormerSurname>
-        <PreferredForename>Dinh 1106 1</PreferredForename>
+        <PreferredForename>Dang 1106-3</PreferredForename>
         <MiddleNames>Dang</MiddleNames>
         <NCyearActual>10</NCyearActual>
         <EnglishProficiencies>

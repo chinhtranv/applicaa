@@ -279,6 +279,8 @@ namespace SIMSInterface
             mainApplication.DetailedApplication.AppliedIntakeGroup = intake;
             mainApplication.DetailedApplication.Status = admitted;
             mainApplication.DetailedApplication.AppliedAdmissionGroup = admissionGroup;
+
+            //var academicYear = SIMS.Entities.CurrCache.AcadYear;
             mainApplication.DetailedApplication.AdmissionDate = header.DateTime;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
 
@@ -366,7 +368,8 @@ namespace SIMSInterface
                 {
                     SimsResult = addClassResult,
                     EntityName = studentClass.SchemaType + " - "+ studentClass.SchemaName + " - "+ admisionNumber + " - "+ studentClass.ClassName,
-                    Type = EntityType.AddStudentClass
+                    Type = EntityType.AddStudentClass,
+                    
                 });
             }
 
