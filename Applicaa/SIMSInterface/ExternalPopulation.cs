@@ -83,7 +83,7 @@ namespace SIMSInterface
                 }
                 else
                 {
-                    throw new System.Exception("Group is NULL");
+                    throw new System.Exception("Group could not be null");
                 }
             }
             return false;
