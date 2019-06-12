@@ -14,7 +14,7 @@ using Ethnicity = SIMS.Entities.Ethnicity;
 using GroupCache = SIMS.Entities.GroupCache;
 using LookupCache = SIMS.Entities.LookupCache;
 using StudentCache = SIMS.Entities.StudentCache;
-using UPNEnum = SIMS.Entities.AcademicPerson.UPNEnum;
+
 
 namespace SIMSInterface
 {
@@ -54,7 +54,7 @@ namespace SIMSInterface
                 var studentName = pupil.Forename + " " + pupil.Surname;
                 Log.Info("Start processing the student : "+ pupil.Forename + " " + pupil.Surname);
                 //check the student is existed or not
-                var studentItem = Students.SeekingStudent(pupil.UniqueLearnerNumber.ToString(), pupil.UPN, pupil.UCI);
+                var studentItem = Students.SeekingStudent(pupil.UniqueLearnerNumber, pupil.UPN, pupil.UCI);
 
                 if(studentItem == null)
                 {

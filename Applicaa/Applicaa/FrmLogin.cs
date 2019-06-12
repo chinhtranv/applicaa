@@ -24,7 +24,9 @@ namespace Applicaa
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+            var frmHome = new FrmHome();
+            frmHome.Show();
+            this.Hide();
         }
     }
 }

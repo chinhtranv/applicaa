@@ -14,5 +14,18 @@ namespace Applicaa
         {
 
         }
+
+        /// <summary>
+        /// NEXT
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frmImportStudent = new FrmImportStudents();
+            frmImportStudent.Show();
+
+            this.Hide();
+        }
     }
 }

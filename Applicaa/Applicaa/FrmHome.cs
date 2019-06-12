@@ -16,5 +16,12 @@ namespace Applicaa
         {
             InitializeComponent();
         }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            var frmStudentSelection = new FrmStudentSelection();
+            frmStudentSelection.Show();
+            this.Hide();
+        }
     }
 }

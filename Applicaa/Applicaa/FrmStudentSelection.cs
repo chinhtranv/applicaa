@@ -118,6 +118,11 @@ namespace Applicaa
         private void btnNext_Click(object sender, EventArgs e)
         {
             GetSelectedItems();
+            var frmImportType = new  FrmImportTypes();
+            frmImportType.Show();
+
+            this.Hide();
+
         }
     }
 }
