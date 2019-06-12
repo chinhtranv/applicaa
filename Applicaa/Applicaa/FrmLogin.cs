@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Applicaa.Helper;
+using Common;
+using Common.RestApi;
 
 namespace Applicaa
 {
@@ -15,6 +11,11 @@ namespace Applicaa
         public FrmLogin()
         {
             InitializeComponent();
+#if DEBUG
+            txtUserName.Text = "admin@applicaa.com";
+            txtPassword.Text = "Mrbean2020!";
+#endif
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -24,9 +25,29 @@ namespace Applicaa
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var frmHome = new FrmHome();
-            frmHome.Show();
-            this.Hide();
+            btnLogin.Enabled = false;
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var loginClient = new AdmissionLoginClient(serializer, new ErrorLogger());
+            var user = loginClient.LogIn(txtUserName.Text, txtPassword.Text);
+
+            if (user.status == "success")
+            {
+                MisCache.UserToken = user.user_token;
+                MisCache.UserEmail = user.user_email;
+
+                var frmHome = new FrmHome();
+                frmHome.Show();
+                this.Hide();
+            }
+            else
+            {
+                MisCache.UserToken = null;
+                MisCache.UserEmail = null;
+                MessageBoxHelper.ShowError(user.message ?? "Invalid user name or password.");
+                btnLogin.Enabled = true;
+            }
+
         }
     }
 }

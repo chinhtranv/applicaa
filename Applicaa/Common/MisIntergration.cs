@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public static class MisIntegration
+    public static class MisCache
     {
-        public static string AuthUser;
-        public static string AuthPassword;
+        public static string UserToken;
+        public static string UserEmail;
+
         public static bool IsImportExamResults;
         public static bool IsImportClasses;
-
-
-
     }
 }

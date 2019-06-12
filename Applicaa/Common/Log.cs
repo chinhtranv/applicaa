@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using System;
+using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
@@ -24,7 +25,10 @@ namespace Common
         {
             Logger.Information(obj.ToString(), obj);
         }
-
+        public static void Error(Exception ex,string message)
+        {
+            Logger.Error(ex, message);
+        }
         public static void Error(string message)
         {
             Logger.Error(message);
