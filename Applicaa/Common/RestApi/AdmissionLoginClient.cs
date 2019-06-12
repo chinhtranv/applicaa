@@ -13,12 +13,12 @@ namespace Common.RestApi
         {
 
         }
-        public User LogIn(string email, string password)
+        public UserResponse LogIn(string email, string password)
         {
             var request = new RestRequest(LoginResource, Method.POST);
             request.AddQueryParameter("user_email", email);
             request.AddQueryParameter("password", password);
-            return Get<User>(request);
+            return Get<UserResponse>(request);
         }
     }
 }

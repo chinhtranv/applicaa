@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.DataModel
 {
-    public class User
+    public class UserResponse
     {
         public string status { get; set; }
         public string user_token { get; set; }

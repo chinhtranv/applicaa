@@ -104,6 +104,16 @@ where sm.person_id = 12583 --9 rows
 -- find class
 SELECT * FROM sims.sims_base_group bg where bg.base_group_id = 11673
 
+SELECT * FROM sims.sims_base_group bg where bg.base_group_type_id =2 --8676
+
+SELECT  description FROM sims.sims_base_group bg where bg.base_group_type_id =2 --8676
+
+
+-- find class
+SELECT * FROM sims.sims_base_group bg where bg.base_group_id = 11673
+
+
+
 -- list all class
 SELECT * FROM sims.sims_base_group bg WHERE bg.base_group_type_id =2
 

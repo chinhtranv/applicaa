@@ -283,6 +283,7 @@ namespace SIMSInterface
             var academicYear = SIMS.Entities.CurrCache.AcadYear;
             mainApplication.DetailedApplication.AdmissionDate = academicYear.Start;
             mainApplication.DetailedApplication.EnrollmentMode = enrollmentMode;
+            //mainApplication.DetailedApplication.ApplicationReferenceNumber = pupil.ApplicationReference;
 
 
             //issue (7) 

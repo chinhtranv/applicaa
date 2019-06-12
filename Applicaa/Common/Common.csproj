@@ -96,7 +96,8 @@
     </Compile>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DataModel\Student.cs" />
-    <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\StudentResponse.cs" />
+    <Compile Include="DataModel\UserResponse.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MisIntergration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
