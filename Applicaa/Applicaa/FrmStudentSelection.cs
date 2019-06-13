@@ -7,7 +7,6 @@ using Applicaa.Helper;
 using Common;
 using Common.DataModel;
 using Common.RestApi;
-using SIMSInterface;
 using JsonSerializer = RestSharp.Serialization.Json.JsonSerializer;
 
 namespace Applicaa
@@ -25,7 +24,9 @@ namespace Applicaa
             var errorLogger = new ErrorLogger();
             var client = new AdmissionStudentsClient(serializer, errorLogger);
             var students = client.GetStudents(MisCache.UserEmail, MisCache.UserToken);
-            studentsGrid.DataSource = students.Where(x=> !string.IsNullOrEmpty(x.class_list)).ToList();
+            var studentsGridDataSource = students.Where(x => !string.IsNullOrEmpty(x.class_list)).ToList();
+            studentsGrid.DataSource = studentsGridDataSource;
+            MisCache.Students = studentsGridDataSource;
         }
 
         public void GetSelectedItems()
@@ -52,7 +53,7 @@ namespace Applicaa
                 MessageBoxHelper.ShowInfo(@"Please select at least one student");
             }
 
-
+            MisCache.SelectedStudents = selectedStudent;
         }
 
         private void StudentSelection_Load(object sender, EventArgs e)
@@ -69,7 +70,7 @@ namespace Applicaa
         private const int IdColumnIndex = 0;
         private const int LastNameColumnIndex = 1;
         private const int AgeColumnIndex = 3;
-        private const int SelectColumnIndex = 5;
+        private const int SelectColumnIndex = 6;
 
         private void AddCheckboxHeader()
         {
@@ -109,8 +110,8 @@ namespace Applicaa
         private void btnNext_Click(object sender, EventArgs e)
         {
             GetSelectedItems();
-            var frmImportType = new  FrmImportTypes();
-            frmImportType.Show();
+            var frmImportStudents = new FrmImportStudents();
+            frmImportStudents.Show();
 
             this.Hide();
 

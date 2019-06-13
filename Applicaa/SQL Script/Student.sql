@@ -428,3 +428,43 @@ select    person_id                     = vp.person_id,
 
   exec sims.sta_pix_StudentBrowse_GetStudents @surname='%',@forename='Dang%',@year='%',@reg='%',@house='%',@tier='%',@effective_date='2019-06-10 11:04:49.717',@roll_mode='Any',@show_photo='F',@use_dm='F',@admission_no='%'
 
+  exec sims.adm_pix_Retrieve_Application_Details @application_id=162,@user_id=2
+
+
+  exec sims.adm_pix_Retrieve_Application_Details @application_id=2667,@user_id=2
+  exec sims.sta_pix_Get_Week_Pattern @effective_date='2018-09-01 00:00:00'
+
+
+  SELECT a.person_id, a.*
+   FROM sims.adm_application a
+  
+  WHERE a.reference IN ('999-2018-09-K-000104',
+						 '999-2018-09-K-000116',
+						 '999-2018-09-K-001452',
+						 '999-2018-09-K-000714')
+
+ SELECT * FROM sims.stud_student s
+ WHERE 	s.person_id IN (12782,
+12783,
+12784,
+12785)
+
+  SELECT 
+		a.person_id,		
+		sh.admission_number,
+		p.surname,		
+		p.forename,
+		a.reference
+  FROM sims.adm_application a
+			JOIN sims.stud_student s ON a.person_id = s.person_id
+			join 	sims.stud_school_history sh
+                on 	s.person_id = sh.person_id
+			JOIN sims.sims_person p ON s.person_id = p.person_id
+  WHERE a.reference IN ('999-2018-09-K-000104',
+						 '999-2018-09-K-000116',
+						 '999-2018-09-K-001452',
+						 '999-2018-09-K-000714')
+
+ 
+
+

@@ -64,7 +64,6 @@
             // studentsGrid
             // 
             this.studentsGrid.AllowUserToAddRows = false;
-            this.studentsGrid.AllowUserToDeleteRows = false;
             this.studentsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.FirstName,
@@ -104,28 +103,24 @@
             this.Id.DataPropertyName = "id";
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
             // 
             // FirstName
             // 
             this.FirstName.DataPropertyName = "first_name";
             this.FirstName.HeaderText = "First name";
             this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
             // 
             // LastName
             // 
             this.LastName.DataPropertyName = "last_name";
             this.LastName.HeaderText = "Last name";
             this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
             // 
             // Class
             // 
             this.Class.DataPropertyName = "class_list";
             this.Class.HeaderText = "Class";
             this.Class.Name = "Class";
-            this.Class.ReadOnly = true;
             this.Class.Width = 200;
             // 
             // SchoolName
@@ -133,7 +128,6 @@
             this.SchoolName.DataPropertyName = "application_reference_number";
             this.SchoolName.HeaderText = "Application Reference Number";
             this.SchoolName.Name = "SchoolName";
-            this.SchoolName.ReadOnly = true;
             this.SchoolName.Width = 200;
             // 
             // Age
@@ -141,14 +135,12 @@
             this.Age.DataPropertyName = "age";
             this.Age.HeaderText = "Age";
             this.Age.Name = "Age";
-            this.Age.ReadOnly = true;
             // 
             // Select
             // 
-            this.Select.DataPropertyName = "Selected";
+            this.Select.DataPropertyName = "selected";
             this.Select.HeaderText = "Select";
             this.Select.Name = "Select";
-            this.Select.ReadOnly = true;
             // 
             // FrmStudentSelection
             // 

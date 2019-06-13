@@ -9,7 +9,6 @@ namespace Common.DataModel
     public class StudentResponse
     {
         public StudentData data { get; set; }
-
     }
 
     public class StudentData
@@ -20,7 +19,7 @@ namespace Common.DataModel
     public class StudentItem
     {
         public int id { get; set; }
-        public bool selected { get; set; }
+        public bool selected { get; set; } = true;
 
         public string first_name { get; set; }
         public string last_name { get; set; }

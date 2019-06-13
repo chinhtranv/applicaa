@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Applicaa.Helper;
-using Common.DataModel;
+using Common;
+using SIMSInterface;
+using StudentItem = Common.DataModel.StudentItem;
 
 namespace Applicaa
 {
@@ -15,7 +18,6 @@ namespace Applicaa
         {
             InitializeComponent();
             lblTotalRows.Text = string.Empty;
-
         }
 
         private void button1_Click(object sender, System.EventArgs e)
@@ -27,27 +29,15 @@ namespace Applicaa
                 progressBar1.Maximum = TotalRecords;
                 backgroundWorker1.RunWorkerAsync(obj);
                 btnFinish.Enabled = false;
-                btnFinish.Text = "Loading...";
-                
+                btnFinish.Text = "Processing ...";
             }
         }
 
-
-        public List<Student> GetStudents()
+        public List<StudentItem> GetStudents()
         {
-            var students = new List<Student>();
-            for (int i = 0; i < 335; i++)
-            {
-                students.Add(new Student
-                {
-                    FirstName = "First name ",
-                    LastName = "Last name " + i,
-                    Age = 10 + i,
-                    Selected = true
-                });
-            }
-
-            return students;
+            var ids = MisCache.SelectedStudents.Select(x => x.Id).ToList();
+            List<StudentItem> dataForProcess = MisCache.Students.Where(x => ids.Contains(x.id)).ToList();
+            return dataForProcess;
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -58,12 +48,15 @@ namespace Applicaa
 
         public void ProcessData(MyWorkerClass obj)
         {
-            
+            List<StudentItem> students = GetStudents();
             int i = 0;
-            foreach (var student in GetStudents())
+            foreach (StudentItem student in students)
             {
-                obj.Name = student.FirstName + " " + student.LastName;
-                obj.PersonId = student.Age;
+                obj.Name = student.first_name + " " + student.last_name;
+                obj.PersonId = student.id;
+
+                //var addClassResult = ClassProcess.AttachClassToStudent(studentClass.SchemaType, studentClass.SchemaName, admisionNumber, studentClass.ClassName);
+
                 backgroundWorker1.ReportProgress(i, obj);
                 i++;
                 Thread.Sleep(100);
