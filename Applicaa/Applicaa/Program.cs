@@ -20,8 +20,8 @@ namespace Applicaa
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new ClassMappingItem());
             //Application.Run(new FrmClassesConfiguration());
-            Application.Run(new FrmStudentSelection());
-            //Application.Run(new FrmLogin());
+            //Application.Run(new FrmStudentSelection());
+            Application.Run(new FrmLogin());
         }
     }
 }

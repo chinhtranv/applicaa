@@ -38,7 +38,7 @@ namespace Applicaa
             var id = int.Parse(row.Cells["SimsClassId"].Value.ToString());
             var frm = new FrmClassMappingConfig(id);
             frm.Show();
-
+            LoadClassesDataFromSims();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
