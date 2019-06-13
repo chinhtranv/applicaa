@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using SIMSInterface;
 
 namespace Common
 {
@@ -13,5 +10,7 @@ namespace Common
 
         public static bool IsImportExamResults;
         public static bool IsImportClasses;
+
+        public static List<ClassesMappingItem> ClassesMapping;
     }
 }

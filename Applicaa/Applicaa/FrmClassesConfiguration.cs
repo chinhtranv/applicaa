@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 using SIMSInterface;
 
 namespace Applicaa
@@ -18,12 +12,7 @@ namespace Applicaa
             InitializeComponent();
         }
 
-        private void LoadClassDataFromSIMS()
-        {
-
-        }
-
-        private void FrmClassesConfiguration_Load(object sender, EventArgs e)
+        private void LoadClassesDataFromSims()
         {
             SIMSDllResolution.AddSIMSDllResolution();
             if (LoginHelper.SIMSlogin(AppSetting.Server,
@@ -34,7 +23,22 @@ namespace Applicaa
                 //Applicant.
                 var classes = Applicant.LoadClasses();
                 classMappingGrid.DataSource = classes;
+                MisCache.ClassesMapping = classes;
             }
+        }
+
+        private void FrmClassesConfiguration_Load(object sender, EventArgs e)
+        {
+            LoadClassesDataFromSims();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var row = classMappingGrid.SelectedRows[0];
+            var id = int.Parse(row.Cells["SimsClassId"].Value.ToString());
+            var frm = new FrmClassMappingConfig(id);
+            frm.Show();
+
         }
     }
 }

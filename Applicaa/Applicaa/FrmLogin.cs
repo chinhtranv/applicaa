@@ -28,7 +28,7 @@ namespace Applicaa
             btnLogin.Enabled = false;
             var serializer = new JsonSerializer();
             var errorLogger = new ErrorLogger();
-            var loginClient = new AdmissionLoginClient(serializer, new ErrorLogger());
+            var loginClient = new AdmissionLoginClient(serializer, errorLogger);
             var user = loginClient.LogIn(txtUserName.Text, txtPassword.Text);
 
             if (user.status == "success")

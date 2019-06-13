@@ -95,12 +95,15 @@
       <DependentUpon>ATFile.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="DataModel\ClassesMappingItem.cs" />
+    <Compile Include="DataModel\ClassResponse.cs" />
     <Compile Include="DataModel\Student.cs" />
     <Compile Include="DataModel\StudentResponse.cs" />
     <Compile Include="DataModel\UserResponse.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="MisIntergration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestApi\AdmissionClassesClient.cs" />
     <Compile Include="RestApi\AdmissionLoginClient.cs" />
     <Compile Include="RestApi\BaseClient.cs" />
     <Compile Include="RestApi\CacheService.cs" />

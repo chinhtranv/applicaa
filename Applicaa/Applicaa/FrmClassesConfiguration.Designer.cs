@@ -33,6 +33,7 @@
             this.classMappingGrid = new System.Windows.Forms.DataGridView();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.classMappingGrid.Location = new System.Drawing.Point(32, 115);
             this.classMappingGrid.Name = "classMappingGrid";
             this.classMappingGrid.RowTemplate.Height = 24;
+            this.classMappingGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.classMappingGrid.Size = new System.Drawing.Size(740, 238);
             this.classMappingGrid.TabIndex = 5;
             // 
@@ -83,11 +85,22 @@
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(671, 65);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 29);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Edit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmClassesConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.classMappingGrid);
@@ -109,5 +122,6 @@
         private System.Windows.Forms.DataGridView classMappingGrid;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button button1;
     }
 }

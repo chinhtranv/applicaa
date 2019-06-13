@@ -18,8 +18,9 @@ namespace Applicaa
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmClassesConfiguration());
-            //Application.Run(new FrmLogin());
+            //Application.Run(new ClassMappingItem());
+            //Application.Run(new FrmClassesConfiguration());
+            Application.Run(new FrmLogin());
         }
     }
 }

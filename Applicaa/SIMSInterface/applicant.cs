@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using Common;
+using Common.DataModel;
 using SIMS.Entities;
 using SIMS.Entities.Admissions;
 using SIMS.Entities.DinnerMoney;

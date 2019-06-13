@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.DataModel;
 using SIMS.Entities;
 using SIMS.Processes;
 
@@ -124,7 +125,7 @@ namespace SIMSInterface
 
         }
 
-        public  List<ClassesMappingItem> LoadClasses()
+        public List<ClassesMappingItem> LoadClasses()
         {
             var groups = new List<CurrGroup>();
             for (int s = 0; s < SIMS.Entities.CurrCache.Curriculum.GroupCount; s++)
@@ -138,7 +139,7 @@ namespace SIMSInterface
             var classes = groups.Where(x => x.GroupType == classGroupType &&  x.BelongsToScheme != null).ToList();
             result = classes.Select(x => new ClassesMappingItem
             {
-                BaseGroupId = x.GroupID,
+                SimsClassId = x.GroupID,
                 ClassName = x.ShortName,
                 SchemaName = x.BelongsToScheme.Scheme.Name,
                 SchemaType = x.BelongsToScheme.Scheme.SchemeType,

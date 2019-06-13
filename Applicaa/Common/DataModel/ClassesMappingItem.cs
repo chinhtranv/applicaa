@@ -4,7 +4,7 @@ namespace SIMSInterface
 {
     public class ClassesMappingItem
     {
-        public int BaseGroupId { get; set; }
+        public int SimsClassId { get; set; }
 
         public string ClassName { get; set; }
 
@@ -15,6 +15,8 @@ namespace SIMSInterface
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+
 
         public int? AdmissionClassId { get; set; }
 
