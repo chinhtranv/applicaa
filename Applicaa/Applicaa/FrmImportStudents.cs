@@ -22,6 +22,19 @@ namespace Applicaa
 
         private void button1_Click(object sender, System.EventArgs e)
         {
+            //WHERE a.reference IN('999-2018-09-K-000104',
+            //    '999-2018-09-K-000116',
+            //    '999-2018-09-K-001452',
+            //    '999-2018-09-K-000714' )
+
+            var student = Students.GetStudentsByRef(new List<string>()
+            {
+                "999-2018-09-K-000104",
+                "999-2018-09-K-000116",
+                "999-2018-09-K-001452",
+                "999-2018-09-K-000714"
+            });
+            return;
             var obj = new MyWorkerClass();
             if (!backgroundWorker1.IsBusy)
             {

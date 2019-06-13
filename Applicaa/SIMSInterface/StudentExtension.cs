@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Common;
@@ -8,6 +9,42 @@ namespace SIMSInterface
 {
     public class StudentExtension : DatabaseCommandCreator
     {
+
+        public List<StudentItem> GetStudentsByRefernces(List<string> refNumers)
+        {
+            var result = new List<StudentItem>();
+
+            using (SqlConnection conn = new SqlConnection(DatabaseHelper.PopulateConnectionString()))
+            {
+                if (!conn.IsAvailable())
+                {
+                    Log.Info("Could not connect to SIMS database server. Please verify the connection string value ...");
+                    throw new System.Exception("The connection string is not correct ...");
+                }
+                conn.Open();
+                string sql = ReferenceSql(refNumers);
+                var cmd = new SqlCommand(sql, conn) { CommandType = CommandType.Text };
+              
+                SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while(reader.Read())
+                {
+                    var stu = new StudentItem
+                    {
+                        PersonId = Int32.Parse(reader["person_id"].ToString()),
+                        Surname = reader["surname"].ToString(),
+                        Forename = reader["forename"].ToString(),                       
+                        AdmissionNumber = reader["admission_number"].ToString(),
+                        Reference = reader["reference"].ToString()
+                    };
+                    result.Add(stu);
+                }
+
+            }
+
+            return result;
+        }
+
+
         public StudentItem GetStudentByCriteria(string uln, string upn, string uci)
         {      
             //validate the inputs
@@ -53,7 +90,36 @@ namespace SIMSInterface
             return null;
         }
 
-        
+        private static string ReferenceSql(List<string> refNumers)
+        {
+            string refValue = "";
+            int i = 1;
+            foreach (var r in refNumers)
+            {
+                if (i != refNumers.Count)
+                    refValue = refValue + string.Format("'{0}',", r);
+                else
+                {
+                    refValue = refValue + string.Format("'{0}'", r);
+                }
+
+                i++;
+            }
+
+            string sql = @"SELECT 
+		                        a.person_id,		
+		                        sh.admission_number,
+		                        p.surname,		
+		                        p.forename,
+		                        a.reference
+                          FROM sims.adm_application a
+			                        JOIN sims.stud_student s ON a.person_id = s.person_id
+			                        join 	sims.stud_school_history sh
+                                        on 	s.person_id = sh.person_id
+			                        JOIN sims.sims_person p ON s.person_id = p.person_id
+                          WHERE a.reference IN ("+ refValue + " )";
+            return sql;
+        }
 
         private static string PopulateSql()
         {

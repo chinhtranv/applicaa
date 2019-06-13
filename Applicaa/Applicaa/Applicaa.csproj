@@ -134,11 +134,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmClassMappingConfig.cs">
+    <Compile Include="FrmClassMappingConfigItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmClassMappingConfig.Designer.cs">
-      <DependentUpon>FrmClassMappingConfig.cs</DependentUpon>
+    <Compile Include="FrmClassMappingConfigItem.Designer.cs">
+      <DependentUpon>FrmClassMappingConfigItem.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmAdmissions.cs">
       <SubType>Form</SubType>
@@ -193,8 +193,8 @@
       <DependentUpon>FrmStudentSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="XmlHelper.cs" />
-    <EmbeddedResource Include="FrmClassMappingConfig.resx">
-      <DependentUpon>FrmClassMappingConfig.cs</DependentUpon>
+    <EmbeddedResource Include="FrmClassMappingConfigItem.resx">
+      <DependentUpon>FrmClassMappingConfigItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAdmissions.resx">
       <DependentUpon>FrmAdmissions.cs</DependentUpon>

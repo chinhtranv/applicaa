@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 using SIMS.Entities;
 using SIMS.Processes;
@@ -36,6 +37,12 @@ namespace SIMSInterface
         {           
             return StudentEx.GetStudentByCriteria(uln, upn, uci);
         }
+
+        public static List<StudentItem> GetStudentsByRef(List<string> refNumers)
+        {
+            return StudentEx.GetStudentsByRefernces(refNumers);
+        }
+       
 
         public static SimsResult UpdateStudentInfomation(int personId, ATfilePupil pupil)
         {

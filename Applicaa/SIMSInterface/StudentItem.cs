@@ -9,6 +9,7 @@ namespace SIMSInterface
         public string Forename { get; set; }
         public DateTime Dob { get; set; }
         public string AdmissionNumber { get; set; }
+        public string Reference { get; set; }
         public DateTime DateOfAdmission { get; set; }
         public DateTime DateOfLeaving { get; set; }
         public string Upn { get; set; }

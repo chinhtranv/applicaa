@@ -21,7 +21,8 @@ namespace Applicaa
             //Application.Run(new ClassMappingItem());
             //Application.Run(new FrmClassesConfiguration());
             //Application.Run(new FrmStudentSelection());
-            Application.Run(new FrmLogin());
+            Application.Run(new FrmImportStudents());
+            //Application.Run(new FrmLogin());
         }
     }
 }

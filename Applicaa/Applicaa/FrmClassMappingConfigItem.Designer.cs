@@ -1,6 +1,6 @@
 ﻿namespace Applicaa
 {
-    partial class FrmClassMappingConfig
+    partial class FrmClassMappingConfigItem
     {
         /// <summary>
         /// Required designer variable.

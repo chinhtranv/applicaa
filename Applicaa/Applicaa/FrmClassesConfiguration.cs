@@ -36,9 +36,9 @@ namespace Applicaa
         {
             var row = classMappingGrid.SelectedRows[0];
             var id = int.Parse(row.Cells["SimsClassId"].Value.ToString());
-            var frm = new FrmClassMappingConfig(id);
+            var frm = new FrmClassMappingConfigItem(id);
             frm.Show();
-            LoadClassesDataFromSims();
+            classMappingGrid.DataSource = MisCache.ClassesMapping;
         }
 
         private void btnNext_Click(object sender, EventArgs e)

@@ -13,14 +13,14 @@ using Common.RestApi;
 
 namespace Applicaa
 {
-    public partial class FrmClassMappingConfig : Form
+    public partial class FrmClassMappingConfigItem : Form
     {
         private int simsClassId;
-        public FrmClassMappingConfig()
+        public FrmClassMappingConfigItem()
         {
             InitializeComponent();
         }
-        public FrmClassMappingConfig(int id)
+        public FrmClassMappingConfigItem(int id)
         {
             InitializeComponent();
             simsClassId = id;
@@ -38,6 +38,7 @@ namespace Applicaa
             {
                 var selectedValue = cboAdmissionClasses.SelectedValue.ToString();
                 classMappingConfig.AdmissionClassId = Int32.Parse(selectedValue);
+                classMappingConfig.AdmissionClassName = cboAdmissionClasses.Text;
             }
                 
 
