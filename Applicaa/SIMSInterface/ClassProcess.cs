@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SIMS.Entities;
 using SIMS.Processes;
 
@@ -14,6 +15,14 @@ namespace SIMSInterface
 
     public class ClassProcess
     {
+
+        public static List<ClassesMappingItem> LoadClasses()
+        {
+            var scatter = new ExternalPopulation();
+            return scatter.LoadClasses();
+
+        }
+
         /// <summary>
         /// AttachClassToStudent
         /// </summary>

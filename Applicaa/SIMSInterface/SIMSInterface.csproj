@@ -205,6 +205,7 @@
     <Compile Include="Assessment.cs" />
     <Compile Include="Attendance.cs" />
     <Compile Include="CacheMessage.cs" />
+    <Compile Include="ClassesMappingItem.cs" />
     <Compile Include="ClassProcess.cs" />
     <Compile Include="CreateEntityResult.cs" />
     <Compile Include="DatabaseConfig.cs" />

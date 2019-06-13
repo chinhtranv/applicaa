@@ -19,8 +19,8 @@ namespace Applicaa
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            var frmStudentSelection = new FrmStudentSelection();
-            frmStudentSelection.Show();
+            var frmImportTypes = new FrmImportTypes();
+            frmImportTypes.Show();
             this.Hide();
         }
     }

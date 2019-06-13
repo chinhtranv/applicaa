@@ -25,6 +25,11 @@ namespace SIMSInterface
         
         public static List<CacheMessage> CacheMessages { get; set; }
 
+        public static List<ClassesMappingItem> LoadClasses()
+        {
+            PopulateCacheData();
+            return ClassProcess.LoadClasses();
+        }
        
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {

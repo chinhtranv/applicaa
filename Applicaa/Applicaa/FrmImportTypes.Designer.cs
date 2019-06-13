@@ -119,6 +119,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmImportTypes";
             this.Text = "Admission+";
+            this.Load += new System.EventHandler(this.FrmImportTypes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

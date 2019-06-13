@@ -30,10 +30,10 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.classMappingGrid = new System.Windows.Forms.DataGridView();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -54,16 +54,16 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Importing student data";
             // 
-            // dataGridView1
+            // classMappingGrid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(32, 115);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(740, 238);
-            this.dataGridView1.TabIndex = 5;
+            this.classMappingGrid.AllowUserToAddRows = false;
+            this.classMappingGrid.AllowUserToDeleteRows = false;
+            this.classMappingGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.classMappingGrid.Location = new System.Drawing.Point(32, 115);
+            this.classMappingGrid.Name = "classMappingGrid";
+            this.classMappingGrid.RowTemplate.Height = 24;
+            this.classMappingGrid.Size = new System.Drawing.Size(740, 238);
+            this.classMappingGrid.TabIndex = 5;
             // 
             // btnNext
             // 
@@ -90,12 +90,13 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.classMappingGrid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmClassesConfiguration";
             this.Text = "Admission+";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmClassesConfiguration_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,7 +106,7 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView classMappingGrid;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
     }

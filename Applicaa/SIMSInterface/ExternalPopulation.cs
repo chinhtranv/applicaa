@@ -109,7 +109,7 @@ namespace SIMSInterface
             }
         }
 
-        private System.Collections.Generic.SortedList<string, CurrStudentSummary> LoadStudents()
+        public System.Collections.Generic.SortedList<string, CurrStudentSummary> LoadStudents()
         {
             SIMS.Processes.CurrStudentBrowser sProcess = new SIMS.Processes.CurrStudentBrowser();
             CurrStudentSummarys studentList = sProcess.Browse("", "", null, null, null, null, null, null, null, DateTime.Today, false);
@@ -124,7 +124,33 @@ namespace SIMSInterface
 
         }
 
-        private System.Collections.Generic.SortedList<string, CurrSchemeSummary> LoadSchemes()
+        public  List<ClassesMappingItem> LoadClasses()
+        {
+            var groups = new List<CurrGroup>();
+            for (int s = 0; s < SIMS.Entities.CurrCache.Curriculum.GroupCount; s++)
+            {
+                CurrGroup group = SIMS.Entities.CurrCache.Curriculum.Group(s);
+                groups.Add(group);
+            }
+
+            var result = new List<ClassesMappingItem>();
+            const string classGroupType = "Class";
+            var classes = groups.Where(x => x.GroupType == classGroupType &&  x.BelongsToScheme != null).ToList();
+            result = classes.Select(x => new ClassesMappingItem
+            {
+                BaseGroupId = x.GroupID,
+                ClassName = x.ShortName,
+                SchemaName = x.BelongsToScheme.Scheme.Name,
+                SchemaType = x.BelongsToScheme.Scheme.SchemeType,
+                StartDate = x.BelongsToScheme.DateSet[0].Start,
+                EndDate = x.BelongsToScheme.DateSet[0].End
+                
+            }).ToList();
+
+            return result;
+        }
+
+        public System.Collections.Generic.SortedList<string, CurrSchemeSummary> LoadSchemes()
         {
             System.Collections.Generic.SortedList<string, CurrSchemeSummary> schemeDictionary = new System.Collections.Generic.SortedList<string, CurrSchemeSummary>();
             for (int s = 0; s < SIMS.Entities.CurrCache.Curriculum.SchemeCount; s++)
