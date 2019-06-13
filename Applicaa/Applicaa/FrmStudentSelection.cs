@@ -4,7 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Applicaa.Helper;
+using Common;
 using Common.DataModel;
+using Common.RestApi;
+using SIMSInterface;
+using JsonSerializer = RestSharp.Serialization.Json.JsonSerializer;
 
 namespace Applicaa
 {
@@ -17,19 +21,11 @@ namespace Applicaa
 
         public void LoadData()
         {
-            var students = new List<Student>();
-            for (int i = 0; i < 10; i++)
-            {
-                students.Add(new Student
-                {
-                    FirstName = "First name "+i,
-                    LastName = "Last name "+i,
-                    SchoolName = "School name "+i,
-                    Age = 10 + i,
-                    Selected = true
-                });
-            }
-            studentsGrid.DataSource = students;
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var client = new AdmissionStudentsClient(serializer, errorLogger);
+            var students = client.GetStudents(MisCache.UserEmail, MisCache.UserToken);
+            studentsGrid.DataSource = students.Where(x=> !string.IsNullOrEmpty(x.class_list)).ToList();
         }
 
         public void GetSelectedItems()
@@ -37,20 +33,16 @@ namespace Applicaa
             var selectedStudent = new List<Student>();
             foreach (DataGridViewRow row in studentsGrid.Rows)
             {
-               
+
                 var selected = row.Cells[SelectColumnIndex] as DataGridViewCheckBoxCell;
-                if ((bool) selected.Value)
+                if ((bool)selected.Value)
                 {
-                    var firstName = row.Cells[FirstNameColumnIndex] as DataGridViewTextBoxCell;
-                    var lastName = row.Cells[LastNameColumnIndex] as DataGridViewTextBoxCell;
-                    var schoolName = row.Cells[SchoolNameColumnIndex] as DataGridViewTextBoxCell;
-                    var age = row.Cells[AgeColumnIndex] as DataGridViewTextBoxCell;
+                    var idCell = row.Cells[IdColumnIndex] as DataGridViewTextBoxCell;
+                    
                     selectedStudent.Add(new Student
                     {
-                        FirstName = firstName?.Value.ToString(),
-                        LastName = lastName?.Value.ToString(),
-                        SchoolName = schoolName?.Value.ToString(),
-                        Age = age == null? 0 : int.Parse(age.Value.ToString())
+                        Id = int.Parse(idCell?.Value.ToString()),
+                       
                     });
                 }
             }
@@ -66,7 +58,7 @@ namespace Applicaa
         private void StudentSelection_Load(object sender, EventArgs e)
         {
             studentsGrid.AutoGenerateColumns = false;
-            studentsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //studentsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //AddCheckboxHeader();
             LoadData();
         }
@@ -74,11 +66,10 @@ namespace Applicaa
 
         #region Header select columns
 
-        private const int FirstNameColumnIndex = 0;
+        private const int IdColumnIndex = 0;
         private const int LastNameColumnIndex = 1;
-        private const int SchoolNameColumnIndex = 2;
         private const int AgeColumnIndex = 3;
-        private const int SelectColumnIndex = 4;
+        private const int SelectColumnIndex = 5;
 
         private void AddCheckboxHeader()
         {

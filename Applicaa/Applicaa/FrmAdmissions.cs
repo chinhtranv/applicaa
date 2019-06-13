@@ -137,7 +137,7 @@ namespace Applicaa
                     ValidationResult pupilValidatorResult = pupilATfilePupiValidator.Validate(atfPupil);
                     if (!pupilValidatorResult.IsValid)
                     {
-                        strError.AppendLine("Student " + atfPupil.Forename + " " + atfPupil.Surname + " validation failed ...");
+                        strError.AppendLine("GridStudentItem " + atfPupil.Forename + " " + atfPupil.Surname + " validation failed ...");
                         int index = 1;
                         foreach (var failure in pupilValidatorResult.Errors)
                         {
@@ -151,7 +151,7 @@ namespace Applicaa
 
                 if (flag)
                 {
-                    strError.AppendLine("Student has no error..");
+                    strError.AppendLine("GridStudentItem has no error..");
                 }
             }
 

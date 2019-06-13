@@ -33,13 +33,13 @@ namespace SIMSInterface
             
             editProcess.Student.SENNeeds.Add(newNeed);
             editProcess.Student.SENStatusStartDate = DateTime.Now;
-            //editProcess.Student.SENProvisions.Add(new SENProvision
+            //editProcess.GridStudentItem.SENProvisions.Add(new SENProvision
             //{
             //    ProvisionType = (SENProvisionType) provisionTypes.Item(0)
             //});
             
             editProcess.Student.SENStatus = GroupCache.SENStatuses.Item(0);
-            //editSENStudent.Student.SENNeeds = 
+            //editSENStudent.GridStudentItem.SENNeeds = 
 
             //editSENStudent.SENStatusHistoryLogs?.Add(new SENStatusHistory
             //{
@@ -114,23 +114,23 @@ namespace SIMSInterface
  *
  *   private void bindControlsToAttributes()
    {
-     this.setAttribute((ISIMSControl) this.comboBoxStatus, (AbstractAttribute) this.editProcess.Student.SENStatusAttribute);
-     this.setAttribute((ISIMSControl) this.comboBoxCurriculumandTeachingMethods, (AbstractAttribute) this.editProcess.Student.CurriculumTeachingMethodAttribute);
-     this.setAttribute((ISIMSControl) this.comboBoxGroupingandSupport, (AbstractAttribute) this.editProcess.Student.GroupingSupportAttribute);
-     this.setAttribute((ISIMSControl) this.comboBoxSpecialisedResources, (AbstractAttribute) this.editProcess.Student.SpecialisedResourcesAttribute);
-     this.setAttribute((ISIMSControl) this.comboBoxAdviceandAssessment, (AbstractAttribute) this.editProcess.Student.AdviceAsessmentAttribute);
-     this.setAttribute((ISIMSControl) this.textBoxStatusStartDate, (AbstractAttribute) this.editProcess.Student.SENStatusStartDateAttribute);
-     this.setAttribute((ISIMSControl) this.maintainedListViewOverview, (AbstractAttribute) this.editProcess.Student.SENOverviews);
-     this.setAttribute((ISIMSControl) this.maintainedListViewNeeds, (AbstractAttribute) this.editProcess.Student.SENNeeds);
-     this.setAttribute((ISIMSControl) this.maintainedListViewEvents, (AbstractAttribute) this.editProcess.Student.SENEvents);
-     this.setAttribute((ISIMSControl) this.maintainedListViewReviews, (AbstractAttribute) this.editProcess.Student.SENReviews);
-     this.setAttribute((ISIMSControl) this.maintainedListViewStatements, (AbstractAttribute) this.editProcess.Student.SENStatements);
-     this.setAttribute((ISIMSControl) this.maintainedListViewEHCPs, (AbstractAttribute) this.editProcess.Student.EHCPs);
-     this.setAttribute((ISIMSControl) this.maintainedListViewIEPs, (AbstractAttribute) this.editProcess.Student.SENIEPs);
-     this.setAttribute((ISIMSControl) this.maintainedListViewProvisions, (AbstractAttribute) this.editProcess.Student.SENProvisions);
-     this.setAttribute((ISIMSControl) this.documentListViewFullDescs, (AbstractAttribute) new IDocumentLinkedEntityAttribute((IDocumentLinkedEntity) this.editProcess.Student.FullDescriptions));
+     this.setAttribute((ISIMSControl) this.comboBoxStatus, (AbstractAttribute) this.editProcess.GridStudentItem.SENStatusAttribute);
+     this.setAttribute((ISIMSControl) this.comboBoxCurriculumandTeachingMethods, (AbstractAttribute) this.editProcess.GridStudentItem.CurriculumTeachingMethodAttribute);
+     this.setAttribute((ISIMSControl) this.comboBoxGroupingandSupport, (AbstractAttribute) this.editProcess.GridStudentItem.GroupingSupportAttribute);
+     this.setAttribute((ISIMSControl) this.comboBoxSpecialisedResources, (AbstractAttribute) this.editProcess.GridStudentItem.SpecialisedResourcesAttribute);
+     this.setAttribute((ISIMSControl) this.comboBoxAdviceandAssessment, (AbstractAttribute) this.editProcess.GridStudentItem.AdviceAsessmentAttribute);
+     this.setAttribute((ISIMSControl) this.textBoxStatusStartDate, (AbstractAttribute) this.editProcess.GridStudentItem.SENStatusStartDateAttribute);
+     this.setAttribute((ISIMSControl) this.maintainedListViewOverview, (AbstractAttribute) this.editProcess.GridStudentItem.SENOverviews);
+     this.setAttribute((ISIMSControl) this.maintainedListViewNeeds, (AbstractAttribute) this.editProcess.GridStudentItem.SENNeeds);
+     this.setAttribute((ISIMSControl) this.maintainedListViewEvents, (AbstractAttribute) this.editProcess.GridStudentItem.SENEvents);
+     this.setAttribute((ISIMSControl) this.maintainedListViewReviews, (AbstractAttribute) this.editProcess.GridStudentItem.SENReviews);
+     this.setAttribute((ISIMSControl) this.maintainedListViewStatements, (AbstractAttribute) this.editProcess.GridStudentItem.SENStatements);
+     this.setAttribute((ISIMSControl) this.maintainedListViewEHCPs, (AbstractAttribute) this.editProcess.GridStudentItem.EHCPs);
+     this.setAttribute((ISIMSControl) this.maintainedListViewIEPs, (AbstractAttribute) this.editProcess.GridStudentItem.SENIEPs);
+     this.setAttribute((ISIMSControl) this.maintainedListViewProvisions, (AbstractAttribute) this.editProcess.GridStudentItem.SENProvisions);
+     this.setAttribute((ISIMSControl) this.documentListViewFullDescs, (AbstractAttribute) new IDocumentLinkedEntityAttribute((IDocumentLinkedEntity) this.editProcess.GridStudentItem.FullDescriptions));
      this.documentListViewFullDescs.InfomationDomain = InformationDomainEnum.SencoBasic;
-     this.setAttribute((ISIMSControl) this.SENdocumentListControl, (AbstractAttribute) new IDocumentLinkedEntityAttribute((IDocumentLinkedEntity) this.editProcess.Student.FullDescriptions));
+     this.setAttribute((ISIMSControl) this.SENdocumentListControl, (AbstractAttribute) new IDocumentLinkedEntityAttribute((IDocumentLinkedEntity) this.editProcess.GridStudentItem.FullDescriptions));
      this.RefreshGiftsandTalentsListview();
    }
  *

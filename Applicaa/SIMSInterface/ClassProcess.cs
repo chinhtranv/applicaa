@@ -114,7 +114,7 @@ namespace SIMSInterface
                         if (stud.FullName == studentName) existingStudent = schemeStudents.StudentByID(stud.ID);
                     }
 
-                    //check that the Student exists
+                    //check that the GridStudentItem exists
                     if (existingStudent != null)
                     {
                         //find the required group - by name

@@ -42,7 +42,6 @@ namespace Applicaa
                 {
                     FirstName = "First name ",
                     LastName = "Last name " + i,
-                    SchoolName = "School name " + i,
                     Age = 10 + i,
                     Selected = true
                 });

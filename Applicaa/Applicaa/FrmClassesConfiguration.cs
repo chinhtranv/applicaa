@@ -40,5 +40,10 @@ namespace Applicaa
             frm.Show();
 
         }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace SIMSInterface
             PopulateCacheData();
             return ClassProcess.LoadClasses();
         }
-       
+        
         public static List<CreateEntityResult> CreateApplicants(ATfilePupil[] pupils, ATfileHeader header)
         {
             var entityResults = new List<CreateEntityResult>();
@@ -201,22 +201,22 @@ namespace SIMSInterface
             //var language = (LanguageSource) GroupCache.LanguageSources.ItemByCode(pupil.BasicDetails.Languages[0].LanguageType);
 
             var schoolHistory = PopulateSchoolHistory(pupil, enrollmentMode);
-            if(schoolHistory.Count == 0) Log.Info("Student has NO school history");
+            if(schoolHistory.Count == 0) Log.Info("GridStudentItem has NO school history");
 
             var disability = PopulateStudentDisabilities(pupil, person);
-            if (disability.Count == 0) Log.Info("Student has NO disability");
+            if (disability.Count == 0) Log.Info("GridStudentItem has NO disability");
 
             var freeSchoolMeals = PopulateFreeSchoolMeals(pupil);
-            if (freeSchoolMeals.Count == 0) Log.Info("Student has NO freeSchoolMeals");
+            if (freeSchoolMeals.Count == 0) Log.Info("GridStudentItem has NO freeSchoolMeals");
 
             var emails = PopulateEMail(pupil, person);
-            if(emails.Value.Count == 0) Log.Info("Student has NO emails");
+            if(emails.Value.Count == 0) Log.Info("GridStudentItem has NO emails");
 
             var phones = PopulateTelephone(pupil, person);
-            if (phones.Value.Count == 0) Log.Info("Student has NO phones");
+            if (phones.Value.Count == 0) Log.Info("GridStudentItem has NO phones");
 
             var residence = PopulateAddress(pupil);
-            if (residence.Count == 0) Log.Info("Student has NO residence");
+            if (residence.Count == 0) Log.Info("GridStudentItem has NO residence");
 
             var countryOfBirthValue = PopulateCountryOfBirth(pupil);
            
@@ -348,7 +348,7 @@ namespace SIMSInterface
             var result = new List<CreateEntityResult>();
             if (pupil.Classes == null || !pupil.Classes.Any())
             {
-                Log.Info("Student has NO classes");
+                Log.Info("GridStudentItem has NO classes");
                 return result;
             }
 

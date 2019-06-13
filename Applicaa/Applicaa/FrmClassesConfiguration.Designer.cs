@@ -75,6 +75,7 @@
             this.btnNext.TabIndex = 6;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnBack
             // 
@@ -91,7 +92,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 29);
             this.button1.TabIndex = 7;
-            this.button1.Text = "Edit";
+            this.button1.Text = "Config ...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

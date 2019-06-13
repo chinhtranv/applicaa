@@ -52,7 +52,7 @@ namespace SIMSInterface
             if (!string.IsNullOrEmpty(pupil.UPN))
             {
                 editStudentInformation.Student.IssueUPN = UPNEnum.Permanent; //hackfor dumpData 
-                //editStudentInformation.Student.UPN = "A123456789012";            
+                //editStudentInformation.GridStudentItem.UPN = "A123456789012";            
                 editStudentInformation.Student.UPN = pupil.UPN;
             }
             editStudentInformation.Student.FSMReviewDateAttribute.IsNull = true;
@@ -71,7 +71,7 @@ namespace SIMSInterface
             else
             {
                 success = false;
-                message = "Student validation failed ...";
+                message = "GridStudentItem validation failed ...";
             }
 
             if (success)
