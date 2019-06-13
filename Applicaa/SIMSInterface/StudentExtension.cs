@@ -90,3 +90,21 @@ namespace SIMSInterface
         }
     }
 }
+/*
+ *  SELECT 
+		a.person_id,		
+		sh.admission_number,
+		p.surname,		
+		p.forename,
+		a.reference
+  FROM sims.adm_application a
+			JOIN sims.stud_student s ON a.person_id = s.person_id
+			join 	sims.stud_school_history sh
+                on 	s.person_id = sh.person_id
+			JOIN sims.sims_person p ON s.person_id = p.person_id
+  WHERE a.reference IN ('999-2018-09-K-000104',
+						 '999-2018-09-K-000116',
+						 '999-2018-09-K-001452',
+						 '999-2018-09-K-000714')
+ *
+ */
