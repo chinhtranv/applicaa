@@ -85,6 +85,7 @@
             this.btnBack.TabIndex = 6;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // button1
             // 
@@ -108,6 +109,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmClassesConfiguration";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";
             this.Load += new System.EventHandler(this.FrmClassesConfiguration_Load);
             ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).EndInit();

@@ -38,8 +38,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClassName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtAdmissionClassCode = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -127,23 +125,7 @@
             this.txtClassName.Size = new System.Drawing.Size(266, 22);
             this.txtClassName.TabIndex = 1;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(38, 284);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Admission class code";
-            // 
-            // txtAdmissionClassCode
-            // 
-            this.txtAdmissionClassCode.Location = new System.Drawing.Point(192, 284);
-            this.txtAdmissionClassCode.Name = "txtAdmissionClassCode";
-            this.txtAdmissionClassCode.Size = new System.Drawing.Size(266, 22);
-            this.txtAdmissionClassCode.TabIndex = 1;
-            // 
-            // FrmClassMappingConfig
+            // FrmClassMappingConfigItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,14 +135,12 @@
             this.Controls.Add(this.cboAdmissionClasses);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtClassName);
-            this.Controls.Add(this.txtAdmissionClassCode);
             this.Controls.Add(this.txtSchemaType);
             this.Controls.Add(this.txtSimsClassId);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FrmClassMappingConfig";
+            this.Name = "FrmClassMappingConfigItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Admission+";
             this.Load += new System.EventHandler(this.ClassMappingItem_Load);
@@ -181,7 +161,5 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtClassName;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtAdmissionClassCode;
     }
 }

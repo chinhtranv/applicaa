@@ -40,8 +40,19 @@ namespace Applicaa
                 classMappingConfig.AdmissionClassId = Int32.Parse(selectedValue);
                 classMappingConfig.AdmissionClassName = cboAdmissionClasses.Text;
             }
-                
 
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var cache = new InMemoryCache();
+            var client = new AdmissionClassesClient(cache, serializer, errorLogger);
+            //(string email, string token, int clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
+            int classId = classMappingConfig.AdmissionClassId.Value;
+            string name = classMappingConfig.AdmissionClassName;
+            
+            string simsClassName = txtClassName.Text;
+            string simsClassSchemaType = txtSchemaType.Text;
+
+            var classes = client.UpdateClassConfig(MisCache.UserEmail, MisCache.UserToken, classId, name, simsClassId, simsClassName, simsClassSchemaType);
 
             this.Hide();
         }
@@ -68,7 +79,6 @@ namespace Applicaa
             if (classMappingConfig.AdmissionClassId != null)
             {
                 cboAdmissionClasses.SelectedValue = classMappingConfig.AdmissionClassId;
-                txtAdmissionClassCode.Text = classMappingConfig.AdmissionClassCode;
             }
             
         }
@@ -86,7 +96,7 @@ namespace Applicaa
 #endif
             var classes = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
             cboAdmissionClasses.DataSource = classes;
-            cboAdmissionClasses.DisplayMember = "displayName";
+            cboAdmissionClasses.DisplayMember = "name";
             cboAdmissionClasses.ValueMember = "id";
         }
 

@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DataModel\ClassesMappingItem.cs" />
+    <Compile Include="DataModel\ClassMappingResponse.cs" />
     <Compile Include="DataModel\ClassResponse.cs" />
     <Compile Include="DataModel\GridStudentItem.cs" />
     <Compile Include="DataModel\StudentResponse.cs" />

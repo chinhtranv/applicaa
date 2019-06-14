@@ -22,6 +22,5 @@ namespace SIMSInterface
 
         public string AdmissionClassName { get; set; }
 
-        public string AdmissionClassCode { get; set; }
     }
 }

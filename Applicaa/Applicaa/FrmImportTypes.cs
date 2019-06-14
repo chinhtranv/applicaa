@@ -13,7 +13,10 @@ namespace Applicaa
 
         private void button2_Click(object sender, EventArgs e)
         {
+            var frm = new FrmHome();
+            frm.Show();
 
+            this.Hide();
         }
 
         /// <summary>

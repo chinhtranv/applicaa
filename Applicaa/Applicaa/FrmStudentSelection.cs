@@ -118,5 +118,13 @@ namespace Applicaa
             this.Hide();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmClassesConfiguration();
+            frm.Show();
+
+            this.Hide();
+        }
     }
 }

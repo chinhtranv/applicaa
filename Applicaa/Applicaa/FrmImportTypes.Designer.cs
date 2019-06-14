@@ -118,6 +118,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmImportTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";
             this.Load += new System.EventHandler(this.FrmImportTypes_Load);
             this.ResumeLayout(false);
