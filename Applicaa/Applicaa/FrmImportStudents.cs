@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Common;
 using SIMS.Entities;
@@ -43,6 +44,10 @@ namespace Applicaa
         {
             List<StudentItem> students = GetStudents();
             int i = 0;
+            if (obj.classes == null)
+            {
+                obj.classes = new List<ClassWorkerItem>();
+            }
             foreach (StudentItem student in students)
             {
                 obj.Name = student.first_name + " " + student.last_name;
@@ -54,22 +59,26 @@ namespace Applicaa
                 {
                     admissionNumber = studentReferenceMapping[referenceNumber];
                 }
-                obj.classes = new List<ClassWorkerItem>();
+                obj.classes.Clear();
                 //loop each class of student
                 foreach (var classItem in student.clazzs)
                 {
                     var classworkerItem = new ClassWorkerItem();
                     int admissionClassId = classItem.id;
                     var classMappingConfig = MisCache.ClassesMapping.FirstOrDefault(x => x.AdmissionClassId == admissionClassId);
+                    
+
                     classworkerItem.className = admissionClassId + " - " + classItem.name + "-" + classItem.code;
                     if (classMappingConfig != null)
                     {
+                        var simsClassName = classMappingConfig.SchemaType + " - " + classMappingConfig.SchemaName + " - " + classMappingConfig.ClassName;
+                        classworkerItem.className += " - SIMS class :  (" + simsClassName + ") ";
                         SimsResult addClassResult = ClassProcess.AttachClassToStudent(classMappingConfig.SchemaType, classMappingConfig.SchemaName, admissionNumber, classMappingConfig.ClassName);
                         classworkerItem.result = addClassResult;
                     }
                     else
                     {
-                        classworkerItem.message = "class : " + classworkerItem.className + " is not config ";
+                        classworkerItem.message = "FAILED: class [" + classworkerItem.className + "]  is not config in class mapping.";
                     }
                     obj.classes.Add(classworkerItem);
                 }
@@ -77,7 +86,7 @@ namespace Applicaa
 
                 backgroundWorker1.ReportProgress(i, obj);
                 i++;
-                //Thread.Sleep(100);
+                Thread.Sleep(100);
             }
             
         }
@@ -88,9 +97,10 @@ namespace Applicaa
             {
                 var obj = (MyWorkerClass) e.UserState;
                 txtLogging.AppendText("\n");
-                txtLogging.AppendText(obj.PersonId + " - " +obj.Name + " processed ...");
+                txtLogging.AppendText(" --- "+obj.PersonId + " - " +obj.Name + " processed ...");
                 foreach (var clsItem in obj.classes)
                 {
+                    txtLogging.AppendText("\n");
                     if (!string.IsNullOrEmpty(clsItem.message))
                     {
                         txtLogging.AppendText(clsItem.message);
@@ -98,7 +108,7 @@ namespace Applicaa
 
                     if (clsItem.result != null)
                     {
-                        txtLogging.AppendText("Import class " + clsItem.className + clsItem.result.Status);
+                        txtLogging.AppendText("Import class " + clsItem.className +" is "+ clsItem.result.Status);
                         if (string.IsNullOrEmpty(clsItem.result.Message))
                         {
                             txtLogging.AppendText(clsItem.result.Message);

@@ -103,6 +103,7 @@
     <Compile Include="Log.cs" />
     <Compile Include="MisIntergration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestApi\AdmissionClassMappingClient.cs" />
     <Compile Include="RestApi\AdmissionStudentsClient.cs" />
     <Compile Include="RestApi\AdmissionClassesClient.cs" />
     <Compile Include="RestApi\AdmissionLoginClient.cs" />
