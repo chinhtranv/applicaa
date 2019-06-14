@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>applicaa_symbol_z2F_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BaseInterfaces">
       <HintPath>C:\Program Files (x86)\SIMS\SIMS .net\BaseInterfaces.dll</HintPath>
@@ -258,7 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admission.png" />
-    <Content Include="applicaa_symbol_z2F_icon.ico" />
+    <Content Include="applicaa_symbol_z2F_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
