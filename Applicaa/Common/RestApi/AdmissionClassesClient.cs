@@ -26,7 +26,7 @@ namespace Common.RestApi
             request.AddQueryParameter("query", query);
             const string cacheKey = "AdmissionClassesCacheKey";
 
-            var data= GetFromCache<ClassResponse>(request , cacheKey);
+            var data= Get<ClassResponse>(request);
             if (data != null)
             {
                 result = data.data.clazzs;
@@ -52,7 +52,7 @@ namespace Common.RestApi
             request.AddQueryParameter("query", mutuation);
             const string cacheKey = "AdmissionClassesCacheKey";
 
-            var data = GetFromCache<ClassResponse>(request, cacheKey);
+            var data = Get<ClassResponse>(request);
             if (data != null)
             {
                 result = data.data.clazzs;

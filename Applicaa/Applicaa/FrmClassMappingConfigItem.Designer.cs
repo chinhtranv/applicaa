@@ -141,7 +141,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmClassMappingConfigItem";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";
             this.Load += new System.EventHandler(this.ClassMappingItem_Load);
             this.ResumeLayout(false);
