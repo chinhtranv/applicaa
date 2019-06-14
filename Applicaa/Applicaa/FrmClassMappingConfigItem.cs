@@ -86,7 +86,7 @@ namespace Applicaa
 #endif
             var classes = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
             cboAdmissionClasses.DataSource = classes;
-            cboAdmissionClasses.DisplayMember = "name";
+            cboAdmissionClasses.DisplayMember = "displayName";
             cboAdmissionClasses.ValueMember = "id";
         }
 

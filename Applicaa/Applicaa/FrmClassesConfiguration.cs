@@ -43,7 +43,10 @@ namespace Applicaa
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+            var frm= new FrmStudentSelection();
+            frm.Show();
 
+            this.Hide();
         }
     }
 }

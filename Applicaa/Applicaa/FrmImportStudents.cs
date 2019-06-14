@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
-using Applicaa.Helper;
 using Common;
+using SIMS.Entities;
 using SIMSInterface;
 using StudentItem = Common.DataModel.StudentItem;
 
@@ -14,6 +13,8 @@ namespace Applicaa
     {
 
         int TotalRecords;
+        private Dictionary<string, string> studentReferenceMapping;
+
         public FrmImportStudents()
         {
             InitializeComponent();
@@ -22,28 +23,7 @@ namespace Applicaa
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            //WHERE a.reference IN('999-2018-09-K-000104',
-            //    '999-2018-09-K-000116',
-            //    '999-2018-09-K-001452',
-            //    '999-2018-09-K-000714' )
-
-            var student = Students.GetStudentsByRef(new List<string>()
-            {
-                "999-2018-09-K-000104",
-                "999-2018-09-K-000116",
-                "999-2018-09-K-001452",
-                "999-2018-09-K-000714"
-            });
-            return;
-            var obj = new MyWorkerClass();
-            if (!backgroundWorker1.IsBusy)
-            {
-                TotalRecords = GetStudents().Count;
-                progressBar1.Maximum = TotalRecords;
-                backgroundWorker1.RunWorkerAsync(obj);
-                btnFinish.Enabled = false;
-                btnFinish.Text = "Processing ...";
-            }
+            Application.Exit();
         }
 
         public List<StudentItem> GetStudents()
@@ -67,12 +47,37 @@ namespace Applicaa
             {
                 obj.Name = student.first_name + " " + student.last_name;
                 obj.PersonId = student.id;
-
-                //var addClassResult = ClassProcess.AttachClassToStudent(studentClass.SchemaType, studentClass.SchemaName, admisionNumber, studentClass.ClassName);
+                var referenceNumber = student.application_reference_number;
+                string admissionNumber = string.Empty;
+                
+                if (studentReferenceMapping.ContainsKey(referenceNumber))
+                {
+                    admissionNumber = studentReferenceMapping[referenceNumber];
+                }
+                obj.classes = new List<ClassWorkerItem>();
+                //loop each class of student
+                foreach (var classItem in student.clazzs)
+                {
+                    var classworkerItem = new ClassWorkerItem();
+                    int admissionClassId = classItem.id;
+                    var classMappingConfig = MisCache.ClassesMapping.FirstOrDefault(x => x.AdmissionClassId == admissionClassId);
+                    classworkerItem.className = admissionClassId + " - " + classItem.name + "-" + classItem.code;
+                    if (classMappingConfig != null)
+                    {
+                        SimsResult addClassResult = ClassProcess.AttachClassToStudent(classMappingConfig.SchemaType, classMappingConfig.SchemaName, admissionNumber, classMappingConfig.ClassName);
+                        classworkerItem.result = addClassResult;
+                    }
+                    else
+                    {
+                        classworkerItem.message = "class : " + classworkerItem.className + " is not config ";
+                    }
+                    obj.classes.Add(classworkerItem);
+                }
+                
 
                 backgroundWorker1.ReportProgress(i, obj);
                 i++;
-                Thread.Sleep(100);
+                //Thread.Sleep(100);
             }
             
         }
@@ -83,7 +88,29 @@ namespace Applicaa
             {
                 var obj = (MyWorkerClass) e.UserState;
                 txtLogging.AppendText("\n");
-                txtLogging.AppendText(obj.Name + " processed ...");
+                txtLogging.AppendText(obj.PersonId + " - " +obj.Name + " processed ...");
+                foreach (var clsItem in obj.classes)
+                {
+                    if (!string.IsNullOrEmpty(clsItem.message))
+                    {
+                        txtLogging.AppendText(clsItem.message);
+                    }
+
+                    if (clsItem.result != null)
+                    {
+                        txtLogging.AppendText("Import class " + clsItem.className + clsItem.result.Status);
+                        if (string.IsNullOrEmpty(clsItem.result.Message))
+                        {
+                            txtLogging.AppendText(clsItem.result.Message);
+                        }
+
+                        if (clsItem.result.Errors != null)
+                        {
+                            string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                            txtLogging.AppendText(validationError);
+                        }
+                    }
+                }
                 progressBar1.Value = e.ProgressPercentage;
                 lblTotalRows.Text = @"Students processed : " + e.ProgressPercentage + 1;
 
@@ -94,7 +121,23 @@ namespace Applicaa
         {
             lblTotalRows.Text = "All data proceessed !";
             btnFinish.Enabled = true;
-            btnFinish.Text = "Finish";
+            btnFinish.Text = "Close";
+        }
+
+        private void FrmImportStudents_Load(object sender, EventArgs e)
+        {
+            var references = MisCache.SelectedStudents.Select(x => x.Reference).ToList();
+            studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v.AdmissionNumber);
+
+            var obj = new MyWorkerClass();
+            if (!backgroundWorker1.IsBusy)
+            {
+                TotalRecords = GetStudents().Count;
+                progressBar1.Maximum = TotalRecords;
+                backgroundWorker1.RunWorkerAsync(obj);
+                btnFinish.Enabled = false;
+                btnFinish.Text = "Processing ...";
+            }
         }
     }
 
@@ -104,5 +147,13 @@ namespace Applicaa
     {
         public string Name;
         public int PersonId;
+        public List<ClassWorkerItem> classes;
+    }
+
+    public class ClassWorkerItem
+    {
+        public string message;
+        public string className;
+        public SimsResult result;
     }
 }

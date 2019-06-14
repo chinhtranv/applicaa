@@ -39,11 +39,12 @@ namespace Applicaa
                 if ((bool)selected.Value)
                 {
                     var idCell = row.Cells[IdColumnIndex] as DataGridViewTextBoxCell;
+                    var refCell = row.Cells[ReferenceColumnIndex] as DataGridViewTextBoxCell;
                     
                     selectedStudent.Add(new Student
                     {
                         Id = int.Parse(idCell?.Value.ToString()),
-                       
+                        Reference = refCell?.Value.ToString()
                     });
                 }
             }
@@ -68,6 +69,7 @@ namespace Applicaa
         #region Header select columns
 
         private const int IdColumnIndex = 0;
+        private const int ReferenceColumnIndex = 4;
         private const int LastNameColumnIndex = 1;
         private const int AgeColumnIndex = 3;
         private const int SelectColumnIndex = 6;

@@ -33,6 +33,33 @@ namespace SIMSInterface
         /// <param name="className"></param>
         public static SimsResult AttachClassToStudent(string schemeType,string schemaName, string admissionNumber, string className)
         {
+            if (string.IsNullOrEmpty(admissionNumber))
+            {
+                return new SimsResult
+                {
+                    Status = Status.Failed,
+                    Message = "admissionNumber is empty"
+                };
+            }
+
+            if (string.IsNullOrEmpty(schemeType))
+            {
+                return new SimsResult
+                {
+                    Status = Status.Failed,
+                    Message = "schemeType is empty"
+                };
+            }
+
+            if (string.IsNullOrEmpty(className))
+            {
+                return new SimsResult
+                {
+                    Status = Status.Failed,
+                    Message = "className is empty"
+                };
+            }
+
             var scatter = new ExternalPopulation();
             string messages = string.Empty;
             bool success = false;

@@ -20,6 +20,14 @@ namespace Common.DataModel
         public string name { get; set; }
         public string code { get; set; }
 
+        public string displayName
+        {
+            get
+            {
+                return name + " - "+code;
+            }
+        }
+
         public int? course_id { get; set; }
         public int? school_year_id { get; set; }
 
