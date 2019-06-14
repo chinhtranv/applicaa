@@ -25,6 +25,19 @@ namespace Applicaa
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(txtUserName.Text))
+            {
+                MessageBoxHelper.ShowError("Please enter the username ...");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBoxHelper.ShowError("Please enter the password ...");
+                return;
+            }
+
             btnLogin.Enabled = false;
             var serializer = new JsonSerializer();
             var errorLogger = new ErrorLogger();

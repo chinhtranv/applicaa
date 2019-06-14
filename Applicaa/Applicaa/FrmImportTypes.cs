@@ -11,6 +11,11 @@ namespace Applicaa
             InitializeComponent();
         }
 
+        /// <summary>
+        /// BACK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             var frm = new FrmHome();
@@ -26,6 +31,7 @@ namespace Applicaa
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            btnNext.Enabled = false;
             MisCache.IsImportClasses = chkClassess.Checked;
 
             var frmClassesConfiguration = new FrmClassesConfiguration();

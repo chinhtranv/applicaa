@@ -88,7 +88,7 @@ namespace Applicaa
             //MisCache.UserEmail = "admin@applicaa.com";
             //MisCache.UserEmail = "VyQ8QsNGJB-XPrLawz6hf7zfX3ZyKTes";
 #endif
-            var classes = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
+            var classes = client.GetCachedClasses(MisCache.UserEmail, MisCache.UserToken);
             cboAdmissionClasses.DataSource = classes;
             cboAdmissionClasses.DisplayMember = "name";
             cboAdmissionClasses.ValueMember = "id";

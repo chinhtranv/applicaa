@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using Applicaa.Helper;
 using Common;
 using SIMS.Entities;
 using SIMSInterface;
@@ -132,13 +133,19 @@ namespace Applicaa
             lblTotalRows.Text = "All data proceessed !";
             btnFinish.Enabled = true;
             btnFinish.Text = "Close";
+            Log.Info(txtLogging.Text);
         }
 
         private void FrmImportStudents_Load(object sender, EventArgs e)
         {
             var references = MisCache.SelectedStudents.Select(x => x.Reference).ToList();
             studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v.AdmissionNumber);
-
+            if (!studentReferenceMapping.Any())
+            {
+                MessageBoxHelper.ShowError("System can not mapp student by aplication reference number");
+                btnFinish.Enabled = false;
+                return;
+            }
             var obj = new MyWorkerClass();
             if (!backgroundWorker1.IsBusy)
             {

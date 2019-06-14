@@ -96,7 +96,6 @@
     </Compile>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DataModel\ClassesMappingItem.cs" />
-    <Compile Include="DataModel\ClassMappingResponse.cs" />
     <Compile Include="DataModel\ClassResponse.cs" />
     <Compile Include="DataModel\GridStudentItem.cs" />
     <Compile Include="DataModel\StudentResponse.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="Log.cs" />
     <Compile Include="MisIntergration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestApi\AdmissionClassMappingClient.cs" />
     <Compile Include="RestApi\AdmissionStudentsClient.cs" />
     <Compile Include="RestApi\AdmissionClassesClient.cs" />
     <Compile Include="RestApi\AdmissionLoginClient.cs" />
