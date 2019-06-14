@@ -34,6 +34,7 @@
             this.btnFinish = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lblTotalRows = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -84,17 +85,28 @@
             // lblTotalRows
             // 
             this.lblTotalRows.AutoSize = true;
-            this.lblTotalRows.Location = new System.Drawing.Point(20, 421);
+            this.lblTotalRows.Location = new System.Drawing.Point(167, 421);
             this.lblTotalRows.Name = "lblTotalRows";
             this.lblTotalRows.Size = new System.Drawing.Size(46, 17);
             this.lblTotalRows.TabIndex = 5;
             this.lblTotalRows.Text = "label2";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(23, 403);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(115, 35);
+            this.btnBack.TabIndex = 6;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // FrmImportStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 457);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblTotalRows);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.txtLogging);
@@ -117,5 +129,6 @@
         private System.Windows.Forms.Button btnFinish;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lblTotalRows;
+        private System.Windows.Forms.Button btnBack;
     }
 }

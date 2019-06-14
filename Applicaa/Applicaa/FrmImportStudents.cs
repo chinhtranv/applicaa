@@ -142,7 +142,7 @@ namespace Applicaa
             studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v.AdmissionNumber);
             if (!studentReferenceMapping.Any())
             {
-                MessageBoxHelper.ShowError("System can not mapp student by aplication reference number");
+                MessageBoxHelper.ShowError("System can not mapp student by aplication reference number. Please accept/admit your application");
                 btnFinish.Enabled = false;
                 return;
             }
@@ -155,6 +155,14 @@ namespace Applicaa
                 btnFinish.Enabled = false;
                 btnFinish.Text = "Processing ...";
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            var frmStudentSelection = new FrmStudentSelection();
+            frmStudentSelection.Show();
+
+            this.Hide();
         }
     }
 
