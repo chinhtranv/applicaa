@@ -300,4 +300,12 @@ FROM            sims.sims_group_supervisor AS tgs INNER JOIN
                          sims.sims_via_basegroups AS tbg ON tgs.base_group_id = tbg.base_group_id LEFT OUTER JOIN
                          sims.sims_supertitle_grouptype AS tsg ON tgs.supervisor_title_id = tsg.supervisor_title_id AND tsg.base_group_type_id = tbg.base_group_type_id
 
+WHERE tgs.base_group_id = 12384
 
+SELECT * FROM sims.sims_base_group
+
+where base_group_id = 12384
+
+
+-- get all classes of the student :
+exec sims.mid_pix_retrieve_student_classes @PersonID=12740,@effective_date='2019-06-15 00:00:00'

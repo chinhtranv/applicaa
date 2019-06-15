@@ -102,3 +102,7 @@ exec  sims.exam_pix_get_school_history @person_id
 
 
    select * from sims.adm_application_status_category
+
+   -- retrieve all examination by student id
+
+   exec sims.exam_pix_ViewExternalExamResults_Get @personId=8926,@loggedInPerson_id=1
