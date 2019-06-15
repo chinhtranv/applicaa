@@ -26,5 +26,22 @@ namespace Applicaa
             
             Application.Exit();
         }
+
+        private void btnSyncData_Click(object sender, EventArgs e)
+        {
+            var frmSyncData = new FrmSyncData();
+            frmSyncData.Show();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MisCache.UserEmail = null;
+            MisCache.UserToken = null;
+
+            var frmLogin = new FrmLogin();
+            frmLogin.Show();
+            this.Hide();
+        }
     }
 }

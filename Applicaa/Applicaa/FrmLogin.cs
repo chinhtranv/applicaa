@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Applicaa.Helper;
 using Common;
 using Common.RestApi;
+using SIMSInterface;
 
 namespace Applicaa
 {
@@ -49,6 +50,15 @@ namespace Applicaa
                 MisCache.UserToken = user.user_token;
                 MisCache.UserEmail = user.user_email;
 
+                SIMSDllResolution.AddSIMSDllResolution();
+                if (!LoginHelper.SIMSlogin(AppSetting.Server,
+                    AppSetting.Database,
+                    AppSetting.User,
+                    AppSetting.Password))
+                {
+                    MessageBoxHelper.ShowError("Could not access to SIMS. Please check the SIMS user / password.");
+                    return;
+                }
                 var frmHome = new FrmHome();
                 frmHome.Show();
                 this.Hide();
@@ -61,6 +71,11 @@ namespace Applicaa
                 btnLogin.Enabled = true;
             }
 
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

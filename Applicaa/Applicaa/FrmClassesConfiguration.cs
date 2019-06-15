@@ -14,7 +14,7 @@ namespace Applicaa
 
     public partial class FrmClassesConfiguration : Form
     {
-        private List<ClassesItem> admisionApiClassMappingConfig;
+        private List<ClassesItem> _admisionApiClassMappingConfig = new List<ClassesItem>();
         public FrmClassesConfiguration()
         {
             InitializeComponent();
@@ -84,31 +84,25 @@ namespace Applicaa
 
         private void LoadClassesDataFromSims()
         {
-            SIMSDllResolution.AddSIMSDllResolution();
-            if (LoginHelper.SIMSlogin(AppSetting.Server,
-                AppSetting.Database,
-                AppSetting.User,
-                AppSetting.Password))
+            var classes = PoulateClassesMappingItems();
+            MisCache.ClassesMapping = classes;
+            var dataForGrid = classes;
+            //filter data
+            var selectedSchemaType = cboSchemaType.SelectedValue.ToString();
+            var keyword = txtSearch.Text.Trim();
+            if (!string.IsNullOrEmpty(selectedSchemaType))
             {
-                var classes = PoulateClassesMappingItems();
-                MisCache.ClassesMapping = classes;
-                var dataForGrid = classes;
-                //filter data
-                var selectedSchemaType = cboSchemaType.SelectedValue.ToString();
-                var keyword = txtSearch.Text.Trim();
-                if (!string.IsNullOrEmpty(selectedSchemaType))
-                {
-                    dataForGrid = dataForGrid.Where(x => x.SchemaType == selectedSchemaType).ToList();
-                }
-                if(!string.IsNullOrEmpty(keyword))
-                {
-                    dataForGrid = dataForGrid.Where(x => x.ClassName.Contains(keyword)).ToList();
-                }
-
-
-                classMappingGrid.DataSource = dataForGrid;
-                lblTotalRows.Text = dataForGrid.Count + " match found";
+                dataForGrid = dataForGrid.Where(x => x.SchemaType == selectedSchemaType).ToList();
             }
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                dataForGrid = dataForGrid.Where(x => x.ClassName.Contains(keyword)).ToList();
+            }
+
+
+            classMappingGrid.DataSource = dataForGrid;
+            lblTotalRows.Text = dataForGrid.Count + " match found";
+
         }
 
         private List<ClassesMappingItem> PoulateClassesMappingItems()
@@ -118,7 +112,7 @@ namespace Applicaa
             foreach (var item in classes)
             {
                 var simsClassId = item.SimsClassId;
-                var admissionClass = admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue)
+                var admissionClass = _admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue)
                     .FirstOrDefault(x => x.sims_class_id == simsClassId);
                 if (admissionClass != null)
                 {
@@ -137,7 +131,7 @@ namespace Applicaa
             var cache = new InMemoryCache();
             var client = new AdmissionClassesClient(cache, serializer, errorLogger);
 
-            admisionApiClassMappingConfig = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
+            _admisionApiClassMappingConfig = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
         }
 
 

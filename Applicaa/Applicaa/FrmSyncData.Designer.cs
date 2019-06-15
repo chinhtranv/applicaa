@@ -73,6 +73,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "FrmSyncData";
             this.Text = "FrmSyncData";
+            this.Load += new System.EventHandler(this.FrmSyncData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
