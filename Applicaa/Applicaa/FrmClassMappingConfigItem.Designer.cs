@@ -38,6 +38,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClassName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSupervisor = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,6 +55,7 @@
             // 
             this.txtSimsClassId.Location = new System.Drawing.Point(191, 39);
             this.txtSimsClassId.Name = "txtSimsClassId";
+            this.txtSimsClassId.ReadOnly = true;
             this.txtSimsClassId.Size = new System.Drawing.Size(266, 22);
             this.txtSimsClassId.TabIndex = 1;
             // 
@@ -69,13 +72,14 @@
             // 
             this.txtSchemaType.Location = new System.Drawing.Point(191, 132);
             this.txtSchemaType.Name = "txtSchemaType";
+            this.txtSchemaType.ReadOnly = true;
             this.txtSchemaType.Size = new System.Drawing.Size(266, 22);
             this.txtSchemaType.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 237);
+            this.label3.Location = new System.Drawing.Point(37, 257);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 17);
             this.label3.TabIndex = 2;
@@ -84,7 +88,7 @@
             // cboAdmissionClasses
             // 
             this.cboAdmissionClasses.FormattingEnabled = true;
-            this.cboAdmissionClasses.Location = new System.Drawing.Point(191, 234);
+            this.cboAdmissionClasses.Location = new System.Drawing.Point(191, 254);
             this.cboAdmissionClasses.Name = "cboAdmissionClasses";
             this.cboAdmissionClasses.Size = new System.Drawing.Size(266, 24);
             this.cboAdmissionClasses.TabIndex = 3;
@@ -122,8 +126,26 @@
             // 
             this.txtClassName.Location = new System.Drawing.Point(191, 86);
             this.txtClassName.Name = "txtClassName";
+            this.txtClassName.ReadOnly = true;
             this.txtClassName.Size = new System.Drawing.Size(266, 22);
             this.txtClassName.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(37, 177);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 17);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Supervisor";
+            // 
+            // txtSupervisor
+            // 
+            this.txtSupervisor.Location = new System.Drawing.Point(191, 177);
+            this.txtSupervisor.Name = "txtSupervisor";
+            this.txtSupervisor.ReadOnly = true;
+            this.txtSupervisor.Size = new System.Drawing.Size(266, 22);
+            this.txtSupervisor.TabIndex = 1;
             // 
             // FrmClassMappingConfigItem
             // 
@@ -135,9 +157,11 @@
             this.Controls.Add(this.cboAdmissionClasses);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtClassName);
+            this.Controls.Add(this.txtSupervisor);
             this.Controls.Add(this.txtSchemaType);
             this.Controls.Add(this.txtSimsClassId);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FrmClassMappingConfigItem";
@@ -161,5 +185,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtClassName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSupervisor;
     }
 }

@@ -193,7 +193,7 @@ SELECT
 FROM sims.curr_scheme s
 INNER JOIN sims.curr_scheme_type t ON s.scheme_type_id = t.scheme_type_id
 INNER JOIN sims.sims_event_instance tei ON s.event_instance_id = tei.event_instance_id
-where s.external_name = '7x Maths' -- scheme_id 4236
+where s.external_name = '12x Option B' -- scheme_id 4554
 ORDER BY tei.event_start DESC
 
 
@@ -212,7 +212,7 @@ JOIN    sims.curr_scheme ts
   ON    ts.scheme_id = tdg.scheme_id
   JOIN sims.sims_base_group bg ON tdg.base_group_id = bg.base_group_id
 
-where ts.scheme_id = 4088 --'7x Maths'
+where ts.scheme_id = 4554 --'7x Maths'
 
 --where  tdg.base_group_id = 11673
 

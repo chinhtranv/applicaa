@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Applicaa.Helper;
 using Common;
 using Common.DataModel;
 using Common.RestApi;
@@ -10,6 +11,7 @@ using JsonSerializer = RestSharp.Serialization.Json.JsonSerializer;
 
 namespace Applicaa
 {
+
     public partial class FrmClassesConfiguration : Form
     {
         private List<ClassesItem> admisionApiClassMappingConfig;
@@ -18,44 +20,18 @@ namespace Applicaa
             InitializeComponent();
         }
 
-        private void LoadClassesDataFromSims()
-        {
-            SIMSDllResolution.AddSIMSDllResolution();
-            if (LoginHelper.SIMSlogin(AppSetting.Server,
-                AppSetting.Database,
-                AppSetting.User,
-                AppSetting.Password))
-            {
-                //Applicant.
-                var classes = Applicant.LoadClasses();
-                foreach (var item in classes)
-                {
-                    var simsClassId = item.SimsClassId;
-                    var admissionClass = admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue)
-                        .FirstOrDefault(x => x.sims_class_id == simsClassId);
-                    if (admissionClass != null)
-                    {
-                        item.AdmissionClassId = admissionClass.id;
-                        item.AdmissionClassName = admissionClass.name;
-                    }
-                }
-                classMappingGrid.DataSource = classes;
-                MisCache.ClassesMapping = classes;
-            }
-        }
-
-        public void LoadClassMappingConfigFromAdmissionApi()
-        {
-            var serializer = new JsonSerializer();
-            var errorLogger = new ErrorLogger();
-            var cache = new InMemoryCache();
-            var client = new AdmissionClassesClient(cache, serializer, errorLogger);
-
-            admisionApiClassMappingConfig = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
-        }
-
+        /// <summary>
+        /// Handles the Load event of the FrmClassesConfiguration control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void FrmClassesConfiguration_Load(object sender, EventArgs e)
         {
+            lblTotalRows.Text = string.Empty;
+
+            //Schema types combobox
+            LoadSchemaTypeData();
+
             LoadClassMappingConfigFromAdmissionApi();
 
             LoadClassesDataFromSims();
@@ -85,6 +61,92 @@ namespace Applicaa
 
             this.Hide();
 
+        }
+
+
+        #region HELPER METHOD
+
+
+        private void LoadSchemaTypeData()
+        {
+            var schemaTypes = new List<CboItem>
+            {
+                new CboItem("", ""),
+                new CboItem("Bands", "Bands"),
+                new CboItem("Block", "Block"),
+                new CboItem("Cluster", "Cluster"),
+                new CboItem("Alternative", "Alternative")
+            };
+            cboSchemaType.DataSource = schemaTypes;
+            cboSchemaType.DisplayMember = "Name";
+            cboSchemaType.ValueMember = "Value";
+        }
+
+        private void LoadClassesDataFromSims()
+        {
+            SIMSDllResolution.AddSIMSDllResolution();
+            if (LoginHelper.SIMSlogin(AppSetting.Server,
+                AppSetting.Database,
+                AppSetting.User,
+                AppSetting.Password))
+            {
+                var classes = PoulateClassesMappingItems();
+                MisCache.ClassesMapping = classes;
+                var dataForGrid = classes;
+                //filter data
+                var selectedSchemaType = cboSchemaType.SelectedValue.ToString();
+                var keyword = txtSearch.Text.Trim();
+                if (!string.IsNullOrEmpty(selectedSchemaType))
+                {
+                    dataForGrid = dataForGrid.Where(x => x.SchemaType == selectedSchemaType).ToList();
+                }
+                if(!string.IsNullOrEmpty(keyword))
+                {
+                    dataForGrid = dataForGrid.Where(x => x.ClassName.Contains(keyword)).ToList();
+                }
+
+
+                classMappingGrid.DataSource = dataForGrid;
+                lblTotalRows.Text = dataForGrid.Count + " match found";
+            }
+        }
+
+        private List<ClassesMappingItem> PoulateClassesMappingItems()
+        {
+            List<ClassesMappingItem> classes = Applicant.LoadClasses();
+            
+            foreach (var item in classes)
+            {
+                var simsClassId = item.SimsClassId;
+                var admissionClass = admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue)
+                    .FirstOrDefault(x => x.sims_class_id == simsClassId);
+                if (admissionClass != null)
+                {
+                    item.AdmissionClassId = admissionClass.id;
+                    item.AdmissionClassName = admissionClass.name;
+                }
+            }
+            
+            return classes;
+        }
+
+        public void LoadClassMappingConfigFromAdmissionApi()
+        {
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var cache = new InMemoryCache();
+            var client = new AdmissionClassesClient(cache, serializer, errorLogger);
+
+            admisionApiClassMappingConfig = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
+        }
+
+
+        #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadClassesDataFromSims();
+            
         }
     }
 }

@@ -7,6 +7,7 @@ namespace SIMSInterface
         public int SimsClassId { get; set; }
 
         public string ClassName { get; set; }
+        public string Supervisor { get; set; }
 
         public string SchemaName { get; set; }
 

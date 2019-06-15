@@ -31,6 +31,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(349, 242);
+            this.btnExport.Location = new System.Drawing.Point(349, 203);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(166, 85);
             this.btnExport.TabIndex = 2;
@@ -57,7 +58,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(107, 242);
+            this.btnImport.Location = new System.Drawing.Point(107, 203);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(166, 85);
             this.btnImport.TabIndex = 2;
@@ -65,17 +66,29 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(107, 331);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 85);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Sync data from Admission +";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // FrmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 519);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.pictureBox1);
             this.Name = "FrmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmHome";
+            this.Text = "Applicaa";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmHome_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -86,5 +99,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.Button button1;
     }
 }

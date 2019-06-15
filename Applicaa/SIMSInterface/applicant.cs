@@ -28,7 +28,8 @@ namespace SIMSInterface
 
         public static List<ClassesMappingItem> LoadClasses()
         {
-            PopulateCacheData();
+            //PopulateCacheData();
+            SIMS.Processes.CurrCache.Populate();
             return ClassProcess.LoadClasses();
         }
         

@@ -141,6 +141,8 @@ namespace SIMSInterface
             {
                 SimsClassId = x.GroupID,
                 ClassName = x.ShortName,
+                Supervisor = x.BelongsToScheme.Group.Supervisors.Cast<CurrSupervisor>()
+                                .ToList().Where(s => s.Main).Select(y => y.Employee.ChosenFullName).FirstOrDefault(),
                 SchemaName = x.BelongsToScheme.Scheme.Name,
                 SchemaType = x.BelongsToScheme.Scheme.SchemeType,
                 StartDate = x.BelongsToScheme.DateSet[0].Start,

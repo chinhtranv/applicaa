@@ -70,6 +70,8 @@ namespace Applicaa
             txtSimsClassId.Text = simsClassId.ToString();
             txtSchemaType.Text = classMappingConfig.SchemaType;
             txtClassName.Text = classMappingConfig.ClassName;
+            txtSupervisor.Text = classMappingConfig.Supervisor;
+
             if (classMappingConfig.AdmissionClassId != null)
             {
                 cboAdmissionClasses.SelectedValue = classMappingConfig.AdmissionClassId;

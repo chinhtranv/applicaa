@@ -29,31 +29,25 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.classMappingGrid = new System.Windows.Forms.DataGridView();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cboSchemaType = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.lblTotalRows = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 65);
+            this.label2.Location = new System.Drawing.Point(29, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Mapping classes";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Importing student data";
             // 
             // classMappingGrid
             // 
@@ -97,17 +91,55 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cboSchemaType
+            // 
+            this.cboSchemaType.FormattingEnabled = true;
+            this.cboSchemaType.Location = new System.Drawing.Point(32, 68);
+            this.cboSchemaType.Name = "cboSchemaType";
+            this.cboSchemaType.Size = new System.Drawing.Size(119, 24);
+            this.cboSchemaType.TabIndex = 8;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(157, 68);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(154, 26);
+            this.txtSearch.TabIndex = 9;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(317, 68);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 29);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Search";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // lblTotalRows
+            // 
+            this.lblTotalRows.AutoSize = true;
+            this.lblTotalRows.Location = new System.Drawing.Point(423, 76);
+            this.lblTotalRows.Name = "lblTotalRows";
+            this.lblTotalRows.Size = new System.Drawing.Size(86, 17);
+            this.lblTotalRows.TabIndex = 11;
+            this.lblTotalRows.Text = "match found";
+            // 
             // FrmClassesConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTotalRows);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.cboSchemaType);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.classMappingGrid);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "FrmClassesConfiguration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";
@@ -121,10 +153,13 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView classMappingGrid;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cboSchemaType;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblTotalRows;
     }
 }
