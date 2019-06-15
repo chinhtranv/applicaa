@@ -57,6 +57,7 @@ namespace Applicaa
                     AppSetting.Password))
                 {
                     MessageBoxHelper.ShowError("Could not access to SIMS. Please check the SIMS user / password.");
+                    Application.Exit();
                     return;
                 }
                 var frmHome = new FrmHome();

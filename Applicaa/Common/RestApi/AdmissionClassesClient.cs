@@ -57,7 +57,7 @@ namespace Common.RestApi
         }
 
         //clazzId: 5, name: "5555", simsBlock: "aaa", simsBrand: "xxxx", simsCluster: "yyyyy", simsClassId:101,simsClassName:"History10A",simsClassSchemaType:"type1"
-        public List<ClassesItem> UpdateClassConfig(string email, string token, int clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
+        public List<ClassesItem> UpdateClassConfig(string email, string token, int? clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
         {
             string model = "{clazzId: "+clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\"}";
 

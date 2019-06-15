@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Applicaa.Helper;
@@ -20,12 +21,18 @@ namespace Applicaa
             simsClassId = id;
         }
 
+        /// <summary>
+        /// SAVE
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (cboAdmissionClasses.SelectedValue == null)
+            if(string.IsNullOrEmpty(cboAdmissionClasses.SelectedValue.ToString()))
             {
-                MessageBoxHelper.ShowError("Please select Admission+ class ..");
+                MessageBoxHelper.ShowError("Please select the class ...");
                 return;
+
             }
             var classMappingConfig = MisCache.ClassesMapping.FirstOrDefault(x => x.SimsClassId == simsClassId);
             if (classMappingConfig != null)
@@ -35,20 +42,26 @@ namespace Applicaa
                 classMappingConfig.AdmissionClassName = cboAdmissionClasses.Text;
             }
 
-            var serializer = new JsonSerializer();
-            var errorLogger = new ErrorLogger();
-            var cache = new InMemoryCache();
-            var client = new AdmissionClassesClient(cache, serializer, errorLogger);
-            //(string email, string token, int clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
-            int classId = classMappingConfig.AdmissionClassId.Value;
+            var client = AdmissionClassesClient();
+
+            int? classId = classMappingConfig.AdmissionClassId;
             string name = classMappingConfig.AdmissionClassName;
             
             string simsClassName = txtClassName.Text;
             string simsClassSchemaType = txtSchemaType.Text;
-
+            //API is not allowed post classId null
             var classes = client.UpdateClassConfig(MisCache.UserEmail, MisCache.UserToken, classId, name, simsClassId, simsClassName, simsClassSchemaType);
 
             this.Hide();
+        }
+
+        private static AdmissionClassesClient AdmissionClassesClient()
+        {
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var cache = new InMemoryCache();
+            var client = new AdmissionClassesClient(cache, serializer, errorLogger);
+            return client;
         }
 
         private void ClassMappingItem_Load(object sender, EventArgs e)
@@ -74,7 +87,7 @@ namespace Applicaa
 
             if (classMappingConfig.AdmissionClassId != null)
             {
-                cboAdmissionClasses.SelectedValue = classMappingConfig.AdmissionClassId;
+                cboAdmissionClasses.SelectedValue = classMappingConfig.AdmissionClassId.ToString();
             }
             
         }
@@ -91,9 +104,17 @@ namespace Applicaa
             //MisCache.UserEmail = "VyQ8QsNGJB-XPrLawz6hf7zfX3ZyKTes";
 #endif
             var classes = client.GetCachedClasses(MisCache.UserEmail, MisCache.UserToken);
-            cboAdmissionClasses.DataSource = classes;
-            cboAdmissionClasses.DisplayMember = "name";
-            cboAdmissionClasses.ValueMember = "id";
+
+            var dataForCombobox = new List<CboItem>();
+            //dataForCombobox.Add(new CboItem(string.Empty,string.Empty));
+            foreach (var item in classes)
+            {
+                dataForCombobox.Add(new CboItem(item.name,item.id.ToString()));
+            }
+            cboAdmissionClasses.DataSource = dataForCombobox;
+            cboAdmissionClasses.DisplayMember = "Name";
+            cboAdmissionClasses.ValueMember = "Value";
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
