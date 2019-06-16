@@ -49,10 +49,25 @@ namespace Applicaa
             {
                 obj.classes = new List<ClassWorkerItem>();
             }
+            if (obj.exams == null)
+            {
+                obj.exams = new List<ExaminationWorkerItem>();
+            }
+
+
             foreach (StudentItem student in students)
             {
                 obj.Name = student.first_name + " " + student.last_name;
                 obj.PersonId = student.id;
+                obj.classes.Clear();
+                obj.exams.Clear();
+
+                #region import external 
+
+                #endregion
+
+                #region import classes data
+
                 var referenceNumber = student.application_reference_number;
                 string admissionNumber = string.Empty;
                 
@@ -60,7 +75,7 @@ namespace Applicaa
                 {
                     admissionNumber = studentReferenceMapping[referenceNumber];
                 }
-                obj.classes.Clear();
+                
                 //loop each class of student
                 foreach (var classItem in student.clazzs)
                 {
@@ -83,7 +98,8 @@ namespace Applicaa
                     }
                     obj.classes.Add(classworkerItem);
                 }
-                
+
+                #endregion
 
                 backgroundWorker1.ReportProgress(i, obj);
                 i++;
@@ -173,12 +189,20 @@ namespace Applicaa
         public string Name;
         public int PersonId;
         public List<ClassWorkerItem> classes;
+        public List<ExaminationWorkerItem> exams;
     }
 
     public class ClassWorkerItem
     {
         public string message;
         public string className;
+        public SimsResult result;
+    }
+
+    public class ExaminationWorkerItem
+    {
+        public string message;
+        public string examName;
         public SimsResult result;
     }
 }
