@@ -9,7 +9,7 @@ namespace SIMSInterface
     {
         public static List<CreateEntityResult> AddResults(ATfilePupil pupil, int studentId)
         {
-            SIMS.Processes.ExamCache.Populate();
+            ExamCachePopulate();
             var entityResults = new List<CreateEntityResult>();
             foreach (var examination in pupil.ExternalExaminationResults)
             {
@@ -25,21 +25,54 @@ namespace SIMSInterface
             return entityResults;
         }
 
+        public static void ExamCachePopulate()
+        {
+            SIMS.Processes.ExamCache.Populate();
+        }
+
         public static SimsResult AddResult(ATfilePupilExternalExaminationResult examination, int studentId)
         {
-            
+
+            //int year = examination.Year;
+            //string subjectCode = examination.SubjectCode; //learning skill
+            //string board  = examination.BoardCode;
+            //string level  = examination.Level; //ABQ Unassigned
+            //string QAN = examination.QAN.ToString(); //8 numbers            
+            //string resultType = examination.ResultType;
+            //string result = examination.Result; //pass
+            //string schoolName = examination.School;
+
+            return AddResult(examination.Year, examination.SubjectCode, examination.BoardCode, examination.Level,
+                examination.QAN.ToString(), examination.ResultType, examination.Result, examination.School, studentId);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="subjectCode"></param>
+        /// <param name="board"></param>
+        /// <param name="level"></param>
+        /// <param name="QAN"></param>
+        /// <param name="resultType"></param>
+        /// <param name="result"></param>
+        /// <param name="schoolName"></param>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
+        public static SimsResult AddResult(int year,
+            string subjectCode,
+            string board,
+            string level, 
+            string QAN,
+            string resultType, 
+            string result,
+            string schoolName, 
+            int studentId)
+        {
             bool success = false;
             var errors = new SIMS.Entities.ValidationErrors();
             string message = string.Empty;
-
-            int year = examination.Year;
-            string subjectCode = examination.SubjectCode; //learning skill
-            string board  = examination.BoardCode;
-            string level  = examination.Level; //ABQ Unassigned
-            string QAN = examination.QAN.ToString(); //8 numbers            
-            string resultType = examination.ResultType;
-            string result = examination.Result; //pass
-            string schoolName = examination.School;
 
             var manageExternalExamResult = new ManageExternalExamResult(studentId);
             manageExternalExamResult.ExamResult.QAN = QAN;

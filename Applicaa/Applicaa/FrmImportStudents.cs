@@ -15,7 +15,7 @@ namespace Applicaa
     {
 
         int TotalRecords;
-        private Dictionary<string, string> studentReferenceMapping;
+        private Dictionary<string, SIMSInterface.StudentItem> studentReferenceMapping;
 
         public FrmImportStudents()
         {
@@ -49,6 +49,7 @@ namespace Applicaa
             {
                 obj.classes = new List<ClassWorkerItem>();
             }
+
             if (obj.exams == null)
             {
                 obj.exams = new List<ExaminationWorkerItem>();
@@ -59,44 +60,106 @@ namespace Applicaa
             {
                 obj.Name = student.first_name + " " + student.last_name;
                 obj.PersonId = student.id;
-                obj.classes.Clear();
-                obj.exams.Clear();
+                var referenceNumber = student.application_reference_number;
+                obj.classes = new List<ClassWorkerItem>();
+                obj.exams = new List<ExaminationWorkerItem>();
 
                 #region import external 
+
+                if (student.exam_results != null && student.exam_results.Any())
+                {
+                    int studentId = -1;
+
+                    if (studentReferenceMapping.ContainsKey(referenceNumber))
+                    {
+                        studentId = studentReferenceMapping[referenceNumber].PersonId;
+
+                        //loop each exams of student
+                        foreach (var exam in student.exam_results)
+                        {
+                            var workerItem = new ExaminationWorkerItem();
+                            workerItem.name = exam.qan + exam.subject_code + exam.board_code + exam.level;
+                            //for testing 
+                            exam.level = "ABQ/B";
+                            //exam.result = "P";
+                            SimsResult addExamResult = ExternalExamination.AddResult(
+                                                            int.Parse(exam.year),
+                                                            exam.subject_code, 
+                                                            exam.board_code,
+                                                            exam.level, 
+                                                            exam.qan, 
+                                                            exam.result_type, 
+                                                            exam.result, 
+                                                            exam.school, 
+                                                            studentId);
+
+                            workerItem.result = addExamResult;
+                            obj.exams.Add(workerItem);
+
+                        }
+                    }
+                    else
+                    {
+                        var classworkerItem = new ExaminationWorkerItem();
+                        classworkerItem.message = "Could not mapping REFERENCE NUMBER for " + student.first_name +
+                                                  " - " + student.last_name + "( " +
+                                                  student.application_reference_number + " )";
+                        obj.exams.Add(classworkerItem);
+                    }
+                }
 
                 #endregion
 
                 #region import classes data
 
-                var referenceNumber = student.application_reference_number;
-                string admissionNumber = string.Empty;
-                
-                if (studentReferenceMapping.ContainsKey(referenceNumber))
+                if (student.clazzs != null && student.clazzs.Any())
                 {
-                    admissionNumber = studentReferenceMapping[referenceNumber];
-                }
-                
-                //loop each class of student
-                foreach (var classItem in student.clazzs)
-                {
-                    var classworkerItem = new ClassWorkerItem();
-                    int admissionClassId = classItem.id;
-                    var classMappingConfig = MisCache.ClassesMapping.FirstOrDefault(x => x.AdmissionClassId == admissionClassId);
-                    
 
-                    classworkerItem.className = admissionClassId + " - " + classItem.name + "-" + classItem.code;
-                    if (classMappingConfig != null)
+                    string admissionNumber = string.Empty;
+
+                    if (studentReferenceMapping.ContainsKey(referenceNumber))
                     {
-                        var simsClassName = classMappingConfig.SchemaType + " - " + classMappingConfig.SchemaName + " - " + classMappingConfig.ClassName;
-                        classworkerItem.className += " - SIMS class :  (" + simsClassName + ") ";
-                        SimsResult addClassResult = ClassProcess.AttachClassToStudent(classMappingConfig.SchemaType, classMappingConfig.SchemaName, admissionNumber, classMappingConfig.ClassName);
-                        classworkerItem.result = addClassResult;
+                        admissionNumber = studentReferenceMapping[referenceNumber].Reference;
+                        //loop each class of student
+                        foreach (var classItem in student.clazzs)
+                        {
+
+                            int admissionClassId = classItem.id;
+                            var classMappingConfig =
+                                MisCache.ClassesMapping.FirstOrDefault(x => x.AdmissionClassId == admissionClassId);
+
+                            var classworkerItem = new ClassWorkerItem();
+                            classworkerItem.name = admissionClassId + " - " + classItem.name + "-" + classItem.code;
+                            if (classMappingConfig != null)
+                            {
+                                var simsClassName = classMappingConfig.SchemaType + " - " +
+                                                    classMappingConfig.SchemaName + " - " +
+                                                    classMappingConfig.ClassName;
+                                classworkerItem.name += " - SIMS class :  (" + simsClassName + ") ";
+                                SimsResult addClassResult = ClassProcess.AttachClassToStudent(
+                                    classMappingConfig.SchemaType, classMappingConfig.SchemaName, admissionNumber,
+                                    classMappingConfig.ClassName);
+                                classworkerItem.result = addClassResult;
+                            }
+                            else
+                            {
+                                classworkerItem.message = "FAILED: class [" + classworkerItem.name + "]  is not config in class mapping.";
+
+                            }
+
+                            obj.classes.Add(classworkerItem);
+                        }
                     }
                     else
                     {
-                        classworkerItem.message = "FAILED: class [" + classworkerItem.className + "]  is not config in class mapping.";
+                        var classworkerItem = new ClassWorkerItem();
+                        classworkerItem.message = "Could not mapping REFERENCE NUMBER for " + student.first_name +
+                                                  " - " + student.last_name + "( " +
+                                                  student.application_reference_number + " )";
+                        obj.classes.Add(classworkerItem);
                     }
-                    obj.classes.Add(classworkerItem);
+
+
                 }
 
                 #endregion
@@ -115,29 +178,60 @@ namespace Applicaa
                 var obj = (MyWorkerClass) e.UserState;
                 txtLogging.AppendText("\n");
                 txtLogging.AppendText(" --- "+obj.PersonId + " - " +obj.Name + " processed ...");
-                foreach (var clsItem in obj.classes)
+                if (obj.classes.Any())
                 {
-                    txtLogging.AppendText("\n");
-                    if (!string.IsNullOrEmpty(clsItem.message))
+                    foreach (var clsItem in obj.classes)
                     {
-                        txtLogging.AppendText(clsItem.message);
-                    }
-
-                    if (clsItem.result != null)
-                    {
-                        txtLogging.AppendText("Import class " + clsItem.className +" is "+ clsItem.result.Status);
-                        if (string.IsNullOrEmpty(clsItem.result.Message))
+                        txtLogging.AppendText("\n");
+                        if (!string.IsNullOrEmpty(clsItem.message))
                         {
-                            txtLogging.AppendText(clsItem.result.Message);
+                            txtLogging.AppendText(clsItem.message);
                         }
 
-                        if (clsItem.result.Errors != null)
+                        if (clsItem.result != null)
                         {
-                            string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
-                            txtLogging.AppendText(validationError);
+                            txtLogging.AppendText("Import class " + clsItem.name + " is " + clsItem.result.Status);
+                            if (!string.IsNullOrEmpty(clsItem.result.Message))
+                            {
+                                txtLogging.AppendText(clsItem.result.Message);
+                            }
+
+                            if (clsItem.result.Errors != null)
+                            {
+                                string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                                txtLogging.AppendText(validationError);
+                            }
                         }
                     }
                 }
+
+                if (obj.exams.Any())
+                {
+                    foreach (var clsItem in obj.exams)
+                    {
+                        txtLogging.AppendText("\n");
+                        if (!string.IsNullOrEmpty(clsItem.message))
+                        {
+                            txtLogging.AppendText(clsItem.message);
+                        }
+
+                        if (clsItem.result != null)
+                        {
+                            txtLogging.AppendText("Import exam " + clsItem.name + " is " + clsItem.result.Status);
+                            if (!string.IsNullOrEmpty(clsItem.result.Message))
+                            {
+                                txtLogging.AppendText(clsItem.result.Message);
+                            }
+
+                            if (clsItem.result.Errors != null)
+                            {
+                                string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                                txtLogging.AppendText(validationError);
+                            }
+                        }
+                    }
+                }
+
                 progressBar1.Value = e.ProgressPercentage;
                 lblTotalRows.Text = @"Students processed : " + e.ProgressPercentage + 1;
 
@@ -154,8 +248,10 @@ namespace Applicaa
 
         private void FrmImportStudents_Load(object sender, EventArgs e)
         {
+            //ExternalExamination.ExamCachePopulate();
+
             var references = MisCache.SelectedStudents.Select(x => x.Reference).ToList();
-            studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v.AdmissionNumber);
+            studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v);
             if (!studentReferenceMapping.Any())
             {
                 MessageBoxHelper.ShowError("System can not mapp student by aplication reference number. Please accept/admit your application");
@@ -195,14 +291,14 @@ namespace Applicaa
     public class ClassWorkerItem
     {
         public string message;
-        public string className;
+        public string name;
         public SimsResult result;
     }
 
     public class ExaminationWorkerItem
     {
         public string message;
-        public string examName;
+        public string name;
         public SimsResult result;
     }
 }
