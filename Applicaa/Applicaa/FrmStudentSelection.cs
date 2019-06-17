@@ -13,17 +13,36 @@ namespace Applicaa
 {
     public partial class FrmStudentSelection : Form
     {
+
+        private const int IdColumnIndex = 0;
+        private const int ReferenceColumnIndex = 4;
+        private const int SelectColumnIndex = 6;
+
         public FrmStudentSelection()
         {
             InitializeComponent();
         }
 
-        public void LoadData()
+        public void LoadAdmissionForms()
+        {
+            var serializer = new JsonSerializer();
+            var errorLogger = new ErrorLogger();
+            var client = new AdmissionApplicationFormClient(serializer, errorLogger);
+            List<ApplicationFormsItem> appForms = client.GetApplicationForms(MisCache.UserEmail, MisCache.UserToken);
+            cboApplicationForm.DataSource = appForms;
+            cboApplicationForm.ValueMember = "id";
+            cboApplicationForm.DisplayMember = "name";
+            cboApplicationForm.SelectedValue = 1;
+
+        }
+
+        public void LoadStudents(int? appFormId = null)
         {
             var serializer = new JsonSerializer();
             var errorLogger = new ErrorLogger();
             var client = new AdmissionStudentsClient(serializer, errorLogger);
-            var students = client.GetStudents(MisCache.UserEmail, MisCache.UserToken);
+            
+            var students = client.GetStudents(appFormId ?? 1,MisCache.UserEmail, MisCache.UserToken);
             var studentsGridDataSource = students.Where(x => !string.IsNullOrEmpty(x.class_list)).ToList();
             studentsGrid.DataSource = studentsGridDataSource;
             MisCache.Students = studentsGridDataSource;
@@ -60,54 +79,9 @@ namespace Applicaa
         private void StudentSelection_Load(object sender, EventArgs e)
         {
             studentsGrid.AutoGenerateColumns = false;
-            //studentsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //AddCheckboxHeader();
-            LoadData();
+            LoadAdmissionForms();
+            LoadStudents((int)cboApplicationForm.SelectedValue);
         }
-
-
-        #region Header select columns
-
-        private const int IdColumnIndex = 0;
-        private const int ReferenceColumnIndex = 4;
-        private const int LastNameColumnIndex = 1;
-        private const int AgeColumnIndex = 3;
-        private const int SelectColumnIndex = 6;
-
-        private void AddCheckboxHeader()
-        {
-            // customize dataviewgrid, add checkbox column
-            DataGridViewCheckBoxColumn checkboxColumn = new DataGridViewCheckBoxColumn();
-            checkboxColumn.Width = 30;
-            checkboxColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            studentsGrid.Columns.Insert(SelectColumnIndex, checkboxColumn);
-
-            // add checkbox header
-            Rectangle rect = studentsGrid.GetCellDisplayRectangle(SelectColumnIndex, -1, true);
-            // set checkbox header to center of header cell. +1 pixel to position correctly.
-            rect.X = rect.Location.X + (rect.Width / 4);
-
-            CheckBox checkboxHeader = new CheckBox();
-            checkboxHeader.Name = "checkboxHeader";
-            checkboxHeader.Size = new Size(18, 18);
-            checkboxHeader.Location = rect.Location;
-            checkboxHeader.CheckedChanged += new EventHandler(checkboxHeader_CheckedChanged);
-
-            studentsGrid.Controls.Add(checkboxHeader);
-
-        }
-
-
-        private void checkboxHeader_CheckedChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < studentsGrid.RowCount; i++)
-            {
-                studentsGrid[SelectColumnIndex, i].Value = ((CheckBox)studentsGrid.Controls.Find("checkboxHeader", true)[0]).Checked;
-            }
-            studentsGrid.EndEdit();
-        }
-
-        #endregion
 
         private void btnNext_Click(object sender, EventArgs e)
         {
@@ -125,6 +99,11 @@ namespace Applicaa
             frm.Show();
 
             this.Hide();
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadStudents((int) cboApplicationForm.SelectedValue);
         }
     }
 }

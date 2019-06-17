@@ -40,6 +40,8 @@
             this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnNext = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cboApplicationForm = new System.Windows.Forms.ComboBox();
+            this.btnLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.studentsGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,11 +144,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cboApplicationForm
+            // 
+            this.cboApplicationForm.FormattingEnabled = true;
+            this.cboApplicationForm.Location = new System.Drawing.Point(459, 47);
+            this.cboApplicationForm.Name = "cboApplicationForm";
+            this.cboApplicationForm.Size = new System.Drawing.Size(189, 24);
+            this.cboApplicationForm.TabIndex = 3;
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(655, 47);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(70, 24);
+            this.btnLoad.TabIndex = 4;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // FrmStudentSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 497);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.cboApplicationForm);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.studentsGrid);
@@ -176,5 +198,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SchoolName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Age;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
+        private System.Windows.Forms.ComboBox cboApplicationForm;
+        private System.Windows.Forms.Button btnLoad;
     }
 }

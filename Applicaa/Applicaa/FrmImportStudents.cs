@@ -66,7 +66,7 @@ namespace Applicaa
 
                 #region import external 
 
-                if (student.exam_results != null && student.exam_results.Any())
+                if (MisCache.IsImportExamResults && student.exam_results != null && student.exam_results.Any())
                 {
                     int studentId = -1;
 
@@ -112,7 +112,7 @@ namespace Applicaa
 
                 #region import classes data
 
-                if (student.clazzs != null && student.clazzs.Any())
+                if (MisCache.IsImportClasses && student.clazzs != null && student.clazzs.Any())
                 {
 
                     string admissionNumber = string.Empty;

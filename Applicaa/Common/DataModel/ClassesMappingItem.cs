@@ -17,8 +17,6 @@ namespace SIMSInterface
 
         public DateTime EndDate { get; set; }
 
-
-
         public int? AdmissionClassId { get; set; }
 
         public string AdmissionClassName { get; set; }
