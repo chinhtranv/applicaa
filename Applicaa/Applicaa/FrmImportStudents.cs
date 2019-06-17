@@ -58,11 +58,9 @@ namespace Applicaa
 
                 if (MisCache.IsImportExamResults && student.exam_results != null && student.exam_results.Any())
                 {
-                    int studentId = -1;
-
                     if (studentReferenceMapping.ContainsKey(referenceNumber))
                     {
-                        studentId = studentReferenceMapping[referenceNumber].PersonId;
+                        var studentId = studentReferenceMapping[referenceNumber].PersonId;
 
                         //loop each exams of student
                         foreach (var exam in student.exam_results)
@@ -71,7 +69,7 @@ namespace Applicaa
                             workerItem.name = exam.qan + " - "+ exam.subject_code + " - " + exam.board_code+ " - " + exam.level;
                             //for testing 
                             exam.level = "ABQ/B";
-                            //exam.result = "P";
+                            exam.result = "P";
                             SimsResult addExamResult = ExternalExamination.AddResult(
                                                             int.Parse(exam.year),
                                                             exam.subject_code, 
@@ -90,11 +88,11 @@ namespace Applicaa
                     }
                     else
                     {
-                        var classworkerItem = new ExaminationWorkerItem();
-                        classworkerItem.message = "Could not mapping REFERENCE NUMBER for " + student.first_name +
-                                                  " - " + student.last_name + "( " +
+                        var workerItem = new ExaminationWorkerItem();
+                        workerItem.message = "Exam - Could not mapping REFERENCE NUMBER for " + student.first_name +
+                                                  " " + student.last_name + "( " +
                                                   student.application_reference_number + " )";
-                        obj.exams.Add(classworkerItem);
+                        obj.exams.Add(workerItem);
                     }
                 }
 
@@ -118,35 +116,35 @@ namespace Applicaa
                             var classMappingConfig =
                                 MisCache.ClassesMapping.FirstOrDefault(x => x.AdmissionClassId == admissionClassId);
 
-                            var classworkerItem = new ClassWorkerItem();
-                            classworkerItem.name = admissionClassId + " - " + classItem.name + "-" + classItem.code;
+                            var workerItem = new ClassWorkerItem();
+                            workerItem.name = admissionClassId + " - " + classItem.name + "-" + classItem.code;
                             if (classMappingConfig != null)
                             {
                                 var simsClassName = classMappingConfig.SchemaType + " - " +
                                                     classMappingConfig.SchemaName + " - " +
                                                     classMappingConfig.ClassName;
-                                classworkerItem.name += " - SIMS class :  (" + simsClassName + ") ";
+                                workerItem.name += " - SIMS class :  (" + simsClassName + ") ";
                                 SimsResult addClassResult = ClassProcess.AttachClassToStudent(
                                     classMappingConfig.SchemaType, classMappingConfig.SchemaName, admissionNumber,
                                     classMappingConfig.ClassName);
-                                classworkerItem.result = addClassResult;
+                                workerItem.result = addClassResult;
                             }
                             else
                             {
-                                classworkerItem.message = "FAILED: class [" + classworkerItem.name + "]  is not config in class mapping.";
+                                workerItem.message = "FAILED: class [" + workerItem.name + "]  is not config in class mapping.";
 
                             }
 
-                            obj.classes.Add(classworkerItem);
+                            obj.classes.Add(workerItem);
                         }
                     }
                     else
                     {
-                        var classworkerItem = new ClassWorkerItem();
-                        classworkerItem.message = "Could not mapping REFERENCE NUMBER for " + student.first_name +
-                                                  " - " + student.last_name + "( " +
+                        var workerItem = new ClassWorkerItem();
+                        workerItem.message = "Classes - Could not mapping REFERENCE NUMBER for " + student.first_name +
+                                                  " " + student.last_name + "( " +
                                                   student.application_reference_number + " )";
-                        obj.classes.Add(classworkerItem);
+                        obj.classes.Add(workerItem);
                     }
 
 
@@ -180,7 +178,7 @@ namespace Applicaa
 
                         if (clsItem.result != null)
                         {
-                            txtLogging.AppendText("Import class " + clsItem.name + " is " + clsItem.result.Status);
+                            txtLogging.AppendText(">> Import CLASS " + clsItem.name + " is " + clsItem.result.Status +"\n");
                             if (!string.IsNullOrEmpty(clsItem.result.Message))
                             {
                                 txtLogging.AppendText(clsItem.result.Message);
@@ -188,7 +186,7 @@ namespace Applicaa
 
                             if (clsItem.result.Errors != null)
                             {
-                                string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                                string validationError = string.Join(", \n", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
                                 txtLogging.AppendText(validationError);
                             }
                         }
@@ -207,7 +205,7 @@ namespace Applicaa
 
                         if (clsItem.result != null)
                         {
-                            txtLogging.AppendText("Import exam " + clsItem.name + " is " + clsItem.result.Status);
+                            txtLogging.AppendText(">> Import EXAM " + clsItem.name + " is " + clsItem.result.Status + "\n");
                             if (!string.IsNullOrEmpty(clsItem.result.Message))
                             {
                                 txtLogging.AppendText(clsItem.result.Message);
@@ -215,7 +213,7 @@ namespace Applicaa
 
                             if (clsItem.result.Errors != null)
                             {
-                                string validationError = string.Join(", ", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
+                                string validationError = string.Join(", \n", clsItem.result.Errors.Cast<ValidationError>().ToList().Select(x => x.Message).ToList());
                                 txtLogging.AppendText(validationError);
                             }
                         }
