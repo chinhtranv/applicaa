@@ -35,7 +35,8 @@ namespace Applicaa
             var client = new AdmissionStudentsClient(serializer, errorLogger);
             
             var students = client.GetStudents(appFormId,MisCache.UserEmail, MisCache.UserToken);
-            var studentsGridDataSource = students.Where(x => !string.IsNullOrEmpty(x.class_list)).ToList();
+            //var studentsGridDataSource = students.Where(x => !string.IsNullOrEmpty(x.class_list)).ToList();
+            var studentsGridDataSource = students;
             studentsGrid.DataSource = studentsGridDataSource;
             MisCache.Students = studentsGridDataSource;
         }
