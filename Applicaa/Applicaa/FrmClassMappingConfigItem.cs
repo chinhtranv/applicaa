@@ -32,7 +32,6 @@ namespace Applicaa
             {
                 MessageBoxHelper.ShowError("Please select the class ...");
                 return;
-
             }
             var classMappingConfig = MisCache.ClassesMapping.FirstOrDefault(x => x.SimsClassId == simsClassId);
             if (classMappingConfig != null)
@@ -40,6 +39,7 @@ namespace Applicaa
                 var selectedValue = cboAdmissionClasses.SelectedValue.ToString();
                 classMappingConfig.AdmissionClassId = Int32.Parse(selectedValue);
                 classMappingConfig.AdmissionClassName = cboAdmissionClasses.Text;
+                classMappingConfig.ApplicationFormId =(int?) cboApplicationForm.SelectedValue;
             }
 
             var client = AdmissionClassesClient();
@@ -50,7 +50,7 @@ namespace Applicaa
             string simsClassName = txtClassName.Text;
             string simsClassSchemaType = txtSchemaType.Text;
             //API is not allowed post classId null
-            var classes = client.UpdateClassConfig(MisCache.UserEmail, MisCache.UserToken, classId, name, simsClassId, simsClassName, simsClassSchemaType);
+            client.UpdateClassConfig(MisCache.UserEmail, MisCache.UserToken, classId, name, simsClassId, simsClassName, simsClassSchemaType, classMappingConfig.ApplicationFormId.Value);
 
             this.Hide();
         }
@@ -96,6 +96,11 @@ namespace Applicaa
             {
                 cboAdmissionClasses.SelectedValue = classMappingConfig.AdmissionClassId.ToString();
             }
+
+            if (classMappingConfig.ApplicationFormId != null)
+            {
+                cboApplicationForm.SelectedValue = classMappingConfig.ApplicationFormId;
+            }
             
         }
 
@@ -108,10 +113,10 @@ namespace Applicaa
             var client = new AdmissionClassesClient(cache, serializer, errorLogger);
 
             int appFormId = (int)cboApplicationForm.SelectedValue;
-            var classes = client.GetCachedClasses(appFormId, MisCache.UserEmail, MisCache.UserToken);
+            var classes = client.GetClasses(appFormId, MisCache.UserEmail, MisCache.UserToken);
 
             var dataForCombobox = new List<CboItem>();
-            //dataForCombobox.Add(new CboItem(string.Empty,string.Empty));
+            
             foreach (var item in classes)
             {
                 dataForCombobox.Add(new CboItem(item.name,item.id.ToString()));

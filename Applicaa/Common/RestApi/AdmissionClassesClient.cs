@@ -16,25 +16,6 @@ namespace Common.RestApi
 
         }
 
-        public List<ClassesItem> GetCachedClasses(int appFormId, string email, string token)
-        {
-            var result = new List<ClassesItem>();
-
-            var request = new RestRequest(LoginResource, Method.POST);
-            request.AddQueryParameter("user_email", email);
-            request.AddQueryParameter("user_token", token);
-            request.AddQueryParameter("query", PopulateQuery(appFormId));
-            
-            var data = Get<ClassResponse>(request);
-            if (data != null)
-            {
-                result = data.data.clazzs;
-                return result;
-            }
-
-            return result;
-        }
-
         public List<ClassesItem> GetClasses(int appFormId,string email, string token)
         {
             var result = new List<ClassesItem>();
@@ -61,9 +42,9 @@ namespace Common.RestApi
         }
 
 
-        public List<ClassesItem> UpdateClassConfig(string email, string token, int? clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
+        public List<ClassesItem> UpdateClassConfig(string email, string token, int? clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType,int applicationFormId)
         {
-            string model = "{clazzId: "+clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\"}";
+            string model = "{clazzId: " + clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\"}";
 
             string mutuation = "mutation{updateClazz (clazzAttributes:[" + model + "]) "
                                +   "{ clazzs{ id,name,code,course,sims_block,sims_brand,sims_cluster,sims_class_id,sims_class_name,sims_class_schema_type}, errors}"
@@ -74,8 +55,7 @@ namespace Common.RestApi
             request.AddQueryParameter("user_email", email);
             request.AddQueryParameter("user_token", token);
             request.AddQueryParameter("query", mutuation);
-            const string cacheKey = "AdmissionClassesCacheKey";
-
+            
             var data = Get<ClassResponse>(request);
             if (data != null)
             {

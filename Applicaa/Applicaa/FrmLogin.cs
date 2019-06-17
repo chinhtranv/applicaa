@@ -49,6 +49,8 @@ namespace Applicaa
             {
                 MisCache.UserToken = user.user_token;
                 MisCache.UserEmail = user.user_email;
+                MisCache.IsImportClasses = true;
+                MisCache.IsImportExamResults = true;
 
                 SIMSDllResolution.AddSIMSDllResolution();
                 if (!LoginHelper.SIMSlogin(AppSetting.Server,

@@ -116,12 +116,13 @@ namespace Applicaa
             foreach (var item in classes)
             {
                 var simsClassId = item.SimsClassId;
-                var admissionClass = _admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue)
-                    .FirstOrDefault(x => x.sims_class_id == simsClassId);
+                var admissionClass = _admisionApiClassMappingConfig.Where(x => x.sims_class_id.HasValue).FirstOrDefault(x => x.sims_class_id == simsClassId);
+
                 if (admissionClass != null)
                 {
                     item.AdmissionClassId = admissionClass.id;
                     item.AdmissionClassName = admissionClass.name;
+                    item.ApplicationFormId = admissionClass.application_form_id;
                 }
             }
             

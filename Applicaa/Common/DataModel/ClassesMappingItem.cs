@@ -19,6 +19,8 @@ namespace SIMSInterface
 
         public int? AdmissionClassId { get; set; }
 
+        public int? ApplicationFormId { get; set; }
+
         public string AdmissionClassName { get; set; }
 
     }

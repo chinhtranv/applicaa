@@ -35,16 +35,23 @@ namespace Applicaa
             MisCache.IsImportClasses = chkClassess.Checked;
             MisCache.IsImportExamResults = chkExamResults.Checked;
 
-            var frmClassesConfiguration = new FrmClassesConfiguration();
-            frmClassesConfiguration.Show();
-
+            if (MisCache.IsImportClasses)
+            {
+                var frmClassesConfiguration = new FrmClassesConfiguration();
+                frmClassesConfiguration.Show();
+            }
+            else
+            {
+                var frm = new FrmStudentSelection();
+                frm.Show();
+            }
             this.Hide();
         }
 
         private void FrmImportTypes_Load(object sender, EventArgs e)
         {
-            chkClassess.Checked = true;
-            chkExamResults.Checked = true;
+            chkClassess.Checked = MisCache.IsImportClasses;
+            chkExamResults.Checked = MisCache.IsImportExamResults;
         }
     }
 }

@@ -40,7 +40,7 @@
             // 
             this.pictureBox1.Image = global::Applicaa.Properties.Resources.Admission;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(105, 9);
+            this.pictureBox1.Location = new System.Drawing.Point(105, 23);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(408, 66);
@@ -50,7 +50,7 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(105, 140);
+            this.txtUserName.Location = new System.Drawing.Point(105, 157);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
@@ -59,7 +59,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(105, 216);
+            this.txtPassword.Location = new System.Drawing.Point(105, 229);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";

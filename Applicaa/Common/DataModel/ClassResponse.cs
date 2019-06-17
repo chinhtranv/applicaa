@@ -30,6 +30,7 @@ namespace Common.DataModel
 
         public int? course_id { get; set; }
         public int? school_year_id { get; set; }
+        public int application_form_id { get; set; }
 
         public int? sims_class_id { get; set; }
         public string sims_class_name { get; set; }
