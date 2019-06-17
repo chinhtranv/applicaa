@@ -40,6 +40,9 @@
             this.txtClassName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSupervisor = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboApplicationForm = new System.Windows.Forms.ComboBox();
+            this.btnAdmissionForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -147,13 +150,43 @@
             this.txtSupervisor.Size = new System.Drawing.Size(266, 22);
             this.txtSupervisor.TabIndex = 1;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 236);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Application Form";
+            // 
+            // cboApplicationForm
+            // 
+            this.cboApplicationForm.FormattingEnabled = true;
+            this.cboApplicationForm.Location = new System.Drawing.Point(191, 233);
+            this.cboApplicationForm.Name = "cboApplicationForm";
+            this.cboApplicationForm.Size = new System.Drawing.Size(183, 24);
+            this.cboApplicationForm.TabIndex = 3;
+            // 
+            // btnAdmissionForm
+            // 
+            this.btnAdmissionForm.Location = new System.Drawing.Point(380, 233);
+            this.btnAdmissionForm.Name = "btnAdmissionForm";
+            this.btnAdmissionForm.Size = new System.Drawing.Size(77, 24);
+            this.btnAdmissionForm.TabIndex = 5;
+            this.btnAdmissionForm.Text = "load";
+            this.btnAdmissionForm.UseVisualStyleBackColor = true;
+            this.btnAdmissionForm.Click += new System.EventHandler(this.btnAdmissionForm_Click);
+            // 
             // FrmClassMappingConfigItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 417);
+            this.Controls.Add(this.btnAdmissionForm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.cboApplicationForm);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.cboAdmissionClasses);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtClassName);
@@ -187,5 +220,8 @@
         private System.Windows.Forms.TextBox txtClassName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSupervisor;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboApplicationForm;
+        private System.Windows.Forms.Button btnAdmissionForm;
     }
 }

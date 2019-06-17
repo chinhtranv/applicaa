@@ -25,26 +25,16 @@ namespace Applicaa
 
         public void LoadAdmissionForms()
         {
-            //var serializer = new JsonSerializer();
-            //var errorLogger = new ErrorLogger();
-            //var client = new AdmissionApplicationFormClient(serializer, errorLogger);
-            //List<ApplicationFormsItem> appForms = client.GetApplicationForms(MisCache.UserEmail, MisCache.UserToken);
-            //cboApplicationForm.DataSource = appForms;
-            //cboApplicationForm.ValueMember = "id";
-            //cboApplicationForm.DisplayMember = "name";
-            //cboApplicationForm.SelectedValue = 1;
-
             AdmissionPlusHelper.LoadApplicationForm(cboApplicationForm);
-
         }
 
-        public void LoadStudents(int? appFormId = null)
+        public void LoadStudents(int appFormId)
         {
             var serializer = new JsonSerializer();
             var errorLogger = new ErrorLogger();
             var client = new AdmissionStudentsClient(serializer, errorLogger);
             
-            var students = client.GetStudents(appFormId ?? 1,MisCache.UserEmail, MisCache.UserToken);
+            var students = client.GetStudents(appFormId,MisCache.UserEmail, MisCache.UserToken);
             var studentsGridDataSource = students.Where(x => !string.IsNullOrEmpty(x.class_list)).ToList();
             studentsGrid.DataSource = studentsGridDataSource;
             MisCache.Students = studentsGridDataSource;

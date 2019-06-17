@@ -16,17 +16,16 @@ namespace Common.RestApi
 
         }
 
-        public List<ClassesItem> GetCachedClasses(string email, string token)
+        public List<ClassesItem> GetCachedClasses(int appFormId, string email, string token)
         {
             var result = new List<ClassesItem>();
 
             var request = new RestRequest(LoginResource, Method.POST);
             request.AddQueryParameter("user_email", email);
             request.AddQueryParameter("user_token", token);
-            request.AddQueryParameter("query", query);
-            const string cacheKey = "AdmissionClassesCacheKey";
-
-            var data = GetFromCache<ClassResponse>(request, cacheKey);
+            request.AddQueryParameter("query", PopulateQuery(appFormId));
+            
+            var data = Get<ClassResponse>(request);
             if (data != null)
             {
                 result = data.data.clazzs;

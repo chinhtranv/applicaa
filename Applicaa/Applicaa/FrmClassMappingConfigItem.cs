@@ -66,9 +66,16 @@ namespace Applicaa
 
         private void ClassMappingItem_Load(object sender, EventArgs e)
         {
-            LoadAdmissionClassesData();
 
+            LoadAdmissionForms();
+            LoadAdmissionClassesData();
             LoadClassConfig();
+
+        }
+
+        public void LoadAdmissionForms()
+        {
+            AdmissionPlusHelper.LoadApplicationForm(cboApplicationForm);
         }
 
         private void LoadClassConfig()
@@ -99,11 +106,9 @@ namespace Applicaa
             var errorLogger = new ErrorLogger();
             var cache = new InMemoryCache();
             var client = new AdmissionClassesClient(cache, serializer, errorLogger);
-#if DEBUG
-            //MisCache.UserEmail = "admin@applicaa.com";
-            //MisCache.UserEmail = "VyQ8QsNGJB-XPrLawz6hf7zfX3ZyKTes";
-#endif
-            var classes = client.GetCachedClasses(MisCache.UserEmail, MisCache.UserToken);
+
+            int appFormId = (int)cboApplicationForm.SelectedValue;
+            var classes = client.GetCachedClasses(appFormId, MisCache.UserEmail, MisCache.UserToken);
 
             var dataForCombobox = new List<CboItem>();
             //dataForCombobox.Add(new CboItem(string.Empty,string.Empty));
@@ -114,12 +119,18 @@ namespace Applicaa
             cboAdmissionClasses.DataSource = dataForCombobox;
             cboAdmissionClasses.DisplayMember = "Name";
             cboAdmissionClasses.ValueMember = "Value";
-
+            
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAdmissionForm_Click(object sender, EventArgs e)
+        {
+            LoadAdmissionClassesData();
         }
     }
 }
