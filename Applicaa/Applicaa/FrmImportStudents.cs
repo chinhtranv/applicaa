@@ -50,6 +50,7 @@ namespace Applicaa
             {
                 obj.Name = student.first_name + " " + student.last_name;
                 obj.PersonId = student.id;
+                obj.Index = i;
                 var referenceNumber = student.application_reference_number;
                 obj.classes = new List<ClassWorkerItem>();
                 obj.exams = new List<ExaminationWorkerItem>();
@@ -165,7 +166,7 @@ namespace Applicaa
             {
                 var obj = (MyWorkerClass) e.UserState;
                 txtLogging.AppendText("\n");
-                txtLogging.AppendText(" --- "+obj.PersonId + " - " +obj.Name + " processed ...");
+                txtLogging.AppendText(obj.Index + " -- "+obj.PersonId + " - [" +obj.Name + "] processed ...");
                 if (obj.classes.Any())
                 {
                     foreach (var clsItem in obj.classes)
@@ -220,6 +221,7 @@ namespace Applicaa
                     }
                 }
 
+                txtLogging.AppendText("\n");
                 progressBar1.Value = e.ProgressPercentage;
                 lblTotalRows.Text = @"Students processed : " + e.ProgressPercentage + 1;
 
@@ -272,6 +274,8 @@ namespace Applicaa
     {
         public string Name;
         public int PersonId;
+        public int Index;
+
         public List<ClassWorkerItem> classes;
         public List<ExaminationWorkerItem> exams;
     }

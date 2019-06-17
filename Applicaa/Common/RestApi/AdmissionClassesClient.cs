@@ -44,10 +44,10 @@ namespace Common.RestApi
 
         public List<ClassesItem> UpdateClassConfig(string email, string token, int? clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType,int applicationFormId)
         {
-            string model = "{clazzId: " + clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\"}";
+            string model = "{clazzId: " + clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\" ,  applicationFormId: "+applicationFormId+"}";
 
             string mutuation = "mutation{updateClazz (clazzAttributes:[" + model + "]) "
-                               +   "{ clazzs{ id,name,code,course,sims_block,sims_brand,sims_cluster,sims_class_id,sims_class_name,sims_class_schema_type}, errors}"
+                               + "{ clazzs{ id,name,code,course,sims_block,sims_brand,sims_cluster,sims_class_id,sims_class_name,sims_class_schema_type, application_form_id}, errors}"
                                          +    "}";
             var result = new List<ClassesItem>();
 

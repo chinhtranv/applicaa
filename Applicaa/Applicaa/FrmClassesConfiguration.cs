@@ -54,7 +54,7 @@ namespace Applicaa
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            var frm= new FrmStudentSelection();
+            var frm = new FrmStudentSelection();
             frm.Show();
 
             this.Hide();
@@ -64,9 +64,7 @@ namespace Applicaa
         {
             var frm = new FrmImportTypes();
             frm.Show();
-
             this.Hide();
-
         }
 
 

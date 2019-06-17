@@ -85,11 +85,11 @@
             // lblTotalRows
             // 
             this.lblTotalRows.AutoSize = true;
-            this.lblTotalRows.Location = new System.Drawing.Point(167, 421);
+            this.lblTotalRows.Location = new System.Drawing.Point(642, 23);
             this.lblTotalRows.Name = "lblTotalRows";
-            this.lblTotalRows.Size = new System.Drawing.Size(46, 17);
+            this.lblTotalRows.Size = new System.Drawing.Size(140, 17);
             this.lblTotalRows.TabIndex = 5;
-            this.lblTotalRows.Text = "label2";
+            this.lblTotalRows.Text = "All data proceessed !";
             // 
             // btnBack
             // 
