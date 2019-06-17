@@ -45,17 +45,7 @@ namespace Applicaa
         {
             List<StudentItem> students = GetStudents();
             int i = 0;
-            if (obj.classes == null)
-            {
-                obj.classes = new List<ClassWorkerItem>();
-            }
-
-            if (obj.exams == null)
-            {
-                obj.exams = new List<ExaminationWorkerItem>();
-            }
-
-
+            
             foreach (StudentItem student in students)
             {
                 obj.Name = student.first_name + " " + student.last_name;
@@ -78,7 +68,7 @@ namespace Applicaa
                         foreach (var exam in student.exam_results)
                         {
                             var workerItem = new ExaminationWorkerItem();
-                            workerItem.name = exam.qan + exam.subject_code + exam.board_code + exam.level;
+                            workerItem.name = exam.qan + " - "+ exam.subject_code + " - " + exam.board_code+ " - " + exam.level;
                             //for testing 
                             exam.level = "ABQ/B";
                             //exam.result = "P";
@@ -248,7 +238,7 @@ namespace Applicaa
 
         private void FrmImportStudents_Load(object sender, EventArgs e)
         {
-            //ExternalExamination.ExamCachePopulate();
+            ExternalExamination.ExamCachePopulate();
 
             var references = MisCache.SelectedStudents.Select(x => x.Reference).ToList();
             studentReferenceMapping = Students.GetStudentsByRef(references).ToDictionary(v => v.Reference, v => v);

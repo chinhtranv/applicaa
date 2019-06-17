@@ -37,6 +37,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.lblTotalRows = new System.Windows.Forms.Label();
+            this.cboApplicationForm = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.classMappingGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,16 +55,16 @@
             this.classMappingGrid.AllowUserToAddRows = false;
             this.classMappingGrid.AllowUserToDeleteRows = false;
             this.classMappingGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.classMappingGrid.Location = new System.Drawing.Point(32, 115);
+            this.classMappingGrid.Location = new System.Drawing.Point(23, 114);
             this.classMappingGrid.Name = "classMappingGrid";
             this.classMappingGrid.RowTemplate.Height = 24;
             this.classMappingGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.classMappingGrid.Size = new System.Drawing.Size(740, 238);
+            this.classMappingGrid.Size = new System.Drawing.Size(749, 319);
             this.classMappingGrid.TabIndex = 5;
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(671, 388);
+            this.btnNext.Location = new System.Drawing.Point(671, 470);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(101, 34);
             this.btnNext.TabIndex = 6;
@@ -73,7 +74,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(32, 388);
+            this.btnBack.Location = new System.Drawing.Point(23, 470);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(101, 34);
             this.btnBack.TabIndex = 6;
@@ -83,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(671, 65);
+            this.button1.Location = new System.Drawing.Point(671, 69);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 29);
             this.button1.TabIndex = 7;
@@ -94,14 +95,14 @@
             // cboSchemaType
             // 
             this.cboSchemaType.FormattingEnabled = true;
-            this.cboSchemaType.Location = new System.Drawing.Point(32, 68);
+            this.cboSchemaType.Location = new System.Drawing.Point(157, 67);
             this.cboSchemaType.Name = "cboSchemaType";
             this.cboSchemaType.Size = new System.Drawing.Size(119, 24);
             this.cboSchemaType.TabIndex = 8;
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(157, 68);
+            this.txtSearch.Location = new System.Drawing.Point(282, 67);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(154, 26);
@@ -109,7 +110,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(317, 68);
+            this.button2.Location = new System.Drawing.Point(442, 67);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 29);
             this.button2.TabIndex = 10;
@@ -120,17 +121,26 @@
             // lblTotalRows
             // 
             this.lblTotalRows.AutoSize = true;
-            this.lblTotalRows.Location = new System.Drawing.Point(423, 76);
+            this.lblTotalRows.Location = new System.Drawing.Point(548, 75);
             this.lblTotalRows.Name = "lblTotalRows";
             this.lblTotalRows.Size = new System.Drawing.Size(86, 17);
             this.lblTotalRows.TabIndex = 11;
             this.lblTotalRows.Text = "match found";
             // 
+            // cboApplicationForm
+            // 
+            this.cboApplicationForm.FormattingEnabled = true;
+            this.cboApplicationForm.Location = new System.Drawing.Point(23, 67);
+            this.cboApplicationForm.Name = "cboApplicationForm";
+            this.cboApplicationForm.Size = new System.Drawing.Size(119, 24);
+            this.cboApplicationForm.TabIndex = 12;
+            // 
             // FrmClassesConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 534);
+            this.Controls.Add(this.cboApplicationForm);
             this.Controls.Add(this.lblTotalRows);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtSearch);
@@ -161,5 +171,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblTotalRows;
+        private System.Windows.Forms.ComboBox cboApplicationForm;
     }
 }

@@ -11,7 +11,6 @@ using JsonSerializer = RestSharp.Serialization.Json.JsonSerializer;
 
 namespace Applicaa
 {
-
     public partial class FrmClassesConfiguration : Form
     {
         private List<ClassesItem> _admisionApiClassMappingConfig = new List<ClassesItem>();
@@ -28,6 +27,7 @@ namespace Applicaa
         private void FrmClassesConfiguration_Load(object sender, EventArgs e)
         {
             lblTotalRows.Text = string.Empty;
+            LoadAdmissionForms();
 
             //Schema types combobox
             LoadSchemaTypeData();
@@ -35,6 +35,12 @@ namespace Applicaa
             LoadClassMappingConfigFromAdmissionApi();
 
             LoadClassesDataFromSims();
+        }
+
+
+        public void LoadAdmissionForms()
+        {
+            AdmissionPlusHelper.LoadApplicationForm(cboApplicationForm);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -99,10 +105,8 @@ namespace Applicaa
                 dataForGrid = dataForGrid.Where(x => x.ClassName.Contains(keyword)).ToList();
             }
 
-
             classMappingGrid.DataSource = dataForGrid;
             lblTotalRows.Text = dataForGrid.Count + " match found";
-
         }
 
         private List<ClassesMappingItem> PoulateClassesMappingItems()
@@ -130,8 +134,8 @@ namespace Applicaa
             var errorLogger = new ErrorLogger();
             var cache = new InMemoryCache();
             var client = new AdmissionClassesClient(cache, serializer, errorLogger);
-
-            _admisionApiClassMappingConfig = client.GetClasses(MisCache.UserEmail, MisCache.UserToken);
+            int appFormId = (int)cboApplicationForm.SelectedValue;
+            _admisionApiClassMappingConfig = client.GetClasses(appFormId, MisCache.UserEmail, MisCache.UserToken);
         }
 
 

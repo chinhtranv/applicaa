@@ -79,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 257);
+            this.label3.Location = new System.Drawing.Point(37, 277);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 17);
             this.label3.TabIndex = 2;
@@ -88,7 +88,7 @@
             // cboAdmissionClasses
             // 
             this.cboAdmissionClasses.FormattingEnabled = true;
-            this.cboAdmissionClasses.Location = new System.Drawing.Point(191, 254);
+            this.cboAdmissionClasses.Location = new System.Drawing.Point(191, 274);
             this.cboAdmissionClasses.Name = "cboAdmissionClasses";
             this.cboAdmissionClasses.Size = new System.Drawing.Size(266, 24);
             this.cboAdmissionClasses.TabIndex = 3;

@@ -36,16 +36,15 @@ namespace Common.RestApi
             return result;
         }
 
-        public List<ClassesItem> GetClasses(string email, string token)
+        public List<ClassesItem> GetClasses(int appFormId,string email, string token)
         {
             var result = new List<ClassesItem>();
 
             var request = new RestRequest(LoginResource, Method.POST);
             request.AddQueryParameter("user_email", email);
             request.AddQueryParameter("user_token", token);
-            request.AddQueryParameter("query", query);
-            const string cacheKey = "AdmissionClassesCacheKey";
-
+            request.AddQueryParameter("query", PopulateQuery(appFormId));
+            
             var data= Get<ClassResponse>(request);
             if (data != null)
             {
@@ -56,7 +55,13 @@ namespace Common.RestApi
             return result;
         }
 
-        //clazzId: 5, name: "5555", simsBlock: "aaa", simsBrand: "xxxx", simsCluster: "yyyyy", simsClassId:101,simsClassName:"History10A",simsClassSchemaType:"type1"
+        private string PopulateQuery(int appFormId)
+        {
+            return "{ clazzs( applicationFormId: "+ appFormId + " ) { id,name,code,students_max,block_id,course_id,created_at,school_year_id,application_form_id,sims_block,sims_brand,sims_cluster,sims_class_id,sims_class_name,sims_class_schema_type,blocks{id,name,schedule,created_at,application_form_id } } }";
+            
+        }
+
+
         public List<ClassesItem> UpdateClassConfig(string email, string token, int? clazzId, string name,int simsClassId,string simsClassName,string simsClassSchemaType)
         {
             string model = "{clazzId: "+clazzId+", name: \""+name+"\", simsClassId:" + simsClassId + ",simsClassName:\"" + simsClassName + "\",simsClassSchemaType:\"" + simsClassSchemaType + "\"}";

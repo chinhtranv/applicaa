@@ -33,6 +33,7 @@ namespace Applicaa
         {
             btnNext.Enabled = false;
             MisCache.IsImportClasses = chkClassess.Checked;
+            MisCache.IsImportExamResults = chkExamResults.Checked;
 
             var frmClassesConfiguration = new FrmClassesConfiguration();
             frmClassesConfiguration.Show();
@@ -43,6 +44,7 @@ namespace Applicaa
         private void FrmImportTypes_Load(object sender, EventArgs e)
         {
             chkClassess.Checked = true;
+            chkExamResults.Checked = true;
         }
     }
 }

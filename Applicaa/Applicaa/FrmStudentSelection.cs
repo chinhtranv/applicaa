@@ -25,14 +25,16 @@ namespace Applicaa
 
         public void LoadAdmissionForms()
         {
-            var serializer = new JsonSerializer();
-            var errorLogger = new ErrorLogger();
-            var client = new AdmissionApplicationFormClient(serializer, errorLogger);
-            List<ApplicationFormsItem> appForms = client.GetApplicationForms(MisCache.UserEmail, MisCache.UserToken);
-            cboApplicationForm.DataSource = appForms;
-            cboApplicationForm.ValueMember = "id";
-            cboApplicationForm.DisplayMember = "name";
-            cboApplicationForm.SelectedValue = 1;
+            //var serializer = new JsonSerializer();
+            //var errorLogger = new ErrorLogger();
+            //var client = new AdmissionApplicationFormClient(serializer, errorLogger);
+            //List<ApplicationFormsItem> appForms = client.GetApplicationForms(MisCache.UserEmail, MisCache.UserToken);
+            //cboApplicationForm.DataSource = appForms;
+            //cboApplicationForm.ValueMember = "id";
+            //cboApplicationForm.DisplayMember = "name";
+            //cboApplicationForm.SelectedValue = 1;
+
+            AdmissionPlusHelper.LoadApplicationForm(cboApplicationForm);
 
         }
 
