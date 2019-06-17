@@ -39,9 +39,10 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(23, 66);
+            this.progressBar1.Location = new System.Drawing.Point(26, 82);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(756, 37);
+            this.progressBar1.Size = new System.Drawing.Size(850, 46);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 0;
@@ -49,26 +50,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 23);
+            this.label1.Location = new System.Drawing.Point(22, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 17);
+            this.label1.Size = new System.Drawing.Size(170, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Importing student data";
             // 
             // txtLogging
             // 
-            this.txtLogging.Location = new System.Drawing.Point(23, 132);
+            this.txtLogging.Location = new System.Drawing.Point(26, 165);
+            this.txtLogging.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtLogging.Multiline = true;
             this.txtLogging.Name = "txtLogging";
             this.txtLogging.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLogging.Size = new System.Drawing.Size(756, 255);
+            this.txtLogging.Size = new System.Drawing.Size(850, 318);
             this.txtLogging.TabIndex = 3;
             // 
             // btnFinish
             // 
-            this.btnFinish.Location = new System.Drawing.Point(629, 403);
+            this.btnFinish.Location = new System.Drawing.Point(708, 504);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(150, 35);
+            this.btnFinish.Size = new System.Drawing.Size(169, 44);
             this.btnFinish.TabIndex = 4;
             this.btnFinish.Text = "Import data";
             this.btnFinish.UseVisualStyleBackColor = true;
@@ -85,17 +88,18 @@
             // lblTotalRows
             // 
             this.lblTotalRows.AutoSize = true;
-            this.lblTotalRows.Location = new System.Drawing.Point(642, 23);
+            this.lblTotalRows.Location = new System.Drawing.Point(678, 29);
             this.lblTotalRows.Name = "lblTotalRows";
-            this.lblTotalRows.Size = new System.Drawing.Size(140, 17);
+            this.lblTotalRows.Size = new System.Drawing.Size(157, 20);
             this.lblTotalRows.TabIndex = 5;
             this.lblTotalRows.Text = "All data proceessed !";
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(23, 403);
+            this.btnBack.Location = new System.Drawing.Point(26, 504);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(115, 35);
+            this.btnBack.Size = new System.Drawing.Size(129, 44);
             this.btnBack.TabIndex = 6;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -103,15 +107,16 @@
             // 
             // FrmImportStudents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 457);
+            this.ClientSize = new System.Drawing.Size(900, 571);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.lblTotalRows);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.txtLogging);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmImportStudents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admission+";

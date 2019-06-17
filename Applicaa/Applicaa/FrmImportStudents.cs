@@ -165,7 +165,7 @@ namespace Applicaa
             if (!backgroundWorker1.CancellationPending)
             {
                 var obj = (MyWorkerClass) e.UserState;
-                txtLogging.AppendText("\n");
+                txtLogging.AppendText("-----------------------------------------\n");
                 txtLogging.AppendText(obj.Index + " -- "+obj.PersonId + " - [" +obj.Name + "] processed ...");
                 if (obj.classes.Any())
                 {
